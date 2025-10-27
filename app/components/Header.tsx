@@ -1,13 +1,27 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // 当滚动超过100px时显示背景色
+      setIsScrolled(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-gray-200">
+    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+      ? "bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm"
+      : "bg-transparent border-b border-transparent"
+      }`}>
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
@@ -22,7 +36,8 @@ export default function Header() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${isScrolled ? "text-gray-700" : "text-white"
+              }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open main menu</span>
@@ -44,77 +59,93 @@ export default function Header() {
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
-          <div className="relative group">
-            <button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Platform
-              <svg
-                className="h-5 w-5 flex-none text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+          <motion.a
+            href="#"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+              }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            HOME
+            <motion.span
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
+              initial={{ width: 0 }}
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
 
-          <div className="relative group">
-            <button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Solutions
-              <svg
-                className="h-5 w-5 flex-none text-gray-400"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-                  clipRule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+          <motion.a
+            href="#"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+              }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            ABOUT US
+            <motion.span
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
+              initial={{ width: 0 }}
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
 
-          <a
+          <motion.a
             href="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+              }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Pricing
-          </a>
-          <a
+            NEWS
+            <motion.span
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
+              initial={{ width: 0 }}
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
+          <motion.a
             href="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+              }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Customers
-          </a>
-          <a
+            PROJECT
+            <motion.span
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
+              initial={{ width: 0 }}
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
+          <motion.a
             href="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+              }`}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            Resources
-          </a>
-          <a
-            href="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Company
-          </a>
+            CONTACT US
+            <motion.span
+              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
+              initial={{ width: 0 }}
+              whileHover={{ width: "100%" }}
+              transition={{ duration: 0.3 }}
+            />
+          </motion.a>
         </div>
 
         {/* Right side buttons */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
           <a
             href="#"
-            className="text-sm font-semibold leading-6 text-gray-900"
-          >
-            Log in
-          </a>
-          <a
-            href="#"
-            className="rounded-full bg-gradient-to-r from-purple-600 to-blue-600 px-6 py-2.5 text-sm font-semibold text-white shadow-sm hover:opacity-90 transition-opacity"
+            className={`rounded-full px-6 py-2.5 text-sm font-semibold shadow-sm transition-all ${isScrolled
+              ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:opacity-90"
+              : "bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30"
+              }`}
           >
             Talk to us
           </a>
@@ -129,30 +160,41 @@ export default function Header() {
           className="lg:hidden"
         >
           <div className="space-y-2 px-6 pb-6 pt-2">
-            <a
+            <motion.a
               href="#"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              whileTap={{ scale: 0.98 }}
             >
-              Platform
-            </a>
-            <a
+              HOME
+            </motion.a>
+            <motion.a
               href="#"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              whileTap={{ scale: 0.98 }}
             >
-              Solutions
-            </a>
-            <a
+              ABOUT US
+            </motion.a>
+            <motion.a
               href="#"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              whileTap={{ scale: 0.98 }}
             >
-              Pricing
-            </a>
-            <a
+              NEWS
+            </motion.a>
+            <motion.a
               href="#"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              whileTap={{ scale: 0.98 }}
             >
-              Customers
-            </a>
+              PROJECT
+            </motion.a>
+            <motion.a
+              href="#"
+              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              whileTap={{ scale: 0.98 }}
+            >
+              CONTACT US
+            </motion.a>
           </div>
         </motion.div>
       )}
