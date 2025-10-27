@@ -16,7 +16,7 @@ export default function Hero() {
       gradient: "from-purple-600 to-blue-600",
       bgGradient: "from-purple-900/90 via-blue-900/80 to-purple-800/90",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80",
-      animationType: "slide3d", // 3D卡片滑动
+      animationType: "grid", // 方格翻转
     },
     {
       id: 2,
@@ -41,30 +41,24 @@ export default function Hero() {
   // 三种不同的动画变体
   const getAnimationVariants = (type: string) => {
     switch (type) {
-      case "slide3d":
-        // 风格1：3D卡片式滑动（类似酷狗音乐）
+      case "grid":
+        // 风格1：方格翻转效果
         return {
           initial: {
-            x: direction > 0 ? "100%" : "-100%",
-            scale: 0.9,
-            rotateY: direction > 0 ? -15 : 15,
-            opacity: 0
+            opacity: 0,
+            scale: 0.95
           },
           animate: {
-            x: 0,
-            scale: 1,
-            rotateY: 0,
-            opacity: 1
+            opacity: 1,
+            scale: 1
           },
           exit: {
-            x: direction > 0 ? "-30%" : "30%",
-            scale: 0.85,
-            rotateY: direction > 0 ? 10 : -10,
-            opacity: 0
+            opacity: 0,
+            scale: 1.05
           },
           transition: {
-            duration: 0.9,
-            ease: [0.32, 0.72, 0, 1] as any
+            duration: 0.8,
+            ease: "easeInOut" as any
           }
         };
 
@@ -72,23 +66,28 @@ export default function Hero() {
         // 风格2：水波涟漪效果
         return {
           initial: {
-            scale: 0.5,
+            scale: 0.3,
             opacity: 0,
-            filter: "blur(20px)"
+            rotateZ: -10
           },
           animate: {
             scale: 1,
             opacity: 1,
-            filter: "blur(0px)"
+            rotateZ: 0
           },
           exit: {
-            scale: 1.1,
+            scale: 1.3,
             opacity: 0,
-            filter: "blur(10px)"
+            rotateZ: 10
           },
           transition: {
             duration: 1.2,
-            ease: [0.43, 0.13, 0.23, 0.96] as any
+            ease: [0.43, 0.13, 0.23, 0.96] as any,
+            scale: {
+              type: "spring",
+              stiffness: 100,
+              damping: 15
+            }
           }
         };
 
@@ -139,6 +138,18 @@ export default function Hero() {
 
   const currentAnimation = getAnimationVariants(slides[currentSlide].animationType);
 
+  // 根据动画类型获取背景图片的初始缩放值
+  const getBackgroundScale = () => {
+    const type = slides[currentSlide].animationType;
+    if (type === "ripple") return 1.5;
+    if (type === "fade") return 1;
+    return 1.2;
+  };
+
+  // 生成方格遮罩的关键帧动画
+  const gridSize = 8; // 8x8 = 64个方格
+  const totalGrids = gridSize * gridSize;
+
   return (
     <section className="relative h-screen w-full overflow-hidden bg-black">
       <AnimatePresence initial={false} custom={direction}>
@@ -158,16 +169,44 @@ export default function Hero() {
           <motion.div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
-            initial={{ scale: slides[currentSlide].animationType === "fade" ? 1 : 1.2 }}
-            animate={{ scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            initial={{
+              scale: getBackgroundScale(),
+              filter: slides[currentSlide].animationType === "ripple" ? "blur(20px)" : "blur(0px)"
+            }}
+            animate={{
+              scale: 1,
+              filter: "blur(0px)"
+            }}
+            transition={{
+              duration: slides[currentSlide].animationType === "ripple" ? 1.2 : 0.8,
+              ease: "easeOut"
+            }}
           />
+
+          {/* 方格遮罩层 - 只在grid动画时显示 */}
+          {slides[currentSlide].animationType === "grid" && (
+            <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 pointer-events-none z-10">
+              {Array.from({ length: totalGrids }).map((_, index) => (
+                <motion.div
+                  key={`grid-${currentSlide}-${index}`}
+                  className="bg-black"
+                  initial={{ opacity: 1 }}
+                  animate={{ opacity: 0 }}
+                  transition={{
+                    duration: 0.15,
+                    delay: (index % gridSize) * 0.03 + Math.floor(index / gridSize) * 0.05,
+                    ease: "easeOut"
+                  }}
+                />
+              ))}
+            </div>
+          )}
 
           {/* 渐变遮罩 */}
           <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgGradient}`} />
 
           {/* 内容 */}
-          <div className="relative h-full flex items-center justify-center">
+          <div className="relative h-full flex items-center justify-center z-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
               {/* 顶部公告横幅 */}
               <motion.div

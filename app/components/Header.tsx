@@ -113,7 +113,7 @@ export default function Header() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            PROJECT
+            PRODUCTS
             <motion.span
               className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
               initial={{ width: 0 }}
