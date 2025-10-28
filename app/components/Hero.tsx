@@ -63,31 +63,20 @@ export default function Hero() {
         };
 
       case "ripple":
-        // 风格2：水波涟漪效果
+        // 风格2：水波涟漪效果 - 从中心扩散
         return {
           initial: {
-            scale: 0.3,
-            opacity: 0,
-            rotateZ: -10
+            opacity: 0
           },
           animate: {
-            scale: 1,
-            opacity: 1,
-            rotateZ: 0
+            opacity: 1
           },
           exit: {
-            scale: 1.3,
-            opacity: 0,
-            rotateZ: 10
+            opacity: 0
           },
           transition: {
-            duration: 1.2,
-            ease: [0.43, 0.13, 0.23, 0.96] as any,
-            scale: {
-              type: "spring",
-              stiffness: 100,
-              damping: 15
-            }
+            duration: 0.5,
+            ease: "easeOut" as any
           }
         };
 
@@ -201,6 +190,7 @@ export default function Hero() {
               ))}
             </div>
           )}
+
 
           {/* 渐变遮罩 */}
           <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgGradient}`} />
