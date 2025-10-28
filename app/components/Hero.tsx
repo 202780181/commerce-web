@@ -213,12 +213,23 @@ export default function Hero() {
 
               {/* 按钮 */}
               <motion.button
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-xl transition-all"
+                initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.9,
+                  ease: [0.34, 1.56, 0.64, 1] // spring-like easing
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)",
+                  transition: { duration: 0.2, ease: "easeOut" }
+                }}
+                whileTap={{
+                  scale: 0.98,
+                  transition: { duration: 0.1 }
+                }}
+                className="rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
                 Talk to us
               </motion.button>
