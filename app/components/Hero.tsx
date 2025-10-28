@@ -7,7 +7,7 @@ export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
 
-  // 轮播图数据
+  // Carousel data
   const slides = [
     {
       id: 1,
@@ -16,7 +16,7 @@ export default function Hero() {
       gradient: "from-purple-600 to-blue-600",
       bgGradient: "from-purple-900/90 via-blue-900/80 to-purple-800/90",
       image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80",
-      animationType: "grid", // 方格翻转
+      animationType: "grid", // Grid flip effect
     },
     {
       id: 2,
@@ -25,7 +25,7 @@ export default function Hero() {
       gradient: "from-blue-600 to-cyan-600",
       bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
       image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80",
-      animationType: "fade", // 水波效果
+      animationType: "fade", // Ripple effect
     },
     {
       id: 3,
@@ -34,15 +34,15 @@ export default function Hero() {
       gradient: "from-indigo-600 to-purple-600",
       bgGradient: "from-indigo-900/90 via-purple-900/80 to-indigo-800/90",
       image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80",
-      animationType: "fade", // 缩放淡入淡出
+      animationType: "fade", // Scale fade in/out
     },
   ];
 
-  // 三种不同的动画变体
+  // Three different animation variants
   const getAnimationVariants = (type: string) => {
     switch (type) {
       case "grid":
-        // 风格1：方格翻转效果
+        // Style 1: Grid flip effect
         return {
           initial: {
             opacity: 0,
@@ -62,7 +62,7 @@ export default function Hero() {
           }
         };
       case "fade":
-        // 风格3：缩放淡入淡出 + Ken Burns
+        // Style 3: Scale fade in/out + Ken Burns
         return {
           initial: {
             scale: 1.2,
@@ -96,7 +96,7 @@ export default function Hero() {
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000); // 每5秒切换
+    }, 5000); // Switch every 5 seconds
 
     return () => clearInterval(timer);
   }, [slides.length]);
@@ -108,15 +108,15 @@ export default function Hero() {
 
   const currentAnimation = getAnimationVariants(slides[currentSlide].animationType);
 
-  // 根据动画类型获取背景图片的初始缩放值
+  // Get initial background image scale based on animation type
   const getBackgroundScale = () => {
     const type = slides[currentSlide].animationType;
     if (type === "fade") return 1;
     return 1.2;
   };
 
-  // 生成方格遮罩的关键帧动画
-  const gridSize = 8; // 8x8 = 64个方格
+  // Generate grid mask keyframe animation
+  const gridSize = 8; // 8x8 = 64 grids
   const totalGrids = gridSize * gridSize;
 
   return (
@@ -134,7 +134,7 @@ export default function Hero() {
             perspective: "1000px"
           }}
         >
-          {/* 背景图片 */}
+          {/* Background image */}
           <motion.div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat"
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
@@ -152,7 +152,7 @@ export default function Hero() {
             }}
           />
 
-          {/* 方格遮罩层 - 只在grid动画时显示 */}
+          {/* Grid mask layer - only show for grid animation */}
           {slides[currentSlide].animationType === "grid" && (
             <div className="absolute inset-0 grid grid-cols-8 grid-rows-8 pointer-events-none z-10">
               {Array.from({ length: totalGrids }).map((_, index) => (
@@ -172,13 +172,13 @@ export default function Hero() {
           )}
 
 
-          {/* 渐变遮罩 */}
+          {/* Gradient overlay */}
           <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgGradient}`} />
 
-          {/* 内容 */}
+          {/* Content */}
           <div className="relative h-full flex items-center justify-center z-20">
             <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
-              {/* 顶部公告横幅 */}
+              {/* Top announcement banner */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -190,7 +190,7 @@ export default function Hero() {
                 </div>
               </motion.div>
 
-              {/* 主标题 */}
+              {/* Main title */}
               <motion.h1
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ export default function Hero() {
                 {slides[currentSlide].title}
               </motion.h1>
 
-              {/* 副标题 */}
+              {/* Subtitle */}
               <motion.h2
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -211,14 +211,14 @@ export default function Hero() {
                 {slides[currentSlide].subtitle}
               </motion.h2>
 
-              {/* 按钮 */}
+              {/* Button */}
               <motion.button
                 initial={{ opacity: 0, y: 20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
                   duration: 0.6,
                   delay: 0.9,
-                  ease: [0.34, 1.56, 0.64, 1] // spring-like easing
+                  ease: [0.34, 1.56, 0.64, 1] // Spring-like easing
                 }}
                 whileHover={{
                   scale: 1.05,
@@ -234,7 +234,7 @@ export default function Hero() {
                 Talk to us
               </motion.button>
 
-              {/* 底部描述文字 */}
+              {/* Bottom description text */}
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
@@ -249,11 +249,11 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* 轮播指示器 */}
+      {/* Carousel indicators */}
       <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
-        {slides.map((_, index) => (
+        {slides.map((slide, index) => (
           <button
-            key={index}
+            key={`slide-indicator-${slide.id}`}
             onClick={() => handleSlideChange(index)}
             className={`transition-all duration-300 rounded-full ${currentSlide === index
               ? "bg-white w-12 h-3"

@@ -17,7 +17,7 @@ export default function ContactUs() {
 	const handleSubmit = (e: React.FormEvent) => {
 		e.preventDefault();
 		console.log("Form submitted:", formData);
-		// 这里可以添加表单提交逻辑
+		// Add form submission logic here
 	};
 
 	const handleChange = (

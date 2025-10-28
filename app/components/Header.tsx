@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
 interface HeaderProps {
-  readonly lightBackground?: boolean; // 如果是浅色背景，文字默认黑色
+  readonly lightBackground?: boolean; // If light background, text defaults to black
 }
 
 export default function Header({ lightBackground = false }: HeaderProps) {
@@ -96,7 +96,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           </motion.a>
 
           <motion.a
-            href="#"
+            href="/news"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
             whileHover={{ scale: 1.05 }}
@@ -111,7 +111,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             />
           </motion.a>
           <motion.a
-            href="#"
+            href="/products"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
             whileHover={{ scale: 1.05 }}
@@ -171,18 +171,18 @@ export default function Header({ lightBackground = false }: HeaderProps) {
               ABOUT US
             </motion.a>
             <motion.a
-              href="#"
+              href="/news"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
               whileTap={{ scale: 0.98 }}
             >
               NEWS
             </motion.a>
             <motion.a
-              href="#"
+              href="/products"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
               whileTap={{ scale: 0.98 }}
             >
-              PROJECT
+              PRODUCTS
             </motion.a>
             <motion.a
               href="/contact-us"
