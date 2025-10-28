@@ -25,7 +25,7 @@ export default function Hero() {
       gradient: "from-blue-600 to-cyan-600",
       bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
       image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80",
-      animationType: "ripple", // 水波效果
+      animationType: "fade", // 水波效果
     },
     {
       id: 3,
@@ -61,25 +61,6 @@ export default function Hero() {
             ease: "easeInOut" as any
           }
         };
-
-      case "ripple":
-        // 风格2：水波涟漪效果 - 从中心扩散
-        return {
-          initial: {
-            opacity: 0
-          },
-          animate: {
-            opacity: 1
-          },
-          exit: {
-            opacity: 0
-          },
-          transition: {
-            duration: 0.5,
-            ease: "easeOut" as any
-          }
-        };
-
       case "fade":
         // 风格3：缩放淡入淡出 + Ken Burns
         return {
@@ -130,7 +111,6 @@ export default function Hero() {
   // 根据动画类型获取背景图片的初始缩放值
   const getBackgroundScale = () => {
     const type = slides[currentSlide].animationType;
-    if (type === "ripple") return 1.5;
     if (type === "fade") return 1;
     return 1.2;
   };
@@ -160,14 +140,14 @@ export default function Hero() {
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
             initial={{
               scale: getBackgroundScale(),
-              filter: slides[currentSlide].animationType === "ripple" ? "blur(20px)" : "blur(0px)"
+              filter: "blur(0px)"
             }}
             animate={{
               scale: 1,
               filter: "blur(0px)"
             }}
             transition={{
-              duration: slides[currentSlide].animationType === "ripple" ? 1.2 : 0.8,
+              duration: 0.8,
               ease: "easeOut"
             }}
           />

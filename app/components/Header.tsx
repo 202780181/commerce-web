@@ -3,7 +3,11 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 
-export default function Header() {
+interface HeaderProps {
+  lightBackground?: boolean; // 如果是浅色背景，文字默认黑色
+}
+
+export default function Header({ lightBackground = false }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -36,8 +40,9 @@ export default function Header() {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${isScrolled ? "text-gray-700" : "text-white"
-              }`}
+            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${
+              isScrolled || lightBackground ? "text-gray-700" : "text-white"
+            }`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open main menu</span>
@@ -60,9 +65,10 @@ export default function Header() {
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12">
           <motion.a
-            href="#"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
+            href="/"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${
+              isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -76,9 +82,10 @@ export default function Header() {
           </motion.a>
 
           <motion.a
-            href="#"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
+            href="/about-us"
+            className={`relative text-sm font-semibold leading-6 transition-colors ${
+              isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -93,8 +100,9 @@ export default function Header() {
 
           <motion.a
             href="#"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
+            className={`relative text-sm font-semibold leading-6 transition-colors ${
+              isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -108,8 +116,9 @@ export default function Header() {
           </motion.a>
           <motion.a
             href="#"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
+            className={`relative text-sm font-semibold leading-6 transition-colors ${
+              isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -123,8 +132,9 @@ export default function Header() {
           </motion.a>
           <motion.a
             href="#"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
+            className={`relative text-sm font-semibold leading-6 transition-colors ${
+              isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
+            }`}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -140,15 +150,7 @@ export default function Header() {
 
         {/* Right side buttons */}
         <div className="hidden lg:flex lg:flex-1 lg:justify-end lg:gap-x-4">
-          <a
-            href="#"
-            className={`rounded-full px-6 py-2.5 text-sm font-semibold shadow-sm transition-all ${isScrolled
-              ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:opacity-90"
-              : "bg-white/20 backdrop-blur-md text-white border border-white/30 hover:bg-white/30"
-              }`}
-          >
-            Talk to us
-          </a>
+          
         </div>
       </nav>
 
@@ -168,7 +170,7 @@ export default function Header() {
               HOME
             </motion.a>
             <motion.a
-              href="#"
+              href="/about-us"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
               whileTap={{ scale: 0.98 }}
             >
