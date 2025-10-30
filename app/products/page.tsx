@@ -4,6 +4,7 @@ import { motion } from "motion/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
+import Link from "next/link";
 
 // Product categories
 const categories = [
@@ -41,6 +42,7 @@ const categories = [
 const products = [
 	{
 		id: 1,
+		slug: "collagen-peptides",  // 添加slug用于链接到详情页
 		name: "Grass-Fed Collagen Peptides",
 		category: "Collagen",
 		price: 43.99,
@@ -52,6 +54,7 @@ const products = [
 	},
 	{
 		id: 2,
+		slug: "collagen-bars",
 		name: "Collagen Protein Bars",
 		category: "Bars",
 		price: 44.99,
@@ -63,6 +66,7 @@ const products = [
 	},
 	{
 		id: 3,
+		slug: "nola-bars",
 		name: "Nola Bars",
 		category: "Bars",
 		price: 24.99,
@@ -74,6 +78,7 @@ const products = [
 	},
 	{
 		id: 4,
+		slug: "base-ketones",
 		name: "Base Ketones",
 		category: "Exogenous Ketones",
 		price: 42.99,
@@ -85,6 +90,7 @@ const products = [
 	},
 	{
 		id: 5,
+		slug: "mct-oil-powder",
 		name: "MCT Oil Powder",
 		category: "MCT",
 		price: 40.99,
@@ -96,6 +102,7 @@ const products = [
 	},
 	{
 		id: 6,
+		slug: "daily-electrolytes",
 		name: "Daily Electrolytes",
 		category: "Powdered Beverage Mixes",
 		price: 30.99,
@@ -108,6 +115,7 @@ const products = [
 	},
 	{
 		id: 7,
+		slug: "keto-nootropic",
 		name: "Keto Nootropic",
 		category: "Brain Boost",
 		price: 39.99,
@@ -118,6 +126,7 @@ const products = [
 	},
 	{
 		id: 8,
+		slug: "whey-protein",
 		name: "Whey Protein Isolate",
 		category: "Protein",
 		price: 45.99,
@@ -386,37 +395,83 @@ export default function Products() {
 					{/* Products Grid */}
 					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 						{filteredProducts.map((product, index) => (
-							<motion.div
+							<Link 
 								key={product.id}
-								initial={{ opacity: 0, scale: 0.9 }}
-								whileInView={{ opacity: 1, scale: 1 }}
-								viewport={{ once: true }}
-								transition={{ duration: 0.5, delay: index * 0.05 }}
-								whileHover={{ y: -10, transition: { duration: 0.3 } }}
-								className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group cursor-pointer"
+								href={product.slug ? `/products/${product.slug}` : "#"}
 							>
-								{/* Product Image */}
-								<div className="relative h-64 overflow-hidden bg-gray-100">
-									<motion.img
-										src={product.image}
-										alt={product.name}
-										className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-									/>
-								</div>
+								<motion.div
+									initial={{ opacity: 0, scale: 0.9 }}
+									whileInView={{ opacity: 1, scale: 1 }}
+									viewport={{ once: true }}
+									transition={{ duration: 0.5, delay: index * 0.05 }}
+									whileHover={{ y: -10, transition: { duration: 0.3 } }}
+									className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all group cursor-pointer h-full"
+								>
+									{/* Product Image */}
+									<div className="relative h-64 overflow-hidden bg-gray-100">
+										{product.badge && (
+											<span className="absolute top-4 right-4 z-10 px-3 py-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white text-xs font-bold rounded-full">
+												{product.badge}
+											</span>
+										)}
+										<motion.img
+											src={product.image}
+											alt={product.name}
+											className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+										/>
+									</div>
 
-								{/* Product Info */}
-								<div className="p-6">
-									<p className="text-sm text-purple-600 font-semibold mb-2 uppercase">
-										{product.category}
-									</p>
-									<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-										{product.name}
-									</h3>
-									<p className="text-gray-600 mb-4 text-sm line-clamp-2">
-										{product.description}
-									</p>
-								</div>
-							</motion.div>
+									{/* Product Info */}
+									<div className="p-6">
+										<p className="text-sm text-purple-600 font-semibold mb-2 uppercase">
+											{product.category}
+										</p>
+										<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+											{product.name}
+										</h3>
+										<p className="text-gray-600 mb-4 text-sm line-clamp-2">
+											{product.description}
+										</p>
+										
+										{/* Price */}
+										<div className="flex items-center gap-2 mb-3">
+											<span className="text-2xl font-bold text-gray-900">
+												${product.price.toFixed(2)}
+											</span>
+											{product.originalPrice && (
+												<span className="text-sm text-gray-400 line-through">
+													${product.originalPrice.toFixed(2)}
+												</span>
+											)}
+										</div>
+										
+										{/* Rating */}
+										{product.rating && (
+											<div className="flex items-center gap-2">
+												<div className="flex">
+													{[...Array(5)].map((_, i) => (
+														<svg
+															key={i}
+															className={`w-4 h-4 ${
+																i < Math.floor(product.rating)
+																	? "text-yellow-400"
+																	: "text-gray-300"
+															}`}
+															fill="currentColor"
+															viewBox="0 0 20 20"
+														>
+															<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+														</svg>
+													))}
+												</div>
+												<span className="text-sm text-gray-600">
+													({product.reviews?.toLocaleString()})
+												</span>
+											</div>
+										)}
+									</div>
+								</motion.div>
+							</Link>
 						))}
 					</div>
 				</div>

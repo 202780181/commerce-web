@@ -157,7 +157,7 @@ export default function ContactUs() {
 									transition={{ duration: 1, delay: 0.5 }}
 								>
 									<iframe
-										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26833.226466817843!2d103.84082367567373!3d1.3053056530558937!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31da19b0d96aac6f%3A0xfca1ad52b1fa5313!2z6IuP5Li55Zue5pWZ5aCC!5e0!3m2!1szh-CN!2shk!4v1761660526408!5m2!1szh-CN!2shk"
+										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3668.375265280759!2d113.63879507577838!3d23.15649997908008!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34030eeb1dec9c73%3A0xb6a4a7a48549d89e!2z5Lit5Zu95bm_5Lic55yB5bm_5bee5biC5aKe5Z-O5Yy66YK155m96LevNOWPtyDpgq7mlL_nvJbnoIE6IDUxMTMzOA!5e0!3m2!1szh-CN!2s!4v1761803114452!5m2!1szh-CN!2s"
 										width="100%"
 										height="100%"
 										style={{ border: 0 }}
@@ -201,7 +201,7 @@ export default function ContactUs() {
 										<h3 className="text-sm font-semibold text-gray-700 mb-2">
 											Contact phone
 										</h3>
-										<p className="text-gray-900 font-medium">0513-88888888</p>
+										<p className="text-gray-900 font-medium">020-32144677</p>
 									</motion.div>
 
 									{/* Email */}
@@ -234,7 +234,7 @@ export default function ContactUs() {
 										<h3 className="text-sm font-semibold text-gray-700 mb-2">
 											Contact email
 										</h3>
-										<p className="text-gray-900 font-medium">888888@xx.com</p>
+										<p className="text-gray-900 font-medium">3013726725@qq.com</p>
 									</motion.div>
 
 									{/* Address */}
@@ -274,7 +274,7 @@ export default function ContactUs() {
 											Contact address
 										</h3>
 										<p className="text-gray-900 font-medium text-sm leading-relaxed">
-											No. 58, Chongchuan Road, Nantong City, Jiangsu Province
+										Unit 1-1, 1st Floor, Building A2, No. 4 Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou
 										</p>
 									</motion.div>
 								</div>

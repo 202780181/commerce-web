@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Simon AI - Agentic Marketing Platform",
-  description: "The AI-first composable customer data platform for the fastest-growing brands and Fortune 500 leaders. Personalize infinitely with 10x speed.",
+  title: "广州协峰机械有限公司",
+  description: "广州协峰机械有限公司",
   icons: {
     icon: "https://cdn.prod.website-files.com/6578982aece0102430a52404/68c74328bdac6f28d581c8c6_Simon%20AI%20-%20Webclip.png",
     shortcut: "https://cdn.prod.website-files.com/6578982aece0102430a52404/68c74328bdac6f28d581c8c6_Simon%20AI%20-%20Webclip.png",

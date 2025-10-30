@@ -31,7 +31,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Simon AI
+            广州协峰机械有限公司
             </span>
           </a>
         </div>
