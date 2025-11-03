@@ -11,31 +11,14 @@ export default function Hero() {
   const slides = [
     {
       id: 1,
-      title: "Explore Every Moment",
-      subtitle: "Launch with 10x Speed",
-      gradient: "from-purple-600 to-blue-600",
-      bgGradient: "from-purple-900/90 via-blue-900/80 to-purple-800/90",
-      image: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1920&q=80",
-      animationType: "grid", // Grid flip effect
-    },
-    {
-      id: 2,
-      title: "Personalize Infinitely",
-      subtitle: "Power Your Growth",
+      title: "ZPP CNC",
+      subtitle: "Zero Point Prince",
       gradient: "from-blue-600 to-cyan-600",
       bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
       image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80",
-      animationType: "fade", // Ripple effect
+      animationType: "fade",
     },
-    {
-      id: 3,
-      title: "AI-First Platform",
-      subtitle: "Transform Your Business",
-      gradient: "from-indigo-600 to-purple-600",
-      bgGradient: "from-indigo-900/90 via-purple-900/80 to-indigo-800/90",
-      image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=1920&q=80",
-      animationType: "fade", // Scale fade in/out
-    },
+
   ];
 
   // Three different animation variants
