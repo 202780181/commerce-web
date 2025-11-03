@@ -201,7 +201,7 @@ export default function ContactUs() {
 										<h3 className="text-sm font-semibold text-gray-700 mb-2">
 											Contact phone
 										</h3>
-										<p className="text-gray-900 font-medium">020-32144677</p>
+										<p className="text-gray-900 font-medium">+86 15915853159</p>
 									</motion.div>
 
 									{/* Email */}
@@ -234,7 +234,7 @@ export default function ContactUs() {
 										<h3 className="text-sm font-semibold text-gray-700 mb-2">
 											Contact email
 										</h3>
-										<p className="text-gray-900 font-medium">3013726725@qq.com</p>
+										<p className="text-gray-900 font-medium">mkdch@126.com</p>
 									</motion.div>
 
 									{/* Address */}
@@ -274,7 +274,7 @@ export default function ContactUs() {
 											Contact address
 										</h3>
 										<p className="text-gray-900 font-medium text-sm leading-relaxed">
-										Unit 1-1, 1st Floor, Building A2, No. 4 Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou
+											Unit 1-1, 1st Floor, Building A2, No. 4 Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou
 										</p>
 									</motion.div>
 								</div>

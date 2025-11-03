@@ -195,7 +195,8 @@ export default function Hero() {
               </motion.h2>
 
               {/* Button */}
-              <motion.button
+              <motion.a
+                href="/contact-us"
                 initial={{ opacity: 0, y: 20, scale: 0.9 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
@@ -212,10 +213,10 @@ export default function Hero() {
                   scale: 0.98,
                   transition: { duration: 0.1 }
                 }}
-                className="rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-2xl transition-shadow duration-300"
               >
                 Talk to us
-              </motion.button>
+              </motion.a>
 
               {/* Bottom description text */}
               <motion.p
@@ -232,19 +233,21 @@ export default function Hero() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Carousel indicators */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
-        {slides.map((slide, index) => (
-          <button
-            key={`slide-indicator-${slide.id}`}
-            onClick={() => handleSlideChange(index)}
-            className={`transition-all duration-300 rounded-full ${currentSlide === index
-              ? "bg-white w-12 h-3"
-              : "bg-white/50 w-3 h-3 hover:bg-white/70"
-              }`}
-          />
-        ))}
-      </div>
+      {/* Carousel indicators - only show when there are multiple slides */}
+      {slides.length > 1 && (
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 flex gap-3 z-10">
+          {slides.map((slide, index) => (
+            <button
+              key={`slide-indicator-${slide.id}`}
+              onClick={() => handleSlideChange(index)}
+              className={`transition-all duration-300 rounded-full ${currentSlide === index
+                ? "bg-white w-12 h-3"
+                : "bg-white/50 w-3 h-3 hover:bg-white/70"
+                }`}
+            />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

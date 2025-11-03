@@ -29,9 +29,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
         {/* Logo */}
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
-            <span className="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-            广州协峰机械有限公司
+          <a href="/" className="-m-1.5 p-1.5 mr-8">
+            <span className={`text-2xl font-bold whitespace-nowrap transition-colors ${isScrolled || lightBackground ? "text-gray-900" : "text-white"}`}>
+              Guangzhou Xiefeng Machinery Co., Ltd.
             </span>
           </a>
         </div>
@@ -62,7 +62,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
         </div>
 
         {/* Desktop navigation */}
-        <div className="hidden lg:flex lg:gap-x-12">
+        <div className="hidden lg:flex lg:gap-x-12 lg:ml-16">
           <motion.a
             href="/"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"

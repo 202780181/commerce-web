@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "广州协峰机械有限公司",
-  description: "广州协峰机械有限公司",
+  title: "Guangzhou Xiefeng Machinery Co., Ltd.",
+  description: "Guangzhou Xiefeng Machinery Co., Ltd.",
   icons: {
     icon: "https://cdn.prod.website-files.com/6578982aece0102430a52404/68c74328bdac6f28d581c8c6_Simon%20AI%20-%20Webclip.png",
     shortcut: "https://cdn.prod.website-files.com/6578982aece0102430a52404/68c74328bdac6f28d581c8c6_Simon%20AI%20-%20Webclip.png",
