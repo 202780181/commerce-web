@@ -27,6 +27,7 @@ const features = [
     description:
       "lt can be locked at any angle from 0 ' to 90'.The angle can be calibrated by dragging the watch on themachine tool through the program. The vise can be quickly changed and disassembled, and can be quicklychanged in four directions to achleve 360' fixed-angle processing without dead comers. lt is a rear-pullocking type",
     gradient: "from-violet-500 to-purple-500",
+    image: "/images/products/one-level2-3.png",
   },
   {
     number: "04.",
@@ -34,6 +35,7 @@ const features = [
     description:
       "Modular combination of zero point enables rapid production of samples and small batches, minimizes the time spent on making temporary fixtures, not only improves production efficiency but also ensures product accuracy. The modular combination is flexible and reliable, supporting switching between various forms of combinations for fixtures.",
     gradient: "from-indigo-500 to-blue-500",
+    image: "/images/products/one-level2-4.png",
   },
   {
     number: "05.",
@@ -41,6 +43,7 @@ const features = [
     description:
       "The 4axis L plate can be directly installed onto the úaxis rotary table by screwing, or a zero pointclamping can be installed on the 4axis for quick replacement and installation of the l-plate.",
     gradient: "from-indigo-500 to-blue-500",
+    image: "/images/products/one-level2-5.png",
   },
   {
     number: "06.",
@@ -48,6 +51,7 @@ const features = [
     description:
       "5Axis pyramid types are available in single station,2station, 3station and 4 station configurations.Size and height can be customized, as well as the installation anale of the zero point clamping. Manual orpneumatic zero point clampings can be customized for installation, and the workstation mounting holepositions can be tailored to specific machine requirements.",
     gradient: "from-indigo-500 to-blue-500",
+    image: "/images/products/one-level2-6.png",
   },
 ];
 
