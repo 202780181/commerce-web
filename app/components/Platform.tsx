@@ -34,7 +34,7 @@ export default function Platform() {
 
   return (
     <section className="py-24 bg-gradient-to-b from-gray-50 to-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -66,11 +66,10 @@ export default function Platform() {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`px-8 py-3 rounded-full text-sm font-semibold transition-all ${
-                  activeTab === tab.id
-                    ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
-                    : "text-gray-700 hover:text-gray-900"
-                }`}
+                className={`px-8 py-3 rounded-full text-sm font-semibold transition-all ${activeTab === tab.id
+                  ? "bg-gradient-to-r from-purple-600 to-blue-600 text-white"
+                  : "text-gray-700 hover:text-gray-900"
+                  }`}
               >
                 {tab.name}
               </button>

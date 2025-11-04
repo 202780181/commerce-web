@@ -160,7 +160,7 @@ export default function Hero() {
 
           {/* Content */}
           <div className="relative h-full flex items-center justify-center z-20">
-            <div className="mx-auto max-w-7xl px-6 lg:px-8 text-center">
+            <div className="mx-auto px-6 lg:px-8 text-center" style={{ maxWidth: '1450px' }}>
               {/* Top announcement banner */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}

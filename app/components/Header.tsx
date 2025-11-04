@@ -26,7 +26,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
       ? "bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm"
       : "bg-transparent border-b border-transparent"
       }`}>
-      <nav className="mx-auto flex max-w-7xl items-center justify-between p-4 lg:px-8">
+      <nav className="mx-auto flex items-center justify-between p-4 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Logo */}
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5 mr-8">

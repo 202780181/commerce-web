@@ -20,7 +20,7 @@ const integrations = [
 export default function Integrations() {
   return (
     <section className="py-24 bg-white">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+      <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

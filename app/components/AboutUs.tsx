@@ -1,0 +1,137 @@
+"use client";
+
+import { motion, useInView } from "motion/react";
+import { useRef } from "react";
+
+export default function AboutUs() {
+	const ref = useRef(null);
+	const isInView = useInView(ref, { once: true, margin: "-100px" });
+
+	return (
+		<section ref={ref} className="py-16 lg:py-24 bg-white">
+			<div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
+				<div className="relative">
+					<div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+						{/* Left side - Image */}
+						<motion.div
+							initial={{ opacity: 0, x: -50 }}
+							animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+							transition={{ duration: 0.8, delay: 0.2 }}
+							className="w-full lg:w-[48%]"
+						>
+							{/* Industrial machinery image */}
+							<div className="w-full" style={{ height: '590px' }}>
+								<img
+									src="/images/products/20230831103703.png"
+									alt="Industrial steel manufacturing machinery"
+									className="w-full h-full object-cover"
+								/>
+							</div>
+						</motion.div>
+
+						{/* Right side - Content */}
+						<motion.div
+							initial={{ opacity: 0, x: 50 }}
+							animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 50 }}
+							transition={{ duration: 0.8, delay: 0.4 }}
+							className="w-full lg:w-[48%] space-y-6"
+						>
+							{/* Title */}
+							<div>
+								<h2
+									className="block text-gray-900 mb-6"
+									style={{
+										fontSize: '40px',
+										fontWeight: 'normal'
+									}}
+								>
+									ABOUT US
+								</h2>
+
+								{/* Description */}
+								<p
+									className="text-gray-600 mb-8"
+									style={{
+										fontSize: '16px',
+										fontFamily: 'Arial !important',
+										width: '100%',
+										overflow: 'hidden',
+										textOverflow: 'ellipsis',
+										display: '-webkit-box',
+										WebkitBoxOrient: 'vertical',
+										WebkitLineClamp: 8,
+										lineHeight: '1.6',
+										textAlign: 'justify'
+									}}
+								>
+									Founded in 2012, the company is a manufacturing enterprise specializing in the R&D, production and sales of CNC fixtures. Relying on a professional R&D and design team as well as advanced manufacturing capabilities, it is committed to providing high-precision and high-reliability fixture solutions for global customers.
+									Core Products and AdvantagesMain Products: Zero-point quick-change fixtures and self-centering vices, covering multiple models, specifications and modular combinations to meet the precision machining needs of customers in different industries.Product Features: Boasting fast positioning, high repeatability and strong stability,
+									they are widely used in CNC machining centers and automated production lines, significantly improving production efficiency.Future Outlook
+									The company will continue to invest in R&D, aligning product performance with European and American national standards. It will provide personalized design and production support based on customer needs, implement strict quality control to ensure product durability and consistency, and promote industrial manufacturing upgrading through intelligent fixture technology.
+									The goal is to become a world-leading fixture system supplier and create greater value for customers.
+								</p>
+
+								{/* Read More Button */}
+								<motion.button
+									whileHover={{ scale: 1.05 }}
+									whileTap={{ scale: 0.95 }}
+									className="bg-slate-700 hover:bg-slate-800 text-white px-8 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+									style={{ height: '40px' }}
+								>
+									Read More
+								</motion.button>
+							</div>
+						</motion.div>
+					</div>
+
+					{/* Statistics Section - Positioned relative to parent container */}
+					<motion.div
+						initial={{ opacity: 0, y: 30 }}
+						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+						transition={{ duration: 0.8, delay: 0.6 }}
+						className="absolute shadow-2xl"
+						style={{
+							width: '60%',
+							height: '120px',
+							left: '40%',
+							bottom: '32px',
+							backgroundColor: 'rgb(44, 74, 94)',
+							display: 'flex',
+							alignItems: 'center',
+							padding: '0px 50px'
+						}}
+					>
+						<div className="grid grid-cols-3 w-full">
+							{/* 20 Years */}
+							<div className="flex flex-col justify-center px-6">
+								<div className="flex items-start gap-1 mb-2">
+									<span className="font-bold text-white" style={{ fontSize: '35px', lineHeight: '1' }}>20</span>
+									<span className="text-gray-300" style={{ fontSize: '15px', lineHeight: '1' }}>Years</span>
+								</div>
+								<div className="text-white text-base">Historical experience</div>
+							</div>
+
+							{/* 25 million tons */}
+							<div className="flex flex-col justify-center px-6 border-l border-r border-slate-600">
+								<div className="flex items-start gap-1 mb-2">
+									<span className="font-bold text-white" style={{ fontSize: '35px', lineHeight: '1' }}>25</span>
+									<span className="text-gray-300" style={{ fontSize: '15px', lineHeight: '1' }}>million tons</span>
+								</div>
+								<div className="text-white text-base">Production capacity</div>
+							</div>
+
+							{/* 70+ */}
+							<div className="flex flex-col justify-center px-6">
+								<div className="flex items-start gap-1 mb-2">
+									<span className="font-bold text-white" style={{ fontSize: '35px', lineHeight: '1' }}>70</span>
+									<span className="font-bold text-white" style={{ fontSize: '18px', lineHeight: '1' }}>+</span>
+								</div>
+								<div className="text-white text-base">intellectual property</div>
+							</div>
+						</div>
+					</motion.div>
+				</div>
+			</div>
+		</section >
+	);
+}
