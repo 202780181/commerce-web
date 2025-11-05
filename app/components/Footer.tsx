@@ -70,7 +70,7 @@ export default function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-gray-800 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <div className="flex items-center gap-4">
-            <span className="text-sm text-gray-400">@Guangzhou Xiefeng Machinery, 2025</span>
+            <span className="text-sm text-gray-400">@CO-Grow Machinery Co.,Ltd, 2025</span>
           </div>
           <div className="flex gap-6 text-sm text-gray-400">
             <button className="hover:text-white transition-colors">

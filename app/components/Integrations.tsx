@@ -1,20 +1,21 @@
 "use client";
 
 import { motion } from "motion/react";
+import Image from "next/image";
 
 const integrations = [
-  "Amazon Redshift",
-  "Snowflake",
-  "Salesforce",
-  "Zendesk",
-  "Braze",
-  "TikTok",
-  "Meta",
-  "Nosto",
-  "Shopify",
-  "Klaviyo",
-  "Dynamic Yield",
-  "Google Ads",
+  { name: "5Axix 4Position System", image: "/images/products/box1.png" },
+  { name: "96mm Vertical And Horizontal Modular Combination", image: "/images/products/box2.png" },
+  { name: "96mm Integrated Vertical And Horizontal Zero Point Clamping", image: "/images/products/box3.png" },
+  { name: "96mm to 52mm Schematic Diagram", image: "/images/products/box4.png" },
+  { name: "Hand Type Run_out", image: "/images/products/box5.png" },
+  { name: "Hydraulic Bite Machine", image: "/images/products/box6.png" },
+  { name: "4Axis Modular Combination Kit", image: "/images/products/box7.png" },
+  { name: "52mm and 96mm Vertical And Horizontal Zero Point Clamping", image: "/images/products/box8.png" },
+  { name: "4Axis Bridge Plate Installed With 3Statio Vise", image: "/images/products/box9.png" },
+  { name: "4-axis Double-station Pneumatic Bridge Plate", image: "/images/products/box10.png" },
+  { name: "Precision Bench Vice", image: "/images/products/box11.png" },
+  { name: "TS96 Type Horizontal Machine Center 4sided Tombstone", image: "/images/products/box12.png" },
 ];
 
 export default function Integrations() {
@@ -56,9 +57,17 @@ export default function Integrations() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="flex items-center justify-center"
             >
-              <div className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-8 w-full aspect-square flex items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group">
-                <span className="text-gray-700 font-semibold text-center group-hover:text-purple-600 transition-colors">
-                  {integration}
+              <div className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group">
+                <div className="relative w-full aspect-square mb-4 flex items-center justify-center">
+                  <Image
+                    src={integration.image}
+                    alt={integration.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+                <span className="text-gray-700 font-semibold text-center text-sm group-hover:text-purple-600 transition-colors">
+                  {integration.name}
                 </span>
               </div>
             </motion.div>
