@@ -31,7 +31,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5 mr-8">
             <span className={`text-2xl font-bold whitespace-nowrap transition-colors ${isScrolled || lightBackground ? "text-gray-900" : "text-white"}`}>
-              Guangzhou Xiefeng Machinery Co., Ltd.
+              CO-Grow Machinery Co.,Ltd
             </span>
           </a>
         </div>
