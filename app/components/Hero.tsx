@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 export default function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
+  const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Carousel data
   const slides = [
@@ -76,12 +77,20 @@ export default function Hero() {
   };
 
   useEffect(() => {
+    // Mark as loaded after initial render
+    const initialTimer = setTimeout(() => {
+      setIsInitialLoad(false);
+    }, 100);
+
     const timer = setInterval(() => {
       setDirection(1);
       setCurrentSlide((prev) => (prev + 1) % slides.length);
     }, 5000); // Switch every 5 seconds
 
-    return () => clearInterval(timer);
+    return () => {
+      clearInterval(timer);
+      clearTimeout(initialTimer);
+    };
   }, [slides.length]);
 
   const handleSlideChange = (index: number) => {
@@ -161,73 +170,62 @@ export default function Hero() {
           {/* Content */}
           <div className="relative h-full flex items-center justify-center z-20">
             <div className="mx-auto px-6 lg:px-8 text-center" style={{ maxWidth: '1450px' }}>
-              {/* Top announcement banner */}
-              <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.3 }}
-                className="mb-8 flex justify-center"
-              >
-                <div className="rounded-full bg-white/20 backdrop-blur-md px-6 py-2 text-sm font-medium text-white border border-white/30">
-                  Simon Data Is Now Simon AI - Read the Launch Announcement Here
-                </div>
-              </motion.div>
+              <AnimatePresence mode="wait">
+                {!isInitialLoad && (
+                  <>
+                    {/* Main title */}
+                    <motion.h1
+                      key={`title-${currentSlide}-${isInitialLoad}`}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={{ duration: 0.8, delay: 0.2 }}
+                      className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl mb-6"
+                    >
+                      {slides[currentSlide].title}
+                    </motion.h1>
 
-              {/* Main title */}
-              <motion.h1
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-                className="text-5xl font-bold tracking-tight text-white sm:text-6xl lg:text-7xl mb-6"
-              >
-                {slides[currentSlide].title}
-              </motion.h1>
+                    {/* Subtitle */}
+                    <motion.h2
+                      key={`subtitle-${currentSlide}-${isInitialLoad}`}
+                      initial={{ opacity: 0, y: 30 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -30 }}
+                      transition={{ duration: 0.8, delay: 0.4 }}
+                      className={`text-4xl font-bold tracking-tight bg-gradient-to-r ${slides[currentSlide].gradient} bg-clip-text text-transparent sm:text-5xl lg:text-6xl mb-8`}
+                      style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}
+                    >
+                      {slides[currentSlide].subtitle}
+                    </motion.h2>
 
-              {/* Subtitle */}
-              <motion.h2
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-                className={`text-4xl font-bold tracking-tight bg-gradient-to-r ${slides[currentSlide].gradient} bg-clip-text text-transparent sm:text-5xl lg:text-6xl mb-8`}
-                style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}
-              >
-                {slides[currentSlide].subtitle}
-              </motion.h2>
-
-              {/* Button */}
-              <motion.a
-                href="/contact-us"
-                initial={{ opacity: 0, y: 20, scale: 0.9 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.9,
-                  ease: [0.34, 1.56, 0.64, 1] // Spring-like easing
-                }}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)",
-                  transition: { duration: 0.2, ease: "easeOut" }
-                }}
-                whileTap={{
-                  scale: 0.98,
-                  transition: { duration: 0.1 }
-                }}
-                className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-2xl transition-shadow duration-300"
-              >
-                Talk to us
-              </motion.a>
-
-              {/* Bottom description text */}
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.8, delay: 1.1 }}
-                className="mt-12 text-center text-sm text-white/90 max-w-4xl mx-auto"
-              >
-                The AI-first composable customer data platform for the fastest-growing
-                brands and Fortune 500 leaders
-              </motion.p>
+                    {/* Button */}
+                    <motion.a
+                      key={`button-${currentSlide}-${isInitialLoad}`}
+                      href="/contact-us"
+                      initial={{ opacity: 0, y: 20, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      exit={{ opacity: 0, y: -20, scale: 0.9 }}
+                      transition={{
+                        duration: 0.6,
+                        delay: 0.6,
+                        ease: [0.34, 1.56, 0.64, 1] // Spring-like easing
+                      }}
+                      whileHover={{
+                        scale: 1.05,
+                        boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)",
+                        transition: { duration: 0.2, ease: "easeOut" }
+                      }}
+                      whileTap={{
+                        scale: 0.98,
+                        transition: { duration: 0.1 }
+                      }}
+                      className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-2xl transition-shadow duration-300"
+                    >
+                      Talk to us
+                    </motion.a>
+                  </>
+                )}
+              </AnimatePresence>
             </div>
           </div>
         </motion.div>

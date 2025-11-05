@@ -10,6 +10,7 @@ interface HeaderProps {
 export default function Header({ lightBackground = false }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,27 +18,44 @@ export default function Header({ lightBackground = false }: HeaderProps) {
       setIsScrolled(window.scrollY > 100);
     };
 
+    // 标记为已加载，触发动画
+    setIsLoaded(true);
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-      ? "bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm"
-      : "bg-transparent border-b border-transparent"
+    <motion.header
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
+        ? "bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm"
+        : "bg-transparent border-b border-transparent"
       }`}>
       <nav className="mx-auto flex items-center justify-between p-4 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Logo */}
-        <div className="flex lg:flex-1">
+        <motion.div
+          className="flex lg:flex-1"
+          initial={{ x: -50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
           <a href="/" className="-m-1.5 p-1.5 mr-8">
             <span className={`text-2xl font-bold whitespace-nowrap transition-colors ${isScrolled || lightBackground ? "text-gray-900" : "text-white"}`}>
               CO-Grow Machinery Co.,Ltd
             </span>
           </a>
-        </div>
+        </motion.div>
 
         {/* Mobile menu button */}
-        <div className="flex lg:hidden">
+        <motion.div
+          className="flex lg:hidden"
+          initial={{ x: 50, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
+        >
           <button
             type="button"
             className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${isScrolled || lightBackground ? "text-gray-700" : "text-white"
@@ -59,7 +77,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
               />
             </svg>
           </button>
-        </div>
+        </motion.div>
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12 lg:ml-16">
@@ -67,6 +85,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             href="/"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -83,6 +104,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             href="/about-us"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -99,6 +123,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             href="/news"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -114,6 +141,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             href="/products"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -129,6 +159,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             href="/contact-us"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
+            initial={{ y: -20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -151,14 +184,19 @@ export default function Header({ lightBackground = false }: HeaderProps) {
       {/* Mobile menu */}
       {mobileMenuOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="lg:hidden"
+          initial={{ opacity: 0, height: 0 }}
+          animate={{ opacity: 1, height: "auto" }}
+          exit={{ opacity: 0, height: 0 }}
+          transition={{ duration: 0.3 }}
+          className="lg:hidden overflow-hidden"
         >
           <div className="space-y-2 px-6 pb-6 pt-2">
             <motion.a
               href="#"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.1 }}
               whileTap={{ scale: 0.98 }}
             >
               HOME
@@ -166,6 +204,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             <motion.a
               href="/about-us"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.15 }}
               whileTap={{ scale: 0.98 }}
             >
               ABOUT US
@@ -173,6 +214,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             <motion.a
               href="/news"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.2 }}
               whileTap={{ scale: 0.98 }}
             >
               NEWS
@@ -180,6 +224,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             <motion.a
               href="/products"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.25 }}
               whileTap={{ scale: 0.98 }}
             >
               PRODUCTS
@@ -187,6 +234,9 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             <motion.a
               href="/contact-us"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
+              initial={{ x: -20, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
               whileTap={{ scale: 0.98 }}
             >
               CONTACT US
@@ -194,7 +244,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           </div>
         </motion.div>
       )}
-    </header>
+    </motion.header>
   );
 }
 
