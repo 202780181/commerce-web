@@ -2,10 +2,12 @@
 
 import { motion, useInView } from "motion/react";
 import { useRef } from "react";
+import { useRouter } from "next/navigation";
 
 export default function AboutUs() {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
+	const router = useRouter();
 
 	return (
 		<section ref={ref} className="py-16 lg:py-24 bg-white">
@@ -55,11 +57,6 @@ export default function AboutUs() {
 										fontSize: '16px',
 										fontFamily: 'Arial !important',
 										width: '100%',
-										overflow: 'hidden',
-										textOverflow: 'ellipsis',
-										display: '-webkit-box',
-										WebkitBoxOrient: 'vertical',
-										WebkitLineClamp: 8,
 										lineHeight: '1.6',
 										textAlign: 'justify'
 									}}
@@ -75,7 +72,8 @@ export default function AboutUs() {
 								<motion.button
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
-									className="bg-slate-700 hover:bg-slate-800 text-white px-8 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center"
+									onClick={() => router.push('/about-us')}
+									className="bg-slate-700 hover:bg-slate-800 text-white px-8 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
 									style={{ height: '40px' }}
 								>
 									Read More
@@ -83,55 +81,8 @@ export default function AboutUs() {
 							</div>
 						</motion.div>
 					</div>
-
-					{/* Statistics Section - Positioned relative to parent container */}
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-						transition={{ duration: 0.8, delay: 0.6 }}
-						className="absolute shadow-2xl"
-						style={{
-							width: '60%',
-							height: '120px',
-							left: '40%',
-							bottom: '32px',
-							backgroundColor: 'rgb(44, 74, 94)',
-							display: 'flex',
-							alignItems: 'center',
-							padding: '0px 50px'
-						}}
-					>
-						<div className="grid grid-cols-3 w-full">
-							{/* 20 Years */}
-							<div className="flex flex-col justify-center px-6">
-								<div className="flex items-start gap-1 mb-2">
-									<span className="font-bold text-white" style={{ fontSize: '35px', lineHeight: '1' }}>20</span>
-									<span className="text-gray-300" style={{ fontSize: '15px', lineHeight: '1' }}>Years</span>
-								</div>
-								<div className="text-white text-base">Historical experience</div>
-							</div>
-
-							{/* 25 million tons */}
-							<div className="flex flex-col justify-center px-6 border-l border-r border-slate-600">
-								<div className="flex items-start gap-1 mb-2">
-									<span className="font-bold text-white" style={{ fontSize: '35px', lineHeight: '1' }}>25</span>
-									<span className="text-gray-300" style={{ fontSize: '15px', lineHeight: '1' }}>million tons</span>
-								</div>
-								<div className="text-white text-base">Production capacity</div>
-							</div>
-
-							{/* 70+ */}
-							<div className="flex flex-col justify-center px-6">
-								<div className="flex items-start gap-1 mb-2">
-									<span className="font-bold text-white" style={{ fontSize: '35px', lineHeight: '1' }}>70</span>
-									<span className="font-bold text-white" style={{ fontSize: '18px', lineHeight: '1' }}>+</span>
-								</div>
-								<div className="text-white text-base">intellectual property</div>
-							</div>
-						</div>
-					</motion.div>
 				</div>
 			</div>
-		</section >
+		</section>
 	);
 }

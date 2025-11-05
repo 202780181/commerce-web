@@ -4,9 +4,9 @@ import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 import {
 	Phone,
-	QrCode,
-	User,
-	ChevronUp
+	ChevronUp,
+	BookOpen,
+	Download
 } from "lucide-react";
 
 interface SidebarItem {
@@ -35,6 +35,11 @@ export default function FloatingSidebar() {
 		window.scrollTo({ top: 0, behavior: 'smooth' });
 	};
 
+	const downloadCatalog = () => {
+		const pdfUrl = 'https://work-1251384833.cos.ap-singapore.myqcloud.com/ZPPCNC%20Zero%20Point%20Clamping%202026%281%29.pdf';
+		window.open(pdfUrl, '_blank');
+	};
+
 	const sidebarItems: SidebarItem[] = [
 		{
 			id: 'phone',
@@ -51,13 +56,13 @@ export default function FloatingSidebar() {
 		{
 			id: 'email',
 			icon: <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
-				<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+				<path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" />
 			</svg>,
 			label: 'Email',
 			content: (
 				<div className="text-center">
 					<p className="text-sm font-semibold mb-2">Email Us</p>
-					<a 
+					<a
 						href="mailto:mkdch@126.com"
 						className="text-lg font-bold text-blue-600 hover:text-blue-700 transition-colors"
 					>
@@ -82,19 +87,20 @@ export default function FloatingSidebar() {
 			)
 		},
 		{
-			id: 'customer',
-			icon: <User size={24} />,
-			label: 'Customer',
+			id: 'catalog',
+			icon: <BookOpen size={24} />,
+			label: 'Catalog',
 			content: (
 				<div className="text-center">
-					<p className="text-sm font-semibold mb-3">Customer Service</p>
-					<button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 mb-2 w-full">
-						Live Chat
+					<p className="text-sm font-semibold mb-3">Product Catalog</p>
+					<button
+						onClick={downloadCatalog}
+						className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 w-full flex items-center justify-center gap-2"
+					>
+						<Download size={18} />
+						Download PDF
 					</button>
-					<button className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2 rounded-lg transition-colors duration-200 w-full">
-						Leave Message
-					</button>
-					<p className="text-xs text-gray-500 mt-3">Online 24/7</p>
+					<p className="text-xs text-gray-500 mt-3">2026 Edition</p>
 				</div>
 			)
 		},

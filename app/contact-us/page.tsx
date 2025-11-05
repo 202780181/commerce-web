@@ -3,31 +3,8 @@
 import { motion } from "motion/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import { useState } from "react";
 
 export default function ContactUs() {
-	const [formData, setFormData] = useState({
-		name: "",
-		email: "",
-		phone: "",
-		company: "",
-		message: "",
-	});
-
-	const handleSubmit = (e: React.FormEvent) => {
-		e.preventDefault();
-		console.log("Form submitted:", formData);
-		// Add form submission logic here
-	};
-
-	const handleChange = (
-		e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-	) => {
-		setFormData({
-			...formData,
-			[e.target.name]: e.target.value,
-		});
-	};
 
 	return (
 		<div className="min-h-screen bg-gray-50">
@@ -279,132 +256,103 @@ export default function ContactUs() {
 									</motion.div>
 								</div>
 
-								{/* Contact Form */}
+								{/* QR Code Section */}
 								<div className="px-10 pb-10">
 									<div className="border-t border-gray-200 pt-10">
-										<h3 className="text-2xl font-bold text-gray-900 mb-6">
-											Send us a message
+										<h3 className="text-2xl font-bold text-gray-900 mb-8 text-center">
+											Connect With Us
 										</h3>
-										<form onSubmit={handleSubmit} className="space-y-6">
-											<div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-												<motion.div
-													initial={{ opacity: 0, x: -20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ duration: 0.5, delay: 0.9 }}
-												>
-													<label htmlFor="name" className="block text-sm font-semibold text-gray-700 mb-2">
-														Your Name *
-													</label>
-													<input
-														type="text"
-														id="name"
-														name="name"
-														value={formData.name}
-														onChange={handleChange}
-														required
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
-														placeholder="John Doe"
+										<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+											{/* WeChat QR Code */}
+											<motion.div
+												initial={{ opacity: 0, y: 20 }}
+												animate={{ opacity: 1, y: 0 }}
+												transition={{ duration: 0.5, delay: 0.9 }}
+												whileHover={{ y: -5, scale: 1.02 }}
+												className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center border border-green-100 hover:border-green-300 transition-all duration-300 hover:shadow-lg"
+											>
+												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
+													<img
+														src="/images/products/weixin.png"
+														alt="WeChat QR Code"
+														className="w-full h-full object-contain"
 													/>
-												</motion.div>
+												</div>
+												<h4 className="text-sm font-semibold text-gray-700">WeChat</h4>
+											</motion.div>
 
-												<motion.div
-													initial={{ opacity: 0, x: 20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ duration: 0.5, delay: 0.9 }}
-												>
-													<label htmlFor="email" className="block text-sm font-semibold text-gray-700 mb-2">
-														Email Address *
-													</label>
-													<input
-														type="email"
-														id="email"
-														name="email"
-														value={formData.email}
-														onChange={handleChange}
-														required
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
-														placeholder="john@example.com"
+											{/* Instagram QR Code */}
+											<motion.div
+												initial={{ opacity: 0, y: 20 }}
+												animate={{ opacity: 1, y: 0 }}
+												transition={{ duration: 0.5, delay: 1.0 }}
+												whileHover={{ y: -5, scale: 1.02 }}
+												className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6 text-center border border-pink-100 hover:border-pink-300 transition-all duration-300 hover:shadow-lg"
+											>
+												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
+													<img
+														src="/images/products/instagram.png"
+														alt="Instagram QR Code"
+														className="w-full h-full object-contain"
 													/>
-												</motion.div>
+												</div>
+												<h4 className="text-sm font-semibold text-gray-700">Instagram</h4>
+											</motion.div>
 
-												<motion.div
-													initial={{ opacity: 0, x: -20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ duration: 0.5, delay: 1 }}
-												>
-													<label htmlFor="phone" className="block text-sm font-semibold text-gray-700 mb-2">
-														Phone Number
-													</label>
-													<input
-														type="tel"
-														id="phone"
-														name="phone"
-														value={formData.phone}
-														onChange={handleChange}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
-														placeholder="+1 (555) 123-4567"
-													/>
-												</motion.div>
-
-												<motion.div
-													initial={{ opacity: 0, x: 20 }}
-													animate={{ opacity: 1, x: 0 }}
-													transition={{ duration: 0.5, delay: 1 }}
-												>
-													<label htmlFor="company" className="block text-sm font-semibold text-gray-700 mb-2">
-														Company
-													</label>
-													<input
-														type="text"
-														id="company"
-														name="company"
-														value={formData.company}
-														onChange={handleChange}
-														className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none"
-														placeholder="Your Company"
-													/>
-												</motion.div>
-											</div>
-
+											{/* TikTok QR Code */}
 											<motion.div
 												initial={{ opacity: 0, y: 20 }}
 												animate={{ opacity: 1, y: 0 }}
 												transition={{ duration: 0.5, delay: 1.1 }}
+												whileHover={{ y: -5, scale: 1.02 }}
+												className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6 text-center border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
 											>
-												<label htmlFor="message" className="block text-sm font-semibold text-gray-700 mb-2">
-													Message *
-												</label>
-												<textarea
-													id="message"
-													name="message"
-													value={formData.message}
-													onChange={handleChange}
-													required
-													rows={6}
-													className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all outline-none resize-none"
-													placeholder="Tell us about your project or inquiry..."
-												/>
+												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
+													<img
+														src="/images/products/tiktok.png"
+														alt="TikTok QR Code"
+														className="w-full h-full object-contain"
+													/>
+												</div>
+												<h4 className="text-sm font-semibold text-gray-700">TikTok</h4>
 											</motion.div>
 
+											{/* YouTube QR Code */}
 											<motion.div
 												initial={{ opacity: 0, y: 20 }}
 												animate={{ opacity: 1, y: 0 }}
 												transition={{ duration: 0.5, delay: 1.2 }}
+												whileHover={{ y: -5, scale: 1.02 }}
+												className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 text-center border border-red-100 hover:border-red-300 transition-all duration-300 hover:shadow-lg"
 											>
-												<motion.button
-													type="submit"
-													whileHover={{
-														scale: 1.02,
-														boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)",
-													}}
-													whileTap={{ scale: 0.98 }}
-													transition={{ duration: 0.2 }}
-													className="w-full md:w-auto px-12 py-4 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
-												>
-													Send Message
-												</motion.button>
+												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
+													<img
+														src="/images/products/youtube.png"
+														alt="YouTube QR Code"
+														className="w-full h-full object-contain"
+													/>
+												</div>
+												<h4 className="text-sm font-semibold text-gray-700">YouTube</h4>
 											</motion.div>
-										</form>
+
+											{/* WhatsApp QR Code */}
+											<motion.div
+												initial={{ opacity: 0, y: 20 }}
+												animate={{ opacity: 1, y: 0 }}
+												transition={{ duration: 0.5, delay: 1.3 }}
+												whileHover={{ y: -5, scale: 1.02 }}
+												className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6 text-center border border-green-100 hover:border-green-300 transition-all duration-300 hover:shadow-lg"
+											>
+												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
+													<img
+														src="/images/products/whatsapp.png"
+														alt="WhatsApp QR Code"
+														className="w-full h-full object-contain"
+													/>
+												</div>
+												<h4 className="text-sm font-semibold text-gray-700">WhatsApp</h4>
+											</motion.div>
+										</div>
 									</div>
 								</div>
 							</div>
