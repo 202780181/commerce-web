@@ -1,42 +1,12 @@
 "use client";
 
 const footerLinks = {
-  Platform: [
-    "Personalization Studio",
-    "AI Agents",
-    "Composable CDP",
-    "Predict",
-    "Identity+",
-    "Match+",
-    "Integrations",
-    "Pricing",
-    "Log In",
-  ],
-  Solutions: [
-    "Customer Marketing",
-    "Performance Marketing",
-    "Data & Technology",
-    "Retail",
-    "Travel & Hospitality",
-    "Subscription",
-    "Marketplace",
-    "Customer Success",
-  ],
-  Resources: [
-    "Case Studies",
-    "Blog",
-    "Data Unlocked",
-    "Guides",
-    "Webinars",
-    "Recipes",
-    "Documentation",
-  ],
-  Company: [
-    "About Us",
-    "Partners",
-    "Newsroom",
-    "Careers",
-    "Contact Us",
+  Navigation: [
+    { name: "HOME", href: "/" },
+    { name: "ABOUT US", href: "/about-us" },
+    { name: "NEWS", href: "/news" },
+    { name: "PRODUCTS", href: "/products" },
+    { name: "CONTACT US", href: "/contact-us" },
   ],
 };
 
@@ -45,20 +15,20 @@ export default function Footer() {
     <footer className="bg-gray-900 text-white">
       <div className="mx-auto px-6 py-16 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Footer links grid */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+        <div className="mb-12">
           {Object.entries(footerLinks).map(([category, links]) => (
             <div key={category}>
               <h3 className="text-sm font-semibold mb-4 text-gray-300">
                 {category}
               </h3>
-              <ul className="space-y-3">
+              <ul className="flex flex-wrap gap-x-8 gap-y-3">
                 {links.map((link) => (
-                  <li key={link}>
+                  <li key={link.name}>
                     <a
-                      href="#"
+                      href={link.href}
                       className="text-gray-400 hover:text-white transition-colors text-sm"
                     >
-                      {link}
+                      {link.name}
                     </a>
                   </li>
                 ))}
