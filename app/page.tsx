@@ -3,7 +3,6 @@
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import AboutUs from "./components/AboutUs";
-import BrandLogos from "./components/BrandLogos";
 import Integrations from "./components/Integrations";
 import Footer from "./components/Footer";
 import FloatingSidebar from "./components/FloatingSidebar";
@@ -14,7 +13,6 @@ export default function Home() {
       <Header />
       <Hero />
       <AboutUs />
-      <BrandLogos />
       <Integrations />
       <Footer />
       <FloatingSidebar />
