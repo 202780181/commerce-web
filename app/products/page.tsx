@@ -236,31 +236,10 @@ export default function Products() {
 						transition={{ duration: 0.8, delay: 0.2 }}
 					>
 						<h1 className="text-6xl md:text-7xl font-bold text-white mb-6">
-							Your Keto Journey
-							<br />
 							<span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-								Made Simple
+								Products
 							</span>
 						</h1>
-						<p className="text-xl text-gray-200 mb-8 max-w-2xl mx-auto">
-							Powerful products to help you stay energized, focused, and on track.
-						</p>
-						<div className="flex flex-wrap gap-4 justify-center">
-							<motion.button
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.98 }}
-								className="px-8 py-4 bg-white text-purple-600 font-semibold rounded-full shadow-lg hover:shadow-xl transition-all"
-							>
-								Shop All Products
-							</motion.button>
-							<motion.button
-								whileHover={{ scale: 1.05 }}
-								whileTap={{ scale: 0.98 }}
-								className="px-8 py-4 bg-transparent border-2 border-white text-white font-semibold rounded-full hover:bg-white hover:text-purple-600 transition-all"
-							>
-								View Bundles
-							</motion.button>
-						</div>
 					</motion.div>
 				</div>
 

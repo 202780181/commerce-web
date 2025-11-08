@@ -2,6 +2,7 @@
 
 import { motion } from "motion/react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const integrations = [
   { name: "5Axix 4Position System", image: "/images/products/box1.png" },
@@ -19,6 +20,7 @@ const integrations = [
 ];
 
 export default function Integrations() {
+  const router = useRouter();
   return (
     <section className="py-24 bg-white">
       <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
@@ -57,7 +59,10 @@ export default function Integrations() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
               className="flex items-center justify-center"
             >
-              <div className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group">
+              <div 
+                onClick={() => router.push('/products')}
+                className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group cursor-pointer"
+              >
                 <div className="relative w-full aspect-square mb-4 flex items-center justify-center">
                   <Image
                     src={integration.image}

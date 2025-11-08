@@ -14,22 +14,22 @@ export default function AboutUs() {
 			<div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
 				<div className="relative">
 					<div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
-						{/* Left side - Image */}
-						<motion.div
-							initial={{ opacity: 0, x: -50 }}
-							animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
-							transition={{ duration: 0.8, delay: 0.2 }}
-							className="w-full lg:w-[48%]"
-						>
-							{/* Industrial machinery image */}
-							<div className="w-full" style={{ height: '590px' }}>
-								<img
-									src="/images/products/20230831103703.png"
-									alt="Industrial steel manufacturing machinery"
-									className="w-full h-full object-cover"
-								/>
-							</div>
-						</motion.div>
+					{/* Left side - Image */}
+					<motion.div
+						initial={{ opacity: 0, x: -50 }}
+						animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+						transition={{ duration: 0.8, delay: 0.2 }}
+						className="w-full lg:w-[48%]"
+					>
+						{/* Industrial machinery image */}
+						<div className="w-full cursor-pointer" style={{ height: '590px' }} onClick={() => router.push('/products')}>
+							<img
+								src="/images/products/20230831103703.png"
+								alt="Industrial steel manufacturing machinery"
+								className="w-full h-full object-cover hover:opacity-90 transition-opacity"
+							/>
+						</div>
+					</motion.div>
 
 						{/* Right side - Content */}
 						<motion.div

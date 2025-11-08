@@ -120,7 +120,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           </motion.a>
 
           <motion.a
-            href="/news"
+            href="/download"
             className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
               }`}
             initial={{ y: -20, opacity: 0 }}
@@ -129,7 +129,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
-            NEWS
+            DOWNLOAD
             <motion.span
               className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
               initial={{ width: 0 }}
@@ -212,14 +212,14 @@ export default function Header({ lightBackground = false }: HeaderProps) {
               ABOUT US
             </motion.a>
             <motion.a
-              href="/news"
+              href="/download"
               className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
               initial={{ x: -20, opacity: 0 }}
               animate={{ x: 0, opacity: 1 }}
               transition={{ duration: 0.3, delay: 0.2 }}
               whileTap={{ scale: 0.98 }}
             >
-              NEWS
+              DOWNLOAD
             </motion.a>
             <motion.a
               href="/products"
