@@ -133,15 +133,15 @@ export default function Footer() {
                         transition={{ duration: 0.2 }}
                         className="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 z-50"
                       >
-                        <div className="bg-white rounded-xl shadow-2xl p-4 border-2 border-gray-100">
+                        <div className="bg-white rounded-xl shadow-2xl p-4 border-2 border-gray-100 w-[180px]">
                           {/* Arrow */}
                           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-2">
                             <div className="w-4 h-4 bg-white border-r-2 border-b-2 border-gray-100 transform rotate-45"></div>
                           </div>
 
                           {/* Content */}
-                          <div className="text-center min-w-[150px]">
-                            <div className="w-32 h-32 bg-gray-50 rounded-lg p-2 mb-2">
+                          <div className="text-center">
+                            <div className="w-full aspect-square bg-gray-50 rounded-lg p-2 mb-2">
                               <img
                                 src={social.image}
                                 alt={`${social.name} QR Code`}

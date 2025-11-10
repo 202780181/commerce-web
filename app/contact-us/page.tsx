@@ -267,7 +267,7 @@ export default function ContactUs() {
 											Contact address
 										</h3>
 										<p className="text-gray-900 font-medium text-sm leading-relaxed">
-											Unit 1-1, 1st Floor, Building A2, No. 4 Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou
+											1-2/F, Building A2, No. 4, Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou,Guangdong Province,China
 										</p>
 									</motion.div>
 								</div>
