@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import createMDX from "@next/mdx";
 
 const nextConfig: NextConfig = {
   // 启用 React 严格模式
@@ -13,23 +14,18 @@ const nextConfig: NextConfig = {
 
   // 图片优化配置
   images: {
-    formats: ["image/avif", "image/webp"],
     remotePatterns: [
       {
-        protocol: "https",
-        hostname: "**.example.com", // 根据需要修改为你的图片域名
+        protocol: 'https',
+        hostname: 'work-1251384833.cos.ap-singapore.myqcloud.com',
+        port: '',
+        pathname: '/**',
       },
     ],
-    // 图片设备尺寸配置
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    // 临时禁用优化来测试URL问题
+    unoptimized: true,
   },
 
-  // 国际化配置（如需要）
-  // i18n: {
-  //   locales: ["zh-CN", "en-US"],
-  //   defaultLocale: "zh-CN",
-  // },
 
   // 实验性特性
   experimental: {
@@ -37,8 +33,8 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["motion", "react-icons"],
   },
 
-  // 输出配置
-  output: "standalone", // 适用于 Docker 部署
+  // 输出配置 - 在 Windows 开发环境中暂时禁用
+  // output: "standalone", // 适用于 Docker 部署，在 Windows 上可能有权限问题
 
   // 压缩配置
   compress: true,
@@ -90,7 +86,7 @@ const nextConfig: NextConfig = {
       '.js',
       '.mjs',
       '.json',
-      // '.mdx', // 如果使用 MDX
+      '.mdx', // 启用 MDX 支持
     ],
 
     // Module ID 策略
@@ -186,4 +182,14 @@ const nextConfig: NextConfig = {
   // productionBrowserSourceMaps: true,
 } satisfies NextConfig;
 
-export default nextConfig;
+// 配置 MDX
+const withMDX = createMDX({
+  // 添加 markdown 插件
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
+// 合并 MDX 配置
+export default withMDX(nextConfig);

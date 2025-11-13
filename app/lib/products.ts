@@ -280,6 +280,101 @@ Vegan and gluten-free`,
 			secondary: "teal",
 		},
 	},
+
+	// 机械产品系列
+	"modular-combined-display": {
+		name: "Modular Combined Display",
+		tagline: "Advanced modular display system for versatile machining setups",
+		category: "Display Systems",
+		price: 1299.99,
+		rating: 4.8,
+		reviewCount: 156,
+		badge: "BEST SELLER",
+		mainImage: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/01%20Modular%20Combined%20Display/%E5%B0%81%E9%9D%A2/4Axis%20Single-Side%20L-Bracket%20Assembly.png",
+		galleryImages: [
+			"https://work-1251384833.cos.ap-singapore.myqcloud.com/products/01%20Modular%20Combined%20Display/%E5%B0%81%E9%9D%A2/4Axis%20Single-Side%20L-Bracket%20Assembly.png",
+		],
+		shortDescription: "Advanced modular display system with 4-axis single-side L-bracket assembly for versatile machining setups.",
+		fullDescription: "Our Modular Combined Display system offers unparalleled flexibility for complex machining operations. Featuring precision-engineered components and robust construction.",
+		highlights: [
+			"4-axis single-side L-bracket assembly",
+			"Modular design for versatile setups",
+			"High-precision construction",
+			"Compatible with various machining centers",
+			"Easy setup and configuration",
+		],
+		specs: [
+			{ label: "Material", value: "Hardened Steel" },
+			{ label: "Precision", value: "±0.005mm" },
+			{ label: "Max Load", value: "500kg" },
+		],
+		howToUse: {
+			title: "Installation Guide",
+			steps: [
+				"Mount the base unit to your machine table",
+				"Attach the L-bracket assembly",
+				"Configure for your specific workpiece",
+				"Perform precision alignment check",
+			],
+		},
+		faqs: [
+			{
+				question: "What machines is this compatible with?",
+				answer: "Compatible with most CNC machining centers and milling machines with standard T-slot tables.",
+			},
+		],
+		theme: {
+			primary: "blue",
+			secondary: "indigo",
+		},
+	},
+
+	"quick-release-jaws-vise": {
+		name: "Quick Release Jaws Vise",
+		tagline: "High-performance vise for rapid workpiece changeover",
+		category: "Vise Systems",
+		price: 899.99,
+		rating: 4.7,
+		reviewCount: 203,
+		badge: "POPULAR",
+		mainImage: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/02%20Quick%20Release%20Jaws%20Vise/%E5%B0%81%E9%9D%A2/HP10077%28Steel%20Jaw%29.png",
+		galleryImages: [
+			"https://work-1251384833.cos.ap-singapore.myqcloud.com/products/02%20Quick%20Release%20Jaws%20Vise/%E5%B0%81%E9%9D%A2/HP10077%28Steel%20Jaw%29.png",
+		],
+		shortDescription: "High-performance quick release vise with steel jaws for rapid workpiece changeover and secure clamping.",
+		fullDescription: "Engineered for efficiency and precision, this quick release vise system dramatically reduces setup time while maintaining exceptional clamping force and accuracy.",
+		highlights: [
+			"Quick release mechanism",
+			"Hardened steel jaws",
+			"High clamping force",
+			"Rapid workpiece changeover",
+			"Precision ground surfaces",
+		],
+		specs: [
+			{ label: "Jaw Width", value: "150mm" },
+			{ label: "Opening", value: "200mm" },
+			{ label: "Clamping Force", value: "25kN" },
+		],
+		howToUse: {
+			title: "Operation Guide",
+			steps: [
+				"Position workpiece between jaws",
+				"Engage quick release lever",
+				"Apply appropriate clamping pressure",
+				"Verify secure positioning before machining",
+			],
+		},
+		faqs: [
+			{
+				question: "What is the maximum workpiece size?",
+				answer: "Maximum workpiece width is 200mm with jaw opening fully extended.",
+			},
+		],
+		theme: {
+			primary: "green",
+			secondary: "emerald",
+		},
+	},
 };
 
 // 获取单个产品数据的辅助函数

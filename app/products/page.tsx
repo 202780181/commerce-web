@@ -5,11 +5,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 
-// Product data
+// Product data - 使用字符串ID以匹配详情页面
 const products = [
 	{
-		id: 1,
+		id: "modular-combined-display",
 		name: "Modular Combined Display",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/01%20Modular%20Combined%20Display/%E5%B0%81%E9%9D%A2/4Axis%20Single-Side%20L-Bracket%20Assembly.png",
@@ -17,7 +18,7 @@ const products = [
 		description: "Premium grass-fed collagen for hair, skin, and nails.",
 	},
 	{
-		id: 2,
+		id: "quick-release-jaws-vise",
 		name: "Quick Release Jaws Vise",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/02%20Quick%20Release%20Jaws%20Vise/%E5%B0%81%E9%9D%A2/HP10077%28Steel%20Jaw%29.png",
@@ -25,7 +26,7 @@ const products = [
 		description: "High-protein, low-carb bars with collagen.",
 	},
 	{
-		id: 3,
+		id: "manual-vise-series",
 		name: "Manual Vise Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/03%20Manual%20Vise%20Series/%E5%B0%81%E9%9D%A2/CV255125%28Steel%20Jaw%29.png",
@@ -33,7 +34,7 @@ const products = [
 		description: "Crunchy granola bars with keto-friendly ingredients.",
 	},
 	{
-		id: 4,
+		id: "pneumatic-vise-pressurization",
 		name: "Pneumatic Vise Series(With Pressurization",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/04%20Pneumatic%20Vise%20Series%28With%20Pressurization/%E5%B0%81%E9%9D%A2/AH160%28Pneumatic%20Vice%29.png",
@@ -41,7 +42,7 @@ const products = [
 		description: "Pure exogenous ketones for energy and focus.",
 	},
 	{
-		id: 5,
+		id: "pneumatic-vise-pneumatic",
 		name: "Pneumatic Vise Series(Pneumatic Type",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type/%E5%B0%81%E9%9D%A2/ar155-I.png",
@@ -49,7 +50,7 @@ const products = [
 		description: "Clean energy from medium-chain triglycerides.",
 	},
 	{
-		id: 6,
+		id: "zero-point-aluminum",
 		name: "Zero Point Clamping(Aluminum Base",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base/%E5%B0%81%E9%9D%A2/TA9652.png",
@@ -57,109 +58,109 @@ const products = [
 		description: "Essential electrolytes for hydration and recovery.",
 	},
 	{
-		id: 7,
+		id: "zero-point-steel",
 		name: "Zero Point Clamping(Steel Base)",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/%E5%B0%81%E9%9D%A2%E5%9B%BE/TS52-108_2.png",
 		description: "Mental clarity and cognitive enhancement.",
 	},
 	{
-		id: 8,
+		id: "high-precision-zero-point",
 		name: "High Precision Zero Point Clamping",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/08%20High%20Precision%20Zero%20Point%20Clamping/%E5%B0%81%E9%9D%A2/PM52-120.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 9,
+		id: "high-precision-pneumatic-zero",
 		name: "High Precision Pneumatic Zero Point Clamping",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/09.High%20Precision%20Pneumatic%20Zero%20Point%20Clamping/%E5%B0%81%E9%9D%A2/0cd1de325a0cd9b161c22c47503f0126.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 10,
+		id: "pull-studs-series",
 		name: "Pull Studs Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/10%20Pull%20Studs%20Series/%E5%B0%81%E9%9D%A2/PM52-Pull%20Studs.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 11,
+		id: "dovetail-fixture",
 		name: "Dovetail Fixture",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/11%20Dovetail%20Fixture/%E5%B0%81%E9%9D%A2%E5%9B%BE/ts96-v50.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 12,
+		id: "er-clamping-series",
 		name: "ER Clamping Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/12%20ER%20Clamping%20Series/12%20ER%20Clamping%20Series/%E5%B0%81%E9%9D%A2%E5%9B%BE/ts96-er40.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 13,
+		id: "modular-combination",
 		name: "Modular Combination Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/13%20Modular%20Combination%20Series/%E5%B0%81%E9%9D%A2/TS52-120R.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 14,
+		id: "modular-set-series",
 		name: "Modular Set Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/14%20Modular%20Set%20Series/%E5%B0%81%E9%9D%A2/TS52%E7%BB%84%E5%90%88.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 15,
+		id: "bridge-plate-series",
 		name: "Bridge Plate Series",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/15%20L%20Bridge%20Plate%20Series/%E5%B0%81%E9%9D%A2/L255.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 16,
+		id: "5axis-pyramid-series",
 		name: "5Axis Pyramid Series",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/16%205Axis%20Pyramid%20Series/%E5%B0%81%E9%9D%A2%E5%9B%BE/TS96-4P%E5%9B%9B%E5%B7%A5%E4%BD%8D%E5%8A%A0%E9%AB%98%E5%A1%94.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 17,
+		id: "run-out-tester",
 		name: "Run_out Tester",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/17%20Run_out%20Tester/%E5%B0%81%E9%9D%A2/BT40Standard%20Version.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 18,
+		id: "unilateral-positioner",
 		name: "Unilateral Positione",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/18%20Unilateral%20Positione/%E5%B0%81%E9%9D%A2/DW-1.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 19,
+		id: "cnc-tombstone-series",
 		name: "CNC Tombstone Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/19%20CNC%20Tombstone%20Series/%E5%B0%81%E9%9D%A2/TS96-HM400_3p.487.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 20,
+		id: "precision-bench-vice",
 		name: "Precision Bench Vice",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/20%20Precision%20Bench%20Vice/%E5%B0%81%E9%9D%A2/0%E5%BA%A6%E5%89%8D%E8%A7%86%E5%9B%BE-2.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 21,
+		id: "hydraulic-bite-machine",
 		name: "Hydraulic Bite Machine",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/21%20Hydraulic%20Bite%20Machine/%E5%B0%81%E9%9D%A2/YC-M1_2.327.png",
 		description: "Pure grass-fed whey protein isolate.",
 	},
 	{
-		id: 22,
+		id: "pneumatic-single-hole-zero",
 		name: "Pneumatic Single Hole Zero Plate Series",
 		category: "",
 		image: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/22%20Pneumatic%20Single%20Hole%20Zero%20Plate%20Series/%E5%B0%81%E9%9D%A2/ZP4036%E5%B8%A6%E6%89%98%E7%9B%98.png",
@@ -289,11 +290,19 @@ export default function Products() {
 								>
 									{/* Product Image */}
 									<div className="relative h-64 overflow-hidden bg-gray-100">
-										<motion.img
-											src={product.image}
-											alt={product.name}
-											className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-										/>
+										<motion.div
+											className="w-full h-full group-hover:scale-110 transition-transform duration-500"
+										>
+											<Image
+												src={product.image}
+												alt={product.name}
+												fill
+												className="object-cover"
+												sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+												loading="lazy"
+												quality={85}
+											/>
+										</motion.div>
 									</div>
 
 									{/* Product Info */}
