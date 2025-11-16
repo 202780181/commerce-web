@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 const integrations = [
@@ -64,11 +63,12 @@ export default function Integrations() {
                 className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group cursor-pointer"
               >
                 <div className="relative w-full aspect-square mb-4 flex items-center justify-center">
-                  <Image
+                  <img
                     src={integration.image}
                     alt={integration.name}
-                    fill
-                    className="object-contain"
+                    className="w-full h-full object-contain"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </div>
                 <span className="text-gray-700 font-semibold text-center text-sm group-hover:text-purple-600 transition-colors">

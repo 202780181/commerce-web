@@ -1,11 +1,9 @@
 "use client";
 
-import { motion } from "motion/react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
 
 // Product data - 使用字符串ID以匹配详情页面
 const products = [
@@ -216,13 +214,8 @@ export default function Products() {
 
 				{/* Content */}
 				<div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-					<motion.div
-						initial={{ opacity: 0, y: 30 }}
-						animate={{ opacity: 1, y: 0 }}
-						transition={{ duration: 0.8, delay: 0.2 }}
-					>
-						<h1 className="text-6xl md:text-7xl font-bold mb-6">
-							<span 
+					<h1 className="text-6xl md:text-7xl font-bold mb-6">
+						<span 
 							className="bg-clip-text text-transparent"
 							style={{
 								backgroundImage: 'linear-gradient(90deg, white, #f24711)',
@@ -231,31 +224,13 @@ export default function Products() {
 								backgroundClip: 'text',
 							}}
 						>
-								Products
-							</span>
-						</h1>
-					</motion.div>
-				</div>
-
-				{/* Scroll Indicator - CSS Animation */}
-				<div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-					<svg
-						className="w-6 h-6 text-white"
-						fill="none"
-						stroke="currentColor"
-						viewBox="0 0 24 24"
-					>
-						<path
-							strokeLinecap="round"
-							strokeLinejoin="round"
-							strokeWidth={2}
-							d="M19 14l-7 7m0 0l-7-7m7 7V3"
-						/>
-					</svg>
+							Products
+						</span>
+					</h1>
 				</div>
 			</section>
 			{/* Featured Products Section */}
-			<section className="py-20 px-6 bg-gradient-to-br from-gray-50 to-purple-50">
+			<section className="py-20 px-6 bg-gray-50">
 				<div className="max-w-[1600px] mx-auto">
 					<div className="text-center mb-16">
 						<h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
@@ -271,20 +246,18 @@ export default function Products() {
 						{filteredProducts.map((product) => (
 							<Link 
 								key={product.id}
-								href={product.id ? `/products/${product.id}` : "#"}
-								className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 group cursor-pointer h-full block will-change-transform"
+								href={product.id ? `/products/${product.id}/gallery` : "#"}
+								className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
 							>
 								{/* Product Image */}
-								<div className="relative h-64 overflow-hidden bg-gray-100">
-									<Image
+								<div className="relative h-64 bg-gray-100 overflow-hidden">
+									<img
 										src={product.image}
 										alt={product.name}
-										fill
-										className="object-cover group-hover:scale-110 transition-transform duration-500"
-										sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+										className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
 										loading="lazy"
-										quality={75}
-										priority={false}
+										decoding="async"
+										style={{ contentVisibility: 'auto' }}
 									/>
 								</div>
 

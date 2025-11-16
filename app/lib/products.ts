@@ -6,12 +6,8 @@ export const productsDatabase: Record<string, ProductDetailData> = {
 	// 产品 1: 草饲胶原蛋白
 	"collagen-peptides": {
 		name: "Grass-Fed Collagen Peptides",
-		tagline: "Premium collagen for radiant skin, strong hair & healthy joints",
 		category: "Collagen Supplements",
-		price: 43.99,
 		originalPrice: 59.99,
-		rating: 4.8,
-		reviewCount: 5979,
 		badge: "BEST SELLER",
 		mainImage: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=800&q=80",
 		galleryImages: [
@@ -54,11 +50,7 @@ Our collagen is sourced exclusively from grass-fed, pasture-raised cattle, ensur
 	// 产品 2: MCT 油粉
 	"mct-oil-powder": {
 		name: "MCT Oil Powder",
-		tagline: "Clean energy from premium medium-chain triglycerides",
 		category: "Energy & Performance",
-		price: 40.99,
-		rating: 4.7,
-		reviewCount: 4500,
 		badge: "POPULAR",
 		mainImage: "https://images.unsplash.com/photo-1625772299848-391b6a87d7b3?w=800&q=80",
 		galleryImages: [
@@ -130,11 +122,7 @@ Benefits:
 	// 产品 3: 酮体补充剂
 	"base-ketones": {
 		name: "Base Ketones",
-		tagline: "Pure exogenous ketones for instant energy and mental clarity",
 		category: "Ketone Supplements",
-		price: 42.99,
-		rating: 4.8,
-		reviewCount: 5034,
 		badge: "BEST SELLER",
 		mainImage: "https://images.unsplash.com/photo-1526318896980-cf78c088247c?w=800&q=80",
 		galleryImages: [
@@ -195,12 +183,8 @@ Key Benefits:
 	// 产品 4: 电解质补充剂
 	"daily-electrolytes": {
 		name: "Daily Electrolytes",
-		tagline: "Essential hydration support for active lifestyles",
 		category: "Hydration & Electrolytes",
-		price: 30.99,
 		originalPrice: 37.99,
-		rating: 4.9,
-		reviewCount: 677,
 		badge: "SALE",
 		mainImage: "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=800&q=80",
 		galleryImages: [
@@ -284,11 +268,7 @@ Vegan and gluten-free`,
 	// 机械产品系列
 	"modular-combined-display": {
 		name: "Modular Combined Display",
-		tagline: "Advanced modular display system for versatile machining setups",
 		category: "Display Systems",
-		price: 1299.99,
-		rating: 4.8,
-		reviewCount: 156,
 		badge: "BEST SELLER",
 		mainImage: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/01%20Modular%20Combined%20Display/%E5%B0%81%E9%9D%A2/4Axis%20Single-Side%20L-Bracket%20Assembly.png",
 		galleryImages: [
@@ -331,11 +311,7 @@ Vegan and gluten-free`,
 
 	"quick-release-jaws-vise": {
 		name: "Quick Release Jaws Vise",
-		tagline: "High-performance vise for rapid workpiece changeover",
 		category: "Vise Systems",
-		price: 899.99,
-		rating: 4.7,
-		reviewCount: 203,
 		badge: "POPULAR",
 		mainImage: "https://work-1251384833.cos.ap-singapore.myqcloud.com/products/02%20Quick%20Release%20Jaws%20Vise/%E5%B0%81%E9%9D%A2/HP10077%28Steel%20Jaw%29.png",
 		galleryImages: [
@@ -393,10 +369,7 @@ export function getProductSummaries() {
 		id,
 		name: product.name,
 		category: product.category,
-		price: product.price,
 		originalPrice: product.originalPrice,
-		rating: product.rating,
-		reviewCount: product.reviewCount,
 		image: product.mainImage,
 		badge: product.badge,
 		shortDescription: product.shortDescription,

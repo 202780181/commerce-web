@@ -35,32 +35,6 @@ export default function ContactUs() {
 					/>
 				</div>
 
-				{/* Animated gradient orbs */}
-				<motion.div
-					className="absolute -top-40 -right-40 w-80 h-80 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-					animate={{
-						x: [0, 50, 0],
-						y: [0, 30, 0],
-					}}
-					transition={{
-						duration: 10,
-						repeat: Infinity,
-						ease: "easeInOut",
-					}}
-				/>
-				<motion.div
-					className="absolute -bottom-40 -left-40 w-80 h-80 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-20"
-					animate={{
-						x: [0, -50, 0],
-						y: [0, -30, 0],
-					}}
-					transition={{
-						duration: 12,
-						repeat: Infinity,
-						ease: "easeInOut",
-					}}
-				/>
-
 				{/* Content */}
 				<div className="relative h-full flex flex-col items-center justify-center text-center px-6">
 					<motion.div
