@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "motion/react";
 
 interface HeaderProps {
   readonly lightBackground?: boolean; // If light background, text defaults to black
@@ -13,53 +12,54 @@ export default function Header({ lightBackground = false }: HeaderProps) {
   const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
+    
     const handleScroll = () => {
-      // 当滚动超过100px时显示背景色
-      setIsScrolled(window.scrollY > 100);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          // 当滚动超过100px时显示背景色
+          setIsScrolled(window.scrollY > 100);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
 
     // 标记为已加载，触发动画
     setIsLoaded(true);
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
-    <motion.header
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-        ? "bg-white/80 backdrop-blur-md border-b border-gray-200 shadow-sm"
-        : "bg-transparent border-b border-transparent"
-      }`}>
+    <header
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-300"
+      style={{
+        backgroundColor: isScrolled ? 'rgba(255, 255, 255, 0.8)' : 'transparent',
+        backdropFilter: isScrolled ? 'blur(12px)' : 'none',
+        borderBottom: isScrolled ? '1px solid rgb(229, 231, 235)' : '1px solid transparent',
+        boxShadow: isScrolled ? '0 1px 2px 0 rgb(0 0 0 / 0.05)' : 'none',
+      }}>
       <nav className="mx-auto flex items-center justify-between p-4 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Logo */}
-        <motion.div
-          className="flex lg:flex-1"
-          initial={{ x: -50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        >
+        <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5 mr-8">
-            <span className={`text-2xl font-bold whitespace-nowrap transition-colors ${isScrolled || lightBackground ? "text-gray-900" : "text-white"}`}>
+            <span 
+              className="text-2xl font-bold whitespace-nowrap transition-colors duration-300"
+              style={{ color: isScrolled || lightBackground ? '#111827' : '#ffffff' }}
+            >
               CO-Grow Machinery Co.,Ltd
             </span>
           </a>
-        </motion.div>
+        </div>
 
         {/* Mobile menu button */}
-        <motion.div
-          className="flex lg:hidden"
-          initial={{ x: 50, opacity: 0 }}
-          animate={{ x: 0, opacity: 1 }}
-          transition={{ duration: 0.6, delay: 0.2, ease: "easeOut" }}
-        >
+        <div className="flex lg:hidden">
           <button
             type="button"
-            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors ${isScrolled || lightBackground ? "text-gray-700" : "text-white"
-              }`}
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-transform duration-200 hover:scale-110 active:scale-95"
+            style={{ color: isScrolled || lightBackground ? '#374151' : '#ffffff' }}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open main menu</span>
@@ -77,101 +77,69 @@ export default function Header({ lightBackground = false }: HeaderProps) {
               />
             </svg>
           </button>
-        </motion.div>
+        </div>
 
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12 lg:ml-16">
-          <motion.a
+          <a
             href="/"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="nav-link relative text-sm font-semibold leading-6 will-change-auto"
+            style={{ 
+              color: isScrolled || lightBackground ? '#111827' : '#ffffff',
+              transition: 'color 0.2s ease'
+            }}
           >
             HOME
-            <motion.span
-              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
-              initial={{ width: 0 }}
-              whileHover={{ width: "100%" }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
+            <span className="nav-underline absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300" style={{ background: 'linear-gradient(to right, #9333ea, #3b82f6)' }} />
+          </a>
 
-          <motion.a
+          <a
             href="/about-us"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="nav-link relative text-sm font-semibold leading-6 will-change-auto"
+            style={{ 
+              color: isScrolled || lightBackground ? '#111827' : '#ffffff',
+              transition: 'color 0.2s ease'
+            }}
           >
             ABOUT US
-            <motion.span
-              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
-              initial={{ width: 0 }}
-              whileHover={{ width: "100%" }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
-          <motion.a
+            <span className="nav-underline absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300" style={{ background: 'linear-gradient(to right, #9333ea, #3b82f6)' }} />
+          </a>
+          
+          <a
             href="/products"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="nav-link relative text-sm font-semibold leading-6 will-change-auto"
+            style={{ 
+              color: isScrolled || lightBackground ? '#111827' : '#ffffff',
+              transition: 'color 0.2s ease'
+            }}
           >
             PRODUCTS
-            <motion.span
-              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
-              initial={{ width: 0 }}
-              whileHover={{ width: "100%" }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
-          <motion.a
+            <span className="nav-underline absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300" style={{ background: 'linear-gradient(to right, #9333ea, #3b82f6)' }} />
+          </a>
+          
+          <a
             href="/download"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="nav-link relative text-sm font-semibold leading-6 will-change-auto"
+            style={{ 
+              color: isScrolled || lightBackground ? '#111827' : '#ffffff',
+              transition: 'color 0.2s ease'
+            }}
           >
             DOWNLOAD
-            <motion.span
-              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
-              initial={{ width: 0 }}
-              whileHover={{ width: "100%" }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
-          <motion.a
+            <span className="nav-underline absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300" style={{ background: 'linear-gradient(to right, #9333ea, #3b82f6)' }} />
+          </a>
+          
+          <a
             href="/contact-us"
-            className={`relative text-sm font-semibold leading-6 transition-colors ${isScrolled || lightBackground ? "text-gray-900 hover:text-purple-600" : "text-white hover:text-purple-300"
-              }`}
-            initial={{ y: -20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="nav-link relative text-sm font-semibold leading-6 will-change-auto"
+            style={{ 
+              color: isScrolled || lightBackground ? '#111827' : '#ffffff',
+              transition: 'color 0.2s ease'
+            }}
           >
             CONTACT US
-            <motion.span
-              className="absolute -bottom-1 left-0 h-0.5 bg-gradient-to-r from-purple-600 to-blue-600"
-              initial={{ width: 0 }}
-              whileHover={{ width: "100%" }}
-              transition={{ duration: 0.3 }}
-            />
-          </motion.a>
+            <span className="nav-underline absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300" style={{ background: 'linear-gradient(to right, #9333ea, #3b82f6)' }} />
+          </a>
         </div>
 
         {/* Right side buttons */}
@@ -181,69 +149,65 @@ export default function Header({ lightBackground = false }: HeaderProps) {
       </nav>
 
       {/* Mobile menu */}
-      {mobileMenuOpen && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: "auto" }}
-          exit={{ opacity: 0, height: 0 }}
-          transition={{ duration: 0.3 }}
-          className="lg:hidden overflow-hidden"
-        >
-          <div className="space-y-2 px-6 pb-6 pt-2">
-            <motion.a
-              href="#"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.1 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              HOME
-            </motion.a>
-            <motion.a
-              href="/about-us"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.15 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              ABOUT US
-            </motion.a>
-            <motion.a
-              href="/download"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              DOWNLOAD
-            </motion.a>
-            <motion.a
-              href="/products"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.25 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              PRODUCTS
-            </motion.a>
-            <motion.a
-              href="/contact-us"
-              className="block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gradient-to-r hover:from-purple-50 hover:to-blue-50 hover:text-purple-600 transition-colors"
-              initial={{ x: -20, opacity: 0 }}
-              animate={{ x: 0, opacity: 1 }}
-              transition={{ duration: 0.3, delay: 0.3 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              CONTACT US
-            </motion.a>
-          </div>
-        </motion.div>
-      )}
-    </motion.header>
+      <div 
+        className="lg:hidden overflow-hidden transition-all duration-300"
+        style={{
+          maxHeight: mobileMenuOpen ? '384px' : '0',
+          opacity: mobileMenuOpen ? 1 : 0
+        }}
+      >
+        <div className="space-y-2 px-6 pb-6 pt-2">
+          <a
+            href="#"
+            className="mobile-link block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900"
+          >
+            HOME
+          </a>
+          <a
+            href="/about-us"
+            className="mobile-link block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900"
+          >
+            ABOUT US
+          </a>
+          <a
+            href="/download"
+            className="mobile-link block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900"
+          >
+            DOWNLOAD
+          </a>
+          <a
+            href="/products"
+            className="mobile-link block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900"
+          >
+            PRODUCTS
+          </a>
+          <a
+            href="/contact-us"
+            className="mobile-link block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900"
+          >
+            CONTACT US
+          </a>
+        </div>
+      </div>
+      <style jsx>{`
+        .nav-link:hover .nav-underline {
+          width: 100%;
+        }
+        .nav-link:hover {
+          color: #9333ea !important;
+        }
+        .mobile-link {
+          transition: background-color 0.2s ease, color 0.2s ease;
+        }
+        .mobile-link:hover {
+          background-color: #f3e8ff;
+          color: #9333ea;
+        }
+        .mobile-link:active {
+          transform: scale(0.98);
+        }
+      `}</style>
+    </header>
   );
 }
 
