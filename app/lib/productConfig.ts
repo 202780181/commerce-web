@@ -102,25 +102,13 @@ export const productsConfig: Product[] = [
     hasCategories: true,
     categories: [
       {
-        id: "accessory-series",
-        name: "Accessory Series",
-        images: [
-          {
-            name: "Accessory 1",
-            fileName: "accessory1.webp",
-            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Accessory%20Series/accessory1.webp`
-          }
-          // 根据实际文件添加更多
-        ]
-      },
-      {
         id: "cp155130",
         name: "CP155130",
         images: [
           {
-            name: "CP155130",
-            fileName: "CP155130.webp",
-            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/CP155130/CP155130.webp`
+            name: "CP155130 (Round Base)",
+            fileName: "CP155130(Round Base).webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/CP155130/CP155130(Round%20Base).webp`
           }
         ]
       },
@@ -129,12 +117,12 @@ export const productsConfig: Product[] = [
         name: "HP10077",
         images: [
           {
-            name: "HP10077 Steel Jaw",
+            name: "HP10077 (Steel Jaw)",
             fileName: "HP10077(Steel Jaw).webp",
             url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP10077/HP10077(Steel%20Jaw).webp`
           },
           {
-            name: "HP10077 Aluminum Jaw",
+            name: "HP10077 (Aluminum Jaw)",
             fileName: "HP10077（Aluminum Jaw）.webp",
             url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP10077/HP10077%EF%BC%88Aluminum%20Jaw%EF%BC%89.webp`
           }
@@ -145,11 +133,20 @@ export const productsConfig: Product[] = [
         name: "HP15077",
         images: [
           {
-            name: "HP15077 1",
-            fileName: "hp15077-1.webp",
-            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP15077/hp15077-1.webp`
+            name: "HP15077 (Aluminum Jaw)",
+            fileName: "HP15077（Aluminum Jaw）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP15077/HP15077%EF%BC%88Aluminum%20Jaw%EF%BC%89.webp`
+          },
+          {
+            name: "HP15077 (Double)",
+            fileName: "HP15077（Double).webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP15077/HP15077%EF%BC%88Double).webp`
+          },
+          {
+            name: "HP15077 (Steel Jaw)",
+            fileName: "HP15077（Steel Jaw）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP15077/HP15077%EF%BC%88Steel%20Jaw%EF%BC%89.webp`
           }
-          // 根据实际文件添加更多
         ]
       },
       {
@@ -157,17 +154,17 @@ export const productsConfig: Product[] = [
         name: "HP155130",
         images: [
           {
-            name: "HP155130 Aluminum Jaw",
+            name: "HP155130 (Aluminum Jaw)",
             fileName: "HP155130(Aluminum Jaw).webp",
             url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP155130/HP155130(Aluminum%20Jaw).webp`
           },
           {
-            name: "HP155130 Double",
+            name: "HP155130 (Double)",
             fileName: "HP155130(Double).webp",
             url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP155130/HP155130(Double).webp`
           },
           {
-            name: "HP155130 Steel Jaw",
+            name: "HP155130 (Steel Jaw)",
             fileName: "HP155130(Steel Jaw).webp",
             url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP155130/HP155130(Steel%20Jaw).webp`
           }
@@ -177,21 +174,104 @@ export const productsConfig: Product[] = [
         id: "hp255130",
         name: "HP255130",
         images: [
-          // 根据实际文件添加
+          {
+            name: "HP255130 (With Base)",
+            fileName: "HP255130（ With Base）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP255130/HP255130%EF%BC%88%20With%20Base%EF%BC%89.webp`
+          },
+          {
+            name: "HP255130 (Aluminum Jaw)",
+            fileName: "HP255130（Aluminum Jaw）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP255130/HP255130%EF%BC%88Aluminum%20Jaw%EF%BC%89.webp`
+          },
+          {
+            name: "HP255130 (Double)",
+            fileName: "HP255130（Double）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP255130/HP255130%EF%BC%88Double%EF%BC%89.webp`
+          },
+          {
+            name: "HP255130 (Steel Jaw)",
+            fileName: "HP255130（Steel Jaw）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP255130/HP255130%EF%BC%88Steel%20Jaw%EF%BC%89.webp`
+          }
         ]
       },
       {
         id: "hp300160",
         name: "HP300160",
         images: [
-          // 根据实际文件添加
+          {
+            name: "HP300160 (With Base)",
+            fileName: "HP300160（ With Base）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP300160/HP300160%EF%BC%88%20With%20Base%EF%BC%89.webp`
+          },
+          {
+            name: "HP300160 (Aluminum Jaw)",
+            fileName: "HP300160（Aluminum Jaw）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP300160/HP300160%EF%BC%88Aluminum%20Jaw%EF%BC%89.webp`
+          },
+          {
+            name: "HP300160 (Double)",
+            fileName: "HP300160（Double）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP300160/HP300160%EF%BC%88Double%EF%BC%89.webp`
+          },
+          {
+            name: "HP300160 (Steel Jaw)",
+            fileName: "HP300160（Steel Jaw）.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/HP300160/HP300160%EF%BC%88Steel%20Jaw%EF%BC%89.webp`
+          }
+        ]
+      },
+      {
+        id: "accessory-series",
+        name: "Accessory Series",
+        images: [
+          {
+            name: "Aluminum Jaw Quick Release Kit",
+            fileName: "Aluminum Jaw Quick Release Kit.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Accessory%20Series/Aluminum%20Jaw%20Quick%20Release%20Kit.webp`
+          },
+          {
+            name: "Aluminum Jaws",
+            fileName: "Aluminum Jaws.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Accessory%20Series/Aluminum%20Jaws.webp`
+          },
+          {
+            name: "Quick Release Hardened Jaws",
+            fileName: "Quick Release Hardened Jaws.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Accessory%20Series/Quick%20Release%20Hardened%20Jaws.webp`
+          },
+          {
+            name: "Screw Kit",
+            fileName: "Screw Kit.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Accessory%20Series/Screw%20Kit.webp`
+          }
         ]
       },
       {
         id: "vise-operating-instructions",
         name: "Vise Operating Instructions",
         images: [
-          // 根据实际文件添加
+          {
+            name: "Aluminum Soft Jaw",
+            fileName: "Aluminum Soft Jaw.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Vise%20Operating%20Instructions/Aluminum%20Soft%20Jaw.webp`
+          },
+          {
+            name: "Double Station Vice",
+            fileName: "Double Station Vice .webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Vise%20Operating%20Instructions/Double%20Station%20Vice%20.webp`
+          },
+          {
+            name: "Install Jaws In Reverse",
+            fileName: "Install Jaws In Reverse.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Vise%20Operating%20Instructions/Install%20Jaws%20In%20Reverse.webp`
+          },
+          {
+            name: "Quick Release Aluminum Jaw Installation Diagram",
+            fileName: "Quick Release Aluminum Jaw Installation Diagram.webp",
+            url: `${COS_BASE_URL}/02%20Quick%20Release%20Jaws%20Vise/Vise%20Operating%20Instructions/Quick%20Release%20Aluminum%20Jaw%20Installation%20Diagram.webp`
+          }
         ]
       }
     ]

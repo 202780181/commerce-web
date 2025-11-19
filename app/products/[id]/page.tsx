@@ -2,17 +2,51 @@
 
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getProductById } from "../../lib/productConfig";
 import { motion } from "motion/react";
 
+const COS_BASE_URL = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
+
+interface FileSystemItem {
+  name: string;
+  type: 'folder' | 'image';
+  path: string;
+  url?: string;
+  fileName?: string;
+}
+
 export default function ProductPage() {
 	const params = useParams();
 	const productId = params.id as string;
 	
+	const [items, setItems] = useState<FileSystemItem[]>([]);
+	const [loading, setLoading] = useState(true);
+	
 	// Get product data from configuration
 	const product = getProductById(productId);
+	
+	useEffect(() => {
+		if (product) {
+			fetchProductContent();
+		}
+	}, [productId]);
+
+	const fetchProductContent = async () => {
+		try {
+			setLoading(true);
+			const response = await fetch(`/api/products/filesystem?productId=${productId}`);
+			const data = await response.json();
+			setItems(data.items || []);
+		} catch (error) {
+			console.error('Error fetching product content:', error);
+			setItems([]);
+		} finally {
+			setLoading(false);
+		}
+	};
 	
 	// If product doesn't exist, show 404 page
 	if (!product) {
@@ -23,7 +57,7 @@ export default function ProductPage() {
 					<p className="text-gray-600 mb-8">The product you're looking for doesn't exist.</p>
 					<Link
 						href="/products"
-						className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
+						className="px-6 py-3 bg-linear-to-r from-purple-600 to-blue-600 text-white font-semibold rounded-lg hover:shadow-lg transition-all"
 					>
 						Back to Products
 					</Link>
@@ -62,117 +96,104 @@ export default function ProductPage() {
 						{product.name}
 					</h1>
 					<p className="text-xl text-gray-200">
-						{product.hasCategories ? 'Select a category to view details' : 'Product Image Gallery'}
+						{loading ? 'Loading...' : `${items.length} items`}
 					</p>
 				</div>
 			</section>
 			
-			{/* Has categories: Display category grid */}
-			{product.hasCategories && product.categories && (
-				<section className="py-20 px-6">
-					<div className="max-w-[1600px] mx-auto">
-						<div className="text-center mb-12">
-							<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-								Product Categories
-							</h2>
-							<p className="text-lg text-gray-600">
-								Click a category to view all products in this series
-							</p>
+			{/* Dynamic Content Grid */}
+			<section className="py-20 px-6">
+				<div className="max-w-[1600px] mx-auto">
+					{loading ? (
+						<div className="text-center py-20">
+							<div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
+							<p className="mt-4 text-gray-600">Loading...</p>
 						</div>
-						
-						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-							{product.categories.map((category) => {
-								// Use the first image in the category as cover
-								const coverImage = category.images[0]?.url || product.coverImage;
-								
-								return (
-									<Link
-										key={category.id}
-										href={`/products/${productId}/${category.id}`}
-										className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
+					) : items.length === 0 ? (
+						<div className="text-center py-20 bg-white rounded-2xl shadow-lg">
+							<div className="mb-6">
+								<svg className="w-24 h-24 mx-auto text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+								</svg>
+							</div>
+							<h3 className="text-2xl font-bold text-gray-900 mb-3">No Content Available</h3>
+							<p className="text-gray-600 text-lg">This product doesn't have any content yet.</p>
+						</div>
+					) : (
+						<>
+							<div className="text-center mb-12">
+								<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+									{items.some(item => item.type === 'folder') ? 'Product Categories' : 'Product Images'}
+								</h2>
+								<p className="text-lg text-gray-600">
+									{items.filter(item => item.type === 'folder').length > 0 && 
+										`${items.filter(item => item.type === 'folder').length} categories, `}
+									{items.filter(item => item.type === 'image').length > 0 && 
+										`${items.filter(item => item.type === 'image').length} images`}
+								</p>
+							</div>
+							
+							<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+								{items.map((item, index) => (
+									<motion.div
+										key={index}
+										initial={{ opacity: 0, y: 20 }}
+										animate={{ opacity: 1, y: 0 }}
+										transition={{ duration: 0.3, delay: index * 0.03 }}
+										className="group"
 									>
-										{/* Category Image */}
-										<div className="relative h-64 bg-gray-100 overflow-hidden">
-											<img
-												src={coverImage}
-												alt={category.name}
-												className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-												loading="lazy"
-												decoding="async"
-												style={{ contentVisibility: 'auto' }}
-											/>
-										</div>
-										
-										{/* Category Info */}
-										<div className="p-6">
-											<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-												{category.name}
-											</h3>
-											<p className="text-sm text-gray-500">
-												{category.images.length} {category.images.length === 1 ? 'product' : 'products'}
-											</p>
-										</div>
-									</Link>
-								);
-							})}
-						</div>
-					</div>
-				</section>
-			)}
-			
-			{/* No categories: Display product images directly */}
-			{!product.hasCategories && product.images && (
-				<section className="py-20 px-6">
-					<div className="max-w-[1600px] mx-auto">
-						<div className="text-center mb-12">
-							<h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-								Product Images
-							</h2>
-							<p className="text-lg text-gray-600">
-								{product.images.length} {product.images.length === 1 ? 'image' : 'images'}
-							</p>
-						</div>
-						
-						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-							{product.images.map((image, index) => (
-								<motion.div
-									key={index}
-									initial={{ opacity: 0, y: 20 }}
-									animate={{ opacity: 1, y: 0 }}
-									transition={{ duration: 0.3, delay: index * 0.03 }}
-									className="group"
-								>
-									<Link href={`/products/${productId}/direct/${index}`}>
-										<div className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
-											{/* Image Container */}
-											<div className="relative h-80 overflow-hidden bg-gray-50">
-												<img
-													src={image.url}
-													alt={image.name}
-													className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-													loading="lazy"
-													decoding="async"
-													style={{ contentVisibility: 'auto' }}
-												/>
-												{/* Image Number Badge */}
-												<div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-													<span className="text-sm font-bold text-gray-700">#{index + 1}</span>
+										<Link
+											href={
+												item.type === 'folder'
+													? `/products/${productId}/${item.fileName}`
+													: `/products/${productId}/${index - items.filter(i => i.type === 'folder').length}`
+											}
+										>
+											<div className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
+												{item.type === 'folder' ? (
+													// 文件夹显示
+													<div className="relative h-80 bg-linear-to-br from-purple-100 to-blue-100 flex items-center justify-center">
+														<svg className="w-32 h-32 text-purple-600 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+															<path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+														</svg>
+														<div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+															<span className="text-sm font-bold text-gray-700">Folder</span>
+														</div>
+													</div>
+												) : (
+													// 图片显示
+													<div className="relative h-80 overflow-hidden bg-gray-50">
+														<img
+															src={item.url}
+															alt={item.name}
+															className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+															loading="lazy"
+															decoding="async"
+															style={{ contentVisibility: 'auto' }}
+														/>
+														<div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+															<span className="text-sm font-bold text-gray-700">
+																#{index - items.filter(i => i.type === 'folder').length + 1}
+															</span>
+														</div>
+													</div>
+												)}
+												
+												{/* 名称 */}
+												<div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+													<p className="text-sm font-medium text-gray-700 truncate text-center">
+														{item.name}
+													</p>
 												</div>
 											</div>
-											{/* Image Name */}
-											<div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
-												<p className="text-sm font-medium text-gray-700 truncate text-center">
-													{image.name}
-												</p>
-											</div>
-										</div>
-									</Link>
-								</motion.div>
-							))}
-						</div>
-					</div>
-				</section>
-			)}
+										</Link>
+									</motion.div>
+								))}
+							</div>
+						</>
+					)}
+				</div>
+			</section>
 			
 			<Footer />
 		</div>
