@@ -1,6 +1,5 @@
-// 文件系统工具 - 用于动态读取产品文件夹结构
-import fs from 'fs';
-import path from 'path';
+// 文件系统工具 - 用于从映射JSON文件读取产品文件夹结构
+import productImageMap from './product-image-map.json';
 
 const COS_BASE_URL = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
 
@@ -38,11 +37,42 @@ export interface FileSystemItem {
   fileName?: string;      // 原始文件名
 }
 
-// 图片扩展名列表
-const IMAGE_EXTENSIONS = ['.webp', '.jpg', '.jpeg', '.png', '.gif'];
+interface TreeNode {
+  name: string;
+  type: 'directory' | 'file';
+  path?: string;
+  url?: string;
+  children?: TreeNode[];
+}
 
 /**
- * 读取指定路径下的所有文件和文件夹
+ * 从映射JSON文件中查找节点
+ */
+function findNodeInTree(tree: TreeNode, pathSegments: string[]): TreeNode | null {
+  if (pathSegments.length === 0) {
+    return tree;
+  }
+
+  const [current, ...rest] = pathSegments;
+  
+  if (!tree.children) {
+    return null;
+  }
+
+  const child = tree.children.find(c => c.name === current);
+  if (!child) {
+    return null;
+  }
+
+  if (rest.length === 0) {
+    return child;
+  }
+
+  return findNodeInTree(child, rest);
+}
+
+/**
+ * 读取指定路径下的所有文件和文件夹（从JSON映射读取）
  * @param productId 产品ID
  * @param subPath 子路径数组（可选）
  * @returns 文件系统项目列表
@@ -56,68 +86,49 @@ export function readProductDirectory(
     return [];
   }
 
-  // 构建完整的物理路径
-  const productBasePath = path.join(process.cwd(), 'products', folderName);
-  const fullPath = subPath.length > 0
-    ? path.join(productBasePath, ...subPath)
-    : productBasePath;
+  // 从JSON映射中查找对应的节点
+  const pathSegments = [folderName, ...subPath];
+  const node = findNodeInTree(productImageMap as TreeNode, pathSegments);
 
-  // 检查路径是否存在
-  if (!fs.existsSync(fullPath)) {
+  if (!node || !node.children) {
     return [];
   }
 
-  try {
-    const items = fs.readdirSync(fullPath);
-    const result: FileSystemItem[] = [];
+  const result: FileSystemItem[] = [];
 
-    for (const item of items) {
-      const itemPath = path.join(fullPath, item);
-      const stats = fs.statSync(itemPath);
-
-      // 跳过封面文件夹
-      if (item === '封面' || item === '封面图' || item.toLowerCase() === 'cover') {
-        continue;
-      }
-
-      if (stats.isDirectory()) {
-        // 文件夹
-        result.push({
-          name: item,
-          type: 'folder',
-          path: [...subPath, item].join('/'),
-          fileName: item,
-        });
-      } else if (stats.isFile()) {
-        // 文件 - 检查是否为图片
-        const ext = path.extname(item).toLowerCase();
-        if (IMAGE_EXTENSIONS.includes(ext)) {
-          // 构建COS URL
-          const urlParts = [folderName, ...subPath, item];
-          const url = `${COS_BASE_URL}/${urlParts.map(p => encodeURIComponent(p)).join('/')}`;
-          
-          result.push({
-            name: item.replace(/\.(webp|jpg|jpeg|png|gif)$/i, ''),
-            type: 'image',
-            path: [...subPath, item].join('/'),
-            url,
-            fileName: item,
-          });
-        }
-      }
+  for (const child of node.children) {
+    // 跳过封面文件夹
+    if (child.name === '封面' || child.name === '封面图' || child.name.toLowerCase() === 'cover') {
+      continue;
     }
 
-    // 排序：文件夹在前，图片在后
-    return result.sort((a, b) => {
-      if (a.type === b.type) {
-        return a.name.localeCompare(b.name, undefined, { numeric: true });
-      }
-      return a.type === 'folder' ? -1 : 1;
-    });
-  } catch (error) {
-    console.error('Error reading directory:', error);
-    return [];
+    if (child.type === 'directory') {
+      // 文件夹
+      result.push({
+        name: child.name,
+        type: 'folder',
+        path: [...subPath, child.name].join('/'),
+        fileName: child.name,
+      });
+    } else if (child.type === 'file') {
+      // 图片文件
+      result.push({
+        name: child.name.replace(/\.(webp|jpg|jpeg|png|gif)$/i, ''),
+        type: 'image',
+        path: child.path || '',
+        url: child.url || '',
+        fileName: child.name,
+      });
+    }
   }
+
+  // 排序：文件夹在前，图片在后
+  return result.sort((a, b) => {
+    if (a.type === b.type) {
+      return a.name.localeCompare(b.name, undefined, { numeric: true });
+    }
+    return a.type === 'folder' ? -1 : 1;
+  });
 }
 
 /**
@@ -129,13 +140,10 @@ export function isFolder(productId: string, subPath: string[]): boolean {
     return false;
   }
 
-  const fullPath = path.join(process.cwd(), 'products', folderName, ...subPath);
+  const pathSegments = [folderName, ...subPath];
+  const node = findNodeInTree(productImageMap as TreeNode, pathSegments);
   
-  try {
-    return fs.existsSync(fullPath) && fs.statSync(fullPath).isDirectory();
-  } catch {
-    return false;
-  }
+  return node !== null && node.type === 'directory';
 }
 
 /**
