@@ -147,6 +147,58 @@ export function isFolder(productId: string, subPath: string[]): boolean {
 }
 
 /**
+ * 获取文件夹中的第一张图片
+ */
+function getFirstImageFromFolder(node: TreeNode): string | null {
+  if (!node.children) {
+    return null;
+  }
+
+  // 递归查找第一张图片
+  for (const child of node.children) {
+    // 跳过封面文件夹
+    if (child.name === '封面' || child.name === '封面图' || child.name.toLowerCase() === 'cover') {
+      continue;
+    }
+
+    if (child.type === 'file' && child.url) {
+      // 检查是否为图片文件
+      const imageExtensions = ['.webp', '.jpg', '.jpeg', '.png', '.gif'];
+      if (imageExtensions.some(ext => child.name.toLowerCase().endsWith(ext))) {
+        return child.url;
+      }
+    } else if (child.type === 'directory') {
+      // 递归查找子文件夹中的第一张图片
+      const firstImage = getFirstImageFromFolder(child);
+      if (firstImage) {
+        return firstImage;
+      }
+    }
+  }
+
+  return null;
+}
+
+/**
+ * 获取文件夹的缩略图（第一张图片）
+ */
+export function getFolderThumbnail(productId: string, subPath: string[]): string | null {
+  const folderName = productFolderMap[productId];
+  if (!folderName) {
+    return null;
+  }
+
+  const pathSegments = [folderName, ...subPath];
+  const node = findNodeInTree(productImageMap as TreeNode, pathSegments);
+
+  if (!node || node.type !== 'directory') {
+    return null;
+  }
+
+  return getFirstImageFromFolder(node);
+}
+
+/**
  * 获取指定路径下的所有图片（用于详情页浏览）
  */
 export function getImagesInPath(productId: string, subPath: string[]): FileSystemItem[] {

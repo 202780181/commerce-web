@@ -43,6 +43,7 @@ interface FileSystemItem {
   path: string;
   url?: string;
   fileName?: string;
+  thumbnailUrl?: string;
 }
 
 export default function DynamicPathPage() {
@@ -414,15 +415,40 @@ export default function DynamicPathPage() {
                   >
                     <div className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
                       {item.type === 'folder' ? (
-                        // 文件夹显示
-                        <div className="relative h-80 bg-linear-to-br flex flex-col items-center justify-center">
-                          <svg className="w-32 h-32 text-yellow-600 opacity-80 mb-6" fill="currentColor" viewBox="0 0 20 20">
-                            <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
-                          </svg>
-                          <div className="px-6 py-3 bg-white/90 backdrop-blur-sm rounded-lg">
-                            <span className="text-base font-bold text-gray-800">{item.name}</span>
+                        // 文件夹显示 - 显示第一张图片作为缩略图
+                        <>
+                          <div className="relative h-80 overflow-hidden bg-gray-50">
+                            {item.thumbnailUrl ? (
+                              <img
+                                src={item.thumbnailUrl}
+                                alt={item.name}
+                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                loading="lazy"
+                              />
+                            ) : (
+                              // 如果没有图片，显示文件夹图标
+                              <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200">
+                                <svg className="w-32 h-32 text-gray-400 opacity-60" fill="currentColor" viewBox="0 0 20 20">
+                                  <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                                </svg>
+                              </div>
+                            )}
+                            {/* 文件夹标识 */}
+                            <div className="absolute top-4 left-4 bg-yellow-500/90 backdrop-blur-sm px-3 py-1.5 rounded-lg flex items-center gap-2">
+                              <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
+                                <path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
+                              </svg>
+                              <span className="text-xs font-bold text-white">Folder</span>
+                            </div>
                           </div>
-                        </div>
+                          
+                          {/* 文件夹名称 */}
+                          <div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+                            <p className="text-sm font-medium text-gray-700 truncate text-center">
+                              {item.name}
+                            </p>
+                          </div>
+                        </>
                       ) : (
                         // 图片显示
                         <>
