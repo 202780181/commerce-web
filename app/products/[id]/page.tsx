@@ -152,39 +152,41 @@ export default function ProductPage() {
 											<div className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
 												{item.type === 'folder' ? (
 													// 文件夹显示
-													<div className="relative h-80 bg-linear-to-br from-purple-100 to-blue-100 flex items-center justify-center">
-														<svg className="w-32 h-32 text-purple-600 opacity-80" fill="currentColor" viewBox="0 0 20 20">
+													<div className="relative h-80 bg-linear-to-br flex flex-col items-center justify-center">
+														<svg className="w-32 h-32 text-yellow-600 opacity-80 mb-6" fill="currentColor" viewBox="0 0 20 20">
 															<path d="M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z" />
 														</svg>
-														<div className="absolute bottom-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-															<span className="text-sm font-bold text-gray-700">Folder</span>
+														<div className="px-6 py-3 bg-white/90 backdrop-blur-sm rounded-lg">
+															<span className="text-base font-bold text-gray-800">{item.name}</span>
 														</div>
 													</div>
 												) : (
 													// 图片显示
-													<div className="relative h-80 overflow-hidden bg-gray-50">
-														<img
-															src={item.url}
-															alt={item.name}
-															className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-															loading="lazy"
-															decoding="async"
-															style={{ contentVisibility: 'auto' }}
-														/>
-														<div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
-															<span className="text-sm font-bold text-gray-700">
-																#{index - items.filter(i => i.type === 'folder').length + 1}
-															</span>
+													<>
+														<div className="relative h-80 overflow-hidden bg-gray-50">
+															<img
+																src={item.url}
+																alt={item.name}
+																className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+																loading="lazy"
+																decoding="async"
+																style={{ contentVisibility: 'auto' }}
+															/>
+															<div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
+																<span className="text-sm font-bold text-gray-700">
+																	#{index - items.filter(i => i.type === 'folder').length + 1}
+																</span>
+															</div>
 														</div>
-													</div>
+														
+														{/* 图片名称 */}
+														<div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+															<p className="text-sm font-medium text-gray-700 truncate text-center">
+																{item.name}
+															</p>
+														</div>
+													</>
 												)}
-												
-												{/* 名称 */}
-												<div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
-													<p className="text-sm font-medium text-gray-700 truncate text-center">
-														{item.name}
-													</p>
-												</div>
 											</div>
 										</Link>
 									</motion.div>

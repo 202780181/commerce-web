@@ -81,7 +81,7 @@ export default function Products() {
 									</h3>
 									{product.hasCategories && (
 										<p className="text-sm text-gray-500">
-											{product.categories?.length} 分类
+											{product.categories?.length} classification
 										</p>
 									)}
 								</div>

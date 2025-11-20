@@ -1,0 +1,720 @@
+{
+  "name": "pdf",
+  "type": "directory",
+  "children": [
+    {
+      "name": "02",
+      "type": "directory",
+      "children": [
+        {
+          "name": "CP155130（Round Base）.pdf",
+          "type": "file",
+          "path": "02/CP155130（Round Base）.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/CP155130%EF%BC%88Round%20Base%EF%BC%89.pdf"
+        },
+        {
+          "name": "HP15077(Aluminum Jaw).pdf",
+          "type": "file",
+          "path": "02/HP15077(Aluminum Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP15077(Aluminum%20Jaw).pdf"
+        },
+        {
+          "name": "HP15077(Double).pdf",
+          "type": "file",
+          "path": "02/HP15077(Double).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP15077(Double).pdf"
+        },
+        {
+          "name": "HP15077(Steel Jaw).pdf",
+          "type": "file",
+          "path": "02/HP15077(Steel Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP15077(Steel%20Jaw).pdf"
+        },
+        {
+          "name": "HP155130(Aluminum Jaw).pdf",
+          "type": "file",
+          "path": "02/HP155130(Aluminum Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP155130(Aluminum%20Jaw).pdf"
+        },
+        {
+          "name": "HP155130(Double).pdf",
+          "type": "file",
+          "path": "02/HP155130(Double).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP155130(Double).pdf"
+        },
+        {
+          "name": "HP155130(Steel Jaw).pdf",
+          "type": "file",
+          "path": "02/HP155130(Steel Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP155130(Steel%20Jaw).pdf"
+        },
+        {
+          "name": "HP255130( With Base).pdf",
+          "type": "file",
+          "path": "02/HP255130( With Base).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP255130(%20With%20Base).pdf"
+        },
+        {
+          "name": "HP255130(Aluminum Jaw).pdf",
+          "type": "file",
+          "path": "02/HP255130(Aluminum Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP255130(Aluminum%20Jaw).pdf"
+        },
+        {
+          "name": "HP255130(Double).pdf",
+          "type": "file",
+          "path": "02/HP255130(Double).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP255130(Double).pdf"
+        },
+        {
+          "name": "HP255130(Steel Jaw).pdf",
+          "type": "file",
+          "path": "02/HP255130(Steel Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP255130(Steel%20Jaw).pdf"
+        },
+        {
+          "name": "HP300160( With Base).pdf",
+          "type": "file",
+          "path": "02/HP300160( With Base).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP300160(%20With%20Base).pdf"
+        },
+        {
+          "name": "HP300160(Aluminum Jaw).pdf",
+          "type": "file",
+          "path": "02/HP300160(Aluminum Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP300160(Aluminum%20Jaw).pdf"
+        },
+        {
+          "name": "HP300160(Double).pdf",
+          "type": "file",
+          "path": "02/HP300160(Double).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP300160(Double).pdf"
+        },
+        {
+          "name": "HP300160(Steel Jaw).pdf",
+          "type": "file",
+          "path": "02/HP300160(Steel Jaw).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/02/HP300160(Steel%20Jaw).pdf"
+        }
+      ]
+    },
+    {
+      "name": "03",
+      "type": "directory",
+      "children": [
+        {
+          "name": "CV15075（Steel Jaw）.pdf",
+          "type": "file",
+          "path": "03/CV15075（Steel Jaw）.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/03/CV15075%EF%BC%88Steel%20Jaw%EF%BC%89.pdf"
+        },
+        {
+          "name": "CV155125（Steel Jaw）.pdf",
+          "type": "file",
+          "path": "03/CV155125（Steel Jaw）.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/03/CV155125%EF%BC%88Steel%20Jaw%EF%BC%89.pdf"
+        },
+        {
+          "name": "CV255125（Steel Jaw）.pdf",
+          "type": "file",
+          "path": "03/CV255125（Steel Jaw）.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/03/CV255125%EF%BC%88Steel%20Jaw%EF%BC%89.pdf"
+        },
+        {
+          "name": "DV155125（Steel Jaw）.pdf",
+          "type": "file",
+          "path": "03/DV155125（Steel Jaw）.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/03/DV155125%EF%BC%88Steel%20Jaw%EF%BC%89.pdf"
+        },
+        {
+          "name": "TB255125.pdf",
+          "type": "file",
+          "path": "03/TB255125.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/03/TB255125.pdf"
+        }
+      ]
+    },
+    {
+      "name": "04",
+      "type": "directory",
+      "children": [
+        {
+          "name": "AH160(Pneumatic Vice).pdf",
+          "type": "file",
+          "path": "04/AH160(Pneumatic Vice).pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/04/AH160(Pneumatic%20Vice).pdf"
+        }
+      ]
+    },
+    {
+      "name": "05",
+      "type": "directory",
+      "children": [
+        {
+          "name": "AR155-I.pdf",
+          "type": "file",
+          "path": "05/AR155-I.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/05/AR155-I.pdf"
+        },
+        {
+          "name": "AR155-II.pdf",
+          "type": "file",
+          "path": "05/AR155-II.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/05/AR155-II.pdf"
+        }
+      ]
+    },
+    {
+      "name": "06",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TA52-108.pdf",
+          "type": "file",
+          "path": "06/TA52-108.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/06/TA52-108.pdf"
+        },
+        {
+          "name": "TA9652-155.pdf",
+          "type": "file",
+          "path": "06/TA9652-155.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/06/TA9652-155.pdf"
+        }
+      ]
+    },
+    {
+      "name": "07",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TO96-200.pdf",
+          "type": "file",
+          "path": "07/TO96-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TO96-200.pdf"
+        },
+        {
+          "name": "TO96-276.pdf",
+          "type": "file",
+          "path": "07/TO96-276.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TO96-276.pdf"
+        },
+        {
+          "name": "TO96130-255.pdf",
+          "type": "file",
+          "path": "07/TO96130-255.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TO96130-255.pdf"
+        },
+        {
+          "name": "TO9652-200.pdf",
+          "type": "file",
+          "path": "07/TO9652-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TO9652-200.pdf"
+        },
+        {
+          "name": "TS130-195.pdf",
+          "type": "file",
+          "path": "07/TS130-195.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS130-195.pdf"
+        },
+        {
+          "name": "TS52-108.pdf",
+          "type": "file",
+          "path": "07/TS52-108.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS52-108.pdf"
+        },
+        {
+          "name": "TS52-120.pdf",
+          "type": "file",
+          "path": "07/TS52-120.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS52-120.pdf"
+        },
+        {
+          "name": "TS52-170.pdf",
+          "type": "file",
+          "path": "07/TS52-170.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS52-170.pdf"
+        },
+        {
+          "name": "TS52-210.pdf",
+          "type": "file",
+          "path": "07/TS52-210.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS52-210.pdf"
+        },
+        {
+          "name": "TS52-210BS.pdf",
+          "type": "file",
+          "path": "07/TS52-210BS.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS52-210BS.pdf"
+        },
+        {
+          "name": "TS52-96.pdf",
+          "type": "file",
+          "path": "07/TS52-96.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS52-96.pdf"
+        },
+        {
+          "name": "TS96-155.pdf",
+          "type": "file",
+          "path": "07/TS96-155.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS96-155.pdf"
+        },
+        {
+          "name": "TS96-178.pdf",
+          "type": "file",
+          "path": "07/TS96-178.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS96-178.pdf"
+        },
+        {
+          "name": "TS96-200.pdf",
+          "type": "file",
+          "path": "07/TS96-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS96-200.pdf"
+        },
+        {
+          "name": "TS96-340.pdf",
+          "type": "file",
+          "path": "07/TS96-340.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS96-340.pdf"
+        },
+        {
+          "name": "TS96-340BS.pdf",
+          "type": "file",
+          "path": "07/TS96-340BS.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS96-340BS.pdf"
+        },
+        {
+          "name": "TS96130-195.pdf",
+          "type": "file",
+          "path": "07/TS96130-195.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS96130-195.pdf"
+        },
+        {
+          "name": "TS9652-200.pdf",
+          "type": "file",
+          "path": "07/TS9652-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS9652-200.pdf"
+        },
+        {
+          "name": "TS9652.pdf",
+          "type": "file",
+          "path": "07/TS9652.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/07/TS9652.pdf"
+        }
+      ]
+    },
+    {
+      "name": "08",
+      "type": "directory",
+      "children": [
+        {
+          "name": "PM52-120.pdf",
+          "type": "file",
+          "path": "08/PM52-120.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/08/PM52-120.pdf"
+        },
+        {
+          "name": "PM52-139.pdf",
+          "type": "file",
+          "path": "08/PM52-139.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/08/PM52-139.pdf"
+        },
+        {
+          "name": "PM96-160.pdf",
+          "type": "file",
+          "path": "08/PM96-160.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/08/PM96-160.pdf"
+        },
+        {
+          "name": "PM96-175.pdf",
+          "type": "file",
+          "path": "08/PM96-175.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/08/PM96-175.pdf"
+        },
+        {
+          "name": "PM96-175BS.pdf",
+          "type": "file",
+          "path": "08/PM96-175BS.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/08/PM96-175BS.pdf"
+        },
+        {
+          "name": "PM96-200.pdf",
+          "type": "file",
+          "path": "08/PM96-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/08/PM96-200.pdf"
+        }
+      ]
+    },
+    {
+      "name": "09",
+      "type": "directory",
+      "children": [
+        {
+          "name": "AP52-125.pdf",
+          "type": "file",
+          "path": "09/AP52-125.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP52-125.pdf"
+        },
+        {
+          "name": "AP52-139.pdf",
+          "type": "file",
+          "path": "09/AP52-139.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP52-139.pdf"
+        },
+        {
+          "name": "AP52-230.pdf",
+          "type": "file",
+          "path": "09/AP52-230.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP52-230.pdf"
+        },
+        {
+          "name": "AP52-2304.pdf",
+          "type": "file",
+          "path": "09/AP52-2304.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP52-2304.pdf"
+        },
+        {
+          "name": "AP96-160.pdf",
+          "type": "file",
+          "path": "09/AP96-160.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP96-160.pdf"
+        },
+        {
+          "name": "AP96-200.pdf",
+          "type": "file",
+          "path": "09/AP96-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP96-200.pdf"
+        },
+        {
+          "name": "AP96-352.pdf",
+          "type": "file",
+          "path": "09/AP96-352.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP96-352.pdf"
+        },
+        {
+          "name": "AP96-3604.pdf",
+          "type": "file",
+          "path": "09/AP96-3604.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/09/AP96-3604.pdf"
+        }
+      ]
+    },
+    {
+      "name": "10",
+      "type": "directory",
+      "children": [
+        {
+          "name": "PM52-LD.pdf",
+          "type": "file",
+          "path": "10/PM52-LD.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/10/PM52-LD.pdf"
+        },
+        {
+          "name": "PM96-LD.pdf",
+          "type": "file",
+          "path": "10/PM96-LD.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/10/PM96-LD.pdf"
+        },
+        {
+          "name": "TS52-LD.pdf",
+          "type": "file",
+          "path": "10/TS52-LD.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/10/TS52-LD.pdf"
+        },
+        {
+          "name": "TS96-LD.pdf",
+          "type": "file",
+          "path": "10/TS96-LD.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/10/TS96-LD.pdf"
+        }
+      ]
+    },
+    {
+      "name": "11",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TS52-V50.pdf",
+          "type": "file",
+          "path": "11/TS52-V50.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/11/TS52-V50.pdf"
+        },
+        {
+          "name": "TS96-V50.pdf",
+          "type": "file",
+          "path": "11/TS96-V50.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/11/TS96-V50.pdf"
+        },
+        {
+          "name": "V50.pdf",
+          "type": "file",
+          "path": "11/V50.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/11/V50.pdf"
+        }
+      ]
+    },
+    {
+      "name": "12",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TS52-ER32.pdf",
+          "type": "file",
+          "path": "12/TS52-ER32.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/12/TS52-ER32.pdf"
+        },
+        {
+          "name": "TS52-ER40.pdf",
+          "type": "file",
+          "path": "12/TS52-ER40.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/12/TS52-ER40.pdf"
+        },
+        {
+          "name": "TS96-ER32.pdf",
+          "type": "file",
+          "path": "12/TS96-ER32.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/12/TS96-ER32.pdf"
+        },
+        {
+          "name": "TS96-ER40.pdf",
+          "type": "file",
+          "path": "12/TS96-ER40.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/12/TS96-ER40.pdf"
+        }
+      ]
+    },
+    {
+      "name": "13",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TS52-0090.pdf",
+          "type": "file",
+          "path": "13/TS52-0090.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS52-0090.pdf"
+        },
+        {
+          "name": "TS52-120R.pdf",
+          "type": "file",
+          "path": "13/TS52-120R.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS52-120R.pdf"
+        },
+        {
+          "name": "TS52-9052.pdf",
+          "type": "file",
+          "path": "13/TS52-9052.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS52-9052.pdf"
+        },
+        {
+          "name": "TS52-9096.pdf",
+          "type": "file",
+          "path": "13/TS52-9096.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS52-9096.pdf"
+        },
+        {
+          "name": "TS96-0090.pdf",
+          "type": "file",
+          "path": "13/TS96-0090.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS96-0090.pdf"
+        },
+        {
+          "name": "TS96-9096.pdf",
+          "type": "file",
+          "path": "13/TS96-9096.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS96-9096.pdf"
+        },
+        {
+          "name": "TS96-9690.pdf",
+          "type": "file",
+          "path": "13/TS96-9690.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/13/TS96-9690.pdf"
+        }
+      ]
+    },
+    {
+      "name": "14",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TS52组合.pdf",
+          "type": "file",
+          "path": "14/TS52组合.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/14/TS52%E7%BB%84%E5%90%88.pdf"
+        },
+        {
+          "name": "TS96组合.pdf",
+          "type": "file",
+          "path": "14/TS96组合.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/14/TS96%E7%BB%84%E5%90%88.pdf"
+        }
+      ]
+    },
+    {
+      "name": "15",
+      "type": "directory",
+      "children": [
+        {
+          "name": "L170.pdf",
+          "type": "file",
+          "path": "15/L170.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/15/L170.pdf"
+        },
+        {
+          "name": "L200.pdf",
+          "type": "file",
+          "path": "15/L200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/15/L200.pdf"
+        },
+        {
+          "name": "l255.pdf",
+          "type": "file",
+          "path": "15/l255.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/15/l255.pdf"
+        }
+      ]
+    },
+    {
+      "name": "16",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TO96-276.pdf",
+          "type": "file",
+          "path": "16/TO96-276.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/16/TO96-276.pdf"
+        },
+        {
+          "name": "TS52-215.pdf",
+          "type": "file",
+          "path": "16/TS52-215.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/16/TS52-215.pdf"
+        },
+        {
+          "name": "TS52-3P.pdf",
+          "type": "file",
+          "path": "16/TS52-3P.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/16/TS52-3P.pdf"
+        },
+        {
+          "name": "TS96-276.pdf",
+          "type": "file",
+          "path": "16/TS96-276.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/16/TS96-276.pdf"
+        },
+        {
+          "name": "TS96-3P.pdf",
+          "type": "file",
+          "path": "16/TS96-3P.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/16/TS96-3P.pdf"
+        },
+        {
+          "name": "TS96-4P.pdf",
+          "type": "file",
+          "path": "16/TS96-4P.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/16/TS96-4P.pdf"
+        }
+      ]
+    },
+    {
+      "name": "17",
+      "type": "directory",
+      "children": [
+        {
+          "name": "BT40标准款.pdf",
+          "type": "file",
+          "path": "17/BT40标准款.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/17/BT40%E6%A0%87%E5%87%86%E6%AC%BE.pdf"
+        },
+        {
+          "name": "手摆款.pdf",
+          "type": "file",
+          "path": "17/手摆款.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/17/%E6%89%8B%E6%91%86%E6%AC%BE.pdf"
+        }
+      ]
+    },
+    {
+      "name": "18",
+      "type": "directory",
+      "children": [
+        {
+          "name": "单边定位器.pdf",
+          "type": "file",
+          "path": "18/单边定位器.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/18/%E5%8D%95%E8%BE%B9%E5%AE%9A%E4%BD%8D%E5%99%A8.pdf"
+        }
+      ]
+    },
+    {
+      "name": "19",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TS96-HM400_3P.pdf",
+          "type": "file",
+          "path": "19/TS96-HM400_3P.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/19/TS96-HM400_3P.pdf"
+        },
+        {
+          "name": "TS96-HM400_4p.pdf",
+          "type": "file",
+          "path": "19/TS96-HM400_4p.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/19/TS96-HM400_4p.pdf"
+        }
+      ]
+    },
+    {
+      "name": "20",
+      "type": "directory",
+      "children": [
+        {
+          "name": "TH1-A.pdf",
+          "type": "file",
+          "path": "20/TH1-A.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/20/TH1-A.pdf"
+        }
+      ]
+    },
+    {
+      "name": "21",
+      "type": "directory",
+      "children": [
+        {
+          "name": "YC-M10.pdf",
+          "type": "file",
+          "path": "21/YC-M10.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/21/YC-M10.pdf"
+        }
+      ]
+    },
+    {
+      "name": "22",
+      "type": "directory",
+      "children": [
+        {
+          "name": "ZP130-200.pdf",
+          "type": "file",
+          "path": "22/ZP130-200.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/22/ZP130-200.pdf"
+        },
+        {
+          "name": "ZP130-4018.pdf",
+          "type": "file",
+          "path": "22/ZP130-4018.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/22/ZP130-4018.pdf"
+        },
+        {
+          "name": "ZP130.pdf",
+          "type": "file",
+          "path": "22/ZP130.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/22/ZP130.pdf"
+        },
+        {
+          "name": "ZP4036.pdf",
+          "type": "file",
+          "path": "22/ZP4036.pdf",
+          "url": "https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/22/ZP4036.pdf"
+        }
+      ]
+    }
+  ]
+}
