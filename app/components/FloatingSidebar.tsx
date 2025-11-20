@@ -36,7 +36,7 @@ export default function FloatingSidebar() {
 	};
 
 	const downloadCatalog = () => {
-		const pdfUrl = 'https://work-1251384833.cos.ap-singapore.myqcloud.com/ZPPCNC%20Zero%20Point%20Clamping%202026%281%29.pdf';
+		const pdfUrl = 'https://cdn.gzxfjxyxgs.com/ZPPCNC%20Zero%20Point%20Clamping%202026%281%29.pdf';
 		window.open(pdfUrl, '_blank');
 	};
 

@@ -1,6 +1,6 @@
 // 产品配置 - 基于文件夹结构定义产品层级
 // COS 基础路径
-const COS_BASE_URL = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
+const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
 // 产品类型定义
 export interface ProductImage {

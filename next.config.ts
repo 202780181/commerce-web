@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
     remotePatterns: [
       {
         protocol: 'https',
-        hostname: 'work-1251384833.cos.ap-singapore.myqcloud.com',
+        hostname: 'cdn.gzxfjxyxgs.com',
         port: '',
         pathname: '/**',
       },

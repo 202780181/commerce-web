@@ -66,7 +66,7 @@ export async function GET(
 				return stats.isFile() && imageExtensions.includes(ext);
 			})
 			.map((file) => {
-				const baseUrl = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
+				const baseUrl = "https://cdn.gzxfjxyxgs.com/products";
 				const encodedFolder = encodeURIComponent(folderName);
 				const encodedFile = encodeURIComponent(file);
 				

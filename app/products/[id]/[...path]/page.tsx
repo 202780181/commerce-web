@@ -9,7 +9,7 @@ import { motion } from "motion/react";
 import { matchPdfByImageName } from "../../../lib/productPdf";
 import productSpecifications from "../../../lib/product-specifications.json";
 
-const COS_BASE_URL = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
+const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
 // 产品文件夹映射
 const productFolderMap: Record<string, string> = {

@@ -8,7 +8,7 @@ import Footer from "../../components/Footer";
 import { getProductById } from "../../lib/productConfig";
 import { motion } from "motion/react";
 
-const COS_BASE_URL = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
+const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
 interface FileSystemItem {
   name: string;

@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const PDF_DIR = path.join(process.cwd(), 'pdf');
 const OUTPUT_FILE = path.join(process.cwd(), 'app/lib/product-pdf-map.json');
-const BASE_URL = 'https://work-1251384833.cos.ap-singapore.myqcloud.com/pdf/';
+const BASE_URL = 'https://cdn.gzxfjxyxgs.com/pdf/';
 
 function getAllFiles(dirPath, arrayOfFiles) {
   const files = fs.readdirSync(dirPath);

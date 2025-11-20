@@ -7,7 +7,7 @@ const __dirname = path.dirname(__filename);
 
 const PRODUCTS_DIR = path.join(process.cwd(), 'products');
 const OUTPUT_FILE = path.join(process.cwd(), 'app/lib/product-image-map.json');
-const BASE_URL = 'https://work-1251384833.cos.ap-singapore.myqcloud.com/products/';
+const BASE_URL = 'https://cdn.gzxfjxyxgs.com/products/';
 
 function getAllFiles(dirPath, arrayOfFiles) {
   const files = fs.readdirSync(dirPath);

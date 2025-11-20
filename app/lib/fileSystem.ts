@@ -1,7 +1,7 @@
 // 文件系统工具 - 用于从映射JSON文件读取产品文件夹结构
 import productImageMap from './product-image-map.json';
 
-const COS_BASE_URL = "https://work-1251384833.cos.ap-singapore.myqcloud.com/products";
+const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
 // 产品文件夹映射
 export const productFolderMap: Record<string, string> = {
