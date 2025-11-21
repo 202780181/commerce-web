@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { motion } from "motion/react";
-import { matchPdfByImageName } from "../../../lib/productPdf";
+import { getProductDetailImages } from "../../../lib/productDetailImages";
 import productSpecifications from "../../../lib/product-specifications.json";
 import { usePageCache } from "../../../hooks/usePageCache";
 
@@ -60,6 +60,7 @@ export default function DynamicPathPage() {
   const [isImageDetail, setIsImageDetail] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [allImages, setAllImages] = useState<FileSystemItem[]>([]);
+  const [displayMode, setDisplayMode] = useState<'gallery' | 'detail'>('gallery');
 
   useEffect(() => {
     fetchPathContent();
@@ -122,16 +123,30 @@ export default function DynamicPathPage() {
 
   const breadcrumbs = buildBreadcrumbs();
 
-  const [displayMode, setDisplayMode] = useState<'image' | 'pdf'>('image');
-  const [selectedPdfIndex, setSelectedPdfIndex] = useState(0);
-
   // 如果是图片详情页
   if (isImageDetail && allImages.length > 0) {
     const currentImage = allImages[currentImageIndex];
     const parentPath = `/products/${productId}/${pathSegments.slice(0, -1).join('/')}`;
     
-    // 根据图片名称匹配PDF文件
-    const pdfFiles = matchPdfByImageName(productId, currentImage.name);
+    // 获取产品详情页图片（从 pdf照片_1763725000895 目录）
+    const detailImages = getProductDetailImages(productId);
+    // 根据当前图片名称匹配详情图片
+    const matchedDetailImage = detailImages.find(img => {
+      // 移除扩展名并转小写
+      const currentName = currentImage.name.replace(/\.(webp|jpg|jpeg|png|gif)$/i, '').toLowerCase();
+      const detailName = img.name.toLowerCase();
+      
+      // 标准化括号：将中文括号替换为英文括号
+      const normalizeParentheses = (str: string) => {
+        return str.replace(/（/g, '(').replace(/）/g, ')');
+      };
+      
+      const normalizedCurrent = normalizeParentheses(currentName);
+      const normalizedDetail = normalizeParentheses(detailName);
+      
+      // 检查是否匹配
+      return normalizedCurrent.includes(normalizedDetail) || normalizedDetail.includes(normalizedCurrent);
+    });
     
     // 根据图片名称匹配产品规格参数
     const getProductSpecs = (imageName: string) => {
@@ -197,72 +212,59 @@ export default function DynamicPathPage() {
               {/* Left: Thumbnail List */}
               <div className="col-span-1">
                 <div className="flex flex-col gap-2">
-                  {/* Image Thumbnail */}
+                  {/* Gallery Image Thumbnail */}
                   <button
-                    onClick={() => setDisplayMode('image')}
+                    onClick={() => setDisplayMode('gallery')}
                     className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                      displayMode === 'image'
+                      displayMode === 'gallery'
                         ? 'border-purple-600 shadow-md'
                         : 'border-gray-200 hover:border-purple-300'
                     }`}
+                    title="Gallery Image"
                   >
                     <img
                       src={currentImage.url}
-                      alt="Image"
+                      alt="Gallery"
                       className="w-full h-full object-cover"
                     />
                   </button>
 
-                  {/* PDF Thumbnails */}
-                  {pdfFiles.length > 0 && pdfFiles.map((pdf, index) => (
+                  {/* Detail Image Thumbnail */}
+                  {matchedDetailImage && (
                     <button
-                      key={index}
-                      onClick={() => {
-                        setDisplayMode('pdf');
-                        setSelectedPdfIndex(index);
-                      }}
+                      onClick={() => setDisplayMode('detail')}
                       className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                        displayMode === 'pdf' && selectedPdfIndex === index
+                        displayMode === 'detail'
                           ? 'border-blue-600 shadow-md'
                           : 'border-gray-200 hover:border-blue-300'
                       }`}
-                      title={pdf.name}
+                      title="Detail Image"
                     >
-                      <div className="w-full h-full bg-linear-to-br from-blue-100 to-blue-200 flex items-center justify-center">
-                        <svg className="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 20 20">
-                          <path fillRule="evenodd" d="M4 4a2 2 0 012-2h4.586A2 2 0 0112 2.586L15.414 6A2 2 0 0116 7.414V16a2 2 0 01-2 2H6a2 2 0 01-2-2V4zm2 6a1 1 0 011-1h6a1 1 0 110 2H7a1 1 0 01-1-1zm1 3a1 1 0 100 2h6a1 1 0 100-2H7z" clipRule="evenodd" />
-                        </svg>
-                      </div>
+                      <img
+                        src={matchedDetailImage.url}
+                        alt="Detail"
+                        className="w-full h-full object-cover"
+                      />
                     </button>
-                  ))}
+                  )}
                 </div>
               </div>
 
-              {/* Center: Main Display Area */}
+              {/* Main Display Area */}
               <div className="col-span-7">
                 <motion.div
-                  key={displayMode === 'image' ? currentImageIndex : `pdf-${selectedPdfIndex}`}
+                  key={displayMode === 'gallery' ? `gallery-${currentImageIndex}` : 'detail'}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
                   className="relative bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200"
                 >
                   <div className="relative bg-gray-50 flex items-center justify-center p-4">
-                    {displayMode === 'image' ? (
-                      <img
-                        src={currentImage.url}
-                        alt={currentImage.name}
-                        className="w-full h-auto max-h-[600px] object-contain"
-                      />
-                    ) : (
-                      <div className="w-full" style={{ height: '600px' }}>
-                        <iframe
-                          src={`${pdfFiles[selectedPdfIndex]?.url}#toolbar=1&navpanes=1&scrollbar=1`}
-                          className="w-full h-full border-0"
-                          title={pdfFiles[selectedPdfIndex]?.name}
-                        />
-                      </div>
-                    )}
+                    <img
+                      src={displayMode === 'gallery' ? currentImage.url : matchedDetailImage?.url || currentImage.url}
+                      alt={displayMode === 'gallery' ? currentImage.name : matchedDetailImage?.name || currentImage.name}
+                      className="w-full h-auto max-h-[600px] object-contain"
+                    />
                   </div>
                 </motion.div>
               </div>
@@ -304,18 +306,9 @@ export default function DynamicPathPage() {
                         <div className="flex justify-between items-start">
                           <span className="text-sm text-gray-600">Type:</span>
                           <span className="text-sm text-gray-900 font-medium">
-                            {displayMode === 'image' ? 'Image' : 'PDF Document'}
+                            {displayMode === 'gallery' ? 'Gallery Image' : 'Detail Image'}
                           </span>
                         </div>
-
-                        {pdfFiles.length > 0 && (
-                          <div className="flex justify-between items-start">
-                            <span className="text-sm text-gray-600">Documents:</span>
-                            <span className="text-sm text-gray-900 font-medium">
-                              {pdfFiles.length} PDF{pdfFiles.length > 1 ? 's' : ''}
-                            </span>
-                          </div>
-                        )}
                       </div>
                     </div>
                   )}
