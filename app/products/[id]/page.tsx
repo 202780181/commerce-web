@@ -7,6 +7,7 @@ import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getProductById } from "../../lib/productConfig";
 import { motion } from "motion/react";
+import { usePageCache } from "../../hooks/usePageCache";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
@@ -22,6 +23,9 @@ interface FileSystemItem {
 export default function ProductPage() {
 	const params = useParams();
 	const productId = params.id as string;
+	
+	// 页面缓存
+	usePageCache();
 	
 	const [items, setItems] = useState<FileSystemItem[]>([]);
 	const [loading, setLoading] = useState(true);

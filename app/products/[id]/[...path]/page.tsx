@@ -8,6 +8,7 @@ import Footer from "../../../components/Footer";
 import { motion } from "motion/react";
 import { matchPdfByImageName } from "../../../lib/productPdf";
 import productSpecifications from "../../../lib/product-specifications.json";
+import { usePageCache } from "../../../hooks/usePageCache";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
@@ -49,6 +50,9 @@ interface FileSystemItem {
 export default function DynamicPathPage() {
   const params = useParams();
   const productId = params.id as string;
+  
+  // 页面缓存
+  usePageCache();
   const pathSegments = params.path as string[];
   
   const [items, setItems] = useState<FileSystemItem[]>([]);

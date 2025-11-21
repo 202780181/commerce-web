@@ -4,8 +4,12 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
 import { getAllProducts } from "../lib/productConfig";
+import { usePageCache } from "../hooks/usePageCache";
 
 export default function Products() {
+	// 页面缓存
+	usePageCache();
+	
 	// 获取所有产品配置
 	const products = getAllProducts();
 
