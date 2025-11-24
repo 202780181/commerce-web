@@ -253,25 +253,6 @@ export default function DynamicPathPage() {
                       />
                     </button>
                   )}
-
-                  {/* Detail Image Thumbnail */}
-                  {matchedDetailImage && (
-                    <button
-                      onClick={() => setDisplayMode('detail')}
-                      className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                        displayMode === 'detail'
-                          ? 'border-blue-600 shadow-md'
-                          : 'border-gray-200 hover:border-blue-300'
-                      }`}
-                      title="Detail Image"
-                    >
-                      <img
-                        src={matchedDetailImage.url}
-                        alt="Detail"
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  )}
                 </div>
               </div>
 
