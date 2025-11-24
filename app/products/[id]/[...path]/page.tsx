@@ -173,8 +173,8 @@ export default function DynamicPathPage() {
     const productSpecs = getProductSpecs(currentImage.name);
 
     return (
-      <div className="min-h-screen bg-gray-50">
-        <Header lightBackground={false} />
+      <div className="min-h-screen bg-gray-50 pt-20">
+        <Header lightBackground={true} />
         
         {/* Breadcrumb Navigation */}
         <div className="bg-white border-b border-gray-200 py-4 px-6">
@@ -327,8 +327,8 @@ export default function DynamicPathPage() {
   const currentPath = breadcrumbs[breadcrumbs.length - 1];
   
   return (
-    <div className="min-h-screen bg-gray-50">
-      <Header lightBackground={false} />
+    <div className="min-h-screen bg-gray-50 pt-20">
+      <Header lightBackground={true} />
       
       {/* 面包屑导航 */}
       <div className="bg-white border-b border-gray-200 py-4 px-6">

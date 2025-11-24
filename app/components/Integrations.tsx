@@ -2,6 +2,62 @@
 
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
+import productImageMap from "../lib/product-image-map.json";
+import { productsConfig } from "../lib/productConfig";
+
+// Helper to find product path from map
+const findProductPath = (imageName: string): string => {
+  // Normalize image name for comparison (remove extension, lowercase)
+  const normalize = (name: string) => name.toLowerCase().replace(/\.(png|jpg|jpeg|webp)$/, '');
+  const targetName = normalize(imageName);
+
+  // Recursive search function
+  const search = (node: any, currentPath: string[] = []): string | null => {
+    if (node.type === 'file') {
+      if (normalize(node.name) === targetName) {
+        // Found the file, construct the full path
+        // The path in map is like "01 Modular Combined Display/..."
+        // We need to map the top folder to productId
+        const pathParts = node.path.split('/');
+        const topFolder = pathParts[0];
+        
+        // Find productId from config
+        const product = productsConfig.find(p => p.folderName === topFolder);
+        if (product) {
+           // Construct path: /products/[productId]/[...restPath]
+           // restPath should be the path relative to the top folder, excluding the file itself if we want to go to the folder,
+           // or including it if we want to go to the image detail.
+           // Let's link to the folder containing the image for context, or the image detail if it's a specific product.
+           // For now, let's link to the image detail view which handles both.
+           // The path param in /products/[id]/[...path] expects the relative path segments.
+           const relativePath = pathParts.slice(1).join('/');
+           // If it's a file, we might want to pass the index if it's in a list, but here we have the file name.
+           // The dynamic page handles file paths too if we set it up right, or we can just link to the folder.
+           // Let's try to link to the folder first as it's safer.
+           const folderPath = pathParts.slice(1, -1).join('/');
+           return `/products/${product.id}/${folderPath}`;
+        }
+      }
+      return null;
+    }
+
+    if (node.children) {
+      for (const child of node.children) {
+        const result = search(child, [...currentPath, node.name]);
+        if (result) return result;
+      }
+    }
+    return null;
+  };
+
+  // Start search from root children
+  for (const child of productImageMap.children) {
+    const result = search(child);
+    if (result) return result;
+  }
+
+  return '/products'; // Fallback
+};
 
 const integrations = [
   { name: "5Axix 4Position System", image: "/images/products/box1.png" },
@@ -16,12 +72,14 @@ const integrations = [
   { name: "4-axis Double-station Pneumatic Bridge Plate", image: "/images/products/box11.png" },
   { name: "Precision Bench Vice", image: "/images/products/box5.png" },
   { name: "TS96 Type Horizontal Machine Center 4sided Tombstone", image: "/images/products/box8.png" },
-];
-
+].map(item => ({
+  ...item,
+  href: findProductPath(item.name)
+}));
 export default function Integrations() {
   const router = useRouter();
   return (
-    <section className="py-24 bg-white">
+    <section className="py-24 bg-white relative z-0">
       <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
         {/* Section header */}
         <motion.div
@@ -59,7 +117,7 @@ export default function Integrations() {
               className="flex items-center justify-center"
             >
               <div 
-                onClick={() => router.push('/products')}
+                onClick={() => router.push(integration.href)}
                 className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group cursor-pointer"
               >
                 <div className="relative w-full aspect-square mb-4 flex items-center justify-center">

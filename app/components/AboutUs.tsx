@@ -10,7 +10,7 @@ export default function AboutUs() {
 	const router = useRouter();
 
 	return (
-		<section ref={ref} className="py-16 lg:py-24 bg-white">
+		<section ref={ref} className="py-16 lg:py-24 bg-white overflow-hidden relative z-10">
 			<div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
 				<div className="relative">
 					<div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
