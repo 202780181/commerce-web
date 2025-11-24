@@ -70,7 +70,7 @@ export const productDetailImagesDatabase: Record<string, string[]> = {
 		"ZP4036.png"
 	],
 		"quick-release-jaws-vise": [
-		"CP155130(Circular Base) .png",
+		"CP155130(Round Base) .png",
 		"HP10077 (Aluminum Jaw) .png",
 		"HP10077 (Steel Jaw).png",
 		"HP15077 (Aluminum Jaw).png",
