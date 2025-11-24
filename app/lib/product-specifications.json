@@ -1,883 +1,497 @@
 {
+  "CP155130(Circular Base) ": {
+    "Model": "CP155130(Circular Base) ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/CP155130(Circular%20Base)%20.png"
+  },
+  "HP10077 (Aluminum Jaw) ": {
+    "Model": "HP10077 (Aluminum Jaw) ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP10077%20(Aluminum%20Jaw)%20.png"
+  },
   "HP10077 (Steel Jaw)": {
     "Model": "HP10077 (Steel Jaw)",
-    "Size": "100*77*57mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-37mm",
-    "Reverse Clamping": "43-70mm",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "2.25kg"
-  },
-  "HP10077 (Aluminum Jaw)": {
-    "Model": "HP10077 (Aluminum Jaw)",
-    "Size": "100*77*80mm",
-    "Material": "Hardened Steel + Aluminum Jaw",
-    "Forward Clamping": "77*100mm (Clamping Range)",
-    "Aluminum Jaw": "77*45*30mm (Size can be customized)",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "2.8kg"
-  },
-  "HP15077 (Steel Jaw)": {
-    "Model": "HP15077 (Steel Jaw)",
-    "Size": "150*77*57mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-85mm",
-    "Reverse Clamping": "43-120mm",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "2.8kg"
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP10077%20(Steel%20Jaw).png"
   },
   "HP15077 (Aluminum Jaw)": {
     "Model": "HP15077 (Aluminum Jaw)",
-    "Size": "100*77*80mm",
-    "Material": "Hardened Steel + Aluminum Jaw",
-    "Forward Clamping": "77*150mm (Clamping Range)",
-    "Aluminum Jaw": "77*45*30mm (Size can be customized)",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "3.5kg"
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP15077%20(Aluminum%20Jaw).png"
   },
-  "HP15077 (Double Jaw)": {
-    "Model": "HP15077 (Double Jaw)",
-    "Size": "150*77*57mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-37mm",
-    "Reverse Clamping": "26-54mm",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "3.2kg"
+  "HP15077 (Double Jaw)    ": {
+    "Model": "HP15077 (Double Jaw)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP15077%20(Double%20Jaw)%20%20%20%20.png"
+  },
+  "HP15077 (Steel Jaw)": {
+    "Model": "HP15077 (Steel Jaw)",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP15077%20(Steel%20Jaw).png"
+  },
+  "HP155130 (Aluminum Jaw) ": {
+    "Model": "HP155130 (Aluminum Jaw) ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP155130%20(Aluminum%20Jaw)%20.png"
+  },
+  "HP155130 (Double Station)    ": {
+    "Model": "HP155130 (Double Station)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP155130%20(Double%20Station)%20%20%20%20.png"
   },
   "HP155130 (Steel Jaw)": {
     "Model": "HP155130 (Steel Jaw)",
-    "Size": "155*130*74.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-78mm",
-    "Reverse Clamping": "56-125mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "6.7kg"
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP155130%20(Steel%20Jaw).png"
   },
-  "HP155130 (Aluminum Jaw)": {
-    "Model": "HP155130 (Aluminum Jaw)",
-    "Size": "155*130*93mm",
-    "Material": "Hardened Steel + Aluminum Jaw",
-    "Forward Clamping": "130*150mm (Clamping Range)",
-    "Aluminum Jaw": "130*50*35mm (Size can be customized)",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "7.3kg"
+  "HP255130 ( Base Series)    ": {
+    "Model": "HP255130 ( Base Series)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP255130%20(%20Base%20Series)%20%20%20%20.png"
   },
-  "HP155130 (Double Station)": {
-    "Model": "HP155130 (Double Station)",
-    "Size": "155*130*74.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-33mm",
-    "Reverse Clamping": "38-57mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "7.4kg"
+  "HP255130 (Aluminum Jaw) ": {
+    "Model": "HP255130 (Aluminum Jaw) ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP255130%20(Aluminum%20Jaw)%20.png"
   },
-  "HP255130 (Base Series)": {
-    "Model": "HP255130 (Base Series)",
-    "Size": "330*175*124mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-177mm",
-    "Reverse Clamping": "56-225mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "15.3kg"
+  "HP255130 (Double Station)    ": {
+    "Model": "HP255130 (Double Station)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP255130%20(Double%20Station)%20%20%20%20.png"
   },
-  "HP255130 (Steel Jaw)": {
-    "Model": "HP255130 (Steel Jaw)",
-    "Size": "255*130*74.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-177mm",
-    "Reverse Clamping": "56-225mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "9.5kg"
+  "HP255130 (Steel Jaw) ": {
+    "Model": "HP255130 (Steel Jaw) ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP255130%20(Steel%20Jaw)%20.png"
   },
-  "HP255130 (Aluminum Jaw)": {
-    "Model": "HP255130 (Aluminum Jaw)",
-    "Size": "255*130*93mm",
-    "Material": "Hardened Steel + Aluminum Jaws",
-    "Positive Clamping": "130*250mm (Clamping Range)",
-    "Aluminum Jaws": "130*50*35 (Size can be customized)",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "9.8kg"
+  "HP300160 ( Base Series)  ": {
+    "Model": "HP300160 ( Base Series)  ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP300160%20(%20Base%20Series)%20%20.png"
   },
-  "HP255130 (Double Station)": {
-    "Model": "HP255130 (Double Station)",
-    "Size": "255*130*74.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-82mm",
-    "Reverse Clamping": "38-106mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "10.2kg"
+  "HP300160 (Aluminum Jaw)    ": {
+    "Model": "HP300160 (Aluminum Jaw)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP300160%20(Aluminum%20Jaw)%20%20%20%20.png"
   },
-  "HP300160 (Base Series)": {
-    "Model": "HP300160 (Base Series)",
-    "Size": "375*205*136.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-209mm",
-    "Reverse Clamping": "76-275mm",
-    "Clamping Force": "22KN@80Nm",
-    "Maximum Torque": "80Nm",
-    "Weight": "23.8kg"
+  "HP300160 (Double Station)    ": {
+    "Model": "HP300160 (Double Station)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP300160%20(Double%20Station)%20%20%20%20.png"
   },
-  "HP300160 (Steel Jaw)": {
-    "Model": "HP300160 (Steel Jaw)",
-    "Size": "300*160*86.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-209mm",
-    "Reverse Clamping": "76-225mm",
-    "Clamping Force": "22KN@80Nm",
-    "Maximum Torque": "80Nm",
-    "Weight": "15.7kg"
+  "HP300160 (Steel Jaw)    ": {
+    "Model": "HP300160 (Steel Jaw)    ",
+    "Category": "Quick Release Jaws Vise",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/02/HP300160%20(Steel%20Jaw)%20%20%20%20.png"
   },
-  "HP300160 (Aluminum Jaw)": {
-    "Model": "HP300160 (Aluminum Jaw)",
-    "Size": "300*160*107mm",
-    "Material": "Hardened Steel + Aluminum Jaw",
-    "Forward Clamping": "160*310mm (Clamping Range)",
-    "Aluminum Jaw": "160*55*40 (Size can be customized)",
-    "Clamping Force": "22KN@80Nm",
-    "Maximum Torque": "80Nm",
-    "Weight": "16.2kg"
+  "CV15075（Steel Jaw）": {
+    "Model": "CV15075（Steel Jaw）",
+    "Category": "Manual Vise Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/03/CV15075%EF%BC%88Steel%20Jaw%EF%BC%89.png"
   },
-  "HP300160 (Double Station)": {
-    "Model": "HP300160 (Double Station)",
-    "Size": "300*160*86.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-98mm",
-    "Reverse Clamping": "48-131mm",
-    "Clamping Force": "22KN@80Nm",
-    "Maximum Torque": "80Nm",
-    "Weight": "16.8kg"
+  "CV155125（Steel Jaw）": {
+    "Model": "CV155125（Steel Jaw）",
+    "Category": "Manual Vise Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/03/CV155125%EF%BC%88Steel%20Jaw%EF%BC%89.png"
   },
-  "CP155130(Round Base)": {
-    "Model": "CP155130(Round Base)",
-    "Size": "D198*89.5mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-78mm",
-    "Reverse Clamping": "56-125mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "11kg"
+  "CV255125（Steel Jaw）": {
+    "Model": "CV255125（Steel Jaw）",
+    "Category": "Manual Vise Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/03/CV255125%EF%BC%88Steel%20Jaw%EF%BC%89.png"
   },
-  "CV10075(Steel Jaw)": {
-    "Model": "CV10075(Steel Jaw)",
-    "Size": "100*75*56mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-41mm",
-    "Reverse Clamping": "41-76mm",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "2.3kg"
+  "DV155125（Steel Jaw）": {
+    "Model": "DV155125（Steel Jaw）",
+    "Category": "Manual Vise Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/03/DV155125%EF%BC%88Steel%20Jaw%EF%BC%89.png"
   },
-  "CV15075(Steel Jaw)": {
-    "Model": "CV15075(Steel Jaw)",
-    "Size": "150*75*56mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-90mm",
-    "Reverse Clamping": "41-126mm",
-    "Clamping Force": "14KN@60Nm",
-    "Maximum Torque": "60Nm",
-    "Weight": "3kg"
+  "TB255125": {
+    "Model": "TB255125",
+    "Category": "Manual Vise Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/03/TB255125.png"
   },
-  "CV155125(Steel Jaw)": {
-    "Model": "CV155125(Steel Jaw)",
-    "Size": "155*125*74.4mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-76mm",
-    "Reverse Clamping": "56-127mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "7kg"
+  "AH160(Pneumatic Vice)": {
+    "Model": "AH160(Pneumatic Vice)",
+    "Category": "Pneumatic Vise Series (With Pressurization)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/04/AH160(Pneumatic%20Vice).png"
   },
-  "CV255125(Steel Jaw)": {
-    "Model": "CV255125",
-    "Size": "255*125*74.4mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-177mm",
-    "Reverse Clamping": "56-288mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "8.6kg"
+  "AR155-I": {
+    "Model": "AR155-I",
+    "Category": "Pneumatic Vise Series (Pneumatic Type)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/05/AR155-I.png"
   },
-  "DV155125(Steel Jaw)": {
-    "Model": "DV155125(Steel Jaw)",
-    "Size": "155*125*74.1mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "ø38-ø138mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "6.8kg"
-  },
-  "TB255125 (Double Station)": {
-    "Model": "TB255125 (Double Station)",
-    "Size": "255*125*74.4mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "0-74mm",
-    "Reverse Clamping": "32-110mm",
-    "Clamping Force": "20KN@75Nm",
-    "Maximum Torque": "75Nm",
-    "Weight": "9.6kg"
-  },
-  "AH160(Pneumatic Vise)": {
-    "Model": "AH160 (Pneumatic Vise)",
-    "Size": "160*145*130mm",
-    "Material": "Hardened Steel",
-    "Forward Clamping": "10-51mm/55-95mm (52-54mm not within clamping range)",
-    "Reverse Clamping": "55-91mm/100-138mm (92-99mm not within clamping range)",
-    "Clamping Force": "15KN@7bar (with pressurization)",
-    "Weight": "16.5kg"
-  },
-  "AR155-I(Single Station)": {
-    "Model": "AR155-I(Single Station)",
-    "Size": "155*155*126mm",
-    "Material": "Hardened Steel + Aluminum Base",
-    "Jaw Width": "130mm (Size can be customized)",
-    "Clamping Range": "130*145mm",
-    "Clamping Force": "8-10KN@6-7bar",
-    "Weight": "9.0kg"
-  },
-  "AR155-II(Double Station)": {
-    "Model": "AR155-II(Double Station)",
-    "Size": "155*155*126mm",
-    "Material": "Hardened Steel + Aluminum Base",
-    "Jaw Width": "130mm (Size can be customized)",
-    "Clamping Range": "130*65mm",
-    "Clamping Force": "8-10KN@6-7bar",
-    "Weight": "8.5kg"
-  },
-  "PM52-120": {
-    "Model": "PM52-120",
-    "Size": "120*120*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "2kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "PM52-139": {
-    "Model": "PM52-139",
-    "Size": "D139*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "2.85kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "PM96-175BS": {
-    "Model": "PM96-175BS",
-    "Size": "250*200*80mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "10.4kg",
-    "Mounting Hole": "4-M12",
-    "Locking Force": "20KN"
-  },
-  "PM96-175": {
-    "Model": "PM96-175",
-    "Size": "175*155*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "5.3kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
-  },
-  "PM96-160": {
-    "Model": "PM96-160",
-    "Size": "160*160*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "4.9kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
-  },
-  "PM96-200": {
-    "Model": "PM96-200",
-    "Size": "D200*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "6.4kg",
-    "Mounting Hole": "8-M10",
-    "Locking Force": "20KN"
+  "AR155-II": {
+    "Model": "AR155-II",
+    "Category": "Pneumatic Vise Series (Pneumatic Type)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/05/AR155-II.png"
   },
   "TA52-108": {
     "Model": "TA52-108",
-    "Size": "108*108*25mm",
-    "Material": "Hardened Aluminum + Steel Ring",
-    "Weight": "1.1kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "17KN"
+    "Category": "Zero Point Clamping (Aluminum Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/06/TA52-108.png"
   },
   "TA9652-155": {
     "Model": "TA9652-155",
-    "Size": "155*155*30mm",
-    "Material": "Hardened Aluminum + Steel Ring",
-    "Weight": "2.2kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "17KN"
-  },
-  "TS52-96 (converter Plate)": {
-    "Model": "TS52-96 (96mm to 52mm)",
-    "Size": "125*125*25mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "2.5kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "TS52-108": {
-    "Model": "TS52-108",
-    "Size": "108*108*25mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "1.9kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "TS52-120": {
-    "Model": "TS52-120",
-    "Size": "D120*25mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "1.7kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "TS52-170": {
-    "Model": "TS52-170",
-    "Size": "D170*25mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "3.7kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "18KN"
-  },
-  "TS52-210": {
-    "Model": "TS52-210",
-    "Size": "210*108*25mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "3.6kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "TS52-210BS": {
-    "Model": "TS52-210BS",
-    "Size": "275*153*75mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "7.9kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "18KN"
-  },
-  "TS9652-155": {
-    "Model": "TS9652-155",
-    "Size": "155*155*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "4.6kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
-  },
-  "TO9652-200": {
-    "Model": "TO9652-200",
-    "Size": "D200*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "6.4kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
-  },
-  "TS96-155": {
-    "Model": "TS96-155",
-    "Size": "155*155*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "4.8kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
-  },
-  "TS96-178": {
-    "Model": "TS96-178",
-    "Size": "D178*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "4.2kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
-  },
-  "TS96-200": {
-    "Model": "TS96-200",
-    "Size": "D200*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "6.5kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
+    "Category": "Zero Point Clamping (Aluminum Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/06/TA9652-155.png"
   },
   "TO96-200": {
     "Model": "TO96-200",
-    "Size": "D200*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "6.2kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TO96-200.png"
   },
-  "TS96-340BS": {
-    "Model": "TS96-340BS",
-    "Size": "415*200*100mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "23.5kg",
-    "Mounting Hole": "10-M12",
-    "Locking Force": "20KN"
-  },
-  "TS96-340": {
-    "Model": "TS96-340",
-    "Size": "340*155*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "10.6kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "20KN"
-  },
-  "TS9652-200": {
-    "Model": "TS9652-200",
-    "Size": "D200*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "6.4kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN"
+  "TO96-276": {
+    "Model": "TO96-276",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TO96-276.png"
   },
   "TO96130-255": {
     "Model": "TO96130-255",
-    "Size": "D255*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "9.7kg",
-    "Mounting Hole": "6-M12",
-    "Locking Force": "20KN"
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TO96130-255.png"
+  },
+  "TO9652-200": {
+    "Model": "TO9652-200",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TO9652-200.png"
   },
   "TS130-195": {
     "Model": "TS130-195",
-    "Size": "195*195*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "7.5kg",
-    "Mounting Hole": "6-M12",
-    "Locking Force": "20KN"
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS130-195.png"
+  },
+  "TS52-108": {
+    "Model": "TS52-108",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS52-108.png"
+  },
+  "TS52-120": {
+    "Model": "TS52-120",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS52-120.png"
+  },
+  "TS52-170": {
+    "Model": "TS52-170",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS52-170.png"
+  },
+  "TS52-210": {
+    "Model": "TS52-210",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS52-210.png"
+  },
+  "TS52-210BS": {
+    "Model": "TS52-210BS",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS52-210BS.png"
+  },
+  "TS52-96": {
+    "Model": "TS52-96",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS52-96.png"
+  },
+  "TS96-155": {
+    "Model": "TS96-155",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS96-155.png"
+  },
+  "TS96-178": {
+    "Model": "TS96-178",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS96-178.png"
+  },
+  "TS96-200": {
+    "Model": "TS96-200",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS96-200.png"
+  },
+  "TS96-340": {
+    "Model": "TS96-340",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS96-340.png"
+  },
+  "TS96-340BS": {
+    "Model": "TS96-340BS",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS96-340BS.png"
   },
   "TS96130-195": {
     "Model": "TS96130-195",
-    "Size": "195*195*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "7.2kg",
-    "Mounting Hole": "6-M12",
-    "Locking Force": "20KN"
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS96130-195.png"
+  },
+  "TS9652-200": {
+    "Model": "TS9652-200",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS9652-200.png"
+  },
+  "TS9652": {
+    "Model": "TS9652",
+    "Category": "Zero Point Clamping (Steel Base)",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/07/TS9652.png"
+  },
+  "PM52-120": {
+    "Model": "PM52-120",
+    "Category": "High Precision Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/08/PM52-120.png"
+  },
+  "PM52-139": {
+    "Model": "PM52-139",
+    "Category": "High Precision Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/08/PM52-139.png"
+  },
+  "PM96-160": {
+    "Model": "PM96-160",
+    "Category": "High Precision Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/08/PM96-160.png"
+  },
+  "PM96-175": {
+    "Model": "PM96-175",
+    "Category": "High Precision Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/08/PM96-175.png"
+  },
+  "PM96-175BS": {
+    "Model": "PM96-175BS",
+    "Category": "High Precision Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/08/PM96-175BS.png"
+  },
+  "PM96-200": {
+    "Model": "PM96-200",
+    "Category": "High Precision Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/08/PM96-200.png"
   },
   "AP52-125": {
     "Model": "AP52-125",
-    "Size": "125*125*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "2.8kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP52-125.png"
   },
   "AP52-139": {
     "Model": "AP52-139",
-    "Size": "D139*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "2.7kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP52-139.png"
   },
   "AP52-230": {
     "Model": "AP52-230",
-    "Size": "230*125*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "5.2kg",
-    "Mounting Hole": "6-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP52-230.png"
   },
   "AP52-2304": {
     "Model": "AP52-2304",
-    "Size": "230*230*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "9.2kg",
-    "Mounting Hole": "10-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP52-2304.png"
   },
   "AP96-160": {
     "Model": "AP96-160",
-    "Size": "160*160*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "5.2kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP96-160.png"
   },
   "AP96-200": {
     "Model": "AP96-200",
-    "Size": "D200*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "6.25kg",
-    "Mounting Hole": "4-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP96-200.png"
   },
   "AP96-352": {
     "Model": "AP96-352",
-    "Size": "352*160*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "11.4kg",
-    "Mounting Hole": "8-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP96-352.png"
   },
   "AP96-3604": {
     "Model": "AP96-3604",
-    "Size": "360*360*30mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "26.6kg",
-    "Mounting Hole": "14-M10",
-    "Locking Force": "20KN@7bar"
+    "Category": "High Precision Pneumatic Zero Point Clamping",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/09/AP96-3604.png"
   },
-  "PM52 - Pull Studs": {
-    "Model": "PM52 - Pull Studs",
-    "Size": "D21.8*29mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "0.045kg",
-    "Mounting Hole": "M8",
-    "Applicable Model": "PM52 Series"
+  "PM52-LD": {
+    "Model": "PM52-LD",
+    "Category": "Pull Studs Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/10/PM52-LD.png"
   },
-  "PM96 - Pull Studs": {
-    "Model": "PM96 - Pull Studs",
-    "Size": "D21.9*29mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "0.05kg",
-    "Mounting Hole": "M10",
-    "Applicable Model": "PM96 Series"
+  "PM96-LD": {
+    "Model": "PM96-LD",
+    "Category": "Pull Studs Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/10/PM96-LD.png"
   },
-  "TS52 - Pull Studs": {
-    "Model": "TS52 - Pull Studs",
-    "Size": "D16*24.56mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "0.03kg",
-    "Mounting Hole": "M8",
-    "Applicable Model": "TS52 Series"
+  "TS52-LD": {
+    "Model": "TS52-LD",
+    "Category": "Pull Studs Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/10/TS52-LD.png"
   },
-  "TS96 - Pull Studs": {
-    "Model": "TS96 - Pull Studs",
-    "Size": "D20*29mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "0.046kg",
-    "Mounting Hole": "M10",
-    "Applicable Model": "TS96 Series"
-  },
-  "V50": {
-    "Model": "V50",
-    "Size": "50*50*32mm",
-    "Material": "Hardened Stainless Steel",
-    "Clamping Range": "23.5-25mm",
-    "Swallowtail Angle": "45 Degrees",
-    "Weight": "0.52kg",
-    "Locking Force": "20KN"
+  "TS96-LD": {
+    "Model": "TS96-LD",
+    "Category": "Pull Studs Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/10/TS96-LD.png"
   },
   "TS52-V50": {
     "Model": "TS52-V50",
-    "Size": "74*74*60mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Clamping Range": "23.5-25mm",
-    "Swallowtail Angle": "45 Degrees",
-    "Weight": "1.0kg",
-    "Locking Force": "20KN"
+    "Category": "Dovetail Fixture",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/11/TS52-V50.png"
   },
   "TS96-V50": {
     "Model": "TS96-V50",
-    "Size": "124*124*70mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Clamping Range": "23.5-25mm",
-    "Swallowtail Angle": "45 Degrees",
-    "Weight": "2.0kg",
-    "Locking Force": "20KN"
+    "Category": "Dovetail Fixture",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/11/TS96-V50.png"
+  },
+  "V50": {
+    "Model": "V50",
+    "Category": "Dovetail Fixture",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/11/V50.png"
   },
   "TS52-ER32": {
     "Model": "TS52-ER32",
-    "Size": "D96*83mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "2.1kg",
-    "Clamping Range": "2-20mm"
+    "Category": "ER Clamping Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/12/TS52-ER32.png"
   },
   "TS52-ER40": {
     "Model": "TS52-ER40",
-    "Size": "D96*83mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "3.5kg",
-    "Clamping Range": "3-26mm"
+    "Category": "ER Clamping Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/12/TS52-ER40.png"
   },
   "TS96-ER32": {
     "Model": "TS96-ER32",
-    "Size": "130*130*116mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "4.6kg",
-    "Clamping Range": "2-20mm"
+    "Category": "ER Clamping Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/12/TS96-ER32.png"
   },
   "TS96-ER40": {
     "Model": "TS96-ER40",
-    "Size": "130*130*116mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "5.8kg",
-    "Clamping Range": "3-26mm"
+    "Category": "ER Clamping Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/12/TS96-ER40.png"
   },
   "TS52-0090": {
     "Model": "TS52-0090",
-    "Size": "176*131*108mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "8.8kg",
-    "Locking Force": "18KN",
-    "Locking Method": "52 Pull Studs"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS52-0090.png"
   },
   "TS52-120R": {
     "Model": "TS52-120R",
-    "Size": "160*120*105mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "7.8kg",
-    "Rotation Angle": "0-90 Degrees Adjustable",
-    "Locking Force": "18KN",
-    "Locking Method": "Tension Bolt"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS52-120R.png"
   },
   "TS52-9052": {
     "Model": "TS52-9052",
-    "Size": "130*108*81mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "4.3kg",
-    "Locking Force": "18KN",
-    "Locking Method": "52 Pull Studs"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS52-9052.png"
   },
   "TS52-9096": {
     "Model": "TS52-9096",
-    "Size": "108*108*154mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "4.2kg",
-    "Locking Force": "18KN",
-    "Locking Method": "52 Pull Studs"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS52-9096.png"
   },
   "TS96-0090": {
     "Model": "TS96-0090",
-    "Size": "241*155*181mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "24kg",
-    "Locking Force": "20KN",
-    "Locking Method": "96 Pull Studs"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS96-0090.png"
   },
   "TS96-9096": {
     "Model": "TS96-9096",
-    "Size": "155*155*200mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "10kg",
-    "Locking Force": "20KN",
-    "Locking Method": "96 Pull Studs"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS96-9096.png"
   },
   "TS96-9690": {
     "Model": "TS96-9690",
-    "Size": "155*130*180mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "12.8kg",
-    "Locking Force": "20KN",
-    "Locking Method": "96 Pull Studs"
+    "Category": "Modular Combination Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/13/TS96-9690.png"
   },
-  "Center Shaft for Zero point clamp": {
-    "Size": "Customized",
-    "Material": "S136H",
-    "Installation": "Screw locking"
+  "TS52组合": {
+    "Model": "TS52组合",
+    "Category": "Modular Set Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/14/TS52%E7%BB%84%E5%90%88.png"
   },
-  "TS52 Modular Combination": {
-    "Model": "TS52 Modular Combination",
-    "Size": "320*180*183mm",
-    "Material": "Hardened Stainless Steel + Steel Base Plate",
-    "Weight": "24kg",
-    "Locking Force": "18KN",
-    "Locking Method": "52 Pull Studs"
-  },
-  "TS96 Modular Combination": {
-    "Model": "TS96 Modular Combination",
-    "Size": "360*255*238mm",
-    "Material": "Hardened Stainless Steel + Steel Base Plate",
-    "Weight": "53kg",
-    "Locking Force": "20KN",
-    "Locking Method": "96 Pull Studs"
-  },
-  "TS52 Plate Base": {
-    "Model": "TS52-DB1",
-    "Size": "320*180*28mm",
-    "Material": "S136H",
-    "Weight": "11.3kg",
-    "Mounting Hole": "4-M12"
-  },
-  "TS96 Plate Base": {
-    "Model": "TS96-DB1",
-    "Size": "360*225*28mm",
-    "Material": "S136H",
-    "Weight": "16.3kg",
-    "Mounting Hole": "4-M12"
+  "TS96组合": {
+    "Model": "TS96组合",
+    "Category": "Modular Set Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/14/TS96%E7%BB%84%E5%90%88.png"
   },
   "L170": {
     "Model": "L170",
-    "Size": "D168*190mm",
-    "Material": "Hardened Steel",
-    "Weight": "10.2kg",
-    "Application Range": "For ZPPCNC"
+    "Category": "L Bridge Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/15/L170.png"
   },
   "L200": {
     "Model": "L200",
-    "Size": "D198*235mm",
-    "Material": "Hardened Steel",
-    "Weight": "20.6kg",
-    "Application Range": "For ZPPCNC"
+    "Category": "L Bridge Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/15/L200.png"
   },
   "L255": {
     "Model": "L255",
-    "Size": "D248*290mm",
-    "Material": "Hardened Steel",
-    "Weight": "31kg",
-    "Application Range": "For ZPPCNC"
+    "Category": "L Bridge Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/15/L255.png"
   },
-  "Center Shaft for L plate": {
-    "Size": "Customized",
-    "Material": "S136H",
-    "Installation Method": "Screw locking"
-  },
-  "TS52-3P (3 Station)": {
-    "Model": "TS52-3P",
-    "Size": "D245*104mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "13.5kg",
-    "Mounting Hole": "3-M12",
-    "Clamping Force": "18KN"
-  },
-  "TS52-215 (Square)": {
+  "TS52-215": {
     "Model": "TS52-215",
-    "Size": "D215*100mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "6.8kg",
-    "Mounting Hole": "6-M12",
-    "Clamping Force": "18KN"
+    "Category": "5Axis Pyramid Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/16/TS52-215.png"
   },
-  "TO96-276 (Hollow Type)": {
-    "Model": "TO96-276",
-    "Size": "D276*120mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "15.6kg",
-    "Mounting Hole": "8-M12",
-    "Clamping Force": "20KN"
+  "TS52-3P": {
+    "Model": "TS52-3P",
+    "Category": "5Axis Pyramid Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/16/TS52-3P.png"
   },
-  "TS96-276 (Square)": {
-    "Model": "TO96-276",
-    "Size": "D276*120mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "15kg",
-    "Mounting Hole": "8-M12",
-    "Clamping Force": "20KN"
+  "TS96-276": {
+    "Model": "TS96-276",
+    "Category": "5Axis Pyramid Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/16/TS96-276.png"
   },
-  "TS96-276 (Circle)": {
-    "Model": "TO96-276",
-    "Size": "D276*120mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "16.5kg",
-    "Mounting Hole": "8-M12",
-    "Clamping Force": "20KN"
-  },
-  "TS96-3P (3 Station)": {
+  "TS96-3P": {
     "Model": "TS96-3P",
-    "Size": "D315*151.7mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "27.6kg",
-    "Mounting Hole": "3-M12",
-    "Clamping Force": "20KN"
+    "Category": "5Axis Pyramid Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/16/TS96-3P.png"
   },
-  "TS96-4P (4 Station)": {
+  "TS96-4P": {
     "Model": "TS96-4P",
-    "Size": "D340*157.6mm",
-    "Material": "Hardened Stainless Steel + Aluminum Base",
-    "Weight": "38.2kg",
-    "Mounting Hole": "4-M12",
-    "Clamping Force": "20KN"
+    "Category": "5Axis Pyramid Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/16/TS96-4P.png"
   },
-  "BT30/BT40 Run_out Tester (Standard Model)": {
-    "Model": "BT30/BT40-S",
-    "Size": "D132*141.5mm",
-    "Material": "Hardened Stainless Steel + POM",
-    "Weight": "4.5kg",
-    "Model Type": "BT"
+  "BT40标准款": {
+    "Model": "BT40标准款",
+    "Category": "Run_out Tester",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/17/BT40%E6%A0%87%E5%87%86%E6%AC%BE.png"
   },
-  "BT30/BT40 Run_out Tester (Hand Crank Version)": {
-    "Model": "BT30/BT40-H",
-    "Size": "D132*141.5mm",
-    "Material": "Hardened Stainless Steel + POM",
-    "Weight": "4.5kg",
-    "Model Type": "BT"
+  "手摆款": {
+    "Model": "手摆款",
+    "Category": "Run_out Tester",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/17/%E6%89%8B%E6%91%86%E6%AC%BE.png"
   },
-  "DW-1(Positioner)": {
-    "Model": "DW-1",
-    "Size": "55*18mm",
-    "Material": "Hardened Steel + Stainless Steel",
-    "Features": "Adjustable positioning length and angle"
+  "单边定位器": {
+    "Model": "单边定位器",
+    "Category": "Unilateral Positione",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/18/%E5%8D%95%E8%BE%B9%E5%AE%9A%E4%BD%8D%E5%99%A8.png"
   },
   "TS96-HM400_3P": {
     "Model": "TS96-HM400_3P",
-    "Size": "300*300*428mm",
-    "Material": "Zero Point Clamp + Cast Iron",
-    "Weight": "116kg",
-    "Mounting Hole": "Customized",
-    "Clamping Force": "20KN"
+    "Category": "CNC Tombstone Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/19/TS96-HM400_3P.png"
   },
-  "TS96-HM400_4P": {
-    "Model": "TS96-HM400_4P",
-    "Size": "300*300*428mm",
-    "Material": "Zero Point Clamp + Cast Iron (Material Optional)",
-    "Weight": "135kg",
-    "Mounting Hole": "Customized",
-    "Clamping Force": "20KN"
+  "TS96-HM400_4p": {
+    "Model": "TS96-HM400_4p",
+    "Category": "CNC Tombstone Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/19/TS96-HM400_4p.png"
   },
-  "TH1-A(Precision Bench Vise)": {
-    "Model": "TH1-A(Precision Bench Vise)",
-    "Size": "577*168*255.6mm",
-    "Material": "Hardened Stainless Steel + Aluminum",
-    "Clamping Range": "0-127 (Expandable)",
-    "Weight": "20kg",
-    "Adjustable Angle": "0-90 Degrees"
+  "TH1-A": {
+    "Model": "TH1-A",
+    "Category": "Precision Bench Vice",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/20/TH1-A.png"
   },
-  "YC-M1(Stamping Units)": {
-    "Model": "YC-M1(Stamping Units)",
-    "Size": "635*130*257mm",
-    "Material": "Hardened Stainless Steel",
-    "Clamping Range": "20-300mm",
-    "Clamping Force": "50KN",
-    "Weight": "20kg"
+  "YC-M10": {
+    "Model": "YC-M10",
+    "Category": "Hydraulic Bite Machine",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/21/YC-M10.png"
   },
-  "ZP130-200 (Square Zero Point Clamping)": {
-    "Model": "ZP130-200 (Square Zero Point Clamping)",
-    "Size": "200*160*55mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "9.0kg",
-    "Mounting Hole": "4-M12",
-    "Clamping Force": "20KN/7bar"
+  "ZP130-200": {
+    "Model": "ZP130-200",
+    "Category": "Pneumatic Single Hole Zero Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/22/ZP130-200.png"
   },
-  "ZP130-168 (Circle Zero Point Clamping)": {
-    "Model": "ZP130-168 (Circle Zero Point Clamping)",
-    "Size": "D168*55mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "4.9kg",
-    "Mounting Hole": "4-M12",
-    "Clamping Force": "20KN/7bar"
+  "ZP130-4018": {
+    "Model": "ZP130-4018",
+    "Category": "Pneumatic Single Hole Zero Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/22/ZP130-4018.png"
   },
-  "ZP130-4018 (Double Station)": {
-    "Model": "ZP130-4018 (Double Station)",
-    "Size": "400*180*55mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "20.5kg",
-    "Mounting Hole": "6-M12",
-    "Clamping Force": "20KN/7bar"
+  "ZP130": {
+    "Model": "ZP130",
+    "Category": "Pneumatic Single Hole Zero Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/22/ZP130.png"
   },
-  "ZP130-4036 (Four-Station)": {
-    "Model": "ZP130-4036 (Four-Station)",
-    "Size": "400*360*55mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "41.0kg",
-    "Mounting Hole": "9-M12",
-    "Clamping Force": "20KN/7bar"
-  },
-  "ZP130 Pull Studs": {
-    "Model": "ZP130 Pull Studs",
-    "Size": "D27.5*45mm",
-    "Material": "Hardened Stainless Steel",
-    "Weight": "0.13kg",
-    "Mounting Hole": "M10",
-    "Applicable Models": "ZP130 Series"
+  "ZP4036": {
+    "Model": "ZP4036",
+    "Category": "Pneumatic Single Hole Zero Plate Series",
+    "Image": "https://cdn.gzxfjxyxgs.com/pdf%E7%85%A7%E7%89%87/22/ZP4036.png"
   }
 }

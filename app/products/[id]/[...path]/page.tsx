@@ -9,6 +9,8 @@ import { motion } from "motion/react";
 import { getProductDetailImages } from "../../../lib/productDetailImages";
 import productSpecifications from "../../../lib/product-specifications.json";
 import { usePageCache } from "../../../hooks/usePageCache";
+import { matchPdfByImageName } from "../../../lib/pdfImages";
+import ImageViewer from "../../../components/ImageViewer";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
@@ -60,7 +62,8 @@ export default function DynamicPathPage() {
   const [isImageDetail, setIsImageDetail] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [allImages, setAllImages] = useState<FileSystemItem[]>([]);
-  const [displayMode, setDisplayMode] = useState<'gallery' | 'detail'>('gallery');
+  const [displayMode, setDisplayMode] = useState<'gallery' | 'detail' | 'pdf'>('gallery');
+  const [viewerOpen, setViewerOpen] = useState(false);
 
   useEffect(() => {
     fetchPathContent();
@@ -147,6 +150,9 @@ export default function DynamicPathPage() {
       // 检查是否匹配
       return normalizedCurrent.includes(normalizedDetail) || normalizedDetail.includes(normalizedCurrent);
     });
+
+    // 匹配 PDF 图片
+    const matchedPdfImage = matchPdfByImageName(productId, currentImage.name);
     
     // 根据图片名称匹配产品规格参数
     const getProductSpecs = (imageName: string) => {
@@ -229,6 +235,25 @@ export default function DynamicPathPage() {
                     />
                   </button>
 
+                  {/* PDF Image Thumbnail */}
+                  {matchedPdfImage && (
+                    <button
+                      onClick={() => setDisplayMode('pdf')}
+                      className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                        displayMode === 'pdf'
+                          ? 'border-green-600 shadow-md'
+                          : 'border-gray-200 hover:border-green-300'
+                      }`}
+                      title="PDF Diagram"
+                    >
+                      <img
+                        src={matchedPdfImage.url}
+                        alt="PDF"
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  )}
+
                   {/* Detail Image Thumbnail */}
                   {matchedDetailImage && (
                     <button
@@ -253,18 +278,63 @@ export default function DynamicPathPage() {
               {/* Main Display Area */}
               <div className="col-span-7">
                 <motion.div
-                  key={displayMode === 'gallery' ? `gallery-${currentImageIndex}` : 'detail'}
+                  key={displayMode === 'gallery' ? `gallery-${currentImageIndex}` : displayMode === 'pdf' ? 'pdf' : 'detail'}
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.3 }}
-                  className="relative bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200"
+                  className="relative bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200 cursor-pointer"
+                  onClick={() => setViewerOpen(true)}
                 >
-                  <div className="relative bg-gray-50 flex items-center justify-center p-4">
+                  <div className="relative bg-gray-50 flex items-center justify-center p-4 min-h-[600px]">
                     <img
-                      src={displayMode === 'gallery' ? currentImage.url : matchedDetailImage?.url || currentImage.url}
-                      alt={displayMode === 'gallery' ? currentImage.name : matchedDetailImage?.name || currentImage.name}
-                      className="w-full h-auto max-h-[600px] object-contain"
+                      src={
+                        displayMode === 'gallery' 
+                          ? currentImage.url || ''
+                          : displayMode === 'pdf' && matchedPdfImage
+                            ? matchedPdfImage.url
+                            : matchedDetailImage?.url || currentImage.url || ''
+                      }
+                      alt={
+                        displayMode === 'gallery' 
+                          ? currentImage.name 
+                          : displayMode === 'pdf' && matchedPdfImage
+                            ? matchedPdfImage.name
+                            : matchedDetailImage?.name || currentImage.name
+                      }
+                      className="w-full h-auto max-h-[600px] object-contain relative z-10"
+                      loading="eager"
+                      onLoad={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.opacity = '1';
+                        const placeholder = target.nextElementSibling;
+                        if (placeholder) (placeholder as HTMLElement).style.display = 'none';
+                      }}
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.style.opacity = '1';
+                        const placeholder = target.nextElementSibling;
+                        if (placeholder) (placeholder as HTMLElement).style.display = 'none';
+                      }}
+                      style={{ opacity: 0, transition: 'opacity 0.3s ease-in-out' }}
                     />
+                    {/* 加载占位图 */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-0">
+                      <div className="text-center">
+                        <svg className="w-16 h-16 mx-auto text-gray-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                        <p className="mt-2 text-sm text-gray-400">Loading image...</p>
+                      </div>
+                    </div>
+                    {/* 点击查看提示 */}
+                    <div className="absolute inset-0 bg-black/0 hover:bg-black/5 transition-all flex items-center justify-center opacity-0 hover:opacity-100">
+                      <div className="bg-black/60 text-white px-4 py-2 rounded-lg flex items-center gap-2">
+                        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" />
+                        </svg>
+                        <span>Click to view</span>
+                      </div>
+                    </div>
                   </div>
                 </motion.div>
               </div>
@@ -281,42 +351,44 @@ export default function DynamicPathPage() {
                       <h3 className="text-base font-bold text-gray-900 mb-3">Product Specifications</h3>
                       
                       <div className="space-y-2">
-                        {Object.entries(productSpecs).map(([key, value]) => (
-                          <div key={key} className="flex justify-between items-start py-2 border-b border-gray-100 last:border-0">
-                            <span className="text-sm text-gray-600 font-medium min-w-[100px]">{key}:</span>
-                            <span className="text-sm text-gray-900 text-right break-all ml-2 flex-1">
-                              {value as string}
-                            </span>
-                          </div>
-                        ))}
+                        {Object.entries(productSpecs)
+                          .filter(([key]) => key !== 'Image')
+                          .map(([key, value]) => (
+                            <div key={key} className="flex justify-between items-start py-2 border-b border-gray-100 last:border-0">
+                              <span className="text-sm text-gray-600 font-medium min-w-[100px]">{key}:</span>
+                              <span className="text-sm text-gray-900 text-right break-all ml-2 flex-1">
+                                {value as string}
+                              </span>
+                            </div>
+                          ))}
                       </div>
                     </div>
-                  ) : (
-                    <div className="border-t border-gray-200 pt-4 mt-4">
-                      <h3 className="text-base font-bold text-gray-900 mb-3">File Information</h3>
-                      
-                      <div className="space-y-3">
-                        <div className="flex justify-between items-start">
-                          <span className="text-sm text-gray-600">File name:</span>
-                          <span className="text-sm text-gray-900 font-medium text-right break-all ml-2">
-                            {currentImage.fileName}
-                          </span>
-                        </div>
-                        
-                        <div className="flex justify-between items-start">
-                          <span className="text-sm text-gray-600">Type:</span>
-                          <span className="text-sm text-gray-900 font-medium">
-                            {displayMode === 'gallery' ? 'Gallery Image' : 'Detail Image'}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  ) : null}
                 </div>
               </div>
             </div>
           </div>
         </section>
+
+        {/* 图片查看器 */}
+        <ImageViewer
+          src={
+            displayMode === 'gallery' 
+              ? currentImage.url || ''
+              : displayMode === 'pdf' && matchedPdfImage
+                ? matchedPdfImage.url
+                : matchedDetailImage?.url || currentImage.url || ''
+          }
+          alt={
+            displayMode === 'gallery' 
+              ? currentImage.name 
+              : displayMode === 'pdf' && matchedPdfImage
+                ? matchedPdfImage.name
+                : matchedDetailImage?.name || currentImage.name
+          }
+          isOpen={viewerOpen}
+          onClose={() => setViewerOpen(false)}
+        />
 
         <Footer />
       </div>
@@ -416,12 +488,30 @@ export default function DynamicPathPage() {
                         <>
                           <div className="relative h-80 overflow-hidden bg-gray-50">
                             {item.thumbnailUrl ? (
-                              <img
-                                src={item.thumbnailUrl}
-                                alt={item.name}
-                                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                                loading="lazy"
-                              />
+                              <>
+                                <img
+                                  src={item.thumbnailUrl}
+                                  alt={item.name}
+                                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                  loading="lazy"
+                                  onLoad={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    const placeholder = target.nextElementSibling;
+                                    if (placeholder) placeholder.classList.add('hidden');
+                                  }}
+                                  onError={(e) => {
+                                    const target = e.target as HTMLImageElement;
+                                    const placeholder = target.nextElementSibling;
+                                    if (placeholder) placeholder.classList.add('hidden');
+                                  }}
+                                />
+                                {/* 缩略图加载占位符 */}
+                                <div className="absolute inset-0 flex items-center justify-center bg-gray-100 pointer-events-none">
+                                  <svg className="w-20 h-20 text-gray-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                                  </svg>
+                                </div>
+                              </>
                             ) : (
                               // 如果没有图片，显示文件夹图标
                               <div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200">
@@ -455,7 +545,23 @@ export default function DynamicPathPage() {
                               alt={item.name}
                               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                               loading="lazy"
+                              onLoad={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                const placeholder = target.nextElementSibling;
+                                if (placeholder) placeholder.classList.add('hidden');
+                              }}
+                              onError={(e) => {
+                                const target = e.target as HTMLImageElement;
+                                const placeholder = target.nextElementSibling;
+                                if (placeholder) placeholder.classList.add('hidden');
+                              }}
                             />
+                            {/* 图片加载占位符 */}
+                            <div className="absolute inset-0 flex items-center justify-center bg-gray-100 pointer-events-none">
+                              <svg className="w-20 h-20 text-gray-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
                             <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full">
                               <span className="text-sm font-bold text-gray-700">
                                 #{index - items.filter(i => i.type === 'folder').length + 1}

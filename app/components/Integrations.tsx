@@ -3,7 +3,10 @@
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import productImageMap from "../lib/product-image-map.json";
-import { productsConfig } from "../lib/productConfig";
+import { getAllProducts } from "../lib/productConfig";
+
+// Get products config
+const productsConfig = getAllProducts();
 
 // Helper to find product path from map
 const findProductPath = (imageName: string): string => {
@@ -118,7 +121,7 @@ export default function Integrations() {
             >
               <div 
                 onClick={() => router.push(integration.href)}
-                className="rounded-xl bg-gradient-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group cursor-pointer"
+                className="rounded-xl bg-linear-to-br from-gray-50 to-gray-100 p-6 w-full flex flex-col items-center justify-center border border-gray-200 hover:border-purple-300 hover:shadow-md transition-all group cursor-pointer"
               >
                 <div className="relative w-full aspect-square mb-4 flex items-center justify-center">
                   <img
