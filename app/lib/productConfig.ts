@@ -31,7 +31,7 @@ export function getAllProducts(): Product[] {
       
       // 查找封面图片
       const coverFolder = category.children?.find((child: any) => 
-        child.name === '封面' || child.name === '封面图'
+        child.name === 'cover' || child.name === '封面' || child.name === '封面图'
       );
       const coverImage = coverFolder?.children?.find((file: any) => 
         file.name === 'cover.webp' || file.name === 'cover.png'
@@ -39,7 +39,7 @@ export function getAllProducts(): Product[] {
       
       // 检查是否有子分类（除了封面文件夹）
       const hasCategories = category.children?.some((child: any) => 
-        child.type === 'directory' && child.name !== '封面' && child.name !== '封面图'
+        child.type === 'directory' && child.name !== 'cover' && child.name !== '封面' && child.name !== '封面图'
       ) || false;
       
       products.push({
@@ -50,7 +50,7 @@ export function getAllProducts(): Product[] {
         coverImage,
         hasCategories,
         categories: hasCategories ? category.children?.filter((child: any) => 
-          child.type === 'directory' && child.name !== '封面' && child.name !== '封面图'
+          child.type === 'directory' && child.name !== 'cover' && child.name !== '封面' && child.name !== '封面图'
         ) : undefined,
         images: !hasCategories ? category.children?.filter((child: any) => 
           child.type === 'file'
