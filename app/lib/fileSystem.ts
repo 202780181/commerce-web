@@ -1,6 +1,4 @@
-// 文件系统工具 - 用于从映射JSON文件读取产品文件夹结构
-import productImageMap from './product-image-map.json';
-
+// 文件系统工具 - 从 COS 获取产品数据
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
 // 产品文件夹映射
@@ -35,44 +33,190 @@ export interface FileSystemItem {
   path: string;           // 完整路径
   url?: string;           // 如果是图片，提供COS URL
   fileName?: string;      // 原始文件名
-}
-
-interface TreeNode {
-  name: string;
-  type: 'directory' | 'file';
-  path?: string;
-  url?: string;
-  children?: TreeNode[];
+  thumbnailUrl?: string;  // 文件夹缩略图URL
 }
 
 /**
- * 从映射JSON文件中查找节点
+ * 将文件夹名转换为文件名格式
+ * 文件夹：detail_CP155130(RoundBase) -> 文件：CP155130(Round Base).webp
+ * 规则：去掉 detail_ 前缀，在大写字母前添加空格（括号内）
  */
-function findNodeInTree(tree: TreeNode, pathSegments: string[]): TreeNode | null {
-  if (pathSegments.length === 0) {
-    return tree;
-  }
-
-  const [current, ...rest] = pathSegments;
+function folderNameToFileName(folderName: string): string {
+  // 去掉 detail_ 前缀
+  let name = folderName.replace(/^detail_/i, '').trim();
   
-  if (!tree.children) {
-    return null;
-  }
-
-  const child = tree.children.find(c => c.name === current);
-  if (!child) {
-    return null;
-  }
-
-  if (rest.length === 0) {
-    return child;
-  }
-
-  return findNodeInTree(child, rest);
+  // 在括号内的驼峰命名中插入空格
+  name = name.replace(/\(([^)]+)\)/g, (match, content) => {
+    // 在大写字母前插入空格，但不在开头
+    const spaced = content.replace(/([a-z])([A-Z])/g, '$1 $2');
+    return `(${spaced})`;
+  });
+  
+  return name;
 }
 
+// 产品结构配置 - 基于实际 COS 上的文件夹结构
+// 注意：保持与 COS 上完全一致的文件夹名称（包括空格）
+const productStructures: Record<string, string[]> = {
+  "modular-combined-display": [
+    "detail_ BridgePlate",
+    "detail_4PositionSystem",
+    "detail_CV255125",
+    "detail_HorizontalModularCombination",
+    "detail_ModularCombination",
+    "detail_SchematicDiagram",
+    "detail_SingleSide",
+    "detail_twoCV155125",
+    "detail_VerticalAndHorizontal",
+    "detail_ZeroPointClamping",
+  ],
+  "quick-release-jaws-vise": [
+    "detail_CP155130(RoundBase)",
+    "detail_HP10077(AluminumJaw)",
+    "detail_HP10077(SteelJaw)",
+    "detail_HP15077 (DoubleJaw)",
+    "detail_HP15077(AluminumJaw)",
+    "detail_HP15077(SteelJaw)",
+    "detail_HP155130(AluminumJaw)",
+    "detail_HP155130(Double)",
+    "detail_HP155130(SteelJaw)",
+    "detail_HP255130 ( BaseSeries)",
+    "detail_HP255130 (DoubleStation)",
+    "detail_HP255130 (SteelJaw)",
+    "detail_HP255130(AluminumJaw)",
+    "detail_HP300160(AluminumJaw)",
+    "detail_HP300160(Double)",
+    "detail_HP300160(SteelJaw)",
+    "detail_HP300160(WithBase)",
+  ],
+  "manual-vise-series": [
+    "detail_CV10075",
+    "detail_CV15075",
+    "detail_CV155125",
+    "detail_CV255125",
+    "detail_DV155125",
+    "detail_TB255125",
+  ],
+  "pneumatic-vise-serieswith-pressurization": [
+    "detail_Pneumatic Vice",
+  ],
+  "pneumatic-vise-seriespneumatic-type": [
+    "detail_AR155-I",
+    "detail_AR155-II",
+  ],
+  "zero-point-clampingaluminum-base": [
+    "detail_TA52-108",
+    "detail_TA9652",
+  ],
+  "zero-point-clampingsteel-base": [
+    "detail_TO96-200",
+    "detail_TO96130-255",
+    "detail_TO9652-200",
+    "detail_TS130-195",
+    "detail_TS52-108_1",
+    "detail_TS52-120",
+    "detail_TS52-170",
+    "detail_TS52-210",
+    "detail_TS52-210BS",
+    "detail_TS52-96",
+    "detail_TS96-155",
+    "detail_TS96-178",
+    "detail_TS96-200",
+    "detail_TS96-340",
+    "detail_TS96-340BS",
+    "detail_TS96130-195",
+    "detail_TS9652",
+    "detail_TS9652-200",
+  ],
+  "high-precision-zero-point-clamping": [
+    "detail_PM52-120",
+    "detail_PM52-139",
+    "detail_PM96-160",
+    "detail_PM96-175",
+    "detail_PM96-175BS",
+    "detail_PM96-200",
+  ],
+  "high-precision-pneumatic-zero-point-clamping": [
+    "detail_AP52-125",
+    "detail_AP52-139",
+    "detail_AP52-230",
+    "detail_AP52-2304",
+    "detail_AP96-160",
+    "detail_AP96-200",
+    "detail_AP96-352",
+    "detail_AP96-3604",
+  ],
+  "pull-studs-series": [
+    "detail_PM52-Pull Studs",
+    "detail_PM96-PullStuds",
+    "detail_TS52-PullStuds",
+    "detail_TS96-PullStuds",
+  ],
+  "dovetail-fixture": [
+    "detail_TS52-V50",
+    "detail_TS96-V50",
+    "detail_V50",
+  ],
+  "er-clamping-series": [
+    "detail_TS52-ER32",
+    "detail_TS52-ER40",
+    "detail_TS96-ER32",
+    "detail_TS96-ER40",
+  ],
+  "modular-combination-series": [
+    "detail_TS52-0090",
+    "detail_TS52-120R",
+    "detail_TS52-9052",
+    "detail_TS52-9096",
+    "detail_TS96-0090",
+    "detail_TS96-9096",
+    "detail_TS96-9690",
+  ],
+  "modular-set-series": [
+    "detail_TS52-combination",
+    "detail_TS96-combination",
+  ],
+  "l-bridge-plate-series": [
+    "detail_L170_108",
+    "detail_L200_155",
+    "detail_L255",
+  ],
+  "5axis-pyramid-series": [
+    "detail_TO96-296（HallowType）",
+    "detail_TS52-215(Square)",
+    "detail_TS52-3P(3 Station)",
+    "detail_TS96-276(Circle)",
+    "detail_TS96-276(Square)",
+    "detail_TS96-3P(3 Station)",
+    "detail_TS96-4P(4Station)",
+  ],
+  "run_out-tester": [
+    "detail_BT40Standard",
+    "detail_Hand Type",
+  ],
+  "unilateral-positione": [
+    "detail_DW-1",
+  ],
+  "cnc-tombstone-series": [
+    "detail_TS96-HM400-3p",
+    "detail_TS96-HM400-4P",
+  ],
+  "precision-bench-vice": [
+    "detail_TH1-A",
+  ],
+  "hydraulic-bite-machine": [
+    "detail_YC-M1",
+  ],
+  "pneumatic-single-hole-zero-plate-series": [
+    "detail_ZP130-168",
+    "detail_ZP130-200",
+    "detail_ZP130-4018",
+    "detail_ZP4036",
+  ],
+};
+
 /**
- * 读取指定路径下的所有文件和文件夹（从JSON映射读取）
+ * 读取指定路径下的所有文件和文件夹（从 COS 配置读取）
  * @param productId 产品ID
  * @param subPath 子路径数组（可选）
  * @returns 文件系统项目列表
@@ -86,97 +230,61 @@ export function readProductDirectory(
     return [];
   }
 
-  // 从JSON映射中查找对应的节点
-  const pathSegments = [folderName, ...subPath];
-  const node = findNodeInTree(productImageMap as TreeNode, pathSegments);
-
-  if (!node || !node.children) {
-    return [];
-  }
-
   const result: FileSystemItem[] = [];
+  const encodedFolder = encodeURIComponent(folderName);
 
-  for (const child of node.children) {
-    // 跳过封面文件夹
-    if (child.name === '封面' || child.name === '封面图' || child.name.toLowerCase() === 'cover') {
-      continue;
-    }
-
-    if (child.type === 'directory') {
-      // 文件夹
+  // 如果是根目录，返回产品的 detail_ 文件夹列表
+  if (subPath.length === 0) {
+    const folders = productStructures[productId] || [];
+    
+    for (const folder of folders) {
+      // 将文件夹名转换为文件名（处理驼峰转空格）
+      const displayName = folderNameToFileName(folder);
+      
+      // 生成缩略图URL（使用转换后的文件名）
+      const thumbnailUrl = `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(folder)}/${encodeURIComponent(displayName)}.webp`;
+      
       result.push({
-        name: child.name,
+        name: displayName,
         type: 'folder',
-        path: [...subPath, child.name].join('/'),
-        fileName: child.name,
-      });
-    } else if (child.type === 'file') {
-      // 图片文件
-      result.push({
-        name: child.name.replace(/\.(webp|jpg|jpeg|png|gif)$/i, ''),
-        type: 'image',
-        path: child.path || '',
-        url: child.url || '',
-        fileName: child.name,
+        path: folder,
+        fileName: folder,
+        thumbnailUrl,
       });
     }
+  } else {
+    // 如果是子路径（进入了某个 detail_ 文件夹），返回该文件夹中的图片
+    const detailFolderName = subPath[0];
+    const displayName = folderNameToFileName(detailFolderName);
+    
+    // 返回该文件夹中的图片（使用转换后的文件名）
+    const images = [
+      {
+        name: displayName,
+        type: 'image' as const,
+        path: [...subPath, `${displayName}.webp`].join('/'),
+        url: `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(detailFolderName)}/${encodeURIComponent(displayName)}.webp`,
+        fileName: `${displayName}.webp`,
+      }
+    ];
+    
+    result.push(...images);
   }
 
-  // 排序：文件夹在前，图片在后
-  return result.sort((a, b) => {
-    if (a.type === b.type) {
-      return a.name.localeCompare(b.name, undefined, { numeric: true });
-    }
-    return a.type === 'folder' ? -1 : 1;
-  });
+  return result;
 }
 
 /**
  * 检查指定路径是否为文件夹
  */
 export function isFolder(productId: string, subPath: string[]): boolean {
-  const folderName = productFolderMap[productId];
-  if (!folderName) {
-    return false;
+  if (subPath.length === 0) {
+    return true; // 根目录总是文件夹
   }
-
-  const pathSegments = [folderName, ...subPath];
-  const node = findNodeInTree(productImageMap as TreeNode, pathSegments);
   
-  return node !== null && node.type === 'directory';
-}
-
-/**
- * 获取文件夹中的第一张图片
- */
-function getFirstImageFromFolder(node: TreeNode): string | null {
-  if (!node.children) {
-    return null;
-  }
-
-  // 递归查找第一张图片
-  for (const child of node.children) {
-    // 跳过封面文件夹
-    if (child.name === '封面' || child.name === '封面图' || child.name.toLowerCase() === 'cover') {
-      continue;
-    }
-
-    if (child.type === 'file' && child.url) {
-      // 检查是否为图片文件
-      const imageExtensions = ['.webp', '.jpg', '.jpeg', '.png', '.gif'];
-      if (imageExtensions.some(ext => child.name.toLowerCase().endsWith(ext))) {
-        return child.url;
-      }
-    } else if (child.type === 'directory') {
-      // 递归查找子文件夹中的第一张图片
-      const firstImage = getFirstImageFromFolder(child);
-      if (firstImage) {
-        return firstImage;
-      }
-    }
-  }
-
-  return null;
+  // 检查是否是 detail_ 文件夹
+  const lastSegment = subPath[subPath.length - 1];
+  return lastSegment.startsWith('detail_');
 }
 
 /**
@@ -188,14 +296,16 @@ export function getFolderThumbnail(productId: string, subPath: string[]): string
     return null;
   }
 
-  const pathSegments = [folderName, ...subPath];
-  const node = findNodeInTree(productImageMap as TreeNode, pathSegments);
-
-  if (!node || node.type !== 'directory') {
+  if (subPath.length === 0) {
     return null;
   }
 
-  return getFirstImageFromFolder(node);
+  const detailFolderName = subPath[subPath.length - 1];
+  const displayName = folderNameToFileName(detailFolderName);
+  const encodedFolder = encodeURIComponent(folderName);
+  
+  // 返回该 detail 文件夹的产品图片作为缩略图
+  return `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(detailFolderName)}/${encodeURIComponent(displayName)}.webp`;
 }
 
 /**
@@ -257,19 +367,9 @@ export function getProductCover(productId: string): string {
     return '';
   }
 
-  // 尝试多个可能的封面路径
-  const possibleCoverPaths = [
-    'cover/cover.webp',
-    '封面/cover.webp',
-    '封面图/cover.webp',
-  ];
-
-  // 返回第一个可能存在的路径
   const encodedFolder = encodeURIComponent(folderName);
-  for (const coverPath of possibleCoverPaths) {
-    const url = `${COS_BASE_URL}/${encodedFolder}/${coverPath.split('/').map(p => encodeURIComponent(p)).join('/')}`;
-    return url;
-  }
-
-  return `${COS_BASE_URL}/${encodedFolder}/%E5%B0%81%E9%9D%A2/cover.webp`;
+  const encodedCover = encodeURIComponent('cover');
+  
+  // 优先返回 webp 格式
+  return `${COS_BASE_URL}/${encodedFolder}/${encodedCover}/cover.webp`;
 }

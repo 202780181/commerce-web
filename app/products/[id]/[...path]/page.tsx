@@ -6,10 +6,7 @@ import { useEffect, useState } from "react";
 import Header from "../../../components/Header";
 import Footer from "../../../components/Footer";
 import { motion } from "motion/react";
-import { getProductDetailImages } from "../../../lib/productDetailImages";
-import productSpecifications from "../../../lib/product-specifications.json";
 import { usePageCache } from "../../../hooks/usePageCache";
-import { matchPdfByImageName } from "../../../lib/pdfImages";
 import ImageViewer from "../../../components/ImageViewer";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
@@ -64,10 +61,35 @@ export default function DynamicPathPage() {
   const [allImages, setAllImages] = useState<FileSystemItem[]>([]);
   const [displayMode, setDisplayMode] = useState<'gallery' | 'detail' | 'pdf'>('gallery');
   const [viewerOpen, setViewerOpen] = useState(false);
+  const [productDetail, setProductDetail] = useState<{
+    name: string;
+    lineDrawing: string;
+    productImage: string;
+    description?: string;
+  } | null>(null);
 
   useEffect(() => {
     fetchPathContent();
   }, [productId, pathSegments]);
+
+  // 获取产品详情（线条图等）
+  useEffect(() => {
+    if (isImageDetail && allImages.length > 0) {
+      const currentImage = allImages[currentImageIndex];
+      const productName = currentImage.name.replace(/\.(webp|jpg|jpeg|png|gif)$/i, '');
+      
+      fetch(`/api/products/detail?productId=${productId}&productName=${encodeURIComponent(productName)}`)
+        .then(res => res.json())
+        .then(data => {
+          if (data.productDetail) {
+            setProductDetail(data.productDetail);
+          }
+        })
+        .catch(error => {
+          console.error('Error fetching product detail:', error);
+        });
+    }
+  }, [isImageDetail, allImages, currentImageIndex, productId]);
 
   const fetchPathContent = async () => {
     try {
@@ -130,53 +152,6 @@ export default function DynamicPathPage() {
   if (isImageDetail && allImages.length > 0) {
     const currentImage = allImages[currentImageIndex];
     const parentPath = `/products/${productId}/${pathSegments.slice(0, -1).join('/')}`;
-    
-    // 获取产品详情页图片（从 pdf照片_1763725000895 目录）
-    const detailImages = getProductDetailImages(productId);
-    // 根据当前图片名称匹配详情图片
-    const matchedDetailImage = detailImages.find(img => {
-      // 移除扩展名并转小写
-      const currentName = currentImage.name.replace(/\.(webp|jpg|jpeg|png|gif)$/i, '').toLowerCase();
-      const detailName = img.name.toLowerCase();
-      
-      // 标准化括号：将中文括号替换为英文括号
-      const normalizeParentheses = (str: string) => {
-        return str.replace(/（/g, '(').replace(/）/g, ')');
-      };
-      
-      const normalizedCurrent = normalizeParentheses(currentName);
-      const normalizedDetail = normalizeParentheses(detailName);
-      
-      // 检查是否匹配
-      return normalizedCurrent.includes(normalizedDetail) || normalizedDetail.includes(normalizedCurrent);
-    });
-
-    // 匹配 PDF 图片
-    const matchedPdfImage = matchPdfByImageName(productId, currentImage.name);
-    
-    // 根据图片名称匹配产品规格参数
-    const getProductSpecs = (imageName: string) => {
-      // 移除文件扩展名
-      const nameWithoutExt = imageName.replace(/\.(webp|jpg|jpeg|png|gif)$/i, '');
-      
-      // 尝试精确匹配
-      if (productSpecifications[nameWithoutExt as keyof typeof productSpecifications]) {
-        return productSpecifications[nameWithoutExt as keyof typeof productSpecifications];
-      }
-      
-      // 尝试模糊匹配（去除括号内容）
-      const baseName = nameWithoutExt.replace(/\s*\([^)]*\)/g, '').trim();
-      for (const [key, specs] of Object.entries(productSpecifications)) {
-        const keyBase = key.replace(/\s*\([^)]*\)/g, '').trim();
-        if (keyBase === baseName || key.includes(baseName) || baseName.includes(keyBase)) {
-          return specs;
-        }
-      }
-      
-      return null;
-    };
-    
-    const productSpecs = getProductSpecs(currentImage.name);
 
     return (
       <div className="min-h-screen bg-gray-50 pt-20">
@@ -235,8 +210,8 @@ export default function DynamicPathPage() {
                     />
                   </button>
 
-                  {/* PDF Image Thumbnail */}
-                  {matchedPdfImage && (
+                  {/* Line Drawing Thumbnail */}
+                  {productDetail?.lineDrawing && (
                     <button
                       onClick={() => setDisplayMode('pdf')}
                       className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
@@ -244,11 +219,11 @@ export default function DynamicPathPage() {
                           ? 'border-green-600 shadow-md'
                           : 'border-gray-200 hover:border-green-300'
                       }`}
-                      title="PDF Diagram"
+                      title="Line Drawing"
                     >
                       <img
-                        src={matchedPdfImage.url}
-                        alt="PDF"
+                        src={productDetail.lineDrawing}
+                        alt="Line Drawing"
                         className="w-full h-full object-cover"
                       />
                     </button>
@@ -271,16 +246,16 @@ export default function DynamicPathPage() {
                       src={
                         displayMode === 'gallery' 
                           ? currentImage.url || ''
-                          : displayMode === 'pdf' && matchedPdfImage
-                            ? matchedPdfImage.url
-                            : matchedDetailImage?.url || currentImage.url || ''
+                          : displayMode === 'pdf' && productDetail?.lineDrawing
+                            ? productDetail.lineDrawing
+                            : currentImage.url || ''
                       }
                       alt={
                         displayMode === 'gallery' 
                           ? currentImage.name 
-                          : displayMode === 'pdf' && matchedPdfImage
-                            ? matchedPdfImage.name
-                            : matchedDetailImage?.name || currentImage.name
+                          : displayMode === 'pdf' && productDetail
+                            ? `${productDetail.name} Line Drawing`
+                            : currentImage.name
                       }
                       className="w-full h-auto max-h-[600px] object-contain relative z-10"
                       loading="eager"
@@ -322,29 +297,56 @@ export default function DynamicPathPage() {
 
               {/* Right: Product Information */}
               <div className="col-span-4">
-                <div className="bg-white rounded-xl shadow-lg border border-gray-200 p-6 sticky top-6">
-                  <h1 className="text-2xl font-bold text-gray-900 mb-4">
-                    {currentImage.name}
-                  </h1>
+                <div className="bg-linear-to-br from-white to-gray-50 rounded-xl shadow-xl border border-gray-100 overflow-hidden sticky top-6">
+                  {/* Header Section */}
+                  <div className="bg-linear-to-r from-purple-600 to-blue-600 p-6">
+                    <h1 className="text-2xl font-bold text-white">
+                      {currentImage.name}
+                    </h1>
+                  </div>
                   
-                  {productSpecs ? (
-                    <div className="border-t border-gray-200 pt-4 mt-4">
-                      <h3 className="text-base font-bold text-gray-900 mb-3">Product Specifications</h3>
-                      
-                      <div className="space-y-2">
-                        {Object.entries(productSpecs)
-                          .filter(([key]) => key !== 'Image')
-                          .map(([key, value]) => (
-                            <div key={key} className="flex justify-between items-start py-2 border-b border-gray-100 last:border-0">
-                              <span className="text-sm text-gray-600 font-medium min-w-[100px]">{key}:</span>
-                              <span className="text-sm text-gray-900 text-right break-all ml-2 flex-1">
-                                {value as string}
-                              </span>
-                            </div>
-                          ))}
+                  {/* Content Section */}
+                  <div className="p-6">
+                    {productDetail?.description && (
+                      <div>
+                        <div className="flex items-center gap-2 mb-4">
+                          <div className="w-1 h-6 bg-linear-to-b from-purple-600 to-blue-600 rounded-full"></div>
+                          <h3 className="text-lg font-bold text-gray-900">Product Specifications</h3>
+                        </div>
+                        
+                        <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-100">
+                          <div className="space-y-2.5">
+                            {productDetail.description.split('\n').map((line, index) => {
+                              const trimmedLine = line.trim();
+                              if (!trimmedLine) return null;
+                              
+                              // 检查是否包含冒号，分割为键值对
+                              const colonIndex = trimmedLine.indexOf(':');
+                              if (colonIndex > 0) {
+                                const key = trimmedLine.substring(0, colonIndex).trim();
+                                const value = trimmedLine.substring(colonIndex + 1).trim();
+                                return (
+                                  <div key={index} className="flex items-start gap-3 py-2 border-b border-gray-100 last:border-0">
+                                    <span className="text-sm font-semibold text-gray-700 min-w-[140px] flex items-center gap-2">
+                                      <span className="w-1.5 h-1.5 rounded-full bg-purple-600"></span>
+                                      {key}:
+                                    </span>
+                                    <span className="text-sm text-gray-800 flex-1">{value}</span>
+                                  </div>
+                                );
+                              }
+                              
+                              return (
+                                <div key={index} className="py-1.5">
+                                  <span className="text-sm text-gray-800">{trimmedLine}</span>
+                                </div>
+                              );
+                            })}
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  ) : null}
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
@@ -356,16 +358,16 @@ export default function DynamicPathPage() {
           src={
             displayMode === 'gallery' 
               ? currentImage.url || ''
-              : displayMode === 'pdf' && matchedPdfImage
-                ? matchedPdfImage.url
-                : matchedDetailImage?.url || currentImage.url || ''
+              : displayMode === 'pdf' && productDetail?.lineDrawing
+                ? productDetail.lineDrawing
+                : currentImage.url || ''
           }
           alt={
             displayMode === 'gallery' 
               ? currentImage.name 
-              : displayMode === 'pdf' && matchedPdfImage
-                ? matchedPdfImage.name
-                : matchedDetailImage?.name || currentImage.name
+              : displayMode === 'pdf' && productDetail
+                ? `${productDetail.name} Line Drawing`
+                : currentImage.name
           }
           isOpen={viewerOpen}
           onClose={() => setViewerOpen(false)}

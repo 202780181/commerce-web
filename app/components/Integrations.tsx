@@ -2,64 +2,27 @@
 
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import productImageMap from "../lib/product-image-map.json";
 import { getAllProducts } from "../lib/productConfig";
 
-// Get products config
-const productsConfig = getAllProducts();
+// 简化的产品路径映射 - 直接映射到产品首页
+const productPathMap: Record<string, string> = {
+  "5Axix 4Position System": "/products/5axis-pyramid-series",
+  "96mm Vertical And Horizontal Modular Combination": "/products/modular-combination-series",
+  "96mm Integrated Vertical And Horizontal Zero Point Clamping": "/products/high-precision-zero-point-clamping",
+  "96mm to 52mm Schematic Diagram": "/products/modular-combination-series",
+  "Hand Type Run_out": "/products/run_out-tester",
+  "4Axis Bridge Plate Installed With 3Statio Vise": "/products/l-bridge-plate-series",
+  "4Axis Modular Combination Kit": "/products/modular-combination-series",
+  "52mm and 96mm Vertical And Horizontal Zero Point Clamping": "/products/high-precision-zero-point-clamping",
+  "Hydraulic Bite Machine": "/products/hydraulic-bite-machine",
+  "4-axis Double-station Pneumatic Bridge Plate": "/products/l-bridge-plate-series",
+  "Precision Bench Vice": "/products/precision-bench-vice",
+  "TS96 Type Horizontal Machine Center 4sided Tombstone": "/products/cnc-tombstone-series",
+};
 
-// Helper to find product path from map
+// Helper to find product path
 const findProductPath = (imageName: string): string => {
-  // Normalize image name for comparison (remove extension, lowercase)
-  const normalize = (name: string) => name.toLowerCase().replace(/\.(png|jpg|jpeg|webp)$/, '');
-  const targetName = normalize(imageName);
-
-  // Recursive search function
-  const search = (node: any, currentPath: string[] = []): string | null => {
-    if (node.type === 'file') {
-      if (normalize(node.name) === targetName) {
-        // Found the file, construct the full path
-        // The path in map is like "01 Modular Combined Display/..."
-        // We need to map the top folder to productId
-        const pathParts = node.path.split('/');
-        const topFolder = pathParts[0];
-        
-        // Find productId from config
-        const product = productsConfig.find(p => p.folderName === topFolder);
-        if (product) {
-           // Construct path: /products/[productId]/[...restPath]
-           // restPath should be the path relative to the top folder, excluding the file itself if we want to go to the folder,
-           // or including it if we want to go to the image detail.
-           // Let's link to the folder containing the image for context, or the image detail if it's a specific product.
-           // For now, let's link to the image detail view which handles both.
-           // The path param in /products/[id]/[...path] expects the relative path segments.
-           const relativePath = pathParts.slice(1).join('/');
-           // If it's a file, we might want to pass the index if it's in a list, but here we have the file name.
-           // The dynamic page handles file paths too if we set it up right, or we can just link to the folder.
-           // Let's try to link to the folder first as it's safer.
-           const folderPath = pathParts.slice(1, -1).join('/');
-           return `/products/${product.id}/${folderPath}`;
-        }
-      }
-      return null;
-    }
-
-    if (node.children) {
-      for (const child of node.children) {
-        const result = search(child, [...currentPath, node.name]);
-        if (result) return result;
-      }
-    }
-    return null;
-  };
-
-  // Start search from root children
-  for (const child of productImageMap.children) {
-    const result = search(child);
-    if (result) return result;
-  }
-
-  return '/products'; // Fallback
+  return productPathMap[imageName] || '/products';
 };
 
 const integrations = [

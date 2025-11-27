@@ -1,5 +1,3 @@
-import productImageMap from './product-image-map.json';
-
 // 产品接口定义
 export interface Product {
   id: string;
@@ -7,75 +5,67 @@ export interface Product {
   name: string;
   folderName: string;
   coverImage: string;
-  hasCategories: boolean;
+  hasCategories?: boolean;
   categories?: any[];
   images?: any[];
 }
 
-// 从 product-image-map.json 生成产品列表
+// 产品文件夹映射（与 fileSystem.ts 和 productStructure.ts 保持一致）
+const productFolderMap: Record<string, string> = {
+  "modular-combined-display": "01 Modular Combined Display",
+  "quick-release-jaws-vise": "02 Quick Release Jaws Vise",
+  "manual-vise-series": "03 Manual Vise Series",
+  "pneumatic-vise-serieswith-pressurization": "04 Pneumatic Vise Series(With Pressurization",
+  "pneumatic-vise-seriespneumatic-type": "05 Pneumatic Vise Series(Pneumatic Type",
+  "zero-point-clampingaluminum-base": "06 Zero Point Clamping(Aluminum Base",
+  "zero-point-clampingsteel-base": "07 Zero Point Clamping(Steel Base)",
+  "high-precision-zero-point-clamping": "08 High Precision Zero Point Clamping",
+  "high-precision-pneumatic-zero-point-clamping": "09 High Precision Pneumatic Zero Point Clamping",
+  "pull-studs-series": "10 Pull Studs Series",
+  "dovetail-fixture": "11 Dovetail Fixture",
+  "er-clamping-series": "12 ER Clamping Series",
+  "modular-combination-series": "13 Modular Combination Series",
+  "modular-set-series": "14 Modular Set Series",
+  "l-bridge-plate-series": "15 L Bridge Plate Series",
+  "5axis-pyramid-series": "16 5Axis Pyramid Series",
+  "run_out-tester": "17 Run_out Tester",
+  "unilateral-positione": "18 Unilateral Positione",
+  "cnc-tombstone-series": "19 CNC Tombstone Series",
+  "precision-bench-vice": "20 Precision Bench Vice",
+  "hydraulic-bite-machine": "21 Hydraulic Bite Machine",
+  "pneumatic-single-hole-zero-plate-series": "22 Pneumatic Single Hole Zero Plate Series",
+};
+
+const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
+
+// 生成产品封面 URL
+function getProductCover(productId: string): string {
+  const folderName = productFolderMap[productId];
+  if (!folderName) return '';
+  
+  const encodedFolder = encodeURIComponent(folderName);
+  return `${COS_BASE_URL}/${encodedFolder}/cover/cover.webp`;
+}
+
+// 从配置生成产品列表（客户端安全）
 export function getAllProducts(): Product[] {
-  const products: Product[] = [];
-  
-  if (productImageMap && productImageMap.children) {
-    productImageMap.children.forEach((category: any, index: number) => {
-      // 提取序号（如 "01", "02"）
-      const match = category.name.match(/^(\d+)/);
-      const categoryIndex = match ? parseInt(match[1]) : index + 1;
-      
-      // 生成产品ID（小写，用连字符）
-      const id = category.name
-        .replace(/^\d+\s+/, '') // 移除开头的数字
-        .toLowerCase()
-        .replace(/[()]/g, '') // 移除括号
-        .replace(/\s+/g, '-'); // 空格替换为连字符
-      
-      // 查找封面图片
-      const coverFolder = category.children?.find((child: any) => 
-        child.name === 'cover' || child.name === '封面' || child.name === '封面图'
-      );
-      const coverImage = coverFolder?.children?.find((file: any) => 
-        file.name === 'cover.webp' || file.name === 'cover.png'
-      )?.url || '';
-      
-      // 检查是否有子分类（除了封面文件夹）
-      const hasCategories = category.children?.some((child: any) => 
-        child.type === 'directory' && child.name !== 'cover' && child.name !== '封面' && child.name !== '封面图'
-      ) || false;
-      
-      products.push({
-        id,
-        index: categoryIndex,
-        name: category.name.replace(/^\d+\s+/, ''), // 移除序号
-        folderName: category.name,
-        coverImage,
-        hasCategories,
-        categories: hasCategories ? category.children?.filter((child: any) => 
-          child.type === 'directory' && child.name !== 'cover' && child.name !== '封面' && child.name !== '封面图'
-        ) : undefined,
-        images: !hasCategories ? category.children?.filter((child: any) => 
-          child.type === 'file'
-        ) : undefined,
-      });
-    });
-  }
-  
-  return products;
+  return Object.entries(productFolderMap).map(([id, folderName]) => {
+    const match = folderName.match(/^(\d+)\s+(.+)$/);
+    const index = match ? parseInt(match[1]) : 0;
+    const name = match ? match[2] : folderName;
+    
+    return {
+      id,
+      index,
+      name,
+      folderName,
+      coverImage: getProductCover(id),
+    };
+  }).sort((a, b) => a.index - b.index);
 }
 
 // 根据ID获取产品
 export function getProductById(id: string): Product | undefined {
   const products = getAllProducts();
   return products.find(p => p.id === id);
-}
-
-// 根据产品ID和分类ID获取分类
-export function getCategoryById(productId: string, categoryId: string): any | undefined {
-  const product = getProductById(productId);
-  if (!product || !product.hasCategories || !product.categories) {
-    return undefined;
-  }
-  return product.categories.find((c: any) => {
-    const catId = c.name.toLowerCase().replace(/\s+/g, '-');
-    return catId === categoryId;
-  });
 }
