@@ -133,16 +133,9 @@ export function getDetailFolderContents(productId: string, detailFolderName: str
         : '',
     };
     
-    // 如果有 txt 文件，读取内容
+    // 如果有 txt 文件，提供 URL（前端从 COS 获取）
     if (txtFile) {
-      const txtPath = path.join(detailPath, txtFile);
       result.descriptionUrl = `${COS_BASE_URL}/${encodedFolder}/${encodedDetailFolder}/${encodeURIComponent(txtFile)}`;
-      
-      try {
-        result.description = fs.readFileSync(txtPath, 'utf-8');
-      } catch (error) {
-        console.error('Error reading txt file:', error);
-      }
     }
     
     return result;

@@ -75,15 +75,38 @@ export default function DynamicPathPage() {
   // 获取产品详情（线条图等）
   useEffect(() => {
     if (isImageDetail && pathSegments.length > 0) {
-      // 从路径中的最后一段（detail_XXX）提取产品名称
+      // 从路径中的最后一段（detail_XXX）获取文件夹名
       const lastSegment = pathSegments[pathSegments.length - 1];
-      const productName = lastSegment.replace(/^detail_/i, '').trim();
       
-      fetch(`/api/products/detail?productId=${productId}&productName=${encodeURIComponent(productName)}`)
+      console.log('Fetching product detail for folder:', lastSegment);
+      
+      fetch(`/api/products/detail?productId=${productId}&detailFolder=${encodeURIComponent(lastSegment)}`)
         .then(res => res.json())
         .then(data => {
+          console.log('Product detail response:', data);
           if (data.productDetail) {
-            setProductDetail(data.productDetail);
+            const detail = data.productDetail;
+            
+            // 如果有 descriptionUrl，从 COS 获取 txt 内容
+            if (detail.descriptionUrl) {
+              console.log('Fetching description from:', detail.descriptionUrl);
+              fetch(detail.descriptionUrl)
+                .then(res => res.text())
+                .then(text => {
+                  console.log('Description loaded:', text.substring(0, 100));
+                  setProductDetail({
+                    ...detail,
+                    description: text
+                  });
+                })
+                .catch(error => {
+                  console.error('Error fetching description:', error);
+                  setProductDetail(detail);
+                });
+            } else {
+              console.log('No descriptionUrl found');
+              setProductDetail(detail);
+            }
           }
         })
         .catch(error => {

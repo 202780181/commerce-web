@@ -40,7 +40,7 @@ export interface FileSystemItem {
  * 文件夹名到实际文件名的映射
  * 由于文件命名规则不一致，需要精确映射每个文件夹对应的实际文件名
  */
-const detailFolderFileMap: Record<string, string> = {
+export const detailFolderFileMap: Record<string, string> = {
   // 01 Modular Combined Display
   "detail_ BridgePlate": "4Axis Bridge Plate Installed With 3Statio Vise.webp",
   "detail_4PositionSystem": "5Axix 4Position System.webp",
