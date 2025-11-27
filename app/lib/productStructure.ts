@@ -204,6 +204,16 @@ export function findProductDetailByName(productId: string, productName: string):
     }
   }
   
+  // 匹配括号前的基础名称（忽略括号内容的差异）
+  // CP155130(RoundBase) 可以匹配到 CP155130(Round Base)
+  const mainNameSearch = normalizedSearchName.split('(')[0];
+  for (const detail of allDetails) {
+    const mainNameDetail = normalize(detail.name).split('(')[0];
+    if (mainNameDetail === mainNameSearch) {
+      return detail;
+    }
+  }
+  
   return null;
 }
 
