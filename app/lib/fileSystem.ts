@@ -37,22 +37,201 @@ export interface FileSystemItem {
 }
 
 /**
+ * 文件夹名到实际文件名的映射
+ * 由于文件命名规则不一致，需要精确映射每个文件夹对应的实际文件名
+ */
+const detailFolderFileMap: Record<string, string> = {
+  // 01 Modular Combined Display
+  "detail_ BridgePlate": "4Axis Bridge Plate Installed With 3Statio Vise.webp",
+  "detail_4PositionSystem": "5Axix 4Position System.webp",
+  "01_detail_CV255125": "5Axis Double Workstation install two CV255125 Vises.webp",
+  "detail_HorizontalModularCombination": "96mm Vertical And Horizontal Modular Combination.webp",
+  "detail_ModularCombination": "4Axis Modular Combination Kit.webp",
+  "detail_SchematicDiagram": "96mm to 52mm Schematic Diagram.webp",
+  "detail_SingleSide": "4Axis Single-Side L-Bracket Assembly.webp",
+  "detail_twoCV155125": "5Axis Dual Workstation install two CV255125 vises two CV155125 Vises.webp",
+  "detail_VerticalAndHorizontal": "52mm and 96mm Vertical And Horizontal Zero Point Clamping(2).webp",
+  "detail_ZeroPointClamping": "96mm Integrated Vertical And Horizontal Zero Point Clamping.webp",
+  
+  // 02 Quick Release Jaws Vise
+  "detail_CP155130(RoundBase)": "CP155130(Round Base).webp",
+  "detail_HP10077(AluminumJaw)": "HP10077(Aluminum Jaw).webp",
+  "detail_HP10077(SteelJaw)": "HP10077(Steel Jaw).webp",
+  "detail_HP15077 (DoubleJaw)": "HP15077 (Double Jaw).webp",
+  "detail_HP15077(AluminumJaw)": "HP15077(Aluminum Jaw).webp",
+  "detail_HP15077(SteelJaw)": "HP15077(Steel Jaw).webp",
+  "detail_HP155130(AluminumJaw)": "HP155130(Aluminum Jaw).webp",
+  "detail_HP155130(Double)": "HP155130(Double).webp",
+  "detail_HP155130(SteelJaw)": "HP155130(Steel Jaw).webp",
+  "detail_HP255130 ( BaseSeries)": "HP255130 ( Base Series).webp",
+  "detail_HP255130 (DoubleStation)": "HP255130(Double).webp",
+  "detail_HP255130 (SteelJaw)": "HP255130(Steel Jaw).webp",
+  "detail_HP255130(AluminumJaw)": "HP255130(Aluminum Jaw).webp",
+  "detail_HP300160(AluminumJaw)": "HP300160(Aluminum Jaw).webp",
+  "detail_HP300160(Double)": "HP300160(Double).webp",
+  "detail_HP300160(SteelJaw)": "HP300160(Steel Jaw).webp",
+  "detail_HP300160(WithBase)": "HP300160_z3.webp",
+  
+  // 03 Manual Vise Series
+  "detail_CV10075": "CV10075.432.webp",
+  "detail_CV15075": "CV15075(Steel Jaw).webp",
+  "detail_CV155125": "CV155125(Steel Jaw).webp",
+  "detail_CV255125": "CV255125(Steel Jaw).webp",
+  "detail_DV155125": "DV155125(Steel Jaw).webp",
+  "detail_TB255125": "TB255125(Double).webp",
+  
+  // 04 Pneumatic Vise Series(With Pressurization
+  "detail_Pneumatic Vice": "AH160(Pneumatic Vice).webp",
+  
+  // 05 Pneumatic Vise Series(Pneumatic Type
+  "detail_AR155-I": "AR155-I.webp",
+  "detail_AR155-II": "AR155-II.webp",
+  
+  // 06 Zero Point Clamping(Aluminum Base
+  "detail_TA52-108": "TA52-108.webp",
+  "detail_TA9652": "TA9652.webp",
+  
+  // 07 Zero Point Clamping(Steel Base)
+  "detail_TO96-200": "TO96-200.webp",
+  "detail_TO96130-255": "TO96130-255.webp",
+  "detail_TO9652-200": "TO9652-200.webp",
+  "detail_TS130-195": "TS130-195.webp",
+  "detail_TS52-108_1": "TS52-108_1.webp",
+  "detail_TS52-120": "TS52-120.webp",
+  "detail_TS52-170": "TS52-170.webp",
+  "detail_TS52-210": "TS52-210.webp",
+  "detail_TS52-210BS": "TS52-210BS_1.456.webp",
+  "detail_TS52-96": "TS52-96.webp",
+  "detail_TS96-155": "TS96-155.webp",
+  "detail_TS96-178": "TS96-178.webp",
+  "detail_TS96-200": "TS96-200.webp",
+  "detail_TS96-340": "TS96-340.webp",
+  "detail_TS96-340BS": "TS96-340BS.webp",
+  "detail_TS96130-195": "TS96130-195.webp",
+  "detail_TS9652": "TS9652.webp",
+  "detail_TS9652-200": "TS9652-200.webp",
+  
+  // 08 High Precision Zero Point Clamping
+  "detail_PM52-120": "PM52-120.webp",
+  "detail_PM52-139": "PM52-139.webp",
+  "detail_PM96-160": "PM96-160.webp",
+  "detail_PM96-175": "PM96-175.webp",
+  "detail_PM96-175BS": "PM96-175BS.webp",
+  "detail_PM96-200": "PM96-200.webp",
+  
+  // 09 High Precision Pneumatic Zero Point Clamping
+  "detail_AP52-125": "AP52-125.webp",
+  "detail_AP52-139": "AP52-139.webp",
+  "detail_AP52-230": "AP52-230.webp",
+  "detail_AP52-2304": "AP52-2304.webp",
+  "detail_AP96-160": "AP96-160.webp",
+  "detail_AP96-200": "AP96-200.webp",
+  "detail_AP96-352": "AP96-352.webp",
+  "detail_AP96-3604": "AP96-3604.webp",
+  
+  // 10 Pull Studs Series
+  "detail_PM52-Pull Studs": "PM52-Pull Studs.webp",
+  "detail_PM96-PullStuds": "PM96-Pull Studs.webp",
+  "detail_TS52-PullStuds": "TS52-Pull Studs.webp",
+  "detail_TS96-PullStuds": "TS96-Pull Studs.webp",
+  
+  // 11 Dovetail Fixture
+  "detail_TS52-V50": "TS52-V50.webp",
+  "detail_TS96-V50": "TS96-V50.webp",
+  "detail_V50": "V50.webp",
+  
+  // 12 ER Clamping Series
+  "detail_TS52-ER32": "TS52-ER32.webp",
+  "detail_TS52-ER40": "TS52-ER40.webp",
+  "detail_TS96-ER32": "TS96-ER32.webp",
+  "detail_TS96-ER40": "TS96-ER40.webp",
+  
+  // 13 Modular Combination Series
+  "detail_TS52-0090": "TS52-0090.webp",
+  "detail_TS52-120R": "TS52-120R.webp",
+  "detail_TS52-9052": "TS52-9052.webp",
+  "detail_TS52-9096": "TS52-9096.webp",
+  "detail_TS96-0090": "TS96-0090.webp",
+  "detail_TS96-9096": "TS96-9096.webp",
+  "detail_TS96-9690": "TS96-9690.webp",
+  
+  // 14 Modular Set Series
+  "detail_TS52-combination": "TS52-combination.webp",
+  "detail_TS96-combination": "TS96-combination.webp",
+  
+  // 15 L Bridge Plate Series
+  "detail_L170_108": "L170_108.webp",
+  "detail_L200_155": "L200.webp",
+  "detail_L255": "L255.webp",
+  
+  // 16 5Axis Pyramid Series
+  "detail_TO96-296（HallowType）": "TO96-276（Hallow Type）.webp",
+  "detail_TS52-215(Square)": "TS52-215(Square).webp",
+  "detail_TS52-3P(3 Station)": "TS52-3P(3 Station).webp",
+  "detail_TS96-276(Circle)": "TS96-276(Circle).webp",
+  "detail_TS96-276(Square)": "TS96-276(Square).webp",
+  "detail_TS96-3P(3 Station)": "TS96-3P(3 Station).webp",
+  "detail_TS96-4P(4Station)": "TS96-4P(4 Station).webp",
+  
+  // 17 Run_out Tester
+  "detail_BT40Standard": "1.webp",
+  "detail_Hand Type": "Runout-tester.webp",
+  
+  // 18 Unilateral Positione
+  "detail_DW-1": "DW-1.webp",
+  
+  // 19 CNC Tombstone Series
+  "detail_TS96-HM400-3p": "TS96-HM400-3p.487.webp",
+  "detail_TS96-HM400-4P": "TS96-HM400.484.webp",
+  
+  // 20 Precision Bench Vice
+  "detail_TH1-A": "TH1-A.webp",
+  
+  // 21 Hydraulic Bite Machine
+  "detail_YC-M1": "YC-M1.webp",
+  
+  // 22 Pneumatic Single Hole Zero Plate Series
+  "detail_ZP130-168": "ZP130-168.webp",
+  "detail_ZP130-200": "ZP130-200.webp",
+  "detail_ZP130-4018": "ZP130-4018.webp",
+  "detail_ZP4036": "ZP4036.webp",
+};
+
+/**
+ * 获取实际的文件名（从映射表查询）
+ * @param detailFolderName detail_ 文件夹名（可能带产品ID前缀）
+ * @returns 实际的文件名（带扩展名）
+ */
+function getActualFileName(detailFolderName: string): string {
+  // 先尝试直接查找
+  if (detailFolderFileMap[detailFolderName]) {
+    return detailFolderFileMap[detailFolderName];
+  }
+  // 尝试去掉产品ID前缀后查找（如 01_detail_CV255125 -> detail_CV255125）
+  const withoutPrefix = detailFolderName.replace(/^\d+_/, '');
+  if (detailFolderFileMap[withoutPrefix]) {
+    return detailFolderFileMap[withoutPrefix];
+  }
+  // 默认返回去掉 detail_ 前缀的文件名
+  return `${detailFolderName.replace(/^(\d+_)?detail_/i, '').trim()}.webp`;
+}
+
+/**
+ * 获取显示名称（去掉扩展名）
+ * @param fileName 文件名
+ * @returns 显示名称
+ */
+function getDisplayName(fileName: string): string {
+  return fileName.replace(/\.webp$/i, '');
+}
+
+/**
  * 将文件夹名转换为文件名格式
- * 文件夹：detail_CP155130(RoundBase) -> 文件：CP155130(Round Base).webp
- * 规则：去掉 detail_ 前缀，在大写字母前添加空格（括号内）
+ * 使用实际的文件名映射表
  */
 function folderNameToFileName(folderName: string): string {
-  // 去掉 detail_ 前缀
-  let name = folderName.replace(/^detail_/i, '').trim();
-  
-  // 在括号内的驼峰命名中插入空格
-  name = name.replace(/\(([^)]+)\)/g, (match, content) => {
-    // 在大写字母前插入空格，但不在开头
-    const spaced = content.replace(/([a-z])([A-Z])/g, '$1 $2');
-    return `(${spaced})`;
-  });
-  
-  return name;
+  const actualFileName = getActualFileName(folderName);
+  return getDisplayName(actualFileName);
 }
 
 // 产品结构配置 - 基于实际 COS 上的文件夹结构
@@ -61,7 +240,7 @@ const productStructures: Record<string, string[]> = {
   "modular-combined-display": [
     "detail_ BridgePlate",
     "detail_4PositionSystem",
-    "detail_CV255125",
+    "01_detail_CV255125",
     "detail_HorizontalModularCombination",
     "detail_ModularCombination",
     "detail_SchematicDiagram",
@@ -238,11 +417,12 @@ export function readProductDirectory(
     const folders = productStructures[productId] || [];
     
     for (const folder of folders) {
-      // 将文件夹名转换为文件名（处理驼峰转空格）
-      const displayName = folderNameToFileName(folder);
+      // 使用实际的文件名映射
+      const actualFileName = getActualFileName(folder);
+      const displayName = getDisplayName(actualFileName);
       
-      // 生成缩略图URL（使用转换后的文件名）
-      const thumbnailUrl = `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(folder)}/${encodeURIComponent(displayName)}.webp`;
+      // 生成缩略图URL（使用实际的文件名）
+      const thumbnailUrl = `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(folder)}/${encodeURIComponent(actualFileName)}`;
       
       result.push({
         name: displayName,
@@ -255,16 +435,17 @@ export function readProductDirectory(
   } else {
     // 如果是子路径（进入了某个 detail_ 文件夹），返回该文件夹中的图片
     const detailFolderName = subPath[0];
-    const displayName = folderNameToFileName(detailFolderName);
+    const actualFileName = getActualFileName(detailFolderName);
+    const displayName = getDisplayName(actualFileName);
     
-    // 返回该文件夹中的图片（使用转换后的文件名）
+    // 返回该文件夹中的图片（使用实际的文件名）
     const images = [
       {
         name: displayName,
         type: 'image' as const,
-        path: [...subPath, `${displayName}.webp`].join('/'),
-        url: `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(detailFolderName)}/${encodeURIComponent(displayName)}.webp`,
-        fileName: `${displayName}.webp`,
+        path: [...subPath, actualFileName].join('/'),
+        url: `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(detailFolderName)}/${encodeURIComponent(actualFileName)}`,
+        fileName: actualFileName,
       }
     ];
     
@@ -301,11 +482,11 @@ export function getFolderThumbnail(productId: string, subPath: string[]): string
   }
 
   const detailFolderName = subPath[subPath.length - 1];
-  const displayName = folderNameToFileName(detailFolderName);
+  const actualFileName = getActualFileName(detailFolderName);
   const encodedFolder = encodeURIComponent(folderName);
   
   // 返回该 detail 文件夹的产品图片作为缩略图
-  return `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(detailFolderName)}/${encodeURIComponent(displayName)}.webp`;
+  return `${COS_BASE_URL}/${encodedFolder}/${encodeURIComponent(detailFolderName)}/${encodeURIComponent(actualFileName)}`;
 }
 
 /**
