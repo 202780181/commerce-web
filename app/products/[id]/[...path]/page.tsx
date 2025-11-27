@@ -74,9 +74,10 @@ export default function DynamicPathPage() {
 
   // 获取产品详情（线条图等）
   useEffect(() => {
-    if (isImageDetail && allImages.length > 0) {
-      const currentImage = allImages[currentImageIndex];
-      const productName = currentImage.name.replace(/\.(webp|jpg|jpeg|png|gif)$/i, '');
+    if (isImageDetail && pathSegments.length > 0) {
+      // 从路径中的最后一段（detail_XXX）提取产品名称
+      const lastSegment = pathSegments[pathSegments.length - 1];
+      const productName = lastSegment.replace(/^detail_/i, '').trim();
       
       fetch(`/api/products/detail?productId=${productId}&productName=${encodeURIComponent(productName)}`)
         .then(res => res.json())
@@ -89,24 +90,22 @@ export default function DynamicPathPage() {
           console.error('Error fetching product detail:', error);
         });
     }
-  }, [isImageDetail, allImages, currentImageIndex, productId]);
+  }, [isImageDetail, pathSegments, productId]);
 
   const fetchPathContent = async () => {
     try {
       setLoading(true);
       
-      // 检查最后一段是否为图片索引（纯数字）
+      // 检查最后一段路径
       const lastSegment = pathSegments[pathSegments.length - 1];
-      const imageIndex = parseInt(lastSegment);
       
-      if (!isNaN(imageIndex)) {
-        // 这是图片详情页
+      // 如果是 detail_ 开头的文件夹，直接显示详情页
+      if (lastSegment.startsWith('detail_')) {
         setIsImageDetail(true);
-        setCurrentImageIndex(imageIndex);
+        setCurrentImageIndex(0);
         
-        // 获取父路径的所有图片
-        const parentPath = pathSegments.slice(0, -1);
-        const response = await fetch(`/api/products/filesystem?productId=${productId}&path=${parentPath.join('/')}`);
+        // 获取该 detail 文件夹的图片
+        const response = await fetch(`/api/products/filesystem?productId=${productId}&path=${pathSegments.join('/')}`);
         const data = await response.json();
         
         const images = data.items.filter((item: FileSystemItem) => item.type === 'image');
@@ -135,12 +134,10 @@ export default function DynamicPathPage() {
     
     let currentPath = `/products/${productId}`;
     for (let i = 0; i < pathSegments.length; i++) {
-      // 跳过数字索引（图片详情）
-      if (isImageDetail && i === pathSegments.length - 1) {
-        break;
-      }
       currentPath += `/${pathSegments[i]}`;
-      breadcrumbs.push({ name: decodeURIComponent(pathSegments[i]), path: currentPath });
+      // 去掉 detail_ 前缀显示
+      const displayName = pathSegments[i].replace(/^detail_/i, '').trim();
+      breadcrumbs.push({ name: displayName, path: currentPath });
     }
     
     return breadcrumbs;
@@ -151,7 +148,7 @@ export default function DynamicPathPage() {
   // 如果是图片详情页
   if (isImageDetail && allImages.length > 0) {
     const currentImage = allImages[currentImageIndex];
-    const parentPath = `/products/${productId}/${pathSegments.slice(0, -1).join('/')}`;
+    const parentPath = `/products/${productId}`;
 
     return (
       <div className="min-h-screen bg-gray-50 pt-20">
@@ -163,16 +160,18 @@ export default function DynamicPathPage() {
             {breadcrumbs.map((crumb, index) => (
               <div key={index} className="flex items-center gap-2">
                 {index > 0 && <span className="text-gray-400">/</span>}
-                <Link
-                  href={crumb.path}
-                  className="text-gray-600 hover:text-purple-600 transition-colors"
-                >
-                  {crumb.name}
-                </Link>
+                {index === breadcrumbs.length - 1 ? (
+                  <span className="text-gray-900 font-medium">{crumb.name}</span>
+                ) : (
+                  <Link
+                    href={crumb.path}
+                    className="text-gray-600 hover:text-purple-600 transition-colors"
+                  >
+                    {crumb.name}
+                  </Link>
+                )}
               </div>
             ))}
-            <span className="text-gray-400">/</span>
-            <span className="text-gray-900 font-medium">{currentImage.name}</span>
           </div>
         </div>
 
@@ -461,7 +460,9 @@ export default function DynamicPathPage() {
                   <Link
                     href={
                       item.type === 'folder'
-                        ? `/products/${productId}/${pathSegments.join('/')}/${item.fileName}`
+                        ? pathSegments.length > 0
+                          ? `/products/${productId}/${pathSegments.join('/')}/${item.fileName}`
+                          : `/products/${productId}/${item.fileName}`
                         : `/products/${productId}/${pathSegments.join('/')}/${index - items.filter(i => i.type === 'folder').length}`
                     }
                   >

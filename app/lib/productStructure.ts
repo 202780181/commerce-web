@@ -195,6 +195,15 @@ export function findProductDetailByName(productId: string, productName: string):
     }
   }
   
+  // 匹配带有数字后缀的情况（如 CV10075.432 匹配 CV10075）
+  const baseSearchNameWithoutSuffix = baseSearchName.replace(/\.\d+$/, '');
+  for (const detail of allDetails) {
+    const baseName = normalize(detail.name).replace(/\([^)]*\)/g, '').replace(/\.\d+$/, '');
+    if (baseName === baseSearchNameWithoutSuffix || baseName.startsWith(baseSearchNameWithoutSuffix)) {
+      return detail;
+    }
+  }
+  
   return null;
 }
 
