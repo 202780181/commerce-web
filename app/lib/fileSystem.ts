@@ -14,7 +14,7 @@ interface ProductDetail {
   folderName: string;
   fileName: string;
   displayName: string;
-  imageUrl: string;
+  imageUrls: string[]; // 产品图片 URL 数组
   lineDrawingUrl?: string; // 可选的线条图 URL
   descriptionUrl?: string; // 可选的描述文件 URL
 }
@@ -48,12 +48,13 @@ export function readProductDirectory(
   // 如果是根目录，返回产品的 detail_ 文件夹列表
   if (subPath.length === 0) {
     for (const detail of product.details) {
+      // 显示所有有主图的产品详情
       result.push({
         name: detail.displayName,
         type: 'folder',
         path: detail.folderName,
         fileName: detail.folderName,
-        thumbnailUrl: detail.imageUrl,
+        thumbnailUrl: detail.imageUrls[0], // 使用第一张图片作为缩略图
       });
     }
   } else {
@@ -62,12 +63,16 @@ export function readProductDirectory(
     const detail = product.details.find(d => d.folderName === detailFolderName);
     
     if (detail) {
-      result.push({
-        name: detail.displayName,
-        type: 'image',
-        path: [...subPath, detail.fileName].join('/'),
-        url: detail.imageUrl,
-        fileName: detail.fileName,
+      // 返回所有图片
+      detail.imageUrls.forEach((url, index) => {
+        const fileName = url.split('/').pop() || `image-${index}.webp`;
+        result.push({
+          name: decodeURIComponent(fileName.replace(/\.webp$/i, '')),
+          type: 'image',
+          path: [...subPath, fileName].join('/'),
+          url: url,
+          fileName: fileName,
+        });
       });
     }
   }
@@ -100,7 +105,7 @@ export function getFolderThumbnail(productId: string, subPath: string[]): string
   const detailFolderName = subPath[subPath.length - 1];
   const detail = product.details.find(d => d.folderName === detailFolderName);
   
-  return detail ? detail.imageUrl : null;
+  return detail ? detail.imageUrls[0] : null;
 }
 
 /**

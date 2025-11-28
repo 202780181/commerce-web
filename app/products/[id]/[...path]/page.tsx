@@ -39,7 +39,7 @@ export default function DynamicPathPage() {
   const [productDetail, setProductDetail] = useState<{
     name: string;
     lineDrawing: string;
-    productImage: string;
+    productImages: string[]; // 改为数组
     description?: string;
   } | null>(null);
 
@@ -59,6 +59,8 @@ export default function DynamicPathPage() {
         .then(res => res.json())
         .then(data => {
           console.log('Product detail response:', data);
+          console.log('Has lineDrawing?', data.productDetail?.lineDrawing);
+          console.log('Has descriptionUrl?', data.productDetail?.descriptionUrl);
           if (data.productDetail) {
             const detail = data.productDetail;
             
@@ -191,22 +193,28 @@ export default function DynamicPathPage() {
               {/* Left: Thumbnail List */}
               <div className="col-span-1">
                 <div className="flex flex-col gap-2">
-                  {/* Gallery Image Thumbnail */}
-                  <button
-                    onClick={() => setDisplayMode('gallery')}
-                    className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                      displayMode === 'gallery'
-                        ? 'border-purple-600 shadow-md'
-                        : 'border-gray-200 hover:border-purple-300'
-                    }`}
-                    title="Gallery Image"
-                  >
-                    <img
-                      src={currentImage.url}
-                      alt="Gallery"
-                      className="w-full h-full object-cover"
-                    />
-                  </button>
+                  {/* All Gallery Images Thumbnails */}
+                  {allImages.map((img, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => {
+                        setCurrentImageIndex(idx);
+                        setDisplayMode('gallery');
+                      }}
+                      className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
+                        displayMode === 'gallery' && currentImageIndex === idx
+                          ? 'border-purple-600 shadow-md'
+                          : 'border-gray-200 hover:border-purple-300'
+                      }`}
+                      title={`Image ${idx + 1}`}
+                    >
+                      <img
+                        src={img.url}
+                        alt={`Thumbnail ${idx + 1}`}
+                        className="w-full h-full object-cover"
+                      />
+                    </button>
+                  ))}
 
                   {/* Line Drawing Thumbnail */}
                   {productDetail?.lineDrawing && (
@@ -230,7 +238,7 @@ export default function DynamicPathPage() {
               </div>
 
               {/* Main Display Area */}
-              <div className="col-span-7">
+              <div className={productDetail?.lineDrawing || productDetail?.description ? 'col-span-7' : 'col-span-11'}>
                 <motion.div
                   key={displayMode === 'gallery' ? `gallery-${currentImageIndex}` : displayMode === 'pdf' ? 'pdf' : 'detail'}
                   initial={{ opacity: 0 }}
@@ -294,18 +302,19 @@ export default function DynamicPathPage() {
               </div>
 
               {/* Right: Product Information */}
-              <div className="col-span-4">
-                <div className="bg-linear-to-br from-white to-gray-50 rounded-xl shadow-xl border border-gray-100 overflow-hidden sticky top-6">
-                  {/* Header Section */}
-                  <div className="bg-linear-to-r from-purple-600 to-blue-600 p-6">
-                    <h1 className="text-2xl font-bold text-white">
-                      {currentImage.name}
-                    </h1>
-                  </div>
-                  
-                  {/* Content Section */}
-                  <div className="p-6">
-                    {productDetail?.description && (
+              {(productDetail?.lineDrawing || productDetail?.description) && (
+                <div className="col-span-4">
+                  <div className="bg-linear-to-br from-white to-gray-50 rounded-xl shadow-xl border border-gray-100 overflow-hidden sticky top-6">
+                    {/* Header Section */}
+                    <div className="bg-linear-to-r from-purple-600 to-blue-600 p-6">
+                      <h1 className="text-2xl font-bold text-white">
+                        {currentImage.name}
+                      </h1>
+                    </div>
+                    
+                    {/* Content Section */}
+                    <div className="p-6">
+                      {productDetail?.description && (
                       <div>
                         <div className="flex items-center gap-2 mb-4">
                           <div className="w-1 h-6 bg-linear-to-b from-purple-600 to-blue-600 rounded-full"></div>
@@ -344,9 +353,10 @@ export default function DynamicPathPage() {
                         </div>
                       </div>
                     )}
+                    </div>
                   </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
         </section>
