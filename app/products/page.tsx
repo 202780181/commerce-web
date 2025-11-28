@@ -78,17 +78,15 @@ export default function Products() {
 									/>
 								</div>
 
-								{/* Product Info */}
-								<div className="p-6">
-									<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-										{product.name}
-									</h3>
-									{product.hasCategories && (
-										<p className="text-sm text-gray-500">
-											{product.categories?.length} classification
-										</p>
-									)}
-								</div>
+							{/* Product Info */}
+							<div className="p-6">
+								<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+									{product.name}
+								</h3>
+								<p className="text-sm text-gray-500">
+									{product.detailCount || 0} items
+								</p>
+							</div>
 							</Link>
 						))}
 					</div>

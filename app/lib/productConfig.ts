@@ -8,6 +8,7 @@ export interface Product {
   name: string;
   folderName: string;
   coverImage: string;
+  detailCount?: number; // 详情数量
 }
 
 interface ProductData {
@@ -32,6 +33,7 @@ export function getAllProducts(): Product[] {
       name: p.name,
       folderName: p.folderName,
       coverImage: p.coverImage,
+      detailCount: p.details?.length || 0,
     }))
     .sort((a, b) => a.index - b.index);
 }
