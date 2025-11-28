@@ -8,34 +8,9 @@ import Footer from "../../../components/Footer";
 import { motion } from "motion/react";
 import { usePageCache } from "../../../hooks/usePageCache";
 import ImageViewer from "../../../components/ImageViewer";
+import productMap from "../../../lib/productMap.json";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
-
-// 产品文件夹映射
-const productFolderMap: Record<string, string> = {
-  "modular-combined-display": "01 Modular Combined Display",
-  "quick-release-jaws-vise": "02 Quick Release Jaws Vise",
-  "manual-vise-series": "03 Manual Vise Series",
-  "pneumatic-vise-serieswith-pressurization": "04 Pneumatic Vise Series(With Pressurization",
-  "pneumatic-vise-seriespneumatic-type": "05 Pneumatic Vise Series(Pneumatic Type",
-  "zero-point-clampingaluminum-base": "06 Zero Point Clamping(Aluminum Base",
-  "zero-point-clampingsteel-base": "07 Zero Point Clamping(Steel Base)",
-  "high-precision-zero-point-clamping": "08 High Precision Zero Point Clamping",
-  "high-precision-pneumatic-zero-point-clamping": "09 High Precision Pneumatic Zero Point Clamping",
-  "pull-studs-series": "10 Pull Studs Series",
-  "dovetail-fixture": "11 Dovetail Fixture",
-  "er-clamping-series": "12 ER Clamping Series",
-  "modular-combination-series": "13 Modular Combination Series",
-  "modular-set-series": "14 Modular Set Series",
-  "l-bridge-plate-series": "15 L Bridge Plate Series",
-  "5axis-pyramid-series": "16 5Axis Pyramid Series",
-  "run_out-tester": "17 Run_out Tester",
-  "unilateral-positione": "18 Unilateral Positione",
-  "cnc-tombstone-series": "19 CNC Tombstone Series",
-  "precision-bench-vice": "20 Precision Bench Vice",
-  "hydraulic-bite-machine": "21 Hydraulic Bite Machine",
-  "pneumatic-single-hole-zero-plate-series": "22 Pneumatic Single Hole Zero Plate Series",
-};
 
 interface FileSystemItem {
   name: string;
@@ -152,7 +127,8 @@ export default function DynamicPathPage() {
   const buildBreadcrumbs = () => {
     const breadcrumbs = [{ name: 'Products', path: '/products' }];
     
-    const productName = productFolderMap[productId]?.replace(/^\d+\s+/, '') || productId;
+    const product = productMap[productId as keyof typeof productMap];
+    const productName = product?.name || productId;
     breadcrumbs.push({ name: productName, path: `/products/${productId}` });
     
     let currentPath = `/products/${productId}`;

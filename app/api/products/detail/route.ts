@@ -1,35 +1,28 @@
 import { NextRequest, NextResponse } from 'next/server';
+import productMapData from '../../../lib/productMap.json';
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
-// 产品文件夹映射
-const productFolderMap: Record<string, string> = {
-  "modular-combined-display": "01 Modular Combined Display",
-  "quick-release-jaws-vise": "02 Quick Release Jaws Vise",
-  "manual-vise-series": "03 Manual Vise Series",
-  "pneumatic-vise-serieswith-pressurization": "04 Pneumatic Vise Series(With Pressurization",
-  "pneumatic-vise-seriespneumatic-type": "05 Pneumatic Vise Series(Pneumatic Type",
-  "zero-point-clampingaluminum-base": "06 Zero Point Clamping(Aluminum Base",
-  "zero-point-clampingsteel-base": "07 Zero Point Clamping(Steel Base)",
-  "high-precision-zero-point-clamping": "08 High Precision Zero Point Clamping",
-  "high-precision-pneumatic-zero-point-clamping": "09 High Precision Pneumatic Zero Point Clamping",
-  "pull-studs-series": "10 Pull Studs Series",
-  "dovetail-fixture": "11 Dovetail Fixture",
-  "er-clamping-series": "12 ER Clamping Series",
-  "modular-combination-series": "13 Modular Combination Series",
-  "modular-set-series": "14 Modular Set Series",
-  "l-bridge-plate-series": "15 L Bridge Plate Series",
-  "5axis-pyramid-series": "16 5Axis Pyramid Series",
-  "run_out-tester": "17 Run_out Tester",
-  "unilateral-positione": "18 Unilateral Positione",
-  "cnc-tombstone-series": "19 CNC Tombstone Series",
-  "precision-bench-vice": "20 Precision Bench Vice",
-  "hydraulic-bite-machine": "21 Hydraulic Bite Machine",
-  "pneumatic-single-hole-zero-plate-series": "22 Pneumatic Single Hole Zero Plate Series",
-};
+// 定义类型
+interface ProductDetail {
+  folderName: string;
+  fileName: string;
+  displayName: string;
+  imageUrl: string;
+  lineDrawingUrl?: string;
+  descriptionUrl?: string;
+}
 
-// 文件夹名到实际文件名的映射（从 fileSystem.ts 导入的映射）
-import { detailFolderFileMap } from '../../../lib/fileSystem';
+interface Product {
+  id: string;
+  index: number;
+  folderName: string;
+  name: string;
+  coverImage: string;
+  details: ProductDetail[];
+}
+
+const productMap = productMapData as Record<string, Product>;
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;
@@ -44,30 +37,30 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    const folderName = productFolderMap[productId];
-    if (!folderName) {
+    // 从 productMap 获取产品信息
+    const product = productMap[productId as keyof typeof productMap];
+    if (!product) {
       return NextResponse.json({ productDetail: null });
     }
 
-    const encodedFolder = encodeURIComponent(folderName);
-    const encodedDetailFolder = encodeURIComponent(detailFolder);
-    
-    // 从映射表获取实际文件名
-    const actualFileName = detailFolderFileMap[detailFolder];
-    if (!actualFileName) {
+    // 查找匹配的 detail
+    const detail = product.details.find(d => d.folderName === detailFolder);
+    if (!detail) {
       return NextResponse.json({ productDetail: null });
     }
-    
+
     // 去掉扩展名得到基础文件名
-    const baseFileName = actualFileName.replace(/\.(webp|png|txt)$/i, '');
+    const baseFileName = detail.fileName.replace(/\.(webp|png)$/i, '');
+    const encodedFolder = encodeURIComponent(product.folderName);
+    const encodedDetailFolder = encodeURIComponent(detailFolder);
     
     // 构建文件 URLs
     const productDetail = {
-      name: detailFolder.replace(/^detail_/i, '').trim(),
+      name: detail.displayName,
       folderName: detailFolder,
-      productImage: `${COS_BASE_URL}/${encodedFolder}/${encodedDetailFolder}/${encodeURIComponent(baseFileName)}.webp`,
-      lineDrawing: `${COS_BASE_URL}/${encodedFolder}/${encodedDetailFolder}/${encodeURIComponent(baseFileName)}.png`,
-      descriptionUrl: `${COS_BASE_URL}/${encodedFolder}/${encodedDetailFolder}/${encodeURIComponent(baseFileName)}.txt`,
+      productImage: detail.imageUrl, // 使用 JSON 中的 imageUrl (webp优先)
+      lineDrawing: detail.lineDrawingUrl || `${COS_BASE_URL}/${encodedFolder}/${encodedDetailFolder}/${encodeURIComponent(baseFileName)}.png`, // 使用 lineDrawingUrl 或构建 png URL
+      descriptionUrl: detail.descriptionUrl || `${COS_BASE_URL}/${encodedFolder}/${encodedDetailFolder}/${encodeURIComponent(baseFileName)}.txt`, // 使用 descriptionUrl 或构建 txt URL
     };
     
     return NextResponse.json({ productDetail });
