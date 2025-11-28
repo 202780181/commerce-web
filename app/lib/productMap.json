@@ -7,25 +7,25 @@
     "coverImage": "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/cover/cover.webp",
     "details": [
       {
+        "folderName": "detail_ BridgePlate",
+        "fileName": "4Axis Bridge Plate Installed With 3Statio Vise.webp",
+        "displayName": "4Axis Bridge Plate Installed With 3Statio Vise",
+        "imageUrls": [
+          "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_%20BridgePlate/4Axis%20Bridge%20Plate%20Installed%20With%203Statio%20Vise.webp"
+        ]
+      },
+      {
         "folderName": "detail_4PositionSystem",
         "fileName": "5Axix 4Position System.webp",
-        "displayName": "4PositionSystem",
+        "displayName": "5Axix 4Position System",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_4PositionSystem/5Axix%204Position%20System.webp"
         ]
       },
       {
-        "folderName": "detail_BridgePlate",
-        "fileName": "4Axis Bridge Plate Installed With 3Statio Vise.webp",
-        "displayName": "BridgePlate",
-        "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_BridgePlate/4Axis%20Bridge%20Plate%20Installed%20With%203Statio%20Vise.webp"
-        ]
-      },
-      {
         "folderName": "detail_CV255125",
         "fileName": "5Axis Double Workstation install two CV255125 Vises.webp",
-        "displayName": "CV255125",
+        "displayName": "5Axis Double Workstation install two CV255125 Vises",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_CV255125/5Axis%20Double%20Workstation%20install%20two%20CV255125%20Vises.webp"
         ]
@@ -33,7 +33,7 @@
       {
         "folderName": "detail_HorizontalModularCombination",
         "fileName": "96mm Vertical And Horizontal Modular Combination.webp",
-        "displayName": "HorizontalModularCombination",
+        "displayName": "96mm Vertical And Horizontal Modular Combination",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_HorizontalModularCombination/96mm%20Vertical%20And%20Horizontal%20Modular%20Combination.webp"
         ]
@@ -41,7 +41,7 @@
       {
         "folderName": "detail_ModularCombination",
         "fileName": "4Axis Modular Combination Kit.webp",
-        "displayName": "ModularCombination",
+        "displayName": "4Axis Modular Combination Kit",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_ModularCombination/4Axis%20Modular%20Combination%20Kit.webp"
         ]
@@ -49,7 +49,7 @@
       {
         "folderName": "detail_PneumaticVises",
         "fileName": "4Axis Bridge Plate Installed With 3Station Pneumatic Vises.webp",
-        "displayName": "PneumaticVises",
+        "displayName": "4Axis Bridge Plate Installed With 3Station Pneumatic Vises",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_PneumaticVises/4Axis%20Bridge%20Plate%20Installed%20With%203Station%20Pneumatic%20Vises.webp"
         ]
@@ -57,7 +57,7 @@
       {
         "folderName": "detail_SchematicDiagram",
         "fileName": "96mm to 52mm Schematic Diagram.webp",
-        "displayName": "SchematicDiagram",
+        "displayName": "96mm to 52mm Schematic Diagram",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_SchematicDiagram/96mm%20to%2052mm%20Schematic%20Diagram.webp"
         ]
@@ -65,7 +65,7 @@
       {
         "folderName": "detail_SingleSide",
         "fileName": "4Axis Single-Side L-Bracket Assembly.webp",
-        "displayName": "SingleSide",
+        "displayName": "4Axis Single-Side L-Bracket Assembly",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_SingleSide/4Axis%20Single-Side%20L-Bracket%20Assembly.webp"
         ]
@@ -73,7 +73,7 @@
       {
         "folderName": "detail_twoCV155125",
         "fileName": "5Axis Dual Workstation install two CV255125 vises two CV155125 Vises.webp",
-        "displayName": "twoCV155125",
+        "displayName": "5Axis Dual Workstation install two CV255125 vises two CV155125 Vises",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_twoCV155125/5Axis%20Dual%20Workstation%20install%20two%20CV255125%20vises%20two%20CV155125%20Vises.webp"
         ]
@@ -81,7 +81,7 @@
       {
         "folderName": "detail_VerticalAndHorizontal",
         "fileName": "52mm and 96mm Vertical And Horizontal Zero Point Clamping.webp",
-        "displayName": "VerticalAndHorizontal",
+        "displayName": "52mm and 96mm Vertical And Horizontal Zero Point Clamping",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_VerticalAndHorizontal/52mm%20and%2096mm%20Vertical%20And%20Horizontal%20Zero%20Point%20Clamping.webp"
         ]
@@ -89,7 +89,7 @@
       {
         "folderName": "detail_ZeroPointClamping",
         "fileName": "96mm Integrated Vertical And Horizontal Zero Point Clamping.webp",
-        "displayName": "ZeroPointClamping",
+        "displayName": "96mm Integrated Vertical And Horizontal Zero Point Clamping",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/01%20Modular%205Axis%20Pyramid/detail_ZeroPointClamping/96mm%20Integrated%20Vertical%20And%20Horizontal%20Zero%20Point%20Clamping.webp"
         ]
@@ -106,7 +106,7 @@
       {
         "folderName": "detail_Accessory Series",
         "fileName": "Aluminum Jaw Quick Release Kit.webp",
-        "displayName": "Accessory Series",
+        "displayName": "Aluminum Jaw Quick Release Kit",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_Accessory%20Series/Aluminum%20Jaw%20Quick%20Release%20Kit.webp",
           "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_Accessory%20Series/Aluminum%20Jaws.webp",
@@ -117,177 +117,177 @@
       {
         "folderName": "detail_CP155130(RoundBase)",
         "fileName": "CP155130(Round Base).webp",
-        "displayName": "CP155130(RoundBase)",
+        "displayName": "CP155130(Round Base)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_CP155130(RoundBase)/CP155130(Round%20Base).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_CP155130%28RoundBase%29/CP155130%28Round%20Base%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_CP155130(RoundBase)/CP155130(Round%20Base).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_CP155130(RoundBase)/CP155130(Round%20Base).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_CP155130%28RoundBase%29/CP155130%28Round%20Base%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_CP155130%28RoundBase%29/CP155130%28Round%20Base%29.txt"
       },
       {
         "folderName": "detail_HP10077(AluminumJaw)",
         "fileName": "HP10077(Aluminum Jaw).webp",
-        "displayName": "HP10077(AluminumJaw)",
+        "displayName": "HP10077(Aluminum Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077(AluminumJaw)/HP10077(Aluminum%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077%28AluminumJaw%29/HP10077%28Aluminum%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077(AluminumJaw)/HP10077(Aluminum%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077(AluminumJaw)/HP10077(Aluminum%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077%28AluminumJaw%29/HP10077%28Aluminum%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077%28AluminumJaw%29/HP10077%28Aluminum%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP10077(SteelJaw)",
         "fileName": "HP10077(Steel Jaw).webp",
-        "displayName": "HP10077(SteelJaw)",
+        "displayName": "HP10077(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077(SteelJaw)/HP10077(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077%28SteelJaw%29/HP10077%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077(SteelJaw)/HP10077(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077(SteelJaw)/HP10077(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077%28SteelJaw%29/HP10077%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP10077%28SteelJaw%29/HP10077%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP15077 (DoubleJaw)",
         "fileName": "HP15077 (Double Jaw).webp",
-        "displayName": "HP15077 (DoubleJaw)",
+        "displayName": "HP15077 (Double Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%20(DoubleJaw)/HP15077%20(Double%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%20%28DoubleJaw%29/HP15077%20%28Double%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%20(DoubleJaw)/HP15077%20(Double%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%20(DoubleJaw)/HP15077%20(Double%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%20%28DoubleJaw%29/HP15077%20%28Double%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%20%28DoubleJaw%29/HP15077%20%28Double%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP15077(AluminumJaw)",
         "fileName": "HP15077(Aluminum Jaw).webp",
-        "displayName": "HP15077(AluminumJaw)",
+        "displayName": "HP15077(Aluminum Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077(AluminumJaw)/HP15077(Aluminum%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%28AluminumJaw%29/HP15077%28Aluminum%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077(AluminumJaw)/HP15077(Aluminum%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077(AluminumJaw)/HP15077(Aluminum%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%28AluminumJaw%29/HP15077%28Aluminum%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%28AluminumJaw%29/HP15077%28Aluminum%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP15077(SteelJaw)",
         "fileName": "HP15077(Steel Jaw).webp",
-        "displayName": "HP15077(SteelJaw)",
+        "displayName": "HP15077(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077(SteelJaw)/HP15077(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%28SteelJaw%29/HP15077%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077(SteelJaw)/HP15077(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077(SteelJaw)/HP15077(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%28SteelJaw%29/HP15077%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP15077%28SteelJaw%29/HP15077%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP155130(AluminumJaw)",
         "fileName": "HP155130(Aluminum Jaw).webp",
-        "displayName": "HP155130(AluminumJaw)",
+        "displayName": "HP155130(Aluminum Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(AluminumJaw)/HP155130(Aluminum%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28AluminumJaw%29/HP155130%28Aluminum%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(AluminumJaw)/HP155130(Aluminum%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(AluminumJaw)/HP155130(Aluminum%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28AluminumJaw%29/HP155130%28Aluminum%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28AluminumJaw%29/HP155130%28Aluminum%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP155130(Double)",
         "fileName": "HP155130(Double Station).webp",
-        "displayName": "HP155130(Double)",
+        "displayName": "HP155130(Double Station)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(Double)/HP155130(Double%20Station).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28Double%29/HP155130%28Double%20Station%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(Double)/HP155130(Double%20Station).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(Double)/HP155130(Double%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28Double%29/HP155130%28Double%20Station%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28Double%29/HP155130%28Double%20Station%29.txt"
       },
       {
         "folderName": "detail_HP155130(SteelJaw)",
         "fileName": "HP155130(Steel Jaw).webp",
-        "displayName": "HP155130(SteelJaw)",
+        "displayName": "HP155130(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(SteelJaw)/HP155130(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28SteelJaw%29/HP155130%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(SteelJaw)/HP155130(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130(SteelJaw)/HP155130(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28SteelJaw%29/HP155130%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP155130%28SteelJaw%29/HP155130%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP255130 ( BaseSeries)",
         "fileName": "HP255130 ( Base Series).webp",
-        "displayName": "HP255130 ( BaseSeries)",
+        "displayName": "HP255130 ( Base Series)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(%20BaseSeries)/HP255130%20(%20Base%20Series).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28%20BaseSeries%29/HP255130%20%28%20Base%20Series%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(%20BaseSeries)/HP255130%20(%20Base%20Series).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(%20BaseSeries)/HP255130%20(%20Base%20Series).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28%20BaseSeries%29/HP255130%20%28%20Base%20Series%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28%20BaseSeries%29/HP255130%20%28%20Base%20Series%29.txt"
       },
       {
         "folderName": "detail_HP255130 (DoubleStation)",
         "fileName": "HP255130(Double).webp",
-        "displayName": "HP255130 (DoubleStation)",
+        "displayName": "HP255130(Double)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(DoubleStation)/HP255130(Double).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28DoubleStation%29/HP255130%28Double%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(DoubleStation)/HP255130%20(Double%20Station).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(DoubleStation)/HP255130%20(Double%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28DoubleStation%29/HP255130%20%28Double%20Station%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28DoubleStation%29/HP255130%20%28Double%20Station%29.txt"
       },
       {
         "folderName": "detail_HP255130 (SteelJaw)",
         "fileName": "HP255130(Steel Jaw).webp",
-        "displayName": "HP255130 (SteelJaw)",
+        "displayName": "HP255130(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(SteelJaw)/HP255130(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28SteelJaw%29/HP255130%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(SteelJaw)/HP255130%20(Steel%20Jaw)%20.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20(SteelJaw)/HP255130%20(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28SteelJaw%29/HP255130%20%28Steel%20Jaw%29%20.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%20%28SteelJaw%29/HP255130%20%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP255130(AluminumJaw)",
         "fileName": "HP255130(Aluminum Jaw).webp",
-        "displayName": "HP255130(AluminumJaw)",
+        "displayName": "HP255130(Aluminum Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130(AluminumJaw)/HP255130(Aluminum%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%28AluminumJaw%29/HP255130%28Aluminum%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130(AluminumJaw)/HP255130(Aluminum%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130(AluminumJaw)/HP255130(Aluminum%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%28AluminumJaw%29/HP255130%28Aluminum%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP255130%28AluminumJaw%29/HP255130%28Aluminum%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP300160(AluminumJaw)",
         "fileName": "HP300160(Aluminum Jaw).webp",
-        "displayName": "HP300160(AluminumJaw)",
+        "displayName": "HP300160(Aluminum Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(AluminumJaw)/HP300160(Aluminum%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28AluminumJaw%29/HP300160%28Aluminum%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(AluminumJaw)/HP300160(Aluminum%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(AluminumJaw)/HP300160(Aluminum%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28AluminumJaw%29/HP300160%28Aluminum%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28AluminumJaw%29/HP300160%28Aluminum%20Jaw%29.txt"
       },
       {
         "folderName": "detail_HP300160(Double)",
         "fileName": "HP300160(Double Station).webp",
-        "displayName": "HP300160(Double)",
+        "displayName": "HP300160(Double Station)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(Double)/HP300160(Double%20Station).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28Double%29/HP300160%28Double%20Station%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(Double)/HP300160(Double%20Station).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(Double)/HP300160(Double%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28Double%29/HP300160%28Double%20Station%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28Double%29/HP300160%28Double%20Station%29.txt"
       },
       {
         "folderName": "detail_HP300160(SteelJaw)",
         "fileName": "HP300160(Steel Jaw).webp",
-        "displayName": "HP300160(SteelJaw)",
+        "displayName": "HP300160(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(SteelJaw)/HP300160(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28SteelJaw%29/HP300160%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(SteelJaw)/HP300160%20(Steel%20Jaw)%20%20%20%20.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(SteelJaw)/HP300160(Steel%20Jaw%EF%BC%89.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28SteelJaw%29/HP300160%20%28Steel%20Jaw%29%20%20%20%20.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28SteelJaw%29/HP300160%28Steel%20Jaw%EF%BC%89.txt"
       },
       {
         "folderName": "detail_HP300160(WithBase)",
         "fileName": "HP300160 ( Base Series).webp",
-        "displayName": "HP300160(WithBase)",
+        "displayName": "HP300160 ( Base Series)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(WithBase)/HP300160%20(%20Base%20Series).webp"
+          "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28WithBase%29/HP300160%20%28%20Base%20Series%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(WithBase)/HP300160%20(%20Base%20Series)%20%20.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160(WithBase)/HP300160%20(%20Base%20Series).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28WithBase%29/HP300160%20%28%20Base%20Series%29%20%20.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_HP300160%28WithBase%29/HP300160%20%28%20Base%20Series%29.txt"
       },
       {
         "folderName": "detail_Vise Operating Instructions",
         "fileName": "Aluminum Soft Jaw.webp",
-        "displayName": "Vise Operating Instructions",
+        "displayName": "Aluminum Soft Jaw",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_Vise%20Operating%20Instructions/Aluminum%20Soft%20Jaw.webp",
           "https://cdn.gzxfjxyxgs.com/products/02%20Quick%20Release%20Jaws%20Vise/detail_Vise%20Operating%20Instructions/Double%20Station%20Vice%20.webp",
@@ -307,7 +307,7 @@
       {
         "folderName": "detail_Accessory Series",
         "fileName": "Screw Kit.webp",
-        "displayName": "Accessory Series",
+        "displayName": "Screw Kit",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_Accessory%20Series/Screw%20Kit.webp",
           "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_Accessory%20Series/Vise%20clamp%20mounting%20block.webp",
@@ -327,57 +327,57 @@
       {
         "folderName": "detail_CV15075",
         "fileName": "CV15075(Steel Jaw).webp",
-        "displayName": "CV15075",
+        "displayName": "CV15075(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV15075/CV15075(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV15075/CV15075%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV15075/CV15075(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV15075/CV15075(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV15075/CV15075%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV15075/CV15075%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_CV155125",
         "fileName": "CV155125(Steel Jaw).webp",
-        "displayName": "CV155125",
+        "displayName": "CV155125(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV155125/CV155125(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV155125/CV155125%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV155125/CV155125(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV155125/CV155125(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV155125/CV155125%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV155125/CV155125%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_CV255125",
         "fileName": "CV255125(Steel Jaw).webp",
-        "displayName": "CV255125",
+        "displayName": "CV255125(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV255125/CV255125(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV255125/CV255125%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV255125/CV255125(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV255125/CV255125(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV255125/CV255125%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_CV255125/CV255125%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_DV155125",
         "fileName": "DV155125(Steel Jaw).webp",
-        "displayName": "DV155125",
+        "displayName": "DV155125(Steel Jaw)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_DV155125/DV155125(Steel%20Jaw).webp"
+          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_DV155125/DV155125%28Steel%20Jaw%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_DV155125/DV155125(Steel%20Jaw).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_DV155125/DV155125(Steel%20Jaw).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_DV155125/DV155125%28Steel%20Jaw%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_DV155125/DV155125%28Steel%20Jaw%29.txt"
       },
       {
         "folderName": "detail_TB255125",
         "fileName": "TB255125(Double Station).webp",
-        "displayName": "TB255125",
+        "displayName": "TB255125(Double Station)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_TB255125/TB255125(Double%20Station).webp"
+          "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_TB255125/TB255125%28Double%20Station%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_TB255125/TB255125(Double%20Station).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_TB255125/TB255125(Double%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_TB255125/TB255125%28Double%20Station%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_TB255125/TB255125%28Double%20Station%29.txt"
       },
       {
         "folderName": "detail_Vise Operating Instructions",
         "fileName": "Jaw camps cylindrical objects with adjustable range, gripping depth 4.0mm.webp",
-        "displayName": "Vise Operating Instructions",
+        "displayName": "Jaw camps cylindrical objects with adjustable range, gripping depth 4.0mm",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_Vise%20Operating%20Instructions/Jaw%20camps%20cylindrical%20objects%20with%20adjustable%20range%2C%20gripping%20depth%204.0mm.webp",
           "https://cdn.gzxfjxyxgs.com/products/03%20Manual%20Vise%20Series/detail_Vise%20Operating%20Instructions/Jaw%20Installation%20Diagram.webp"
@@ -395,12 +395,12 @@
       {
         "folderName": "detail_Pneumatic Vice",
         "fileName": "AH160(Pneumatic Vice).webp",
-        "displayName": "Pneumatic Vice",
+        "displayName": "AH160(Pneumatic Vice)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/04Pneumatic%20Vise%20Series(With%20Pressurization%EF%BC%89/detail_Pneumatic%20Vice/AH160(Pneumatic%20Vice).webp"
+          "https://cdn.gzxfjxyxgs.com/products/04Pneumatic%20Vise%20Series%28With%20Pressurization%EF%BC%89/detail_Pneumatic%20Vice/AH160%28Pneumatic%20Vice%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/04Pneumatic%20Vise%20Series(With%20Pressurization%EF%BC%89/detail_Pneumatic%20Vice/AH160(Pneumatic%20Vice).png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/04Pneumatic%20Vise%20Series(With%20Pressurization%EF%BC%89/detail_Pneumatic%20Vice/AH160(Pneumatic%20Vice).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/04Pneumatic%20Vise%20Series%28With%20Pressurization%EF%BC%89/detail_Pneumatic%20Vice/AH160%28Pneumatic%20Vice%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/04Pneumatic%20Vise%20Series%28With%20Pressurization%EF%BC%89/detail_Pneumatic%20Vice/AH160%28Pneumatic%20Vice%29.txt"
       }
     ]
   },
@@ -416,27 +416,27 @@
         "fileName": "AR155-I.webp",
         "displayName": "AR155-I",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_AR155-I/AR155-I.webp"
+          "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_AR155-I/AR155-I.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_AR155-I/AR155-I.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_AR155-I/AR155-I.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_AR155-I/AR155-I.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_AR155-I/AR155-I.txt"
       },
       {
         "folderName": "detail_AR155-II",
         "fileName": "AR155-II.webp",
         "displayName": "AR155-II",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_AR155-II/AR155-II.webp"
+          "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_AR155-II/AR155-II.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_AR155-II/AR155-II.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_AR155-II/AR155-II.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_AR155-II/AR155-II.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_AR155-II/AR155-II.txt"
       },
       {
         "folderName": "detail_Schematic diagram",
         "fileName": "Jaw, Assembly And Disasse nbly Diagram.webp",
-        "displayName": "Schematic diagram",
+        "displayName": "Jaw, Assembly And Disasse nbly Diagram",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series(Pneumatic%20Type%EF%BC%89/detail_Schematic%20diagram/Jaw%2C%20Assembly%20And%20Disasse%20nbly%20Diagram.webp"
+          "https://cdn.gzxfjxyxgs.com/products/05%20Pneumatic%20Vise%20Series%28Pneumatic%20Type%EF%BC%89/detail_Schematic%20diagram/Jaw%2C%20Assembly%20And%20Disasse%20nbly%20Diagram.webp"
         ]
       }
     ]
@@ -453,20 +453,20 @@
         "fileName": "TA52-108.webp",
         "displayName": "TA52-108",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping(Aluminum%20Base%EF%BC%89/detail_TA52-108/TA52-108.webp"
+          "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base%EF%BC%89/detail_TA52-108/TA52-108.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping(Aluminum%20Base%EF%BC%89/detail_TA52-108/TA52-108.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping(Aluminum%20Base%EF%BC%89/detail_TA52-108/TA52-108.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base%EF%BC%89/detail_TA52-108/TA52-108.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base%EF%BC%89/detail_TA52-108/TA52-108.txt"
       },
       {
         "folderName": "detail_TA9652",
         "fileName": "TA9652-155.webp",
-        "displayName": "TA9652",
+        "displayName": "TA9652-155",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping(Aluminum%20Base%EF%BC%89/detail_TA9652/TA9652-155.webp"
+          "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base%EF%BC%89/detail_TA9652/TA9652-155.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping(Aluminum%20Base%EF%BC%89/detail_TA9652/TA9652-155.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping(Aluminum%20Base%EF%BC%89/detail_TA9652/TA9652-155.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base%EF%BC%89/detail_TA9652/TA9652-155.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/06%20Zero%20Point%20Clamping%28Aluminum%20Base%EF%BC%89/detail_TA9652/TA9652-155.txt"
       }
     ]
   },
@@ -482,180 +482,180 @@
         "fileName": "TO96-200.webp",
         "displayName": "TO96-200",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO96-200/TO96-200.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO96-200/TO96-200.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO96-200/TO96-200.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO96-200/TO96-200.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO96-200/TO96-200.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO96-200/TO96-200.txt"
       },
       {
         "folderName": "detail_TO96130-255",
         "fileName": "TO96130-255.webp",
         "displayName": "TO96130-255",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO96130-255/TO96130-255.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO96130-255/TO96130-255.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO96130-255/TO96130-255.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO96130-255/TO96130-255.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO96130-255/TO96130-255.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO96130-255/TO96130-255.txt"
       },
       {
         "folderName": "detail_TO9652-200",
         "fileName": "TO9652-200.webp",
         "displayName": "TO9652-200",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO9652-200/TO9652-200.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO9652-200/TO9652-200.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO9652-200/TO9652-200.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TO9652-200/TO9652-200.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO9652-200/TO9652-200.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TO9652-200/TO9652-200.txt"
       },
       {
         "folderName": "detail_TS130-195",
         "fileName": "TS130-195.webp",
         "displayName": "TS130-195",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS130-195/TS130-195.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS130-195/TS130-195.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS130-195/TS130-195.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS130-195/TS130-195.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS130-195/TS130-195.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS130-195/TS130-195.txt"
       },
       {
         "folderName": "detail_TS52-108_1",
         "fileName": "TS52-108.webp",
-        "displayName": "TS52-108_1",
+        "displayName": "TS52-108",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-108_1/TS52-108.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-108_1/TS52-108.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-108_1/TS52-108.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-108_1/TS52-108.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-108_1/TS52-108.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-108_1/TS52-108.txt"
       },
       {
         "folderName": "detail_TS52-120",
         "fileName": "TS52-120.webp",
         "displayName": "TS52-120",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-120/TS52-120.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-120/TS52-120.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-120/TS52-120.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-120/TS52-120.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-120/TS52-120.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-120/TS52-120.txt"
       },
       {
         "folderName": "detail_TS52-170",
         "fileName": "TS52-170.webp",
         "displayName": "TS52-170",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-170/TS52-170.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-170./TS52-170.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-170/TS52-170.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-170/TS52-170.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-170./TS52-170.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-170./TS52-170.txt"
       },
       {
         "folderName": "detail_TS52-210",
         "fileName": "TS52-210.webp",
         "displayName": "TS52-210",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-210/TS52-210.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-210/TS52-210.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-210/TS52-210.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-210/TS52-210.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-210/TS52-210.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-210/TS52-210.txt"
       },
       {
         "folderName": "detail_TS52-210BS",
         "fileName": "TS52-210BS.webp",
         "displayName": "TS52-210BS",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-210BS/TS52-210BS.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-210BS/TS52-210BS.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-210BS/TS52-210BS.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-210BS/TS52-210BS.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-210BS/TS52-210BS.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-210BS/TS52-210BS.txt"
       },
       {
         "folderName": "detail_TS52-96",
         "fileName": "TS52-96.webp",
         "displayName": "TS52-96",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-96/TS52-96.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-96/TS52-96.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-96/TS52-96.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS52-96/TS52-96.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-96/TS52-96.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS52-96/TS52-96.txt"
       },
       {
         "folderName": "detail_TS96-155",
         "fileName": "TS96-155.webp",
         "displayName": "TS96-155",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-155/TS96-155.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-155/TS96-155.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-155/TS96-155.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-155/TS96-155.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-155/TS96-155.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-155/TS96-155.txt"
       },
       {
         "folderName": "detail_TS96-178",
         "fileName": "TS96-178.webp",
         "displayName": "TS96-178",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-178/TS96-178.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-178/TS96-178.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-178/TS96-178.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-178/TS96-178.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-178/TS96-178.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-178/TS96-178.txt"
       },
       {
         "folderName": "detail_TS96-200",
         "fileName": "TS96-200.webp",
         "displayName": "TS96-200",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-200/TS96-200.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-200/TS96-200.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-200/TS96-200.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-200/TS96-200.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-200/TS96-200.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-200/TS96-200.txt"
       },
       {
         "folderName": "detail_TS96-340",
         "fileName": "TS96-340.webp",
         "displayName": "TS96-340",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-340/TS96-340.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-340/TS96-340.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-340/TS96-340.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-340/TS96-340.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-340/TS96-340.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-340/TS96-340.txt"
       },
       {
         "folderName": "detail_TS96-340BS",
         "fileName": "TS96-340BS.webp",
         "displayName": "TS96-340BS",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-340BS/TS96-340BS.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-340BS/TS96-340BS.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-340BS/TS96-340BS.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96-340BS/TS96-340BS.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-340BS/TS96-340BS.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96-340BS/TS96-340BS.txt"
       },
       {
         "folderName": "detail_TS96130-195",
         "fileName": "TS96130-195.webp",
         "displayName": "TS96130-195",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96130-195/TS96130-195.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96130-195/TS96130-195.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96130-195/TS96130-195.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS96130-195/TS96130-195.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96130-195/TS96130-195.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS96130-195/TS96130-195.txt"
       },
       {
         "folderName": "detail_TS9652",
         "fileName": "TS9652.webp",
         "displayName": "TS9652",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS9652/TS9652.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS9652/TS9652.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS9652/TS9652.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS9652/TS9652.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS9652/TS9652.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS9652/TS9652.txt"
       },
       {
         "folderName": "detail_TS9652-200",
         "fileName": "TS9652-200.webp",
         "displayName": "TS9652-200",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS9652-200/TS9652-200.webp"
+          "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS9652-200/TS9652-200.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS9652-200/TS9652-200.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping(Steel%20Base)/detail_TS9652-200/TS9652-200.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS9652-200/TS9652-200.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/07%20Zero%20Point%20Clamping%28Steel%20Base%29/detail_TS9652-200/TS9652-200.txt"
       }
     ]
   },
@@ -837,7 +837,7 @@
       {
         "folderName": "detail_PM96-PullStuds",
         "fileName": "PM96-Pull Studs.webp",
-        "displayName": "PM96-PullStuds",
+        "displayName": "PM96-Pull Studs",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/10%20Pull%20Studs%20Series/detail_PM96-PullStuds/PM96-Pull%20Studs.webp"
         ],
@@ -847,7 +847,7 @@
       {
         "folderName": "detail_TS52-PullStuds",
         "fileName": "TS52-Pull Studs.webp",
-        "displayName": "TS52-PullStuds",
+        "displayName": "TS52-Pull Studs",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/10%20Pull%20Studs%20Series/detail_TS52-PullStuds/TS52-Pull%20Studs.webp"
         ],
@@ -857,7 +857,7 @@
       {
         "folderName": "detail_TS96-PullStuds",
         "fileName": "TS96-Pull Studs.webp",
-        "displayName": "TS96-PullStuds",
+        "displayName": "TS96-Pull Studs",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/10%20Pull%20Studs%20Series/detail_TS96-PullStuds/TS96-Pull%20Studs.webp"
         ],
@@ -1072,7 +1072,7 @@
       {
         "folderName": "detail_L170_108",
         "fileName": "L170.webp",
-        "displayName": "L170_108",
+        "displayName": "L170",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/15%20L%20Bridge%20Plate%20Series/detail_L170_108/L170.webp"
         ],
@@ -1082,7 +1082,7 @@
       {
         "folderName": "detail_L200_155",
         "fileName": "L200.webp",
-        "displayName": "L200_155",
+        "displayName": "L200",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/15%20L%20Bridge%20Plate%20Series/detail_L200_155/L200.webp"
         ],
@@ -1092,9 +1092,9 @@
       {
         "folderName": "detail_TS9652",
         "fileName": "TS9652(L板).webp",
-        "displayName": "TS9652",
+        "displayName": "TS9652(L板)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/15%20L%20Bridge%20Plate%20Series/detail_TS9652/TS9652(L%E6%9D%BF).webp"
+          "https://cdn.gzxfjxyxgs.com/products/15%20L%20Bridge%20Plate%20Series/detail_TS9652/TS9652%28L%E6%9D%BF%29.webp"
         ],
         "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/15%20L%20Bridge%20Plate%20Series/detail_TS9652/TS9652.png"
       }
@@ -1110,7 +1110,7 @@
       {
         "folderName": "detail_TO96-296（HallowType）",
         "fileName": "TO96-276（Hallow Type）.webp",
-        "displayName": "TO96-296（HallowType）",
+        "displayName": "TO96-276（Hallow Type）",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TO96-296%EF%BC%88HallowType%EF%BC%89/TO96-276%EF%BC%88Hallow%20Type%EF%BC%89.webp"
         ],
@@ -1131,60 +1131,60 @@
         "fileName": "TS52-215(Square).webp",
         "displayName": "TS52-215(Square)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-215(Square)/TS52-215(Square).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-215%28Square%29/TS52-215%28Square%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-215(Square)/TS52-215.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-215(Square)/TS52-215(Square).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-215%28Square%29/TS52-215.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-215%28Square%29/TS52-215%28Square%29.txt"
       },
       {
         "folderName": "detail_TS52-3P(3 Station)",
         "fileName": "TS52-3P(3 Station).webp",
         "displayName": "TS52-3P(3 Station)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-3P(3%20Station)/TS52-3P(3%20Station).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-3P%283%20Station%29/TS52-3P%283%20Station%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-3P(3%20Station)/TS52-3P.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-3P(3%20Station)/TS52-3P(3%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-3P%283%20Station%29/TS52-3P.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS52-3P%283%20Station%29/TS52-3P%283%20Station%29.txt"
       },
       {
         "folderName": "detail_TS96-276(Circle)",
         "fileName": "TS96-276(Circle).webp",
         "displayName": "TS96-276(Circle)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276(Circle)/TS96-276(Circle).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276%28Circle%29/TS96-276%28Circle%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276(Circle)/TS96-276.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276(Circle)/TS96-276(Circle).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276%28Circle%29/TS96-276.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276%28Circle%29/TS96-276%28Circle%29.txt"
       },
       {
         "folderName": "detail_TS96-276(Square)",
         "fileName": "TS96-276(Square).webp",
         "displayName": "TS96-276(Square)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276(Square)/TS96-276(Square).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276%28Square%29/TS96-276%28Square%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276(Square)/TS96-276.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276(Square)/TS96-276(Square).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276%28Square%29/TS96-276.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-276%28Square%29/TS96-276%28Square%29.txt"
       },
       {
         "folderName": "detail_TS96-3P(3 Station)",
         "fileName": "TS96-3P(3 Station).webp",
         "displayName": "TS96-3P(3 Station)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-3P(3%20Station)/TS96-3P(3%20Station).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-3P%283%20Station%29/TS96-3P%283%20Station%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-3P(3%20Station)/TS96-3P.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-3P(3%20Station)/TS96-3P(3%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-3P%283%20Station%29/TS96-3P.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-3P%283%20Station%29/TS96-3P%283%20Station%29.txt"
       },
       {
         "folderName": "detail_TS96-4P(4Station)",
         "fileName": "TS96-4P(4 Station).webp",
-        "displayName": "TS96-4P(4Station)",
+        "displayName": "TS96-4P(4 Station)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-4P(4Station)/TS96-4P(4%20Station).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-4P%284Station%29/TS96-4P%284%20Station%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-4P(4Station)/TS96-4P.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-4P(4Station)/TS96-4P(4%20Station).txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-4P%284Station%29/TS96-4P.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS96-4P%284Station%29/TS96-4P%284%20Station%29.txt"
       },
       {
         "folderName": "detail_TS9652",
@@ -1200,9 +1200,9 @@
         "fileName": "TS9652(Circlr).webp",
         "displayName": "TS9652(Circlr)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS9652(Circlr)/TS9652(Circlr).webp"
+          "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS9652%28Circlr%29/TS9652%28Circlr%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS9652(Circlr)/TS9652(Circlr).png"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/16%205Axis%20Pyramid%20Series/detail_TS9652%28Circlr%29/TS9652%28Circlr%29.png"
       }
     ]
   },
@@ -1216,7 +1216,7 @@
       {
         "folderName": "detail_BT40Standard",
         "fileName": "1.webp",
-        "displayName": "BT40Standard",
+        "displayName": "1",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/1.webp"
         ],
@@ -1226,7 +1226,7 @@
       {
         "folderName": "detail_Hand Type",
         "fileName": "Runout-tester.webp",
-        "displayName": "Hand Type",
+        "displayName": "Runout-tester",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/Runout-tester.webp"
         ],
@@ -1264,7 +1264,7 @@
       {
         "folderName": "detail_TS96-HM400-3p",
         "fileName": "TS96-HM400-3p.487.webp",
-        "displayName": "TS96-HM400-3p",
+        "displayName": "TS96-HM400-3p.487",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/19%20CNC%20Tombstone%20Series/detail_TS96-HM400-3p/TS96-HM400-3p.487.webp"
         ],
@@ -1274,7 +1274,7 @@
       {
         "folderName": "detail_TS96-HM400-4P",
         "fileName": "TS96-HM400.484.webp",
-        "displayName": "TS96-HM400-4P",
+        "displayName": "TS96-HM400.484",
         "imageUrls": [
           "https://cdn.gzxfjxyxgs.com/products/19%20CNC%20Tombstone%20Series/detail_TS96-HM400-4P/TS96-HM400.484.webp"
         ],

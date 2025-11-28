@@ -8,6 +8,19 @@ const __dirname = path.dirname(__filename);
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 const PRODUCTS_DIR = path.join(__dirname, '../products');
 
+// 手动编码 URL 组件（包括括号）
+function encodeURLComponent(str) {
+  return encodeURIComponent(str)
+    .replace(/\(/g, '%28')
+    .replace(/\)/g, '%29');
+}
+
+// COS 上实际的文件夹名称映射（当本地文件夹名与 COS 不一致时）
+const cosFolderNameMap = {
+  'detail_TS52-170': 'detail_TS52-170.',
+  // 如果发现更多不一致，在这里添加
+};
+
 // 产品ID映射
 const productIdMap = {
   "01 Modular 5Axis Pyramid": "modular-5axis-pyramid",
@@ -79,26 +92,30 @@ function scanProducts() {
         continue;
       }
       
-      // displayName 从文件夹名提取（去掉 detail_ 前缀）
-      const displayName = item.replace(/^detail_/, '');
-      const encodedFolder = encodeURIComponent(folderName);
-      const encodedDetail = encodeURIComponent(item);
+      // displayName 从第一个 webp 文件名提取（去掉 .webp 后缀）
+      const displayName = webpFiles[0].replace(/\.webp$/i, '');
+      
+      // 获取 COS 上实际的文件夹名称
+      const cosDetailFolderName = cosFolderNameMap[item] || item;
+      
+      const encodedFolder = encodeURLComponent(folderName);
+      const encodedDetail = encodeURLComponent(cosDetailFolderName);
       
       const detail = {
         folderName: item,
         fileName: webpFiles[0], // 保留第一个文件名作为主文件名
         displayName: displayName,
         imageUrls: webpFiles.map(webpFile => 
-          `${COS_BASE_URL}/${encodedFolder}/${encodedDetail}/${encodeURIComponent(webpFile)}`
+          `${COS_BASE_URL}/${encodedFolder}/${encodedDetail}/${encodeURLComponent(webpFile)}`
         ),
       };
       
       if (pngFile) {
-        detail.lineDrawingUrl = `${COS_BASE_URL}/${encodedFolder}/${encodedDetail}/${encodeURIComponent(pngFile)}`;
+        detail.lineDrawingUrl = `${COS_BASE_URL}/${encodedFolder}/${encodedDetail}/${encodeURLComponent(pngFile)}`;
       }
       
       if (txtFile) {
-        detail.descriptionUrl = `${COS_BASE_URL}/${encodedFolder}/${encodedDetail}/${encodeURIComponent(txtFile)}`;
+        detail.descriptionUrl = `${COS_BASE_URL}/${encodedFolder}/${encodedDetail}/${encodeURLComponent(txtFile)}`;
       }
       
       details.push(detail);
