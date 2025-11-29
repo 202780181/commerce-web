@@ -1,6 +1,5 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "../../../components/Header";
@@ -9,8 +8,6 @@ import { motion } from "motion/react";
 import { usePageCache } from "../../../hooks/usePageCache";
 import ImageViewer from "../../../components/ImageViewer";
 import productMap from "../../../lib/productMap.json";
-
-const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 
 interface FileSystemItem {
   name: string;
@@ -21,13 +18,23 @@ interface FileSystemItem {
   thumbnailUrl?: string;
 }
 
-export default function DynamicPathPage() {
-  const params = useParams();
-  const productId = params.id as string;
+export default function DynamicPathPage({ 
+  params 
+}: { 
+  params: Promise<{ id: string; path: string[] }> 
+}) {
+  const [productId, setProductId] = useState<string>("");
+  const [pathSegments, setPathSegments] = useState<string[]>([]);
+  
+  useEffect(() => {
+    params.then(p => {
+      setProductId(p.id);
+      setPathSegments(p.path || []);
+    });
+  }, [params]);
   
   // 页面缓存
   usePageCache();
-  const pathSegments = params.path as string[];
   
   const [items, setItems] = useState<FileSystemItem[]>([]);
   const [loading, setLoading] = useState(true);

@@ -1,7 +1,6 @@
-import type { Metadata } from "next";
 import "./globals.css";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "CO-Grow Machinery Co.,Ltd",
   description: "CO-Grow Machinery Co.,Ltd",
   icons: {

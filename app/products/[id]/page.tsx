@@ -1,6 +1,5 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Header from "../../components/Header";
@@ -20,9 +19,16 @@ interface FileSystemItem {
   thumbnailUrl?: string;
 }
 
-export default function ProductPage() {
-	const params = useParams();
-	const productId = params.id as string;
+export default function ProductPage({ 
+	params 
+}: { 
+	params: Promise<{ id: string }> 
+}) {
+	const [productId, setProductId] = useState<string>("");
+	
+	useEffect(() => {
+		params.then(p => setProductId(p.id));
+	}, [params]);
 	
 	// 页面缓存
 	usePageCache();

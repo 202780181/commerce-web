@@ -2,7 +2,6 @@
 
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import { getAllProducts } from "../lib/productConfig";
 
 // 简化的产品路径映射 - 直接映射到产品首页
 const productPathMap: Record<string, string> = {

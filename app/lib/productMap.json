@@ -1215,23 +1215,23 @@
     "details": [
       {
         "folderName": "detail_BT40Standard",
-        "fileName": "1.webp",
-        "displayName": "1",
+        "fileName": "BT30\\BT40 Run out Tester (Standard Model).webp",
+        "displayName": "BT30 T40 Run out Tester (Standard Model)",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/1.webp"
+          "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/BT30%5CBT40%20Run%20out%20Tester%20%28Standard%20Model%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/BT40%E6%A0%87%E5%87%86%E6%AC%BE.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/BT40.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/BT30%5CBT40%20Run%20out%20Tester%20%28Standard%20Model%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_BT40Standard/BT30%5CBT40%20Run%20out%20Tester%20%28Standard%20Model%29.txt"
       },
       {
         "folderName": "detail_Hand Type",
         "fileName": "Runout-tester.webp",
         "displayName": "Runout-tester",
         "imageUrls": [
-          "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/Runout-tester.webp"
+          "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/BT30%5CBT40%20Run%20out%20Tester%20%28Hand%20Crank%20Version%29.webp"
         ],
-        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/%E6%89%8B%E6%91%86%E6%AC%BE.png",
-        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/BT40.txt"
+        "lineDrawingUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/BT30%5CBT40%20Run%20out%20Tester%20%28Hand%20Crank%20Version%29.png",
+        "descriptionUrl": "https://cdn.gzxfjxyxgs.com/products/17%20Run_out%20Tester/detail_Hand%20Type/BT30%5CBT40%20Run%20out%20Tester%20%28Hand%20Crank%20Version%29.txt"
       }
     ]
   },
