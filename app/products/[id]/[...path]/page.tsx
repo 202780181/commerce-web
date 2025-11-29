@@ -153,6 +153,57 @@ export default function DynamicPathPage({
 
   const breadcrumbs = buildBreadcrumbs();
 
+  const lastSegment = pathSegments[pathSegments.length - 1] || "";
+  const isDetailRoute = lastSegment.startsWith("detail_");
+
+  // 详情页骨架屏
+  if (isDetailRoute && (loading || allImages.length === 0)) {
+    return (
+      <div className="min-h-screen bg-gray-50 pt-20">
+        <Header lightBackground={true} />
+
+        <div className="bg-white border-b border-gray-200 py-4 px-6">
+          <div className="max-w-7xl mx-auto flex items-center gap-3 text-sm">
+            <div className="h-4 w-16 bg-gray-200 rounded animate-pulse" />
+            <span className="text-gray-300">/</span>
+            <div className="h-4 w-28 bg-gray-200 rounded animate-pulse" />
+            <span className="text-gray-300">/</span>
+            <div className="h-4 w-32 bg-gray-200 rounded animate-pulse" />
+          </div>
+        </div>
+
+        <section className="py-8 px-6">
+          <div className="max-w-[1400px] mx-auto grid grid-cols-12 gap-6">
+            <div className="col-span-1 space-y-3">
+              {[...Array(5)].map((_, i) => (
+                <div key={i} className="aspect-square rounded-lg bg-gray-200 animate-pulse" />
+              ))}
+            </div>
+
+            <div className="col-span-7">
+              <div className="relative bg-white rounded-xl overflow-hidden shadow-lg border border-gray-200">
+                <div className="h-[600px] bg-gray-100 animate-pulse" />
+              </div>
+            </div>
+
+            <div className="col-span-4">
+              <div className="bg-white rounded-xl shadow-lg border border-gray-100 p-6 space-y-4">
+                <div className="h-6 w-40 bg-gray-200 rounded animate-pulse" />
+                <div className="space-y-3">
+                  {[...Array(6)].map((_, i) => (
+                    <div key={i} className="h-4 w-full bg-gray-200 rounded animate-pulse" />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <Footer />
+      </div>
+    );
+  }
+
   // 如果是图片详情页
   if (isImageDetail && allImages.length > 0) {
     const currentImage = allImages[currentImageIndex];
@@ -422,7 +473,7 @@ export default function DynamicPathPage({
       </div>
 
       {/* Hero区域 */}
-      <section className="relative py-20 px-6 bg-linear-to-br from-purple-600 to-blue-600">
+      <section className="relative py-14 px-6 bg-white border-b border-gray-200">
         <div className="max-w-7xl mx-auto">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -431,16 +482,17 @@ export default function DynamicPathPage({
           >
             <Link
               href={breadcrumbs[breadcrumbs.length - 2]?.path || '/products'}
-              className="text-white/80 hover:text-white mb-6 flex items-center gap-2 transition-colors"
+              className="text-purple-700 hover:text-purple-800 mb-6 flex items-center gap-2 transition-colors"
             >
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
               Back
             </Link>
-            <h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-2">
               {currentPath.name}
             </h1>
+            <p className="text-gray-500">Browse product assets and details.</p>
           </motion.div>
         </div>
       </section>
@@ -449,9 +501,18 @@ export default function DynamicPathPage({
       <section className="py-20 px-6">
         <div className="max-w-[1600px] mx-auto">
           {loading ? (
-            <div className="text-center py-20">
-              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
-              <p className="mt-4 text-gray-600">Loading...</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {[...Array(8)].map((_, idx) => (
+                <div
+                  key={idx}
+                  className="relative rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100"
+                >
+                  <div className="h-80 bg-gray-100 animate-pulse" />
+                  <div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+                    <div className="h-4 w-2/3 bg-gray-200 rounded animate-pulse" />
+                  </div>
+                </div>
+              ))}
             </div>
           ) : items.length === 0 ? (
             <div className="text-center py-20 bg-white rounded-2xl shadow-lg">

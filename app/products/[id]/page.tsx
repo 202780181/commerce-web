@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import { getProductById } from "../../lib/productConfig";
 import { motion } from "motion/react";
 import { usePageCache } from "../../hooks/usePageCache";
+import { useParams } from "next/navigation";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
+const ITEM_CACHE_KEY = 'product-page-items-cache';
 
 interface FileSystemItem {
   name: string;
@@ -19,38 +21,63 @@ interface FileSystemItem {
   thumbnailUrl?: string;
 }
 
-export default function ProductPage({ 
-	params 
-}: { 
-	params: Promise<{ id: string }> 
-}) {
-	const [productId, setProductId] = useState<string>("");
-	
-	useEffect(() => {
-		params.then(p => setProductId(p.id));
-	}, [params]);
+export default function ProductPage() {
+	const params = useParams<{ id?: string }>();
+	const productId = useMemo(() => params?.id ?? "", [params]);
 	
 	// 页面缓存
 	usePageCache();
 	
 	const [items, setItems] = useState<FileSystemItem[]>([]);
 	const [loading, setLoading] = useState(true);
+	const [restoredFromCache, setRestoredFromCache] = useState(false);
+
+	// 每次产品切换时重置缓存状态
+	useEffect(() => {
+		setRestoredFromCache(false);
+	}, [productId]);
 	
 	// Get product data from configuration
-	const product = getProductById(productId);
-	
+	const product = productId ? getProductById(productId) : null;
+
+	// 尝试从 sessionStorage 恢复当前产品的数据，回退时避免重新加载
 	useEffect(() => {
-		if (product) {
-			fetchProductContent();
+		if (!productId || typeof window === 'undefined') return;
+		const cacheRaw = sessionStorage.getItem(ITEM_CACHE_KEY);
+		if (!cacheRaw) return;
+		try {
+			const parsed = JSON.parse(cacheRaw) as Record<string, FileSystemItem[]>;
+			if (parsed[productId]) {
+				setItems(parsed[productId]);
+				setLoading(false);
+				setRestoredFromCache(true);
+			}
+		} catch (error) {
+			console.warn('Failed to parse product cache', error);
 		}
 	}, [productId]);
+	
+	useEffect(() => {
+		if (product && !restoredFromCache) {
+			fetchProductContent();
+		}
+	}, [productId, restoredFromCache, product]);
 
 	const fetchProductContent = async () => {
 		try {
+			if (restoredFromCache) return;
 			setLoading(true);
 			const response = await fetch(`/api/products/filesystem?productId=${productId}`);
 			const data = await response.json();
 			setItems(data.items || []);
+			
+			// 缓存当前产品的文件数据
+			if (typeof window !== 'undefined') {
+				const cacheRaw = sessionStorage.getItem(ITEM_CACHE_KEY);
+				const cache = cacheRaw ? JSON.parse(cacheRaw) : {};
+				cache[productId] = data.items || [];
+				sessionStorage.setItem(ITEM_CACHE_KEY, JSON.stringify(cache));
+			}
 		} catch (error) {
 			console.error('Error fetching product content:', error);
 			setItems([]);
@@ -60,7 +87,7 @@ export default function ProductPage({
 	};
 	
 	// If product doesn't exist, show 404 page
-	if (!product) {
+	if (!productId || !product) {
 		return (
 			<div className="min-h-screen bg-gray-50 flex items-center justify-center">
 				<div className="text-center">
@@ -106,9 +133,13 @@ export default function ProductPage({
 					<h1 className="text-5xl md:text-6xl font-bold text-white mb-4">
 						{product.name}
 					</h1>
-					<p className="text-xl text-gray-200">
-						{loading ? 'Loading...' : `${items.length} items`}
-					</p>
+					<div className="text-xl text-gray-200">
+						{loading ? (
+							<div className="h-5 w-32 bg-white/30 rounded animate-pulse" />
+						) : (
+							`${items.length} items`
+						)}
+					</div>
 				</div>
 			</section>
 			
@@ -116,9 +147,18 @@ export default function ProductPage({
 			<section className="py-20 px-6">
 				<div className="max-w-[1600px] mx-auto">
 					{loading ? (
-						<div className="text-center py-20">
-							<div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
-							<p className="mt-4 text-gray-600">Loading...</p>
+						<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+							{[...Array(8)].map((_, idx) => (
+								<div
+									key={idx}
+									className="relative rounded-2xl overflow-hidden bg-white shadow-md border border-gray-100"
+								>
+									<div className="h-80 bg-gray-100 animate-pulse" />
+									<div className="px-4 py-3 bg-gray-50 border-t border-gray-100">
+										<div className="h-4 w-2/3 bg-gray-200 rounded animate-pulse" />
+									</div>
+								</div>
+							))}
 						</div>
 					) : items.length === 0 ? (
 						<div className="text-center py-20 bg-white rounded-2xl shadow-lg">
@@ -239,4 +279,3 @@ export default function ProductPage({
 		</div>
 	);
 }
-
