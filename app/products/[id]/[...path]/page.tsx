@@ -9,6 +9,9 @@ import { usePageCache } from "../../../hooks/usePageCache";
 import ImageViewer from "../../../components/ImageViewer";
 import productMap from "../../../lib/productMap.json";
 
+const PATH_CACHE_KEY = 'product-path-cache';
+const CACHE_TTL = 30 * 60 * 1000; // 30 分钟
+
 interface FileSystemItem {
   name: string;
   type: 'folder' | 'image';
@@ -25,6 +28,8 @@ export default function DynamicPathPage({
 }) {
   const [productId, setProductId] = useState<string>("");
   const [pathSegments, setPathSegments] = useState<string[]>([]);
+  const [restoredFromCache, setRestoredFromCache] = useState(false);
+  const cacheKey = `${productId || 'unknown'}::${pathSegments.join('/') || 'root'}`;
   
   useEffect(() => {
     params.then(p => {
@@ -32,6 +37,10 @@ export default function DynamicPathPage({
       setPathSegments(p.path || []);
     });
   }, [params]);
+
+  useEffect(() => {
+    setRestoredFromCache(false);
+  }, [cacheKey]);
   
   // 页面缓存
   usePageCache();
@@ -50,6 +59,31 @@ export default function DynamicPathPage({
     description?: string;
   } | null>(null);
 
+  const restoreFromCache = () => {
+    if (typeof window === 'undefined') return false;
+    try {
+      const raw = sessionStorage.getItem(PATH_CACHE_KEY);
+      if (!raw) return false;
+      const cache = JSON.parse(raw) as Record<string, any>;
+      const entry = cache[cacheKey];
+      if (!entry) return false;
+      if (Date.now() - entry.timestamp > CACHE_TTL) {
+        delete cache[cacheKey];
+        sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
+        return false;
+      }
+      setIsImageDetail(entry.isDetail);
+      setItems(entry.items || []);
+      setAllImages(entry.allImages || []);
+      setLoading(false);
+      setRestoredFromCache(true);
+      return true;
+    } catch (error) {
+      console.error('Failed to restore path cache:', error);
+      return false;
+    }
+  };
+
   useEffect(() => {
     fetchPathContent();
   }, [productId, pathSegments]);
@@ -58,7 +92,7 @@ export default function DynamicPathPage({
   useEffect(() => {
     if (isImageDetail && pathSegments.length > 0) {
       // 从路径中的最后一段（detail_XXX）获取文件夹名
-      const lastSegment = pathSegments[pathSegments.length - 1];
+      const lastSegment = pathSegments[pathSegments.length - 1] || "";
       
       console.log('Fetching product detail for folder:', lastSegment);
       
@@ -101,10 +135,12 @@ export default function DynamicPathPage({
 
   const fetchPathContent = async () => {
     try {
+      if (!productId) return;
+      if (!restoredFromCache && restoreFromCache()) return;
       setLoading(true);
       
       // 检查最后一段路径
-      const lastSegment = pathSegments[pathSegments.length - 1];
+      const lastSegment = pathSegments[pathSegments.length - 1] || "";
       
       // 如果是 detail_ 开头的文件夹，直接显示详情页
       if (lastSegment.startsWith('detail_')) {
@@ -117,12 +153,24 @@ export default function DynamicPathPage({
         
         const images = data.items.filter((item: FileSystemItem) => item.type === 'image');
         setAllImages(images);
+        if (typeof window !== 'undefined') {
+          const raw = sessionStorage.getItem(PATH_CACHE_KEY);
+          const cache = raw ? JSON.parse(raw) : {};
+          cache[cacheKey] = { isDetail: true, allImages: images, items: [], timestamp: Date.now() };
+          sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
+        }
       } else {
         // 这是文件夹浏览页
         setIsImageDetail(false);
         const response = await fetch(`/api/products/filesystem?productId=${productId}&path=${pathSegments.join('/')}`);
         const data = await response.json();
         setItems(data.items || []);
+        if (typeof window !== 'undefined') {
+          const raw = sessionStorage.getItem(PATH_CACHE_KEY);
+          const cache = raw ? JSON.parse(raw) : {};
+          cache[cacheKey] = { isDetail: false, items: data.items || [], allImages: [], timestamp: Date.now() };
+          sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
+        }
       }
     } catch (error) {
       console.error('Error fetching path content:', error);

@@ -37,8 +37,8 @@ export default function ProductPage() {
 		setRestoredFromCache(false);
 	}, [productId]);
 	
-	// Get product data from configuration
-	const product = productId ? getProductById(productId) : null;
+	// Get product data from configuration (memoized to avoid re-renders)
+	const product = useMemo(() => productId ? getProductById(productId) : null, [productId]);
 
 	// 尝试从 sessionStorage 恢复当前产品的数据，回退时避免重新加载
 	useEffect(() => {
