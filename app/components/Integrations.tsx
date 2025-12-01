@@ -48,7 +48,7 @@ export default function Integrations() {
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <div 
-                onClick={() => router.push(`/products/modular-5axis-pyramid/${detail.folderName}`)}
+                onClick={() => router.push(`/products/-modular-5axis-pyramid/${detail.folderName}`)}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full group"
               >
                 {/* Product Image */}
