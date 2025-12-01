@@ -16,7 +16,7 @@ export default function Hero() {
       subtitle: "Zero Point Prince",
       gradient: "from-blue-600 to-cyan-600",
       bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
-      image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=1920&q=80",
+      image: "https://cdn.gzxfjxyxgs.com/images/banners/homeBanner.webp",
       animationType: "fade",
     },
 
