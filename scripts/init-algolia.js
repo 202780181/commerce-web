@@ -93,9 +93,9 @@ async function initializeAlgolia() {
     console.log(`✅ 产品数据索引完成! 索引了 ${productResult.objectIDs ? productResult.objectIDs.length : '未知'} 个对象`);
     
     // 可选：索引示例电影数据（用于测试）
-    console.log('🎬 正在索引示例电影数据...');
-    const movieResult = await processMovieRecords();
-    console.log(`✅ 电影数据索引完成! 索引了 ${movieResult.objectIDs ? movieResult.objectIDs.length : '未知'} 个对象`);
+    // console.log('🎬 正在索引示例电影数据...');
+    // const movieResult = await processMovieRecords();
+    // console.log(`✅ 电影数据索引完成! 索引了 ${movieResult.objectIDs ? movieResult.objectIDs.length : '未知'} 个对象`);
     
     console.log('🎉 Algolia 索引初始化完成!');
     

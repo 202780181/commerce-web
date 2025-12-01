@@ -4,19 +4,15 @@ import productMap from './productMap.json';
 // 产品接口定义
 export interface Product {
   id: string;
-  index: number;
   name: string;
-  folderName: string;
   coverImage: string;
   detailCount?: number; // 详情数量
 }
 
 interface ProductData {
-  id: string;
-  index: number;
-  folderName: string;
   name: string;
   coverImage: string;
+  detailCount: number;
   details: any[];
 }
 
@@ -26,16 +22,13 @@ const products = productMap as Record<string, ProductData>;
  * 获取所有产品列表
  */
 export function getAllProducts(): Product[] {
-  return Object.values(products)
-    .map(p => ({
-      id: p.id,
-      index: p.index,
+  return Object.entries(products)
+    .map(([id, p]) => ({
+      id,
       name: p.name,
-      folderName: p.folderName,
       coverImage: p.coverImage,
-      detailCount: p.details?.length || 0,
-    }))
-    .sort((a, b) => a.index - b.index);
+      detailCount: p.detailCount || 0,
+    }));
 }
 
 /**
@@ -46,10 +39,9 @@ export function getProductById(id: string): Product | null {
   if (!product) return null;
   
   return {
-    id: product.id,
-    index: product.index,
+    id,
     name: product.name,
-    folderName: product.folderName,
     coverImage: product.coverImage,
+    detailCount: product.detailCount || 0,
   };
 }

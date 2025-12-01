@@ -12,19 +12,16 @@ export interface FileSystemItem {
 
 interface ProductDetail {
   folderName: string;
-  fileName: string;
   displayName: string;
-  imageUrls: string[]; // 产品图片 URL 数组
+  imageUrl: string; // 主图 URL
   lineDrawingUrl?: string; // 可选的线条图 URL
   descriptionUrl?: string; // 可选的描述文件 URL
 }
 
 interface Product {
-  id: string;
-  index: number;
-  folderName: string;
   name: string;
   coverImage: string;
+  detailCount: number;
   details: ProductDetail[];
 }
 
@@ -54,7 +51,7 @@ export function readProductDirectory(
         type: 'folder',
         path: detail.folderName,
         fileName: detail.folderName,
-        thumbnailUrl: detail.imageUrls[0], // 使用第一张图片作为缩略图
+        thumbnailUrl: detail.imageUrl, // 使用主图作为缩略图
       });
     }
   } else {
@@ -63,17 +60,27 @@ export function readProductDirectory(
     const detail = product.details.find(d => d.folderName === detailFolderName);
     
     if (detail) {
-      // 返回所有图片
-      detail.imageUrls.forEach((url, index) => {
-        const fileName = url.split('/').pop() || `image-${index}.webp`;
-        result.push({
-          name: decodeURIComponent(fileName.replace(/\.webp$/i, '')),
-          type: 'image',
-          path: [...subPath, fileName].join('/'),
-          url: url,
-          fileName: fileName,
-        });
+      // 添加主图（webp/jpg）
+      const mainImageFileName = detail.imageUrl.split('/').pop() || 'image.webp';
+      result.push({
+        name: decodeURIComponent(mainImageFileName.replace(/\.(webp|png|jpg|jpeg)$/i, '')),
+        type: 'image',
+        path: [...subPath, mainImageFileName].join('/'),
+        url: detail.imageUrl,
+        fileName: mainImageFileName,
       });
+      
+      // 添加线条图（PNG，如果存在且不同于主图）
+      if (detail.lineDrawingUrl && detail.lineDrawingUrl !== detail.imageUrl) {
+        const lineDrawingFileName = detail.lineDrawingUrl.split('/').pop() || 'line-drawing.png';
+        result.push({
+          name: decodeURIComponent(lineDrawingFileName.replace(/\.(webp|png|jpg|jpeg)$/i, '')),
+          type: 'image',
+          path: [...subPath, lineDrawingFileName].join('/'),
+          url: detail.lineDrawingUrl,
+          fileName: lineDrawingFileName,
+        });
+      }
     }
   }
 
@@ -105,7 +112,7 @@ export function getFolderThumbnail(productId: string, subPath: string[]): string
   const detailFolderName = subPath[subPath.length - 1];
   const detail = product.details.find(d => d.folderName === detailFolderName);
   
-  return detail ? detail.imageUrls[0] : null;
+  return detail ? detail.imageUrl : null;
 }
 
 /**

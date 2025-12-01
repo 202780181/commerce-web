@@ -203,17 +203,17 @@ export default function ProductPage() {
 											<div className="relative rounded-2xl overflow-hidden bg-white shadow-md hover:shadow-2xl transition-all duration-300 cursor-pointer">
 												{item.type === 'folder' ? (
 													// 文件夹显示 - 显示第一张图片作为缩略图
-													<>
-														<div className="relative h-80 overflow-hidden bg-gray-50">
-															{item.thumbnailUrl ? (
-																<img
-																	src={item.thumbnailUrl}
-																	alt={item.name}
-																	className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-																	loading="lazy"
-																	decoding="async"
-																	style={{ contentVisibility: 'auto' }}
-																/>
+												<>
+													<div className="relative h-80 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+														{item.thumbnailUrl ? (
+															<img
+																src={item.thumbnailUrl}
+																alt={item.name}
+																className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+																loading="lazy"
+																decoding="async"
+																style={{ contentVisibility: 'auto' }}
+															/>
 															) : (
 																// 如果没有图片，显示文件夹图标
 																<div className="w-full h-full flex items-center justify-center bg-linear-to-br from-gray-100 to-gray-200">
@@ -241,11 +241,11 @@ export default function ProductPage() {
 												) : (
 													// 图片显示
 													<>
-														<div className="relative h-80 overflow-hidden bg-gray-50">
+														<div className="relative h-80 overflow-hidden bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
 															<img
 																src={item.url}
 																alt={item.name}
-																className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+																className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
 																loading="lazy"
 																decoding="async"
 																style={{ contentVisibility: 'auto' }}

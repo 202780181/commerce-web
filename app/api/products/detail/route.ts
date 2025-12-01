@@ -1,24 +1,19 @@
 import { NextRequest, NextResponse } from 'next/server';
 import productMapData from '../../../lib/productMap.json';
 
-const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
-
 // 定义类型
 interface ProductDetail {
   folderName: string;
-  fileName: string;
   displayName: string;
-  imageUrls: string[]; // 产品图片 URL 数组
-  lineDrawingUrl?: string;
-  descriptionUrl?: string;
+  imageUrl: string; // 主图 URL
+  lineDrawingUrl?: string; // 线条图 URL
+  descriptionUrl?: string; // 描述文件 URL
 }
 
 interface Product {
-  id: string;
-  index: number;
-  folderName: string;
   name: string;
   coverImage: string;
+  detailCount: number;
   details: ProductDetail[];
 }
 
@@ -51,25 +46,20 @@ export async function GET(request: NextRequest) {
     if (!detail) {
       return NextResponse.json({ productDetail: null });
     }
-
-    // 去掉扩展名得到基础文件名
-    const baseFileName = detail.fileName.replace(/\.(webp|png)$/i, '');
-    const encodedFolder = encodeURIComponent(product.folderName);
-    const encodedDetailFolder = encodeURIComponent(detailFolder);
     
-    // 构建文件 URLs - 只使用 productMap.json 中存在的 URL
+    // 构建返回数据
     const productDetail: any = {
       name: detail.displayName,
       folderName: detailFolder,
-      productImages: detail.imageUrls, // 使用 JSON 中的 imageUrls 数组
+      productImages: [detail.imageUrl], // 主图放在数组中
     };
 
-    // 只有 productMap.json 中有 lineDrawingUrl 时才添加
+    // 只有存在时才添加线条图
     if (detail.lineDrawingUrl) {
       productDetail.lineDrawing = detail.lineDrawingUrl;
     }
 
-    // 只有 productMap.json 中有 descriptionUrl 时才添加
+    // 只有存在时才添加描述文件
     if (detail.descriptionUrl) {
       productDetail.descriptionUrl = detail.descriptionUrl;
     }

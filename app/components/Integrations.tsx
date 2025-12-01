@@ -8,8 +8,8 @@ import productMap from "../lib/productMap.json";
 export default function Integrations() {
   const router = useRouter();
   
-  // 获取 modular-5axis-pyramid 产品的详情列表
-  const product = productMap["modular-5axis-pyramid" as keyof typeof productMap];
+  // 获取 -modular-5axis-pyramid 产品的详情列表
+  const product = productMap["-modular-5axis-pyramid" as keyof typeof productMap];
   const details = product?.details || [];
   
   return (
@@ -52,11 +52,11 @@ export default function Integrations() {
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full group"
               >
                 {/* Product Image */}
-                <div className="relative h-64 bg-gray-100 overflow-hidden">
+                <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
                   <img
-                    src={detail.imageUrls?.[0] || detail.imageUrl}
+                    src={detail.imageUrl}
                     alt={detail.displayName}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     decoding="async"
                     style={{ contentVisibility: 'auto' }}
@@ -65,12 +65,9 @@ export default function Integrations() {
 
                 {/* Product Info */}
                 <div className="p-6">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
                     {detail.displayName}
                   </h3>
-                  <p className="text-sm text-gray-500">
-                    {detail.imageUrls?.length || 1} image{(detail.imageUrls?.length || 1) > 1 ? 's' : ''}
-                  </p>
                 </div>
               </div>
             </motion.div>

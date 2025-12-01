@@ -66,19 +66,17 @@ export default function Products() {
 								href={`/products/${product.id}`}
 								className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
 							>
-								{/* Product Image */}
-								<div className="relative h-64 bg-gray-100 overflow-hidden">
-									<img
-										src={product.coverImage}
-										alt={product.name}
-										className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-										loading="lazy"
-										decoding="async"
-										style={{ contentVisibility: 'auto' }}
-									/>
-								</div>
-
-							{/* Product Info */}
+							{/* Product Image */}
+							<div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
+								<img
+									src={product.coverImage}
+									alt={product.name}
+									className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+									loading="lazy"
+									decoding="async"
+									style={{ contentVisibility: 'auto' }}
+								/>
+							</div>							{/* Product Info */}
 							<div className="p-6">
 								<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
 									{product.name}

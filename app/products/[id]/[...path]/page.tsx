@@ -190,9 +190,19 @@ export default function DynamicPathPage({
     
     let currentPath = `/products/${productId}`;
     for (let i = 0; i < pathSegments.length; i++) {
-      currentPath += `/${pathSegments[i]}`;
-      // 去掉 detail_ 前缀显示
-      const displayName = pathSegments[i].replace(/^detail_/i, '').trim();
+      const segment = pathSegments[i];
+      currentPath += `/${segment}`;
+      
+      // 解码 segment 以便与 folderName 匹配
+      const decodedSegment = decodeURIComponent(segment);
+      let displayName = decodedSegment;
+      
+      // 如果是 detail_ 文件夹，从 productMap 获取正确的 displayName
+      if (decodedSegment.startsWith('detail_') && product) {
+        const detail = product.details.find(d => d.folderName === decodedSegment);
+        displayName = detail?.displayName || decodedSegment.replace(/^detail_/i, '').trim();
+      }
+      
       breadcrumbs.push({ name: displayName, path: currentPath });
     }
     
@@ -321,25 +331,6 @@ export default function DynamicPathPage({
                       />
                     </button>
                   ))}
-
-                  {/* Line Drawing Thumbnail */}
-                  {productDetail?.lineDrawing && (
-                    <button
-                      onClick={() => setDisplayMode('pdf')}
-                      className={`relative aspect-square rounded-lg overflow-hidden border-2 transition-all ${
-                        displayMode === 'pdf'
-                          ? 'border-green-600 shadow-md'
-                          : 'border-gray-200 hover:border-green-300'
-                      }`}
-                      title="Line Drawing"
-                    >
-                      <img
-                        src={productDetail.lineDrawing}
-                        alt="Line Drawing"
-                        className="w-full h-full object-cover"
-                      />
-                    </button>
-                  )}
                 </div>
               </div>
 
@@ -408,22 +399,21 @@ export default function DynamicPathPage({
               </div>
 
               {/* Right: Product Information */}
-              {(productDetail?.lineDrawing || productDetail?.description) && (
-                <div className="col-span-4">
-                  <div className="bg-linear-to-br from-white to-gray-50 rounded-xl shadow-xl border border-gray-100 overflow-hidden sticky top-6">
-                    {/* Header Section */}
-                    <div className="bg-linear-to-r from-purple-600 to-blue-600 p-6">
-                      <h1 className="text-2xl font-bold text-white">
-                        {currentImage.name}
-                      </h1>
-                    </div>
-                    
-                    {/* Content Section */}
-                    <div className="p-6">
-                      {productDetail?.description && (
+              <div className="col-span-4">
+                <div className="bg-gradient-to-br from-white to-gray-50 rounded-xl shadow-xl border border-gray-100 overflow-hidden sticky top-6">
+                  {/* Header Section */}
+                  <div className="bg-gradient-to-r from-purple-600 to-blue-600 p-6">
+                    <h1 className="text-2xl font-bold text-white">
+                      {currentImage.name}
+                    </h1>
+                  </div>
+                  
+                  {/* Content Section */}
+                  <div className="p-6">
+                    {productDetail?.description ? (
                       <div>
                         <div className="flex items-center gap-2 mb-4">
-                          <div className="w-1 h-6 bg-linear-to-b from-purple-600 to-blue-600 rounded-full"></div>
+                          <div className="w-1 h-6 bg-gradient-to-b from-purple-600 to-blue-600 rounded-full"></div>
                           <h3 className="text-lg font-bold text-gray-900">Product Specifications</h3>
                         </div>
                         
@@ -458,11 +448,20 @@ export default function DynamicPathPage({
                           </div>
                         </div>
                       </div>
+                    ) : (
+                      <div className="flex flex-col items-center justify-center py-12 text-center">
+                        <div className="w-24 h-24 rounded-full bg-gradient-to-br from-purple-100 to-blue-100 flex items-center justify-center mb-4">
+                          <svg className="w-12 h-12 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                          </svg>
+                        </div>
+                        <h3 className="text-lg font-semibold text-gray-900 mb-2">No Specifications Available</h3>
+                        <p className="text-sm text-gray-500">Product specifications will be added soon.</p>
+                      </div>
                     )}
-                    </div>
                   </div>
                 </div>
-              )}
+              </div>
             </div>
           </div>
         </section>
