@@ -335,7 +335,7 @@ export default function DynamicPathPage({
               </div>
 
               {/* Main Display Area */}
-              <div className={productDetail?.lineDrawing || productDetail?.description ? 'col-span-7' : 'col-span-11'}>
+              <div className="col-span-7">
                 <motion.div
                   key={displayMode === 'gallery' ? `gallery-${currentImageIndex}` : displayMode === 'pdf' ? 'pdf' : 'detail'}
                   initial={{ opacity: 0 }}
