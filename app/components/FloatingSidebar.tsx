@@ -70,7 +70,16 @@ export default function FloatingSidebar() {
 					</a>
 					<p className="text-xs text-gray-500 mt-2">We'll reply within 24 hours</p>
 				</div>
-			)
+			),
+			action: () => {
+				if (window.location.pathname === '/contact-us') {
+					// 如果已经在联系页面，直接滚动
+					window.scrollTo({ top: 500, behavior: 'smooth' });
+				} else {
+					// 如果不在联系页面，先导航再滚动
+					window.location.href = '/contact-us#contact-info';
+				}
+			}
 		},
 		{
 			id: 'wechat',
@@ -176,7 +185,7 @@ export default function FloatingSidebar() {
 						>
 							<motion.button
 								onClick={item.action}
-								className={`w-16 h-16 flex flex-col items-center justify-center text-white hover:bg-slate-600 transition-all duration-300 ${index < sidebarItems.length - 1 ? 'border-b border-slate-600' : ''
+								className={`w-16 h-16 flex flex-col items-center justify-center text-white hover:bg-slate-600 transition-all duration-300 cursor-pointer ${index < sidebarItems.length - 1 ? 'border-b border-slate-600' : ''
 									}`}
 								whileHover={{ scale: 1.05 }}
 								whileTap={{ scale: 0.95 }}

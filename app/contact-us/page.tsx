@@ -1,10 +1,22 @@
 "use client";
 
 import { motion } from "motion/react";
+import { useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
 export default function ContactUs() {
+	useEffect(() => {
+		// 检查URL中是否有hash，如果有则滚动到对应位置
+		if (window.location.hash === '#contact-info') {
+			setTimeout(() => {
+				const element = document.getElementById('contact-info');
+				if (element) {
+					element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+				}
+			}, 100);
+		}
+	}, []);
 
 	return (
 		<div className="min-h-screen bg-gray-50">
@@ -137,7 +149,7 @@ export default function ContactUs() {
 								</motion.div>
 
 								{/* Contact Info Cards */}
-								<div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-10">
+								<div className="grid grid-cols-1 md:grid-cols-3 gap-8 p-10" id="contact-info">
 									{/* Phone */}
 									<motion.div
 										initial={{ opacity: 0, y: 20 }}
