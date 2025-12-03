@@ -5,11 +5,9 @@ const nextConfig: NextConfig = {
   // 启用 React 严格模式
   reactStrictMode: true,
 
-  // 生产环境移除 console.log
+  // 生产环境保留所有 console 输出
   compiler: {
-    removeConsole: process.env.NODE_ENV === "production" ? {
-      exclude: ["error", "warn"],
-    } : false,
+    removeConsole: false,
   },
 
   // 图片优化配置
