@@ -10,11 +10,29 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  // 调用接口获取数据
+  let homeData = null;
+  try {
+    const response = await fetch('http://43.139.139.215/api/api/v1/portal/home/index', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      cache: 'no-store',
+    });
+    
+    if (response.ok) {
+      homeData = await response.json();
+      console.log('Home data:', homeData);
+    }
+  } catch (error) {
+    console.error('Error fetching home data:', error);
+  }
   return (
     <html lang="en">
       <body className="antialiased">
