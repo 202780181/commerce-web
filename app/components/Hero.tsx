@@ -3,13 +3,33 @@
 import { motion, AnimatePresence } from "motion/react";
 import { useState, useEffect } from "react";
 
-export default function Hero() {
+interface Banner {
+  id: number;
+  image_url: string;
+  title: string;
+  content: string;
+  sort: number;
+}
+
+interface HeroProps {
+  banners: Banner[];
+}
+
+export default function Hero({ banners = [] }: HeroProps) {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
-  // Carousel data
-  const slides = [
+  // Transform banners to slides format
+  const slides = banners.length > 0 ? banners.map(banner => ({
+    id: banner.id,
+    title: banner.title,
+    subtitle: banner.content,
+    gradient: "from-blue-600 to-cyan-600",
+    bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
+    image: banner.image_url,
+    animationType: "fade",
+  })) : [
     {
       id: 1,
       title: "ZPP CNC",
@@ -19,7 +39,6 @@ export default function Hero() {
       image: "https://cdn.gzxfjxyxgs.com/images/banners/homeBanner.webp",
       animationType: "fade",
     },
-
   ];
 
   // Three different animation variants

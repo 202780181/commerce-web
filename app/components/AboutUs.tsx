@@ -4,10 +4,22 @@ import { motion, useInView } from "motion/react";
 import { useRef } from "react";
 import { useRouter } from "next/navigation";
 
-export default function AboutUs() {
+interface AboutUsProps {
+	aboutSummary?: string;
+	companyImage?: string;
+}
+
+export default function AboutUs({ aboutSummary = '', companyImage = '' }: AboutUsProps) {
 	const ref = useRef(null);
 	const isInView = useInView(ref, { once: true, margin: "-100px" });
 	const router = useRouter();
+
+	// 默认内容
+	const defaultSummary = "Founded in 2012, the company is a manufacturing enterprise specializing in the R&D, production and sales of CNC fixtures. Relying on a professional R&D and design team as well as advanced manufacturing capabilities, it is committed to providing high-precision and high-reliability fixture solutions for global customers. Core Products and AdvantagesMain Products: Zero-point quick-change fixtures and self-centering vices, covering multiple models, specifications and modular combinations to meet the precision machining needs of customers in different industries.Product Features: Boasting fast positioning, high repeatability and strong stability, they are widely used in CNC machining centers and automated production lines, significantly improving production efficiency.Future Outlook The company will continue to invest in R&D, aligning product performance with European and American national standards. It will provide personalized design and production support based on customer needs, implement strict quality control to ensure product durability and consistency, and promote industrial manufacturing upgrading through intelligent fixture technology. The goal is to become a world-leading fixture system supplier and create greater value for customers.";
+	const defaultImage = "/images/products/20251108184713.jpg";
+	
+	const displaySummary = aboutSummary || defaultSummary;
+	const displayImage = companyImage || defaultImage;
 
 	return (
 		<section ref={ref} className="py-16 lg:py-24 bg-white overflow-hidden relative z-10">
@@ -50,25 +62,19 @@ export default function AboutUs() {
 									ABOUT US
 								</h2>
 
-								{/* Description */}
-								<p
-									className="text-gray-600 mb-8"
-									style={{
-										fontSize: '16px',
-										fontFamily: 'Arial !important',
-										width: '100%',
-										lineHeight: '1.6',
-										textAlign: 'justify'
-									}}
-								>
-									Founded in 2012, the company is a manufacturing enterprise specializing in the R&D, production and sales of CNC fixtures. Relying on a professional R&D and design team as well as advanced manufacturing capabilities, it is committed to providing high-precision and high-reliability fixture solutions for global customers.
-									Core Products and AdvantagesMain Products: Zero-point quick-change fixtures and self-centering vices, covering multiple models, specifications and modular combinations to meet the precision machining needs of customers in different industries.Product Features: Boasting fast positioning, high repeatability and strong stability,
-									they are widely used in CNC machining centers and automated production lines, significantly improving production efficiency.Future Outlook
-									The company will continue to invest in R&D, aligning product performance with European and American national standards. It will provide personalized design and production support based on customer needs, implement strict quality control to ensure product durability and consistency, and promote industrial manufacturing upgrading through intelligent fixture technology.
-									The goal is to become a world-leading fixture system supplier and create greater value for customers.
-								</p>
-
-								{/* Read More Button */}
+							{/* Description */}
+							<p
+								className="text-gray-600 mb-8"
+								style={{
+									fontSize: '16px',
+									fontFamily: 'Arial !important',
+									width: '100%',
+									lineHeight: '1.6',
+									textAlign: 'justify'
+								}}
+							>
+								{displaySummary}
+							</p>								{/* Read More Button */}
 								<motion.button
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}

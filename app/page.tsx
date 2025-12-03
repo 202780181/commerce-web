@@ -8,8 +8,29 @@ import Footer from "./components/Footer";
 import FloatingSidebar from "./components/FloatingSidebar";
 import { useState, useEffect } from "react";
 
+interface Banner {
+  id: number;
+  image_url: string;
+  title: string;
+  content: string;
+  sort: number;
+}
+
+interface HomeData {
+  code: number;
+  message: string;
+  data: {
+    banners: Banner[];
+    about_summary: string;
+    company_image: string;
+    product_title: string;
+    product_content: string;
+    recommend_products: any[];
+  };
+}
+
 export default function Home() {
-  const [homeData, setHomeData] = useState(null);
+  const [homeData, setHomeData] = useState<HomeData | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -52,12 +73,18 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       <Header />
-      <Hero />
-      <AboutUs />
-      <Integrations />
+      <Hero banners={homeData?.data?.banners || []} />
+      <AboutUs 
+        aboutSummary={homeData?.data?.about_summary || ''} 
+        companyImage={homeData?.data?.company_image || ''} 
+      />
+      <Integrations 
+        productTitle={homeData?.data?.product_title || ''}
+        productContent={homeData?.data?.product_content || ''}
+        recommendProducts={homeData?.data?.recommend_products || []}
+      />
       <Footer />
       <FloatingSidebar />
-      {<div>{JSON.stringify(homeData)}</div>}
     </div>
   );
 }

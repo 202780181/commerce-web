@@ -5,12 +5,25 @@ import { useRouter } from "next/navigation";
 import { getProductById } from "../lib/productConfig";
 import productMap from "../lib/productMap.json";
 
-export default function Integrations() {
+interface RecommendProduct {
+  category_id: number;
+  cover_url: string;
+  id: number;
+  title: string;
+}
+
+interface IntegrationsProps {
+  productTitle?: string;
+  productContent?: string;
+  recommendProducts?: RecommendProduct[];
+}
+
+export default function Integrations({ 
+  productTitle = 'Featured Products', 
+  productContent = 'Discover our best-selling products, trusted by thousands of customers',
+  recommendProducts = []
+}: IntegrationsProps) {
   const router = useRouter();
-  
-  // 获取 -modular-5axis-pyramid 产品的详情列表
-  const product = productMap["-modular-5axis-pyramid" as keyof typeof productMap];
-  const details = product?.details || [];
   
   return (
     <section className="py-24 bg-white relative z-0">
@@ -24,10 +37,10 @@ export default function Integrations() {
           className="text-center mb-16"
         >
           <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
-            Featured Products
+            {productTitle}
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Discover our best-selling products, trusted by thousands of customers
+            {productContent}
           </p>
         </motion.div>
 
@@ -39,23 +52,23 @@ export default function Integrations() {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
         >
-          {details.map((detail: any, index: number) => (
+          {recommendProducts.map((product, index) => (
             <motion.div
-              key={detail.folderName}
+              key={product.id}
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
             >
               <div 
-                onClick={() => router.push(`/products/-modular-5axis-pyramid/${detail.folderName}`)}
+                onClick={() => router.push(`/products/${product.category_id}`)}
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full group"
               >
                 {/* Product Image */}
                 <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
                   <img
-                    src={detail.imageUrl}
-                    alt={detail.displayName}
+                    src={product.cover_url}
+                    alt={product.title}
                     className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
                     loading="lazy"
                     decoding="async"
@@ -66,7 +79,7 @@ export default function Integrations() {
                 {/* Product Info */}
                 <div className="p-6">
                   <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
-                    {detail.displayName}
+                    {product.title}
                   </h3>
                 </div>
               </div>
