@@ -127,11 +127,11 @@ const nextConfig: NextConfig = {
   // 重写配置
   async rewrites() {
     return [
-      // 示例重写（API 代理）
-      // {
-      //   source: "/api/:path*",
-      //   destination: "https://api.example.com/:path*",
-      // },
+      // API 代理 - 避免混合内容问题
+      {
+        source: "/api/proxy/:path*",
+        destination: "http://43.139.139.215/api/api/v1/:path*",
+      },
     ];
   },
 
