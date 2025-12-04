@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "algolia:init": "node scripts/init-algolia.js",
-    "generate-products": "node scripts/generate-product-map.js"
+    "generate-directory": "node scripts/generate-directory-map.js"
   },
   "dependencies": {
     "@docsearch/react": "^4.3.2",

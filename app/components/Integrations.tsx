@@ -3,7 +3,7 @@
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
 import { getProductById } from "../lib/productConfig";
-import productMap from "../lib/productMap.json";
+import directoryMap from "../lib/directoryMap.json";
 
 interface RecommendProduct {
   category_id: number;

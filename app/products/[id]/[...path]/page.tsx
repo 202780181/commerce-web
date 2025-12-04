@@ -7,9 +7,10 @@ import Footer from "../../../components/Footer";
 import { motion } from "motion/react";
 import { usePageCache } from "../../../hooks/usePageCache";
 import ImageViewer from "../../../components/ImageViewer";
-import productMap from "../../../lib/productMap.json";
+import directoryMap from "../../../lib/directoryMap.json";
 
 const PATH_CACHE_KEY = 'product-path-cache';
+const CACHE_VERSION = 'v2'; // 增加版本号，webp 优化
 const CACHE_TTL = 30 * 60 * 1000; // 30 分钟
 
 interface FileSystemItem {
@@ -33,8 +34,9 @@ export default function DynamicPathPage({
   
   useEffect(() => {
     params.then(p => {
-      setProductId(p.id);
-      setPathSegments(p.path || []);
+      // 解码 URL 编码的产品 ID 和路径段
+      setProductId(decodeURIComponent(p.id));
+      setPathSegments((p.path || []).map(segment => decodeURIComponent(segment)));
     });
   }, [params]);
 
@@ -67,6 +69,12 @@ export default function DynamicPathPage({
       const cache = JSON.parse(raw) as Record<string, any>;
       const entry = cache[cacheKey];
       if (!entry) return false;
+      // 检查缓存版本
+      if (entry.version !== CACHE_VERSION) {
+        delete cache[cacheKey];
+        sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
+        return false;
+      }
       if (Date.now() - entry.timestamp > CACHE_TTL) {
         delete cache[cacheKey];
         sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
@@ -96,7 +104,7 @@ export default function DynamicPathPage({
       
       console.log('Fetching product detail for folder:', lastSegment);
       
-      fetch(`/api/products/detail?productId=${productId}&detailFolder=${encodeURIComponent(lastSegment)}`)
+      fetch(`/api/products/detail?productId=${encodeURIComponent(productId)}&detailFolder=${encodeURIComponent(lastSegment)}`)
         .then(res => res.json())
         .then(data => {
           console.log('Product detail response:', data);
@@ -142,13 +150,13 @@ export default function DynamicPathPage({
       // 检查最后一段路径
       const lastSegment = pathSegments[pathSegments.length - 1] || "";
       
-      // 如果是 detail_ 开头的文件夹，直接显示详情页
+      // 只有 detail_ 开头的文件夹才显示详情页，其他文件夹都显示为分类浏览
       if (lastSegment.startsWith('detail_')) {
         setIsImageDetail(true);
         setCurrentImageIndex(0);
         
         // 获取该 detail 文件夹的图片
-        const response = await fetch(`/api/products/filesystem?productId=${productId}&path=${pathSegments.join('/')}`);
+        const response = await fetch(`/api/products/filesystem?productId=${encodeURIComponent(productId)}&path=${encodeURIComponent(pathSegments.join('/'))}`);
         const data = await response.json();
         
         const images = data.items.filter((item: FileSystemItem) => item.type === 'image');
@@ -156,19 +164,19 @@ export default function DynamicPathPage({
         if (typeof window !== 'undefined') {
           const raw = sessionStorage.getItem(PATH_CACHE_KEY);
           const cache = raw ? JSON.parse(raw) : {};
-          cache[cacheKey] = { isDetail: true, allImages: images, items: [], timestamp: Date.now() };
+          cache[cacheKey] = { isDetail: true, allImages: images, items: [], timestamp: Date.now(), version: CACHE_VERSION };
           sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
         }
       } else {
-        // 这是文件夹浏览页
+        // 所有非 detail_ 的文件夹都显示为分类浏览页
         setIsImageDetail(false);
-        const response = await fetch(`/api/products/filesystem?productId=${productId}&path=${pathSegments.join('/')}`);
+        const response = await fetch(`/api/products/filesystem?productId=${encodeURIComponent(productId)}&path=${encodeURIComponent(pathSegments.join('/'))}`);
         const data = await response.json();
         setItems(data.items || []);
         if (typeof window !== 'undefined') {
           const raw = sessionStorage.getItem(PATH_CACHE_KEY);
           const cache = raw ? JSON.parse(raw) : {};
-          cache[cacheKey] = { isDetail: false, items: data.items || [], allImages: [], timestamp: Date.now() };
+          cache[cacheKey] = { isDetail: false, items: data.items || [], allImages: [], timestamp: Date.now(), version: CACHE_VERSION };
           sessionStorage.setItem(PATH_CACHE_KEY, JSON.stringify(cache));
         }
       }
@@ -184,7 +192,7 @@ export default function DynamicPathPage({
   const buildBreadcrumbs = () => {
     const breadcrumbs = [{ name: 'Products', path: '/products' }];
     
-    const product = productMap[productId as keyof typeof productMap];
+    const product = directoryMap[productId as keyof typeof directoryMap];
     const productName = product?.name || productId;
     breadcrumbs.push({ name: productName, path: `/products/${productId}` });
     
@@ -193,15 +201,9 @@ export default function DynamicPathPage({
       const segment = pathSegments[i];
       currentPath += `/${segment}`;
       
-      // 解码 segment 以便与 folderName 匹配
+      // 解码 segment
       const decodedSegment = decodeURIComponent(segment);
-      let displayName = decodedSegment;
-      
-      // 如果是 detail_ 文件夹，从 productMap 获取正确的 displayName
-      if (decodedSegment.startsWith('detail_') && product) {
-        const detail = product.details.find(d => d.folderName === decodedSegment);
-        displayName = detail?.displayName || decodedSegment.replace(/^detail_/i, '').trim();
-      }
+      const displayName = decodedSegment;
       
       breadcrumbs.push({ name: displayName, path: currentPath });
     }
@@ -585,8 +587,8 @@ export default function DynamicPathPage({
                     href={
                       item.type === 'folder'
                         ? pathSegments.length > 0
-                          ? `/products/${productId}/${pathSegments.join('/')}/${item.fileName}`
-                          : `/products/${productId}/${item.fileName}`
+                          ? `/products/${productId}/${pathSegments.join('/')}/${item.name}`
+                          : `/products/${productId}/${item.name}`
                         : `/products/${productId}/${pathSegments.join('/')}/${index - items.filter(i => i.type === 'folder').length}`
                     }
                   >

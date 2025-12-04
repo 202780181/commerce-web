@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { readProductDirectory, getFolderThumbnail } from '@/app/lib/fileSystem';
+import { getItemsAtPath } from '@/app/lib/productService';
 
 export async function GET(request: NextRequest) {
   try {
@@ -14,25 +14,16 @@ export async function GET(request: NextRequest) {
       );
     }
 
-    // 解析路径
-    const pathSegments = path ? path.split('/').filter(Boolean) : [];
+    // 解码并解析路径
+    const decodedProductId = decodeURIComponent(productId);
+    const pathSegments = path 
+      ? decodeURIComponent(path).split('/').filter(Boolean) 
+      : [];
     
-    // 读取目录内容
-    const items = readProductDirectory(productId, pathSegments);
+    // 读取目录内容（缩略图已经在 directoryMap 中）
+    const items = getItemsAtPath(decodedProductId, pathSegments);
 
-    // 为文件夹添加缩略图
-    const itemsWithThumbnails = items.map(item => {
-      if (item.type === 'folder' && item.fileName) {
-        const thumbnailUrl = getFolderThumbnail(productId, [...pathSegments, item.fileName]);
-        return {
-          ...item,
-          thumbnailUrl,
-        };
-      }
-      return item;
-    });
-
-    return NextResponse.json({ items: itemsWithThumbnails });
+    return NextResponse.json({ items });
   } catch (error) {
     console.error('Error reading filesystem:', error);
     return NextResponse.json(

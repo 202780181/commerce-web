@@ -11,6 +11,7 @@ import { useParams } from "next/navigation";
 
 const COS_BASE_URL = "https://cdn.gzxfjxyxgs.com/products";
 const ITEM_CACHE_KEY = 'product-page-items-cache';
+const CACHE_VERSION = 'v2'; // webp 优化版本
 
 interface FileSystemItem {
   name: string;
@@ -23,7 +24,11 @@ interface FileSystemItem {
 
 export default function ProductPage() {
 	const params = useParams<{ id?: string }>();
-	const productId = useMemo(() => params?.id ?? "", [params]);
+	const productId = useMemo(() => {
+		const id = params?.id ?? "";
+		// 解码URL编码的产品ID
+		return id ? decodeURIComponent(id) : "";
+	}, [params]);
 	
 	// 页面缓存
 	usePageCache();
@@ -46,11 +51,16 @@ export default function ProductPage() {
 		const cacheRaw = sessionStorage.getItem(ITEM_CACHE_KEY);
 		if (!cacheRaw) return;
 		try {
-			const parsed = JSON.parse(cacheRaw) as Record<string, FileSystemItem[]>;
-			if (parsed[productId]) {
-				setItems(parsed[productId]);
+			const parsed = JSON.parse(cacheRaw) as Record<string, { items: FileSystemItem[], version: string }>;
+			const entry = parsed[productId];
+			if (entry && entry.version === CACHE_VERSION) {
+				setItems(entry.items);
 				setLoading(false);
 				setRestoredFromCache(true);
+			} else if (entry && entry.version !== CACHE_VERSION) {
+				// 清除旧版本缓存
+				delete parsed[productId];
+				sessionStorage.setItem(ITEM_CACHE_KEY, JSON.stringify(parsed));
 			}
 		} catch (error) {
 			console.warn('Failed to parse product cache', error);
@@ -67,7 +77,7 @@ export default function ProductPage() {
 		try {
 			if (restoredFromCache) return;
 			setLoading(true);
-			const response = await fetch(`/api/products/filesystem?productId=${productId}`);
+			const response = await fetch(`/api/products/filesystem?productId=${encodeURIComponent(productId)}`);
 			const data = await response.json();
 			setItems(data.items || []);
 			
@@ -75,7 +85,7 @@ export default function ProductPage() {
 			if (typeof window !== 'undefined') {
 				const cacheRaw = sessionStorage.getItem(ITEM_CACHE_KEY);
 				const cache = cacheRaw ? JSON.parse(cacheRaw) : {};
-				cache[productId] = data.items || [];
+				cache[productId] = { items: data.items || [], version: CACHE_VERSION };
 				sessionStorage.setItem(ITEM_CACHE_KEY, JSON.stringify(cache));
 			}
 		} catch (error) {
@@ -196,7 +206,7 @@ export default function ProductPage() {
 										<Link
 											href={
 												item.type === 'folder'
-													? `/products/${productId}/${item.fileName}`
+													? `/products/${productId}/${item.name}`
 													: `/products/${productId}/${index - items.filter(i => i.type === 'folder').length}`
 											}
 										>

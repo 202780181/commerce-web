@@ -32,7 +32,7 @@ export const processMovieRecords = async () => {
 export const indexProductData = async () => {
   try {
     // 导入产品数据
-    const productMap = await import('./productMap.json');
+    const productMap = await import('./directoryMap.json');
     
     // 转换产品数据为 Algolia 可搜索的格式
     const searchableProducts: any[] = [];
