@@ -1,4 +1,5 @@
 import "./globals.css";
+import { CategoriesProvider } from "./contexts/CategoriesContext";
 
 export const metadata = {
   title: "CO-Grow Machinery Co.,Ltd",
@@ -18,7 +19,9 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased">
-        {children}
+        <CategoriesProvider>
+          {children}
+        </CategoriesProvider>
       </body>
     </html>
   );
