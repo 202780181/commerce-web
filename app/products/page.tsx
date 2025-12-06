@@ -3,15 +3,15 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Link from "next/link";
-import { getAllProducts } from "../lib/productConfig";
 import { usePageCache } from "../hooks/usePageCache";
+import { useCategories } from "../contexts/CategoriesContext";
 
 export default function Products() {
-	// 页面缓存
 	usePageCache();
+	const { categories, loading } = useCategories();
 	
-	// 获取所有产品配置
-	const products = getAllProducts();
+	// 只显示顶级分类 (parent_id === 0)
+	const topCategories = categories.filter(cat => cat.parent_id === 0);
 
 	return (
 		<div className="min-h-screen bg-gray-50">
@@ -59,35 +59,47 @@ export default function Products() {
 					</div>
 
 					{/* Products Grid */}
-					<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-						{products.map((product) => (
-							<Link 
-								key={product.id}
-								href={`/products/${product.id}`}
-								className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
-							>
-							{/* Product Image */}
-							<div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
-								<img
-									src={product.coverImage}
-									alt={product.name}
-									className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
-									loading="lazy"
-									decoding="async"
-									style={{ contentVisibility: 'auto' }}
-								/>
-							</div>							{/* Product Info */}
-							<div className="p-6">
-								<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
-									{product.name}
-								</h3>
-								<p className="text-sm text-gray-500">
-									{product.detailCount || 0} items
-								</p>
-							</div>
-							</Link>
-						))}
-					</div>
+					{loading ? (
+						<div className="text-center py-12">
+							<div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
+							<p className="mt-4 text-gray-600">Loading categories...</p>
+						</div>
+					) : (
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+							{topCategories.map((category) => (
+								<Link 
+									key={category.id}
+									href={`/products/${category.id}`}
+									className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
+								>
+									{/* Category Image */}
+									<div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
+										{category.cover_url ? (
+											<img
+												src={category.cover_url}
+												alt={category.name}
+												className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+												loading="lazy"
+											/>
+										) : (
+											<div className="text-gray-400 text-6xl">📁</div>
+										)}
+									</div>
+									{/* Category Info */}
+									<div className="p-6">
+										<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+											{category.name}
+										</h3>
+										{category.children && (
+											<p className="text-sm text-gray-500">
+												{category.children.length} subcategories
+											</p>
+										)}
+									</div>
+								</Link>
+							))}
+						</div>
+					)}
 				</div>
 			</section>
 			<Footer />
