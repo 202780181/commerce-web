@@ -6,6 +6,8 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Link from 'next/link';
 import { useCategories } from '@/app/contexts/CategoriesContext';
+import { AlertTriangle } from 'lucide-react';
+import FolderIcon from '@/app/components/FolderIcon';
 
 interface Product {
 	id: number;
@@ -78,7 +80,7 @@ export default function CategoryPage() {
 				<Header lightBackground={true} />
 				<div className="flex items-center justify-center py-40 pt-[calc(72px+10rem)]">
 					<div className="text-center">
-						<div className="text-red-500 text-6xl mb-4">⚠</div>
+						<AlertTriangle className="text-red-500 w-24 h-24 mx-auto mb-4" />
 						<h2 className="text-3xl font-bold text-gray-900 mb-2">Error</h2>
 						<p className="text-gray-600">Category not found</p>
 					</div>
@@ -140,7 +142,7 @@ export default function CategoryPage() {
 									href={`/products/${subcat.id}`}
 									className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
 								>
-									<div className="aspect-video bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center">
+									<div className="h-48 bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center overflow-hidden">
 										{subcat.cover_url ? (
 											<img 
 												src={subcat.cover_url} 
@@ -148,13 +150,11 @@ export default function CategoryPage() {
 												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 											/>
 										) : (
-											<div className="text-6xl group-hover:scale-110 transition-transform duration-300">
-												📁
-											</div>
+											<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
 										)}
 									</div>
-									<div className="p-6">
-										<h3 className="text-lg font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+									<div className="p-4">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
 											{subcat.name}
 										</h3>
 									</div>
@@ -172,7 +172,7 @@ export default function CategoryPage() {
 									href={`/products/${categoryId}/${product.id}`}
 									className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
 								>
-								<div className="aspect-video bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center">
+								<div className="h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
 									{product.cover_url ? (
 										<img 
 											src={product.cover_url} 
@@ -180,13 +180,11 @@ export default function CategoryPage() {
 											className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
 										/>
 									) : (
-										<div className="text-6xl group-hover:scale-110 transition-transform duration-300">
-											📁
-										</div>
+										<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
 									)}
 								</div>
-									<div className="p-6">
-										<h3 className="text-lg font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+									<div className="p-4">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
 											{product.title}
 										</h3>
 									</div>
@@ -196,7 +194,7 @@ export default function CategoryPage() {
 					</>
 				) : (
 					<div className="text-center py-20">
-						<div className="text-8xl mb-6">📭</div>
+						<FolderIcon className="w-32 h-32 mx-auto mb-6" />
 						<h3 className="text-2xl font-bold text-gray-900 mb-2">No Content Available</h3>
 						<p className="text-gray-600">This category is currently empty.</p>
 					</div>

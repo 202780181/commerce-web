@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 import Link from "next/link";
 import { usePageCache } from "../hooks/usePageCache";
 import { useCategories } from "../contexts/CategoriesContext";
+import FolderIcon from "../components/FolderIcon";
 
 export default function Products() {
 	usePageCache();
@@ -73,25 +74,25 @@ export default function Products() {
 									className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
 								>
 									{/* Category Image */}
-									<div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
+									<div className="relative h-48 bg-linear-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
 										{category.cover_url ? (
 											<img
 												src={category.cover_url}
 												alt={category.name}
-												className="w-full h-full object-contain group-hover:scale-105 transition-transform duration-500"
+												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
 												loading="lazy"
 											/>
 										) : (
-											<div className="text-gray-400 text-6xl">📁</div>
+											<FolderIcon className="w-24 h-24" />
 										)}
 									</div>
 									{/* Category Info */}
-									<div className="p-6">
-										<h3 className="text-xl font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors">
+									<div className="p-4">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
 											{category.name}
 										</h3>
 										{category.children && (
-											<p className="text-sm text-gray-500">
+											<p className="text-xs text-gray-500 mt-1">
 												{category.children.length} subcategories
 											</p>
 										)}

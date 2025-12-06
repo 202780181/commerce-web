@@ -7,10 +7,10 @@ if (process.env.NODE_ENV === 'development') {
 
 export async function GET(
 	request: Request,
-	{ params }: { params: { id: string } }
+	{ params }: { params: Promise<{ id: string }> }
 ) {
 	try {
-		const productId = params.id;
+		const { id: productId } = await params;
 		console.log('[API Proxy Product Detail] Fetching product:', productId);
 		
 		const backendUrl = `http://43.139.139.215/api/api/v1/portal/products/${productId}`;

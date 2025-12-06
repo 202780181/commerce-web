@@ -5,6 +5,8 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { usePageCache } from "../hooks/usePageCache";
+import { AlertTriangle } from "lucide-react";
+import FolderIcon from "../components/FolderIcon";
 
 // Download file interface
 interface DownloadFile {
@@ -97,7 +99,7 @@ export default function Download() {
 				<Header lightBackground={true} />
 				<div className="flex-1 flex items-center justify-center pt-[72px]">
 					<div className="text-center">
-						<div className="text-red-500 text-6xl mb-4">⚠️</div>
+						<AlertTriangle className="text-red-500 w-24 h-24 mx-auto mb-4" />
 						<h2 className="text-3xl font-bold text-gray-900 mb-2">Error</h2>
 						<p className="text-gray-600">{error}</p>
 					</div>
@@ -113,7 +115,7 @@ export default function Download() {
 
 			<div className="flex-1 flex flex-col">
 				{/* Hero Section */}
-				<section className="relative pt-32 pb-16 px-6 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
+				<section className="relative pt-32 pb-16 px-6 bg-linear-to-br from-purple-50 via-blue-50 to-indigo-50">
 					<div className="max-w-[1600px] mx-auto">
 						<motion.div
 							initial={{ opacity: 0, y: 30 }}
@@ -183,7 +185,7 @@ export default function Download() {
 														{/* Left: Icon and Info */}
 														<div className="flex items-center gap-4 flex-1">
 															{/* File Icon */}
-															<div className="flex-shrink-0">
+															<div className="shrink-0">
 																<svg
 																	className="w-10 h-10 text-gray-600"
 																	fill="none"
@@ -216,7 +218,7 @@ export default function Download() {
 														</div>
 
 														{/* Right: Download Button */}
-														<div className="flex-shrink-0">
+														<div className="shrink-0">
 															<motion.button
 																onClick={() => handleDownload(file.oss_url)}
 																whileHover={{ scale: 1.05 }}
@@ -231,7 +233,7 @@ export default function Download() {
 											))
 										) : (
 											<div className="px-8 py-12 text-center">
-												<div className="text-6xl mb-4">📁</div>
+												<FolderIcon className="w-24 h-24 mx-auto mb-4" />
 												<h3 className="text-xl font-semibold text-gray-900 mb-2">No Downloads Available</h3>
 												<p className="text-gray-600">Check back later for downloadable files.</p>
 											</div>

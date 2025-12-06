@@ -6,6 +6,7 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Link from 'next/link';
 import { useCategories } from '@/app/contexts/CategoriesContext';
+import FolderIcon from '@/app/components/FolderIcon';
 
 interface ProductImage {
 	id: number;
@@ -189,7 +190,7 @@ export default function ProductDetailPage() {
 											className="w-full h-full object-contain p-8"
 										/>
 									) : (
-										<div className="text-8xl text-gray-300">📁</div>
+										<FolderIcon className="w-32 h-32" />
 									)}
 								</div>
 							</div>
