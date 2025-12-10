@@ -16,6 +16,7 @@ interface Product {
 	cover_url?: string;
 	main_image?: string;
 	content?: string;
+	sort?: number;
 }
 
 export default function CategoryPage() {
@@ -48,7 +49,9 @@ export default function CategoryPage() {
 					
 					if (data.code === 0 && data.data) {
 						const productList = data.data.list || [];
-						setProducts(productList);
+						// Sort products by sort field
+						const sortedProducts = productList.sort((a: Product, b: Product) => (a.sort || 0) - (b.sort || 0));
+						setProducts(sortedProducts);
 					}
 				} catch (error) {
 					console.error('[CategoryPage] Error fetching products:', error);

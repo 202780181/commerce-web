@@ -1,10 +1,15 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
-export async function GET() {
+export async function GET(request: NextRequest) {
 	try {
-		const backendUrl = 'http://43.139.139.215/api/api/v1/portal/downloads';
+		const backendUrl = new URL('http://43.139.139.215/api/api/v1/portal/downloads');
+		const search = request.nextUrl.searchParams.get('search');
 		
-		const response = await fetch(backendUrl, {
+		if (search) {
+			backendUrl.searchParams.append('search', search);
+		}
+		
+		const response = await fetch(backendUrl.toString(), {
 			method: 'GET',
 			headers: {
 				'Content-Type': 'application/json',
