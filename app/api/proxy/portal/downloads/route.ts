@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
 		const search = request.nextUrl.searchParams.get('search');
 		
 		if (search) {
-			backendUrl.searchParams.append('search', search);
+			backendUrl.searchParams.append('keyword', search);
 		}
 		
 		const response = await fetch(backendUrl.toString(), {

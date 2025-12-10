@@ -35,13 +35,14 @@ export default function Download() {
 	const fetchDownloads = async (search: string = "") => {
 		try {
 			setLoading(true);
-			// Use window.location.origin as base for relative URLs
-			const url = new URL('/api/proxy/portal/downloads', window.location.origin);
-			if (search) {
-				url.searchParams.append('search', search);
-			}
+			setError(null);
+			
+			// Simple URL construction
+			const url = search 
+				? `/api/proxy/portal/downloads?search=${encodeURIComponent(search)}`
+				: '/api/proxy/portal/downloads';
 
-			const response = await fetch(url.toString());
+			const response = await fetch(url);
 			if (!response.ok) throw new Error('Failed to fetch downloads');
 			
 			const data = await response.json();
@@ -51,11 +52,15 @@ export default function Download() {
 				// The API returns { list: [], total: 0, ... } structure
 				setDownloadFiles(data.data.list || []);
 			} else {
-				throw new Error(data.msg || 'Failed to load downloads');
+				// If backend returns error (e.g. 500), just show empty list as requested
+				console.warn('[Download] API returned non-zero code:', data);
+				setDownloadFiles([]);
 			}
 		} catch (error) {
 			console.error('[Download] Error fetching downloads:', error);
-			setError('Failed to load downloads. Please try again later.');
+			// On network error, also just show empty list to avoid breaking UI
+			setDownloadFiles([]);
+			// setError('Failed to load downloads. Please try again later.');
 		} finally {
 			setLoading(false);
 		}
