@@ -7,6 +7,7 @@ import Footer from '@/app/components/Footer';
 import Link from 'next/link';
 import { useCategories } from '@/app/contexts/CategoriesContext';
 import FolderIcon from '@/app/components/FolderIcon';
+import ProductImageViewer from '@/app/components/ProductImageViewer';
 
 interface ProductImage {
 	id: number;
@@ -181,19 +182,13 @@ export default function ProductDetailPage() {
 
 						{/* Main Image Display */}
 						<div className="col-span-12 sm:col-span-10">
-							<div className="bg-white rounded-lg border border-gray-200 overflow-hidden">
-								<div className="aspect-4/3 flex items-center justify-center bg-gray-50">
-									{selectedImage ? (
-										<img
-											src={selectedImage}
-											alt={product.title}
-											className="w-full h-full object-contain p-8"
-										/>
-									) : (
-										<FolderIcon className="w-32 h-32" />
-									)}
+							{selectedImage ? (
+								<ProductImageViewer src={selectedImage} alt={product.title} />
+							) : (
+								<div className="w-full h-[600px] bg-white rounded-lg border border-gray-200 flex items-center justify-center">
+									<FolderIcon className="w-32 h-32" />
 								</div>
-							</div>
+							)}
 						</div>
 					</div>
 

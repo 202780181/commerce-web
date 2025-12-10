@@ -8,6 +8,7 @@ interface Category {
 	name: string;
 	cover_url?: string;
 	children?: Category[];
+	product_count?: number;
 }
 
 interface Product {
@@ -60,6 +61,9 @@ export function CategoriesProvider({ children }: { children: ReactNode }) {
 					if (Array.isArray(data.data)) {
 						// 返回 {code: 0, data: [...]} 的情况（当前接口格式）
 						console.log('[CategoriesContext] Processing as {code: 0, data: array}');
+						if (data.data.length > 0) {
+							console.log('[CategoriesContext] First category sample:', data.data[0]);
+						}
 						setCategories(data.data);
 						setProducts([]);
 					} else {
