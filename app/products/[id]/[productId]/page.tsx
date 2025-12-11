@@ -173,7 +173,7 @@ export default function ProductDetailPage() {
 									<img
 										src={image.oss_url}
 										alt={`${product.title} - ${image.type}`}
-										className="w-full h-full object-cover"
+										className="w-full h-full"
 									/>
 								</button>
 							))}
@@ -221,8 +221,8 @@ export default function ProductDetailPage() {
 												const value = trimmedLine.substring(colonIndex + 1).trim();
 												return (
 													<div key={index} className="border-b border-gray-100 pb-3 last:border-0 last:pb-0">
-														<div className="font-medium text-gray-700">{key}</div>
-														<div className="text-gray-600 mt-1">{value}</div>
+														<span className="font-bold text-gray-900">{key}: </span>
+														<span className="text-gray-600">{value}</span>
 													</div>
 												);
 											}

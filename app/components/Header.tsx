@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { usePathname } from "next/navigation";
 import SearchBar from "./SearchBar";
-import { getAllProducts } from "../lib/productConfig";
+import { getAllProducts, Product } from "../lib/productConfig";
 
 interface HeaderProps {
   readonly lightBackground?: boolean; // If light background, text defaults to black
@@ -15,7 +15,20 @@ export default function Header({ lightBackground = false }: HeaderProps) {
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const products = getAllProducts();
+  const [products, setProducts] = useState<Product[]>([]);
+  
+  const loadProducts = useCallback(() => {
+    setProducts(prev => {
+      if (prev.length > 0) return prev;
+      return getAllProducts();
+    });
+  }, []);
+
+  // 在页面加载后尽快加载数据，但不阻塞首次渲染
+  useEffect(() => {
+    const timer = setTimeout(loadProducts, 0);
+    return () => clearTimeout(timer);
+  }, [loadProducts]);
   
   // 获取当前产品ID
   const currentProductId = pathname?.startsWith('/products/') 
@@ -114,7 +127,10 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           <div 
             ref={dropdownRef}
             className="relative"
-            onMouseEnter={() => setProductsDropdownOpen(true)}
+            onMouseEnter={() => {
+              setProductsDropdownOpen(true);
+              loadProducts();
+            }}
             onMouseLeave={() => setProductsDropdownOpen(false)}
           >
             <a 
