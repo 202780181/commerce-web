@@ -171,12 +171,12 @@ export default function Header({ lightBackground = false }: HeaderProps) {
                   </div>
                   
                   <div className="grid grid-cols-3 gap-3 max-h-[500px] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gradient-to-b [&::-webkit-scrollbar-thumb]:from-purple-600 [&::-webkit-scrollbar-thumb]:to-blue-500 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:from-purple-700 [&::-webkit-scrollbar-thumb]:hover:to-blue-600">
-                    {products.map((product, index) => {
-                      const isActive = currentProductId === product.id;
+                    {categories.map((category) => {
+                      const isActive = currentProductId === String(category.id);
                       return (
                       <a
-                        key={product.id}
-                        href={`/products/${product.id}`}
+                        key={category.id}
+                        href={`/products/${category.id}`}
                         className={`group flex items-start gap-3 p-3 rounded-xl transition-all duration-200 border ${
                           isActive 
                             ? 'bg-gradient-to-r from-purple-100 to-blue-100 border-purple-300 shadow-sm' 
@@ -185,20 +185,28 @@ export default function Header({ lightBackground = false }: HeaderProps) {
                         onClick={() => setProductsDropdownOpen(false)}
                       >
                         <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-gray-100">
-                          <img 
-                            src={product.coverImage} 
-                            alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                          />
+                          {category.cover_url ? (
+                            <img 
+                              src={category.cover_url} 
+                              alt={category.name}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                          ) : (
+                            <div className="w-full h-full flex items-center justify-center bg-gray-200 text-gray-400">
+                              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                              </svg>
+                            </div>
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className={`font-semibold text-sm transition-colors truncate ${
                             isActive ? 'text-purple-600' : 'text-gray-900 group-hover:text-purple-600'
                           }`}>
-                            {product.name}
+                            {category.name}
                           </div>
                           <div className="text-xs text-gray-500 mt-0.5">
-                            {product.detailCount || 0} items
+                            click to details
                           </div>
                         </div>
                         <svg 

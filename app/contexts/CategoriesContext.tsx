@@ -8,6 +8,8 @@ interface Category {
 	name: string;
 	cover_url?: string;
 	children?: Category[];
+	product_count?: number;
+	sort?: number;
 }
 
 interface Product {
@@ -37,6 +39,16 @@ export function CategoriesProvider({ children }: { children: ReactNode }) {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 
+	// 递归排序函数
+	const sortCategories = (cats: Category[]): Category[] => {
+		return cats
+			.sort((a, b) => (a.sort || 0) - (b.sort || 0))
+			.map(cat => ({
+				...cat,
+				children: cat.children ? sortCategories(cat.children) : undefined
+			}));
+	};
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
@@ -54,18 +66,21 @@ export function CategoriesProvider({ children }: { children: ReactNode }) {
 				if (Array.isArray(data)) {
 					// 直接返回数组的情况
 					console.log('[CategoriesContext] Processing as direct array');
-					setCategories(data);
+					setCategories(sortCategories(data));
 					setProducts([]);
 				} else if (data.code === 0 && data.data) {
 					if (Array.isArray(data.data)) {
 						// 返回 {code: 0, data: [...]} 的情况（当前接口格式）
 						console.log('[CategoriesContext] Processing as {code: 0, data: array}');
-						setCategories(data.data);
+						if (data.data.length > 0) {
+							console.log('[CategoriesContext] First category sample:', data.data[0]);
+						}
+						setCategories(sortCategories(data.data));
 						setProducts([]);
 					} else {
 						// 返回 {code: 0, data: {categories: [], products: []}} 的情况
 						console.log('[CategoriesContext] Processing as {code: 0, data: {categories, products}}');
-						setCategories(data.data.categories || []);
+						setCategories(sortCategories(data.data.categories || []));
 						setProducts(data.data.products || []);
 					}
 				} else {

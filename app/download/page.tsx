@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { usePageCache } from "../hooks/usePageCache";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, Search } from "lucide-react";
 import FolderIcon from "../components/FolderIcon";
 
 // Download file interface
@@ -30,32 +30,50 @@ export default function Download() {
 	const [downloadFiles, setDownloadFiles] = useState<DownloadFile[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+	const [searchTerm, setSearchTerm] = useState("");
+
+	const fetchDownloads = async (search: string = "") => {
+		try {
+			setLoading(true);
+			setError(null);
+			
+			// Simple URL construction
+			const url = search 
+				? `/api/proxy/portal/downloads?search=${encodeURIComponent(search)}`
+				: '/api/proxy/portal/downloads';
+
+			const response = await fetch(url);
+			if (!response.ok) throw new Error('Failed to fetch downloads');
+			
+			const data = await response.json();
+			console.log('[Download] Downloads data:', data);
+			
+			if (data.code === 0 && data.data) {
+				// The API returns { list: [], total: 0, ... } structure
+				setDownloadFiles(data.data.list || []);
+			} else {
+				// If backend returns error (e.g. 500), just show empty list as requested
+				console.warn('[Download] API returned non-zero code:', data);
+				setDownloadFiles([]);
+			}
+		} catch (error) {
+			console.error('[Download] Error fetching downloads:', error);
+			// On network error, also just show empty list to avoid breaking UI
+			setDownloadFiles([]);
+			// setError('Failed to load downloads. Please try again later.');
+		} finally {
+			setLoading(false);
+		}
+	};
 
 	useEffect(() => {
-		const fetchDownloads = async () => {
-			try {
-				setLoading(true);
-				const response = await fetch('/api/proxy/portal/downloads');
-				if (!response.ok) throw new Error('Failed to fetch downloads');
-				
-				const data = await response.json();
-				console.log('[Download] Downloads data:', data);
-				
-				if (data.code === 0 && data.data) {
-					setDownloadFiles(data.data);
-				} else {
-					throw new Error(data.msg || 'Failed to load downloads');
-				}
-			} catch (error) {
-				console.error('[Download] Error fetching downloads:', error);
-				setError('Failed to load downloads. Please try again later.');
-			} finally {
-				setLoading(false);
-			}
-		};
-		
 		fetchDownloads();
 	}, []);
+
+	const handleSearch = (e: React.FormEvent) => {
+		e.preventDefault();
+		fetchDownloads(searchTerm);
+	};
 
 	const handleDownload = (url: string) => {
 		// 直接使用原始 URL 下载
@@ -130,14 +148,31 @@ export default function Download() {
 					</div>
 				</section>
 
-				{/* Breadcrumb */}
+				{/* Breadcrumb */}	
 				<div className="py-6 px-6 bg-white border-b">
-					<div className="max-w-[1600px] mx-auto">
+					<div className="max-w-[1600px] mx-auto flex flex-col md:flex-row md:items-center gap-25">
 						<div className="flex items-center gap-2 text-sm text-gray-600">
 							<a href="/" className="hover:text-purple-600 transition-colors">Home</a>
 							<span>{'>'}</span>
 							<span className="text-gray-900 font-semibold">DOWNLOAD</span>
 						</div>
+
+						{/* Search Box */}
+						<form onSubmit={handleSearch} className="relative w-full md:w-96">
+							<input
+								type="text"
+								placeholder="Search downloads..."
+								value={searchTerm}
+								onChange={(e) => setSearchTerm(e.target.value)}
+								className="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all"
+							/>
+							<button 
+								type="submit"
+								className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-purple-600 transition-colors cursor-pointer"
+							>
+								<Search className="w-5 h-5" />
+							</button>
+						</form>
 					</div>
 				</div>
 
