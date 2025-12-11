@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect, useRef, useCallback } from "react";
+import { useState, useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import SearchBar from "./SearchBar";
-import { getAllProducts, Product } from "../lib/productConfig";
+import { useCategories } from "../contexts/CategoriesContext";
 
 interface HeaderProps {
   readonly lightBackground?: boolean; // If light background, text defaults to black
@@ -15,24 +15,11 @@ export default function Header({ lightBackground = false }: HeaderProps) {
   const [productsDropdownOpen, setProductsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const pathname = usePathname();
-  const [products, setProducts] = useState<Product[]>([]);
-  
-  const loadProducts = useCallback(() => {
-    setProducts(prev => {
-      if (prev.length > 0) return prev;
-      return getAllProducts();
-    });
-  }, []);
-
-  // 在页面加载后尽快加载数据，但不阻塞首次渲染
-  useEffect(() => {
-    const timer = setTimeout(loadProducts, 0);
-    return () => clearTimeout(timer);
-  }, [loadProducts]);
+  const { categories } = useCategories();
   
   // 获取当前产品ID
   const currentProductId = pathname?.startsWith('/products/') 
-    ? pathname.split('/')[2] 
+    ? Number(pathname.split('/')[2])
     : null;
 
   useEffect(() => {
@@ -124,12 +111,12 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           </a>
           
           {/* Products Dropdown */}
+          {/* Products Dropdown */}
           <div 
             ref={dropdownRef}
             className="relative"
             onMouseEnter={() => {
               setProductsDropdownOpen(true);
-              loadProducts();
             }}
             onMouseLeave={() => setProductsDropdownOpen(false)}
           >
@@ -171,12 +158,12 @@ export default function Header({ lightBackground = false }: HeaderProps) {
                   </div>
                   
                   <div className="grid grid-cols-3 gap-3 max-h-[500px] overflow-y-auto [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-gray-100 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:bg-gradient-to-b [&::-webkit-scrollbar-thumb]:from-purple-600 [&::-webkit-scrollbar-thumb]:to-blue-500 [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:hover:from-purple-700 [&::-webkit-scrollbar-thumb]:hover:to-blue-600">
-                    {products.map((product, index) => {
-                      const isActive = currentProductId === product.id;
+                    {categories.map((category) => {
+                      const isActive = Number(currentProductId) === category.id;
                       return (
                       <a
-                        key={product.id}
-                        href={`/products/${product.id}`}
+                        key={category.id}
+                        href={`/products/${category.id}`}
                         className={`group flex items-start gap-3 p-3 rounded-xl transition-all duration-200 border ${
                           isActive 
                             ? 'bg-gradient-to-r from-purple-100 to-blue-100 border-purple-300 shadow-sm' 
@@ -185,20 +172,22 @@ export default function Header({ lightBackground = false }: HeaderProps) {
                         onClick={() => setProductsDropdownOpen(false)}
                       >
                         <div className="flex-shrink-0 w-12 h-12 rounded-lg overflow-hidden bg-gray-100">
-                          <img 
-                            src={product.coverImage} 
-                            alt={product.name}
-                            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
-                          />
+                          {category.cover_url && (
+                            <img 
+                              src={category.cover_url} 
+                              alt={category.name}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
+                            />
+                          )}
                         </div>
                         <div className="flex-1 min-w-0">
                           <div className={`font-semibold text-sm transition-colors truncate ${
                             isActive ? 'text-purple-600' : 'text-gray-900 group-hover:text-purple-600'
                           }`}>
-                            {product.name}
+                            {category.name}
                           </div>
                           <div className="text-xs text-gray-500 mt-0.5">
-                            {product.detailCount || 0} items
+                            click to details
                           </div>
                         </div>
                         <svg 
