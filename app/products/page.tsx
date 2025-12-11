@@ -79,7 +79,7 @@ export default function Products() {
 											<img
 												src={category.cover_url}
 												alt={category.name}
-												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+												className="w-full h-full object-cover group-hover:scale-100 transition-transform duration-500"
 												loading="lazy"
 											/>
 										) : (
@@ -87,8 +87,8 @@ export default function Products() {
 										)}
 									</div>
 									{/* Category Info */}
-									<div className="p-4">
-										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
+									<div className="p-4 border-t border-gray-100">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12">
 											{category.name}
 										</h3>
 										{category.children && (

@@ -151,14 +151,14 @@ export default function CategoryPage() {
 											<img 
 												src={subcat.cover_url} 
 												alt={subcat.name}
-												className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+												className="w-full h-full object-cover group-hover:scale-100 transition-transform duration-300"
 											/>
 										) : (
 											<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
 										)}
 									</div>
-									<div className="p-4">
-										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
+									<div className="p-4 border-t border-gray-100">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12">
 											{subcat.name}
 										</h3>
 									</div>
@@ -187,8 +187,8 @@ export default function CategoryPage() {
 										<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
 									)}
 								</div>
-									<div className="p-4">
-										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2">
+									<div className="p-4 border-t border-gray-100">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12">
 											{product.title}
 										</h3>
 									</div>

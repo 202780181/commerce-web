@@ -65,7 +65,7 @@ export default function Integrations({
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full group"
               >
                 {/* Product Image */}
-                <div className="relative h-64 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
+                <div className="relative h-64 overflow-hidden flex items-center justify-center">
                   <img
                     src={product.cover_url}
                     alt={product.title}
@@ -77,8 +77,8 @@ export default function Integrations({
                 </div>
 
                 {/* Product Info */}
-                <div className="p-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-purple-600 transition-colors line-clamp-2">
+                <div className="p-4 border-t border-gray-100">
+                  <h3 className="text-base font-bold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12">
                     {product.title}
                   </h3>
                 </div>

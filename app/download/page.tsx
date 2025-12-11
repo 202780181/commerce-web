@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { usePageCache } from "../hooks/usePageCache";
-import { AlertTriangle, Search } from "lucide-react";
+import { AlertTriangle, Search, ChevronLeft, ChevronRight } from "lucide-react";
 import FolderIcon from "../components/FolderIcon";
 
 // Download file interface
@@ -31,48 +31,65 @@ export default function Download() {
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
 	const [searchTerm, setSearchTerm] = useState("");
+	const [page, setPage] = useState(1);
+	const [totalPages, setTotalPages] = useState(0);
+	const [totalItems, setTotalItems] = useState(0);
 
-	const fetchDownloads = async (search: string = "") => {
+	const fetchDownloads = async (search: string = "", pageNum: number = 1) => {
 		try {
 			setLoading(true);
 			setError(null);
 			
-			// Simple URL construction
-			const url = search 
-				? `/api/proxy/portal/downloads?search=${encodeURIComponent(search)}`
-				: '/api/proxy/portal/downloads';
+			const queryParams = new URLSearchParams({
+				page: pageNum.toString(),
+				limit: '20'
+			});
+			
+			if (search) {
+				queryParams.append('search', search);
+			}
 
-			const response = await fetch(url);
+			const response = await fetch(`/api/proxy/portal/downloads?${queryParams.toString()}`);
 			if (!response.ok) throw new Error('Failed to fetch downloads');
 			
 			const data = await response.json();
 			console.log('[Download] Downloads data:', data);
 			
 			if (data.code === 0 && data.data) {
-				// The API returns { list: [], total: 0, ... } structure
 				setDownloadFiles(data.data.list || []);
+				setTotalItems(data.data.total || 0);
+				setTotalPages(Math.ceil(data.data.total / data.data.limit));
 			} else {
-				// If backend returns error (e.g. 500), just show empty list as requested
 				console.warn('[Download] API returned non-zero code:', data);
 				setDownloadFiles([]);
+				setTotalItems(0);
+				setTotalPages(0);
 			}
 		} catch (error) {
 			console.error('[Download] Error fetching downloads:', error);
-			// On network error, also just show empty list to avoid breaking UI
 			setDownloadFiles([]);
-			// setError('Failed to load downloads. Please try again later.');
+			setTotalItems(0);
+			setTotalPages(0);
 		} finally {
 			setLoading(false);
 		}
 	};
 
 	useEffect(() => {
-		fetchDownloads();
-	}, []);
+		fetchDownloads(searchTerm, page);
+	}, [page]);
 
 	const handleSearch = (e: React.FormEvent) => {
 		e.preventDefault();
-		fetchDownloads(searchTerm);
+		setPage(1); // Reset to first page
+		fetchDownloads(searchTerm, 1);
+	};
+
+	const handlePageChange = (newPage: number) => {
+		if (newPage >= 1 && newPage <= totalPages) {
+			setPage(newPage);
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		}
 	};
 
 	const handleDownload = (url: string) => {
@@ -99,17 +116,7 @@ export default function Download() {
 		});
 	};
 
-	if (loading) {
-		return (
-			<div className="min-h-screen flex flex-col bg-white">
-				<Header lightBackground={true} />
-				<div className="flex-1 flex items-center justify-center pt-[72px]">
-					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-purple-600"></div>
-				</div>
-				<Footer />
-			</div>
-		);
-	}
+
 
 	if (error) {
 		return (
@@ -206,7 +213,12 @@ export default function Download() {
 									</div>
 
 									{/* Download List */}
-									<div className="divide-y">
+									<div className="divide-y relative">
+										{loading ? (
+											<div className="absolute inset-0 flex items-center justify-center bg-white/50 z-10">
+												<div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
+											</div>
+										) : null}
 										{downloadFiles.length > 0 ? (
 											downloadFiles.map((file, index) => (
 												<motion.div
@@ -274,6 +286,68 @@ export default function Download() {
 											</div>
 										)}
 									</div>
+
+									{/* Search Row */}
+									<div className="px-8 py-4 border-b border-gray-100 flex justify-end">
+										<form onSubmit={handleSearch} className="relative w-64">
+											<input
+												type="text"
+												placeholder="Search..."
+												value={searchTerm}
+												onChange={(e) => setSearchTerm(e.target.value)}
+												className="w-full pl-4 pr-10 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500/20 focus:border-purple-500 transition-all"
+											/>
+											<button
+												type="submit"
+												className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-purple-600 transition-colors cursor-pointer"
+											>
+												<Search className="w-4 h-4" />
+											</button>
+										</form>
+									</div>
+
+									{/* Pagination */}
+									{totalPages && (
+										<div className="flex items-center justify-center gap-4 py-8 border-t border-gray-100">
+											<span className="text-sm text-gray-500">
+												Total {totalItems} items
+											</span>
+											
+											<div className="flex items-center gap-2">
+												<button
+													onClick={() => handlePageChange(page - 1)}
+													disabled={page === 1}
+													className="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+												>
+													<ChevronLeft className="w-5 h-5" />
+												</button>
+											
+											<div className="flex items-center gap-1">
+												{Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
+													<button
+														key={pageNum}
+														onClick={() => handlePageChange(pageNum)}
+														className={`w-10 h-10 rounded-lg text-sm font-medium transition-colors ${
+															pageNum === page
+																? 'bg-purple-600 text-white'
+																: 'text-gray-600 hover:bg-gray-50'
+														}`}
+													>
+														{pageNum}
+													</button>
+												))}
+											</div>
+
+												<button
+													onClick={() => handlePageChange(page + 1)}
+													disabled={page === totalPages}
+													className="p-2 rounded-lg border border-gray-200 text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+												>
+													<ChevronRight className="w-5 h-5" />
+												</button>
+											</div>
+										</div>
+									)}
 								</motion.div>
 							</main>
 						</div>
