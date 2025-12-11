@@ -176,7 +176,7 @@ export default function CategoryPage() {
 									href={`/products/${categoryId}/${product.id}`}
 									className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
 								>
-								<div className="h-48 bg-gradient-to-br from-gray-50 to-gray-100 flex items-center justify-center overflow-hidden">
+								<div className="h-48 bg-gradient-to-br flex items-center justify-center overflow-hidden">
 									{product.main_image || product.cover_url ? (
 										<img 
 											src={product.main_image || product.cover_url} 
