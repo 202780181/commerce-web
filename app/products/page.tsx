@@ -74,7 +74,7 @@ export default function Products() {
 									className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
 								>
 									{/* Category Image */}
-									<div className="relative h-48 bg-linear-to-br from-gray-50 to-gray-100 overflow-hidden flex items-center justify-center">
+									<div className="relative h-48 bg-linear-to-br overflow-hidden flex items-center justify-center">
 										{category.cover_url ? (
 											<img
 												src={category.cover_url}
