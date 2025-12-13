@@ -66,7 +66,11 @@ export default function Header({ lightBackground = false }: HeaderProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 h-[72px] transition-all duration-200 ${isScrolled ? 'bg-white border-b border-gray-200 shadow-sm' : 'bg-transparent border-b-0 shadow-none'}`}
+      className={`fixed top-0 left-0 right-0 z-50 h-[72px] transition-all duration-200 ${
+        isScrolled || lightBackground 
+          ? 'bg-white border-b border-gray-200 shadow-sm' 
+          : 'bg-transparent border-b-0 shadow-none'
+      }`}
     >
       <nav className="mx-auto flex items-center justify-between p-4 lg:px-8 h-full max-w-[1450px] lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-6">
         {/* Logo */}
@@ -101,12 +105,10 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             </svg>
           </button>
         </div>
-
         {/* Search and right side buttons */}
-        {/* <div className="hidden lg:flex lg:items-center lg:justify-center">
+        <div className="hidden lg:flex lg:items-center lg:justify-start">
           <SearchBar />
-        </div> */}
-
+        </div>
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-12 justify-center">
           <NavLink href="/" isScrolled={isScrolled} lightBackground={lightBackground}>

@@ -1,6 +1,6 @@
 "use client";
 
-import { memo } from "react";
+import { memo, useRef, useState, useLayoutEffect } from "react";
 
 interface Category {
   id: number;
@@ -27,11 +27,28 @@ const ProductsDropdown = memo(function ProductsDropdown({
   onMouseEnter,
   onMouseLeave,
 }: ProductsDropdownProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const [xOffset, setXOffset] = useState(0);
+
+  useLayoutEffect(() => {
+    if (isOpen && containerRef.current) {
+      const rect = containerRef.current.getBoundingClientRect();
+      const windowWidth = window.innerWidth;
+      const rightOverflow = rect.right - windowWidth + 24; // 24px safety margin
+
+      if (rightOverflow > 0) {
+        setXOffset(rightOverflow);
+      }
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   return (
     <div 
-      className="absolute top-full left-1/2 -translate-x-1/2 pt-4 z-50"
+      ref={containerRef}
+      className="absolute top-full left-1/2 pt-4 z-50"
+      style={{ transform: `translateX(calc(-50% - ${xOffset}px))` }}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
     >

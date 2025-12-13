@@ -7,15 +7,17 @@ import ImageViewer from './ImageViewer';
 interface ProductImageViewerProps {
   src: string;
   alt: string;
+  maxHeight?: string; // 可选的最大高度，例如 "800px" 或 "100%"
 }
 
-export default function ProductImageViewer({ src, alt }: ProductImageViewerProps) {
+export default function ProductImageViewer({ src, alt, maxHeight = "600px" }: ProductImageViewerProps) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   return (
     <>
       <div 
-        className="relative w-full h-[600px] bg-white rounded-lg border border-gray-200 overflow-hidden group cursor-zoom-in"
+        className="relative w-full bg-white rounded-lg border border-gray-200 overflow-hidden group cursor-zoom-in"
+        style={{ height: maxHeight }}
         onClick={() => setIsLightboxOpen(true)}
       >
         {/* Main Image - Fixed Size Container */}

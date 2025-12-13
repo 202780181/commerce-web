@@ -10,41 +10,35 @@ import FolderIcon from "../components/FolderIcon";
 export default function Products() {
 	usePageCache();
 	const { categories, loading } = useCategories();
-	
+
 	// 只显示顶级分类 (parent_id === 0)
 	const topCategories = categories.filter(cat => cat.parent_id === 0);
 
 	return (
 		<div className="min-h-screen bg-gray-50">
-			<Header lightBackground={false} />
+			<Header lightBackground={true} />
 
 			{/* Hero Section */}
-			<section className="relative h-[60vh] min-h-[500px] overflow-hidden">
-				{/* Background Image */}
+			<section className="relative h-[50vh] min-h-[400px] w-full overflow-hidden bg-gradient-to-br from-blue-900/90 via-cyan-900/80 to-blue-800/90 mt-[72px]">
+				{/* Background image */}
 				<div
-					className="absolute inset-0"
+					className="absolute inset-0 bg-cover bg-center bg-no-repeat"
 					style={{
-						backgroundImage: `url("/images/products/products.webp")`,
-						backgroundSize: 'cover',
+						backgroundImage: 'url(/images/products/producton-banner.png)',
+						backgroundSize: 'contain',
 						backgroundPosition: 'center',
+						backgroundRepeat: 'no-repeat'
 					}}
 				/>
 
+				{/* Gradient overlay */}
+				<div className="absolute inset-0 bg-gradient-to-br from-blue-900/40 via-cyan-900/30 to-blue-800/40" />
+
 				{/* Content */}
-				<div className="relative h-full flex flex-col items-center justify-center text-center px-6">
-					<h1 className="text-6xl md:text-7xl font-bold mb-6">
-						<span 
-							className="bg-clip-text text-transparent"
-							style={{
-								backgroundImage: 'linear-gradient(90deg, white, #f24711)',
-								WebkitBackgroundClip: 'text',
-								WebkitTextFillColor: 'transparent',
-								backgroundClip: 'text',
-							}}
-						>
-							Products
-						</span>
-					</h1>
+				<div className="relative h-full flex items-center justify-center z-20">
+					<div className="mx-auto px-6 lg:px-8 text-center" style={{ maxWidth: '1450px' }}>
+						{/* You can add title/subtitle here if needed */}
+					</div>
 				</div>
 			</section>
 			{/* Featured Products Section */}
@@ -68,7 +62,7 @@ export default function Products() {
 					) : (
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
 							{topCategories.map((category) => (
-								<Link 
+								<Link
 									key={category.id}
 									href={`/products/${category.id}`}
 									className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300 cursor-pointer h-full block group"
@@ -102,9 +96,15 @@ export default function Products() {
 						</div>
 					)}
 				</div>
+
+			{/* Hide scrollbar CSS */}
+			<style jsx>{`
+				.scrollbar-hide::-webkit-scrollbar {
+					display: none;
+				}
+			`}</style>
 			</section>
 			<Footer />
 		</div>
 	);
 }
-
