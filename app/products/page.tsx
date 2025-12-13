@@ -55,9 +55,16 @@ export default function Products() {
 
 					{/* Products Grid */}
 					{loading ? (
-						<div className="text-center py-12">
-							<div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-gray-900"></div>
-							<p className="mt-4 text-gray-600">Loading categories...</p>
+						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+							{[...Array(8)].map((_, i) => (
+								<div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg h-full block">
+									<div className="h-48 bg-gray-200 animate-pulse" />
+									<div className="p-4 border-t border-gray-100">
+										<div className="h-5 bg-gray-200 rounded w-3/4 mb-2 animate-pulse" />
+										<div className="h-3 bg-gray-200 rounded w-1/4 animate-pulse" />
+									</div>
+								</div>
+							))}
 						</div>
 					) : (
 						<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">

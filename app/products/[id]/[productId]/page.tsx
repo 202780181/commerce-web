@@ -108,8 +108,64 @@ export default function ProductDetailPage() {
 		return (
 			<div className="min-h-screen bg-gray-50">
 				<Header lightBackground={true} />
-				<div className="flex items-center justify-center py-40 pt-[calc(72px+10rem)]">
-					<div className="animate-spin rounded-full h-32 w-32 border-b-2 border-purple-600"></div>
+				
+				{/* Breadcrumb Skeleton */}
+				<div className="bg-white border-b pt-[72px]">
+					<div className="max-w-7xl mx-auto px-6 py-3">
+						<div className="flex items-center space-x-2">
+							<div className="h-4 w-16 bg-gray-200 rounded animate-pulse"></div>
+							<div className="text-gray-300">/</div>
+							<div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
+							<div className="text-gray-300">/</div>
+							<div className="h-4 w-32 bg-gray-200 rounded animate-pulse"></div>
+						</div>
+					</div>
+				</div>
+
+				<div className="max-w-7xl mx-auto px-6 py-6 pt-24">
+					<div className="h-5 w-32 bg-gray-200 rounded animate-pulse"></div>
+				</div>
+
+				{/* Main Content Skeleton */}
+				<div className="max-w-7xl mx-auto px-6 pb-12">
+					<div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+						{/* Left: Image Gallery Skeleton */}
+						<div className="lg:col-span-2 grid grid-cols-12 gap-6">
+							{/* Thumbnails */}
+							<div className="col-span-12 sm:col-span-2 flex sm:flex-col gap-3">
+								{[...Array(4)].map((_, i) => (
+									<div key={i} className="aspect-square bg-gray-200 rounded-lg animate-pulse"></div>
+								))}
+							</div>
+							
+							{/* Main Image */}
+							<div className="col-span-12 sm:col-span-10">
+								<div className="w-full h-[538px] bg-gray-200 rounded-lg animate-pulse"></div>
+							</div>
+						</div>
+
+						{/* Right: Info Skeleton */}
+						<div className="lg:col-span-1 space-y-6">
+							{/* Title Card Skeleton */}
+							<div className="bg-gray-200 rounded-lg h-24 w-full animate-pulse"></div>
+							
+							{/* Parameters Skeleton */}
+							<div className="bg-white rounded-lg shadow p-6">
+								<div className="h-6 w-48 bg-gray-200 rounded mb-4 animate-pulse"></div>
+								<div className="space-y-4">
+									{[...Array(6)].map((_, i) => (
+										<div key={i} className="flex justify-between border-b border-gray-100 pb-3 last:border-0 last:pb-0">
+											<div className="h-4 w-24 bg-gray-200 rounded animate-pulse"></div>
+											<div className="h-4 w-32 bg-gray-200 rounded animate-pulse"></div>
+										</div>
+									))}
+								</div>
+							</div>
+
+							{/* Downloads Skeleton */}
+							<div className="bg-white rounded-lg shadow h-16 animate-pulse"></div>
+						</div>
+					</div>
 				</div>
 				<Footer />
 			</div>
