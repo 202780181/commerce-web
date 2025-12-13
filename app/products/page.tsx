@@ -79,7 +79,7 @@ export default function Products() {
 											<img
 												src={category.cover_url}
 												alt={category.name}
-												className="w-full h-full group-hover:scale-100 transition-transform duration-500"
+												className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-500"
 												loading="lazy"
 											/>
 										) : (

@@ -49,43 +49,78 @@ export function CategoriesProvider({ children }: { children: ReactNode }) {
 			}));
 	};
 
+	// 缓存键
+	const CACHE_KEY = 'COMMERCE_WEB_CATEGORIES_CACHE';
+	const CACHE_DURATION = 1000 * 60 * 30; // 30 minutes
+
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				setLoading(true);
+				// 1. First trying to load from local storage
+				const cachedData = localStorage.getItem(CACHE_KEY);
+				if (cachedData) {
+					try {
+						const { data, timestamp } = JSON.parse(cachedData);
+						const now = Date.now();
+						// Only use cache if it's not expired (or use it as stale-while-revalidate)
+						// Here we use it immediately to speed up UI, then fetch fresh data
+						if (data && Array.isArray(data)) {
+							console.log('[CategoriesContext] Loading from cache');
+							setCategories(sortCategories(data));
+							setProducts([]);
+							setLoading(false); // Valid cache found, stop loading
+						}
+					} catch (e) {
+						console.error('[CategoriesContext] Error parsing cache:', e);
+						localStorage.removeItem(CACHE_KEY);
+					}
+				}
+
+				// If no cache or we want to revalidate, continue to fetch
+				// Note: We don't set loading=true here if we already showed cached data to avoid flickering
+				if (!cachedData) {
+					setLoading(true);
+				}
+
 				const response = await fetch('/api/proxy/portal/products/categories', {
-					cache: 'no-store',
+					// Remove no-store to allow standard browser caching behavior if useful, 
+					// or keep it if we strictly rely on our localStorage logic.
+					// Let's use 'default' or simply omit it to let browser decide, 
+					// but since we handle app-level cache, 'no-store' ensures we get fresh data from server layer for the update.
+					cache: 'no-store', 
 				});
 
 				if (!response.ok) throw new Error('Failed to fetch categories');
-				const data = await response.json();
+				const result = await response.json();
 
-				console.log('[CategoriesContext] Received data:', data);
+				console.log('[CategoriesContext] Received data from API:', result);
 
-				// 根据实际返回的数据结构处理
-				if (Array.isArray(data)) {
-					// 直接返回数组的情况
-					console.log('[CategoriesContext] Processing as direct array');
-					setCategories(sortCategories(data));
-					setProducts([]);
-				} else if (data.code === 0 && data.data) {
-					if (Array.isArray(data.data)) {
-						// 返回 {code: 0, data: [...]} 的情况（当前接口格式）
-						console.log('[CategoriesContext] Processing as {code: 0, data: array}');
-						if (data.data.length > 0) {
-							console.log('[CategoriesContext] First category sample:', data.data[0]);
-						}
-						setCategories(sortCategories(data.data));
-						setProducts([]);
+				let categoriesData: Category[] = [];
+				let productsData: Product[] = [];
+
+				if (Array.isArray(result)) {
+					categoriesData = result;
+				} else if (result.code === 0 && result.data) {
+					if (Array.isArray(result.data)) {
+						categoriesData = result.data;
 					} else {
-						// 返回 {code: 0, data: {categories: [], products: []}} 的情况
-						console.log('[CategoriesContext] Processing as {code: 0, data: {categories, products}}');
-						setCategories(sortCategories(data.data.categories || []));
-						setProducts(data.data.products || []);
+						categoriesData = result.data.categories || [];
+						productsData = result.data.products || [];
 					}
 				} else {
-					throw new Error(data.message || 'Invalid data format');
+					throw new Error(result.message || 'Invalid data format');
 				}
+
+				// Update State
+				setCategories(sortCategories(categoriesData));
+				setProducts(productsData);
+				
+				// Update Cache
+				localStorage.setItem(CACHE_KEY, JSON.stringify({
+					data: categoriesData,
+					timestamp: Date.now()
+				}));
+
 			} catch (err) {
 				console.error('Error fetching data:', err);
 				setError(err instanceof Error ? err.message : 'Unknown error');

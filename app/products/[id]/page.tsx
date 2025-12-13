@@ -146,12 +146,12 @@ export default function CategoryPage() {
 									href={`/products/${subcat.id}`}
 									className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden group"
 								>
-									<div className="h-48 bg-gradient-to-br from-purple-50 to-blue-50 flex items-center justify-center overflow-hidden">
+									<div className="h-48 bg-gradient-to-br flex items-center justify-center overflow-hidden">
 										{subcat.cover_url ? (
 											<img 
 												src={subcat.cover_url} 
 												alt={subcat.name}
-												className="w-full h-full object-cover group-hover:scale-100 transition-transform duration-300"
+												className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-300"
 											/>
 										) : (
 											<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
@@ -181,7 +181,7 @@ export default function CategoryPage() {
 										<img 
 											src={product.main_image || product.cover_url} 
 											alt={product.title}
-											className="w-full h-full object-contain p-4 group-hover:scale-105 transition-transform duration-300"
+											className="w-full h-full object-contain scale-[0.9] group-hover:scale-105 transition-transform duration-300"
 										/>
 									) : (
 										<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
