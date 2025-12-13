@@ -203,7 +203,7 @@ export default function ProductDetailPage() {
 						<div className="bg-white rounded-lg shadow p-6">
 							{product.content ? (
 								<>
-									<h3 className="text-lg font-semibold text-gray-900 mb-4">Specifications</h3>
+									<h3 className="text-lg font-semibold text-gray-900 mb-4">Product Parameter</h3>
 									<div className="space-y-3 text-sm">
 										{product.content.split('\n').map((line, index) => {
 											const trimmedLine = line.trim();
