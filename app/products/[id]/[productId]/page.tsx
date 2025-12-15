@@ -383,7 +383,7 @@ export default function ProductDetailPage() {
 														href={attachment.oss_url}
 														download={attachment.name}
 														target="_blank"
-														rel="noopener noreferrer"
+														rel="noopener"
 														className="flex items-center justify-center text-red-600 hover:text-red-700 transition-colors"
 														title="Download"
 													>
