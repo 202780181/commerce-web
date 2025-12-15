@@ -114,7 +114,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           <NavLink href="/" isScrolled={isScrolled} lightBackground={lightBackground}>
             HOME
           </NavLink>
-          <NavLink href="/about-us" isScrolled={isScrolled} lightBackground={lightBackground}>
+          <NavLink href="/about" isScrolled={isScrolled} lightBackground={lightBackground}>
             ABOUT
           </NavLink>
           
