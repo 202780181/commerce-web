@@ -113,6 +113,30 @@ export default function AboutUs() {
       title: "Gartner Cool Vendor in Multichannel Marketing",
     },
   ];
+  
+  interface PageData {
+    title: string;
+    content: string;
+  }
+
+  const [pageData, setPageData] = React.useState<PageData | null>(null);
+
+  React.useEffect(() => {
+    const fetchPageData = async () => {
+      try {
+        const response = await fetch('/api/proxy/portal/pages/about');
+        if (!response.ok) throw new Error('Failed to fetch page data');
+        const data = await response.json();
+        if (data.code === 0 && data.data) {
+          setPageData(data.data);
+        }
+      } catch (error) {
+        console.error('Error fetching page data:', error);
+      }
+    };
+
+    fetchPageData();
+  }, []);
 
   return (
     <div className="min-h-screen bg-white">
@@ -144,29 +168,26 @@ export default function AboutUs() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-4xl font-bold text-gray-900 mb-8">
-              Founder story
-            </h2>
-            <div className="prose prose-lg max-w-none">
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Founded in 2012, the company is a manufacturing enterprise specializing in the R&D, production and sales of CNC fixtures. Relying on a professional R&D and design team as well as advanced manufacturing capabilities, it is committed to providing high-precision and high-reliability fixture solutions for global customers.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Core Products and Advantages
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Main Products: Zero-point quick-change fixtures and self-centering vices, covering multiple models, specifications and modular combinations to meet the precision machining needs of customers in different industries.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Product Features: Boasting fast positioning, high repeatability and strong stability, they are widely used in CNC machining centers and automated production lines, significantly improving production efficiency.
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                Future Outlook
-              </p>
-              <p className="text-gray-700 leading-relaxed mb-6">
-                The company will continue to invest in R&D, aligning product performance with European and American national standards. It will provide personalized design and production support based on customer needs, implement strict quality control to ensure product durability and consistency, and promote industrial manufacturing upgrading through intelligent fixture technology. The goal is to become a world-leading fixture system supplier and create greater value for customers.
-              </p>
-            </div>
+            {pageData ? (
+              <>
+                <h2 className="text-4xl font-bold text-gray-900 mb-8">
+                  {pageData.title || "Founder story"}
+                </h2>
+                <div 
+                  className="text-lg text-gray-600 leading-relaxed whitespace-pre-wrap [&>p]:mb-3 [&>h3]:text-2xl [&>h3]:font-bold [&>h3]:text-gray-900 [&>h3]:mb-2 [&>h3]:mt-6 [&>ul]:list-disc [&>ul]:pl-5 [&>ul]:mb-4 [&>li]:mb-1"
+                  dangerouslySetInnerHTML={{ __html: pageData.content }}
+                />
+              </>
+            ) : (
+              <div className="animate-pulse space-y-4">
+                <div className="h-8 bg-gray-200 rounded w-1/4 mb-8"></div>
+                <div className="space-y-4">
+                  <div className="h-4 bg-gray-200 rounded w-full"></div>
+                  <div className="h-4 bg-gray-200 rounded w-5/6"></div>
+                  <div className="h-4 bg-gray-200 rounded w-4/6"></div>
+                </div>
+              </div>
+            )}
           </motion.div>
         </div>
       </section>
