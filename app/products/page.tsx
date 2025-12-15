@@ -24,10 +24,9 @@ export default function Products() {
 				<div
 					className="absolute inset-0 bg-cover bg-center bg-no-repeat"
 					style={{
-						backgroundImage: 'url(/images/products/producton-banner.png)',
-						backgroundSize: 'contain',
+						backgroundImage: 'url(/images/products/producton-banner.jpg)',
+						backgroundSize: 'cover',
 						backgroundPosition: 'center',
-						backgroundRepeat: 'no-repeat'
 					}}
 				/>
 
@@ -80,7 +79,7 @@ export default function Products() {
 											<img
 												src={category.cover_url}
 												alt={category.name}
-												className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-500"
+												className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-500 select-none pointer-events-none"
 												loading="lazy"
 											/>
 										) : (

@@ -207,7 +207,7 @@ export default function CategoryPage() {
 											<img
 												src={subcat.cover_url}
 												alt={subcat.name}
-												className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-300"
+												className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-300 select-none pointer-events-none"
 											/>
 										) : (
 											<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />
@@ -237,7 +237,7 @@ export default function CategoryPage() {
 											<img
 												src={product.main_image || product.cover_url}
 												alt={product.title}
-												className="w-full h-full object-contain scale-[0.9] group-hover:scale-105 transition-transform duration-300"
+												className="w-full h-full object-contain scale-[0.9] group-hover:scale-105 transition-transform duration-300 select-none pointer-events-none"
 											/>
 										) : (
 											<FolderIcon className="w-24 h-24 group-hover:scale-110 transition-transform duration-300" />

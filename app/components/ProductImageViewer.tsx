@@ -19,13 +19,14 @@ export default function ProductImageViewer({ src, alt, maxHeight = "600px" }: Pr
         className="relative w-full bg-white rounded-lg border border-gray-200 overflow-hidden group cursor-zoom-in"
         style={{ height: maxHeight }}
         onClick={() => setIsLightboxOpen(true)}
+        onContextMenu={(e) => e.preventDefault()}
       >
         {/* Main Image - Fixed Size Container */}
         <div className="w-full h-full flex items-center justify-center p-4">
           <img 
             src={src} 
             alt={alt} 
-            className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105"
+            className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105 select-none pointer-events-none"
           />
         </div>
 

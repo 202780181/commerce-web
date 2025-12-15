@@ -254,7 +254,7 @@ export default function ProductDetailPage() {
 									<img
 										src={image.oss_url}
 										alt={`${product.title} - ${image.type}`}
-										className="w-full h-full object-contain scale-[0.9]"
+										className="w-full h-full object-contain scale-[0.9] select-none pointer-events-none"
 									/>
 								</button>
 							))}

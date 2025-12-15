@@ -127,7 +127,7 @@ export default function Integrations({
                     <img
                       src={product.cover_url}
                       alt={product.title}
-                      className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-500"
+                      className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-500 select-none pointer-events-none"
                       loading="lazy"
                       decoding="async"
                       style={{ contentVisibility: 'auto' }}

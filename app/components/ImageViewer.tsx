@@ -160,6 +160,7 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
             ref={containerRef}
             className="flex-1 flex items-center justify-center overflow-hidden"
             onClick={(e) => e.stopPropagation()}
+            onContextMenu={(e) => e.preventDefault()}
             onMouseDown={handleMouseDown}
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
