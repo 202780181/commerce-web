@@ -115,7 +115,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
             HOME
           </NavLink>
           <NavLink href="/about-us" isScrolled={isScrolled} lightBackground={lightBackground}>
-            ABOUT US
+            ABOUT
           </NavLink>
           
           {/* Products Dropdown */}

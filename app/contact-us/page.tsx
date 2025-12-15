@@ -1,12 +1,74 @@
 "use client";
 
 import { motion } from "motion/react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 
+interface Banner {
+  id: number;
+  image_url: string;
+  title: string;
+  content: string;
+  sort: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface RecommendProduct {
+  id: number;
+  title: string;
+  cover_url: string;
+  category_id: number;
+}
+
+interface Social {
+  id: number;
+  platform: string;
+  url: string;
+  qr_code_url: string;
+  sort: number;
+  status: number;
+  created_at: string;
+  updated_at: string;
+}
+
+interface ContactConfig {
+  banners?: Banner[]; // Keeping optional for now or removal if confirmed unnecessary
+  recommend_products?: RecommendProduct[]; // Keeping optional 
+  product_title?: string;
+  configs: {
+    contact_address: string;
+    contact_email: string;
+    contact_phone: string;
+  };
+  socials: Social[];
+}
+
 export default function ContactUs() {
+	const [config, setConfig] = useState<ContactConfig | null>(null);
+	const [loading, setLoading] = useState(true);
+
 	useEffect(() => {
+		// Fetch basic config
+		const fetchConfig = async () => {
+			try {
+				const response = await fetch('/api/proxy/portal/config/basic');
+				if (response.ok) {
+					const result = await response.json();
+					if (result.code === 0 && result.data) {
+						setConfig(result.data);
+					}
+				}
+			} catch (error) {
+				console.error('Failed to fetch config:', error);
+			} finally {
+				setLoading(false);
+			}
+		};
+
+		fetchConfig();
+
 		// 检查URL中是否有hash，如果有则滚动到对应位置
 		if (window.location.hash === '#contact-info') {
 			setTimeout(() => {
@@ -27,7 +89,7 @@ export default function ContactUs() {
 				{/* Background Image */}
 				<div className="absolute inset-0">
 					<img
-						src="/images/products/optimatia-landing-hero.webp"
+						src={config?.banners?.[0]?.image_url || "/images/products/optimatia-landing-hero.webp"}
 						alt="Background"
 						className="w-full h-full object-cover"
 					/>
@@ -56,8 +118,13 @@ export default function ContactUs() {
 						className="mb-4"
 					>
 						<h1 className="text-5xl md:text-6xl font-bold text-white mb-2">
-							CONTACT US
+							{config?.banners?.[0]?.title || "CONTACT US"}
 						</h1>
+            {config?.banners?.[0]?.content && (
+              <p className="text-xl text-gray-200 mt-4 max-w-2xl mx-auto">
+                {config.banners[0].content}
+              </p>
+            )}
 						<div className="h-1 w-24 bg-gradient-to-r from-purple-400 to-blue-400 mx-auto rounded-full" />
 					</motion.div>
 
@@ -180,7 +247,9 @@ export default function ContactUs() {
 										<h3 className="text-sm font-semibold text-gray-700 mb-2">
 											Contact phone
 										</h3>
-										<p className="text-gray-900 font-medium">+86 15915853159</p>
+										<p className="text-gray-900 font-medium">
+                      {config?.configs?.contact_phone || "+86 15915853159"}
+                    </p>
 									</motion.div>
 
 									{/* Email */}
@@ -213,7 +282,9 @@ export default function ContactUs() {
 										<h3 className="text-sm font-semibold text-gray-700 mb-2">
 											Contact email
 										</h3>
-										<p className="text-gray-900 font-medium">mkdch@126.com</p>
+										<p className="text-gray-900 font-medium">
+                      {config?.configs?.contact_email || "mkdch@126.com"}
+                    </p>
 									</motion.div>
 
 									{/* Address */}
@@ -253,7 +324,7 @@ export default function ContactUs() {
 											Contact address
 										</h3>
 										<p className="text-gray-900 font-medium text-sm leading-relaxed">
-											1-2/F, Building A2, No. 4, Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou,Guangdong Province,China
+											{config?.configs?.contact_address || "1-2/F, Building A2, No. 4, Shaobai Road, Shangshao Village, Xintang Town, Zengcheng District, Guangzhou,Guangdong Province,China"}
 										</p>
 									</motion.div>
 								</div>
@@ -265,99 +336,72 @@ export default function ContactUs() {
 											Connect With Us
 										</h3>
 										<div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-											{/* WeChat QR Code */}
-											<motion.div
-												initial={{ opacity: 0, y: 20 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{ duration: 0.5, delay: 0.9 }}
-												whileHover={{ y: -5, scale: 1.02 }}
-												className="bg-gradient-to-br from-green-50 to-emerald-50 rounded-xl p-6 text-center border border-green-100 hover:border-green-300 transition-all duration-300 hover:shadow-lg"
-											>
-												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
-													<img
-														src="/images/products/weixin.png"
-														alt="WeChat QR Code"
-														className="w-full h-full object-contain"
-													/>
-												</div>
-												<h4 className="text-sm font-semibold text-gray-700">WeChat</h4>
-											</motion.div>
-
-											{/* Instagram QR Code */}
-											<motion.div
-												initial={{ opacity: 0, y: 20 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{ duration: 0.5, delay: 1.0 }}
-												whileHover={{ y: -5, scale: 1.02 }}
-												className="bg-gradient-to-br from-pink-50 to-purple-50 rounded-xl p-6 text-center border border-pink-100 hover:border-pink-300 transition-all duration-300 hover:shadow-lg"
-											>
-												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
-													<img
-														src="/images/products/instagram.png"
-														alt="Instagram QR Code"
-														className="w-full h-full object-contain"
-													/>
-												</div>
-												<h4 className="text-sm font-semibold text-gray-700">Instagram</h4>
-											</motion.div>
-
-											{/* TikTok QR Code */}
-											<motion.div
-												initial={{ opacity: 0, y: 20 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{ duration: 0.5, delay: 1.1 }}
-												whileHover={{ y: -5, scale: 1.02 }}
-												className="bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6 text-center border border-gray-100 hover:border-gray-300 transition-all duration-300 hover:shadow-lg"
-											>
-												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
-													<img
-														src="/images/products/tiktok.png"
-														alt="TikTok QR Code"
-														className="w-full h-full object-contain"
-													/>
-												</div>
-												<h4 className="text-sm font-semibold text-gray-700">TikTok</h4>
-											</motion.div>
-
-											{/* YouTube QR Code */}
-											<motion.div
-												initial={{ opacity: 0, y: 20 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{ duration: 0.5, delay: 1.2 }}
-												whileHover={{ y: -5, scale: 1.02 }}
-												className="bg-gradient-to-br from-red-50 to-orange-50 rounded-xl p-6 text-center border border-red-100 hover:border-red-300 transition-all duration-300 hover:shadow-lg"
-											>
-												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
-													<img
-														src="/images/products/youtube.png"
-														alt="YouTube QR Code"
-														className="w-full h-full object-contain"
-													/>
-												</div>
-												<h4 className="text-sm font-semibold text-gray-700">YouTube</h4>
-											</motion.div>
-
-											{/* WhatsApp QR Code */}
-											<motion.div
-												initial={{ opacity: 0, y: 20 }}
-												animate={{ opacity: 1, y: 0 }}
-												transition={{ duration: 0.5, delay: 1.3 }}
-												whileHover={{ y: -5, scale: 1.02 }}
-												className="bg-gradient-to-br from-green-50 to-teal-50 rounded-xl p-6 text-center border border-green-100 hover:border-green-300 transition-all duration-300 hover:shadow-lg"
-											>
-												<div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm">
-													<img
-														src="/images/products/whatsapp.png"
-														alt="WhatsApp QR Code"
-														className="w-full h-full object-contain"
-													/>
-												</div>
-												<h4 className="text-sm font-semibold text-gray-700">WhatsApp</h4>
-											</motion.div>
-										</div>
+                      {config?.socials?.map((social, index) => (
+                        <motion.div
+                          key={social.id}
+                          initial={{ opacity: 0, y: 20 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.5, delay: 0.9 + index * 0.1 }}
+                          whileHover={social.url ? { y: -5, scale: 1.02 } : {}}
+                          className={`bg-gradient-to-br from-gray-50 to-slate-50 rounded-xl p-6 text-center border border-gray-100 transition-all duration-300 ${
+                            social.url 
+                              ? "hover:border-gray-300 hover:shadow-lg cursor-pointer" 
+                              : "cursor-default"
+                          }`}
+                          onClick={() => {
+                            if (social.url) window.open(social.url, '_blank');
+                          }}
+                        >
+                          <div className="w-full aspect-square bg-white rounded-lg p-3 mb-4 shadow-sm relative group">
+                            <img
+                              src={social.qr_code_url}
+                              alt={`${social.platform} QR Code`}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                          <h4 className="text-sm font-semibold text-gray-700">{social.platform}</h4>
+                        </motion.div>
+                      ))}
+                    </div>
 									</div>
 								</div>
 							</div>
+
+							{/* Recommended Products */}
+							{config?.recommend_products && config.recommend_products.length > 0 && (
+								<motion.div
+									initial={{ opacity: 0, y: 30 }}
+									animate={{ opacity: 1, y: 0 }}
+									transition={{ duration: 0.6, delay: 0.4 }}
+									className="mt-10"
+								>
+									<h2 className="text-2xl font-bold text-gray-900 mb-6">
+										{config.product_title || "Recommended Products"}
+									</h2>
+									<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+										{config.recommend_products.map((product) => (
+											<a
+												key={product.id}
+												href={`/products/${product.id}`}
+												className="group bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden hover:shadow-md transition-all block"
+											>
+												<div className="aspect-[4/3] bg-gray-100 relative overflow-hidden">
+													<img
+														src={product.cover_url}
+														alt={product.title}
+														className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+													/>
+												</div>
+												<div className="p-4">
+													<h3 className="font-semibold text-gray-900 group-hover:text-purple-600 transition-colors">
+														{product.title}
+													</h3>
+												</div>
+											</a>
+										))}
+									</div>
+								</motion.div>
+							)}
 						</motion.div>
 					</div>
 				</div>
