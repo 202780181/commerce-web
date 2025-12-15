@@ -3,8 +3,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { useRouter } from "next/navigation";
-import { getProductById } from "../lib/productConfig";
-import directoryMap from "../lib/directoryMap.json";
 
 interface RecommendProduct {
   category_id: number;
@@ -85,7 +83,7 @@ export default function Integrations({
             onClick={() => {
               const container = document.getElementById('integrations-scroll-container');
               if (container) {
-                container.scrollBy({ left: -1192, behavior: 'smooth' });
+                container.scrollBy({ left: -1216, behavior: 'smooth' });
               }
             }}
             disabled={!canScrollLeft}
@@ -153,7 +151,7 @@ export default function Integrations({
             onClick={() => {
               const container = document.getElementById('integrations-scroll-container');
               if (container) {
-                container.scrollBy({ left: 1192, behavior: 'smooth' });
+                container.scrollBy({ left: 1216, behavior: 'smooth' });
               }
             }}
             disabled={!canScrollRight}
