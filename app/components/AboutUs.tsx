@@ -78,7 +78,7 @@ export default function AboutUs({ aboutSummary = '', companyImage = '' }: AboutU
 								<motion.button
 									whileHover={{ scale: 1.05 }}
 									whileTap={{ scale: 0.95 }}
-									onClick={() => router.push('/about-us')}
+									onClick={() => router.push('/about')}
 									className="bg-slate-700 hover:bg-slate-800 text-white px-8 rounded-lg font-medium transition-colors duration-200 flex items-center justify-center cursor-pointer"
 									style={{ height: '40px' }}
 								>
