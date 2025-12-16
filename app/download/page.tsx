@@ -94,7 +94,10 @@ export default function Download() {
 
 	const handleDownload = (url: string) => {
 		// 直接使用原始 URL 下载
-		window.open(url, '_blank');
+		window.open(
+			url + '?response-content-disposition=attachment',
+			'_blank'
+		)
 	};
 
 	// 格式化文件大小

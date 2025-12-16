@@ -127,7 +127,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           />
 
           <NavLink href="/download" isScrolled={isScrolled} lightBackground={lightBackground}>
-            DOWNLOAD
+            DOWNLOADS
           </NavLink>
           <NavLink href="/contact-us" isScrolled={isScrolled} lightBackground={lightBackground}>
             CONTACT US

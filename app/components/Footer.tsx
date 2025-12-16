@@ -7,7 +7,7 @@ const footerLinks = {
   Navigation: [
     { name: "HOME", href: "/" },
     { name: "ABOUT US", href: "/about-us" },
-    { name: "NEWS", href: "/download" },
+    { name: "DOWNLOADS", href: "/download" },
     { name: "PRODUCTS", href: "/products" },
     { name: "CONTACT US", href: "/contact-us" },
   ],

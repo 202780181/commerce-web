@@ -75,10 +75,10 @@ const ProductsDropdown = memo(function ProductsDropdown({
                   {/* 使用CSS background-image代替img标签，性能更好 */}
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 bg-cover bg-center"
-                    style={category.cover_url ? {
+                    style={{
                       backgroundImage: `url(${category.cover_url})`,
                       willChange: 'auto'
-                    } : undefined}
+                    }}
                   />
                   <div className="flex-1 min-w-0">
                     <div className={`font-semibold text-sm truncate ${
