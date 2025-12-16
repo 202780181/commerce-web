@@ -76,7 +76,7 @@ const ProductsDropdown = memo(function ProductsDropdown({
                   <div 
                     className="flex-shrink-0 w-12 h-12 rounded-lg bg-gray-100 bg-cover bg-center"
                     style={{
-                      backgroundImage: `url(${category.cover_url})`,
+                      backgroundImage: `url("${category.cover_url}")`,
                       willChange: 'auto'
                     }}
                   />
