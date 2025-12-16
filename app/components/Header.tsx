@@ -3,7 +3,7 @@
 import { useState, useEffect, memo } from "react";
 import { usePathname } from "next/navigation";
 import SearchBar from "./SearchBar";
-import ProductsDropdownContainer from "./ProductsDropdownContainer";
+import ProductsMenu from "./ProductsMenu";
 import { useCategories } from "../contexts/CategoriesContext";
 
 interface HeaderProps {
@@ -119,7 +119,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           </NavLink>
           
           {/* Products Dropdown */}
-          <ProductsDropdownContainer 
+          <ProductsMenu 
             isScrolled={isScrolled}
             lightBackground={lightBackground}
             pathname={pathname}
