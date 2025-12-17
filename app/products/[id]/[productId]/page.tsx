@@ -14,6 +14,7 @@ interface ProductImage {
 	product_id: number;
 	type: 'main' | 'gallery';
 	oss_url: string;
+	content?: string;
 	sort: number;
 	created_at: string;
 }
@@ -33,6 +34,8 @@ interface ProductDetail {
 	id: number;
 	category_id: number;
 	title: string;
+	price?: number;
+	price_unit?: string;
 	content: string;
 	published_at: string | null;
 	status: number;
@@ -69,7 +72,7 @@ export default function ProductDetailPage() {
 	const [images, setImages] = useState<ProductImage[]>([]);
 	const [attachments, setAttachments] = useState<Attachment[]>([]);
 	const [loading, setLoading] = useState(true);
-	const [selectedImage, setSelectedImage] = useState<string>('');
+	const [selectedImage, setSelectedImage] = useState<ProductImage | null>(null);
 	const [downloadsExpanded, setDownloadsExpanded] = useState(false);
 
 	const breadcrumb = getBreadcrumb(categoryId);
@@ -92,7 +95,7 @@ export default function ProductDetailPage() {
 
 					// 设置默认选中的图片（优先main类型）
 					const mainImage = images?.find((img: ProductImage) => img.type === 'main');
-					setSelectedImage(mainImage?.oss_url || images?.[0]?.oss_url || '');
+					setSelectedImage(mainImage || images?.[0] || null);
 				}
 			} catch (error) {
 				console.error('[ProductDetail] Error fetching product:', error);
@@ -245,8 +248,8 @@ export default function ProductDetailPage() {
 							{images.map((image) => (
 								<button
 									key={image.id}
-									onClick={() => setSelectedImage(image.oss_url)}
-									className={`aspect-square bg-white rounded-lg border-2 transition-all overflow-hidden ${selectedImage === image.oss_url
+									onClick={() => setSelectedImage(image)}
+									className={`aspect-square bg-white rounded-lg border-2 transition-all overflow-hidden ${selectedImage?.id === image.id
 										? 'border-purple-600'
 										: 'border-gray-200 hover:border-gray-300'
 										}`}
@@ -264,7 +267,7 @@ export default function ProductDetailPage() {
 						<div className="col-span-12 sm:col-span-10">
 							{selectedImage ? (
 								<ProductImageViewer
-									src={selectedImage}
+									src={selectedImage.oss_url}
 									alt={product.title}
 									maxHeight="538px"
 								/>
@@ -280,16 +283,19 @@ export default function ProductDetailPage() {
 					<div className="lg:col-span-1 space-y-6">
 						{/* Product Title Card */}
 						<div className="bg-linear-to-r from-purple-600 to-blue-600 rounded-lg shadow-lg p-6 mb-2">
-							<h1 className="text-2xl font-bold text-white">{product.title}</h1>
+							<h1 className="text-2xl font-bold text-white mb-2">{product.title}</h1>
+
 						</div>
 
+
+
 						{/* Product Content/Specifications */}
-						<div className="bg-white rounded-lg shadow p-6 mb-2">
-							{product.content ? (
+						<div className="bg-white rounded-lg shadow p-6 mb-2 min-h-[350px]">
+							{selectedImage?.content ? (
 								<>
 									<h3 className="text-lg font-semibold text-gray-900 mb-4">Product Parameter</h3>
 									<div className="space-y-3 text-sm">
-										{product.content.split('\n').map((line, index) => {
+										{selectedImage.content.split('\n').map((line, index) => {
 											const trimmedLine = line.trim();
 											if (!trimmedLine) return null;
 
@@ -327,6 +333,22 @@ export default function ProductDetailPage() {
 								</div>
 							)}
 						</div>
+
+						{/* Price Card */}
+						{product.price !== undefined && (
+							<div className="bg-white rounded-lg shadow p-4 mb-2">
+								<div className="text-lg font-bold text-gray-900 mb-1">Unit Price:</div>
+								<div className="flex items-baseline">
+									<div className="text-blue-600 font-bold flex items-baseline mr-3">
+										<span className="text-lg mr-1">{product.price_unit || 'JPY'}</span>
+										<span className="text-3xl">{product.price.toLocaleString()}</span>
+									</div>
+									<div className="text-gray-400 text-lg line-through font-medium">
+										{product.price_unit || 'JPY'} 999
+									</div>
+								</div>
+							</div>
+						)}
 
 						{/* Downloads Section */}
 						<div className="bg-white rounded-lg shadow overflow-hidden">

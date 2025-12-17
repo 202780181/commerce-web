@@ -78,12 +78,12 @@ export default function Integrations({
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          {/* Products Container Wrapper - 限制宽度只显示4个 */}
-          <div className="max-w-[1224px] mx-auto bg-transparent">
+          {/* Products Container Wrapper */}
+          <div className="bg-transparent">
             {/* Products Container */}
             <div
               id="integrations-scroll-container"
-              className="flex flex-nowrap gap-6 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden p-4 pb-5"
+              className="flex flex-nowrap gap-6 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden pb-5"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
@@ -127,12 +127,12 @@ export default function Integrations({
           </div>
 
             {/* Bottom Navigation Controls */}
-            <div className="max-w-[1224px] mx-auto mt-8 flex justify-end gap-4 p-4">
+            <div className="mt-8 flex justify-end gap-4">
                 <button
                     onClick={() => {
                         const container = document.getElementById('integrations-scroll-container');
                         if (container) {
-                            container.scrollBy({ left: -1216, behavior: 'smooth' });
+                            container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
                         }
                     }}
                     disabled={!canScrollLeft}
@@ -150,7 +150,7 @@ export default function Integrations({
                     onClick={() => {
                         const container = document.getElementById('integrations-scroll-container');
                         if (container) {
-                            container.scrollBy({ left: 1216, behavior: 'smooth' });
+                            container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
                         }
                     }}
                     disabled={!canScrollRight}
