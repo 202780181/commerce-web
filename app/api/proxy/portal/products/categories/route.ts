@@ -8,7 +8,7 @@ if (process.env.NODE_ENV === 'development') {
 export async function GET() {
 	try {
 		console.log('[API Proxy] Fetching from backend...');
-		const backendUrl = 'http://43.139.139.215/api/api/v1/portal/products/categories';
+		const backendUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/portal/products/categories`;
 		
 		const response = await fetch(backendUrl, {
 			cache: 'no-store',

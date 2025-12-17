@@ -13,7 +13,7 @@ export async function GET(
 		const { id: productId } = await params;
 		console.log('[API Proxy Product Detail] Fetching product:', productId);
 		
-		const backendUrl = `http://43.139.139.215/api/api/v1/portal/products/${productId}`;
+		const backendUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/portal/products/${productId}`;
 		
 		const response = await fetch(backendUrl, {
 			cache: 'no-store',

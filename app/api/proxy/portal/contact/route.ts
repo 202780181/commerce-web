@@ -11,7 +11,7 @@ export async function GET() {
 		console.log('[API Proxy] Fetching basic config from backend...');
 		// Assuming the structure follows the pattern but at /config/basic
 		// If it fails, we might need to try /portal/config/basic
-		const backendUrl = 'http://43.139.139.215/api/api/v1/portal/config/basic';
+		const backendUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/portal/config/basic`;
 		
 		const response = await fetch(backendUrl, {
 			cache: 'no-store',

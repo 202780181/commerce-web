@@ -2,7 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 
 export async function GET(request: NextRequest) {
 	try {
-		const backendUrl = new URL('http://43.139.139.215/api/api/v1/portal/downloads');
+		const backendUrl = new URL(`${process.env.NEXT_PUBLIC_API_URL}/api/v1/portal/downloads`);
 		const search = request.nextUrl.searchParams.get('search');
 		
 		if (search) {

@@ -110,7 +110,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
           <SearchBar />
         </div>
         {/* Desktop navigation */}
-        <div className="hidden lg:flex lg:gap-x-12 justify-center">
+        <div className="hidden lg:flex lg:gap-x-8 justify-center">
           <NavLink href="/" isScrolled={isScrolled} lightBackground={lightBackground}>
             HOME
           </NavLink>

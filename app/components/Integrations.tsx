@@ -78,26 +78,6 @@ export default function Integrations({
           transition={{ duration: 0.6, delay: 0.2 }}
           className="relative"
         >
-          {/* Left Arrow */}
-          <button
-            onClick={() => {
-              const container = document.getElementById('integrations-scroll-container');
-              if (container) {
-                container.scrollBy({ left: -1216, behavior: 'smooth' });
-              }
-            }}
-            disabled={!canScrollLeft}
-            className={`absolute left-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 shadow-lg rounded-full p-3 transition-all ${
-              canScrollLeft 
-                ? 'hover:bg-white hover:scale-110 cursor-pointer' 
-                : 'opacity-50 cursor-not-allowed'
-            }`}
-          >
-            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-            </svg>
-          </button>
-
           {/* Products Container Wrapper - 限制宽度只显示4个 */}
           <div className="max-w-[1224px] mx-auto bg-transparent">
             {/* Products Container */}
@@ -146,25 +126,45 @@ export default function Integrations({
           </div>
           </div>
 
-          {/* Right Arrow */}
-          <button
-            onClick={() => {
-              const container = document.getElementById('integrations-scroll-container');
-              if (container) {
-                container.scrollBy({ left: 1216, behavior: 'smooth' });
-              }
-            }}
-            disabled={!canScrollRight}
-            className={`absolute right-0 top-1/2 -translate-y-1/2 z-10 bg-white/90 shadow-lg rounded-full p-3 transition-all ${
-              canScrollRight 
-                ? 'hover:bg-white hover:scale-110 cursor-pointer' 
-                : 'opacity-50 cursor-not-allowed'
-            }`}
-          >
-            <svg className="w-6 h-6 text-gray-800" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-            </svg>
-          </button>
+            {/* Bottom Navigation Controls */}
+            <div className="max-w-[1224px] mx-auto mt-8 flex justify-end gap-4 p-4">
+                <button
+                    onClick={() => {
+                        const container = document.getElementById('integrations-scroll-container');
+                        if (container) {
+                            container.scrollBy({ left: -1216, behavior: 'smooth' });
+                        }
+                    }}
+                    disabled={!canScrollLeft}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                        canScrollLeft
+                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm'
+                            : 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                    }`}
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
+                    </svg>
+                </button>
+                <button
+                    onClick={() => {
+                        const container = document.getElementById('integrations-scroll-container');
+                        if (container) {
+                            container.scrollBy({ left: 1216, behavior: 'smooth' });
+                        }
+                    }}
+                    disabled={!canScrollRight}
+                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                        canScrollRight
+                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm'
+                            : 'bg-gray-100 text-gray-300 cursor-not-allowed'
+                    }`}
+                >
+                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                    </svg>
+                </button>
+            </div>
         </motion.div>
       </div>
     </section>

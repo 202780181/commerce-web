@@ -13,7 +13,7 @@ export async function GET(request: Request) {
 
 		console.log('[API Proxy Search] Fetching search results:', { keyword, limit });
 		
-		const backendUrl = `http://43.139.139.215/api/api/v1/portal/search?keyword=${encodeURIComponent(keyword)}&limit=${limit}`;
+		const backendUrl = `${process.env.NEXT_PUBLIC_API_URL}/api/v1/portal/search?keyword=${encodeURIComponent(keyword)}&limit=${limit}`;
 		
 		const response = await fetch(backendUrl, {
 			cache: 'no-store',

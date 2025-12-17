@@ -2,7 +2,7 @@
 
 import Header from "./components/Header";
 import Hero from "./components/Hero";
-import AboutUs from "./components/AboutUs";
+import VideoShowcase, { Video } from "./components/VideoShowcase";
 import Integrations from "./components/Integrations";
 import Footer from "./components/Footer";
 import FloatingSidebar from "./components/FloatingSidebar";
@@ -21,8 +21,10 @@ interface HomeData {
   message: string;
   data: {
     banners: Banner[];
-    about_summary: string;
-    company_image: string;
+
+    videos: Video[];
+    // about_summary?: string; // made optional or removed if API no longer sends it
+    // company_image?: string; // made optional
     product_title: string;
     product_content: string;
     recommend_products: any[];
@@ -74,10 +76,7 @@ export default function Home() {
     <div className="min-h-screen bg-white">
       <Header />
       <Hero banners={homeData?.data?.banners || []} />
-      <AboutUs 
-        aboutSummary={homeData?.data?.about_summary || ''} 
-        companyImage={homeData?.data?.company_image || ''} 
-      />
+      <VideoShowcase videos={homeData?.data?.videos || []} />
       <Integrations 
         productTitle={homeData?.data?.product_title || ''}
         productContent={homeData?.data?.product_content || ''}
