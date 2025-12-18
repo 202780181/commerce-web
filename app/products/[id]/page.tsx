@@ -16,6 +16,9 @@ interface Product {
 	cover_url?: string;
 	main_image?: string;
 	content?: string;
+	price?: number;
+	sale_price?: number;
+	price_unit?: string;
 	sort?: number;
 }
 
@@ -244,9 +247,21 @@ export default function CategoryPage() {
 										)}
 									</div>
 									<div className="p-4 border-t border-gray-100">
-										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12">
+										<h3 className="text-base font-semibold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12 mb-2">
 											{product.title}
 										</h3>
+										{product.price !== undefined && (
+											<div className="flex items-baseline gap-2 mt-2">
+												<span className="text-purple-600 font-bold text-lg">
+													{product.price_unit} {product.price.toLocaleString()}
+												</span>
+												{product.sale_price !== undefined && (
+													<span className="text-gray-400 text-sm line-through">
+														{product.price_unit} {product.sale_price.toLocaleString()}
+													</span>
+												)}
+											</div>
+										)}
 									</div>
 								</Link>
 							))}

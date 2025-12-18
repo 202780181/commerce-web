@@ -35,6 +35,7 @@ interface ProductDetail {
 	category_id: number;
 	title: string;
 	price?: number;
+	sale_price?: number;
 	price_unit?: string;
 	content: string;
 	published_at: string | null;
@@ -340,12 +341,14 @@ export default function ProductDetailPage() {
 								<div className="text-lg font-bold text-gray-900 mb-1">Unit Price:</div>
 								<div className="flex items-baseline">
 									<div className="text-blue-600 font-bold flex items-baseline mr-3">
-										<span className="text-lg mr-1">{product.price_unit || 'JPY'}</span>
+										<span className="text-lg mr-1">{product.price_unit}</span>
 										<span className="text-3xl">{product.price.toLocaleString()}</span>
 									</div>
-									<div className="text-gray-400 text-lg line-through font-medium">
-										{product.price_unit || 'JPY'} 999
-									</div>
+									{product.sale_price !== undefined && (
+										<div className="text-gray-400 text-lg line-through font-medium">
+											{product.price_unit} {product.sale_price.toLocaleString()}
+										</div>
+									)}
 								</div>
 							</div>
 						)}

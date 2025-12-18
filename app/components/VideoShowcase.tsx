@@ -12,7 +12,7 @@ export interface Video {
   sort: number;
   created_at: string;
   updated_at: string;
-  // properties below are optional or future-proof based on user description
+  cover_url?: string;
   file_size?: number;
   duration?: number;
   format?: string;
@@ -109,7 +109,7 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
           >
             {/* Video Player Container */}
             <div className="relative w-full h-full group">
-               <AppleStylePlayer src={selectedVideo.video_url} />
+               <AppleStylePlayer src={selectedVideo.video_url} poster={selectedVideo.cover_url} />
             </div>
           </motion.div>
         </motion.div>
@@ -165,12 +165,23 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
             >
               {/* Card Image Area with Overlay Content */}
               <div className="relative aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
-                {/* Placeholder Cover/Background */}
-                <div className="absolute inset-0 bg-slate-200 group-hover:bg-slate-300 transition-colors duration-300" />
+                {/* Cover Image */}
+                {video.cover_url ? (
+                  <img 
+                    src={video.cover_url} 
+                    alt={video.title}
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="absolute inset-0 bg-slate-200 group-hover:bg-slate-300 transition-colors duration-300" />
+                )}
                 
+                {/* Overlay for better text readability */}
+                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
+
                 {/* Title - Centered */}
                 <div className="absolute inset-0 flex items-center justify-center p-6 text-center z-10">
-                   <h3 className="text-2xl font-bold text-gray-900 line-clamp-2">
+                   <h3 className="text-2xl font-bold text-white drop-shadow-md line-clamp-2">
                     {video.title}
                   </h3>
                 </div>
@@ -228,7 +239,7 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
 import { useRef } from "react";
 import { Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 
-function AppleStylePlayer({ src }: { src: string }) {
+function AppleStylePlayer({ src, poster }: { src: string; poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
@@ -334,6 +345,7 @@ function AppleStylePlayer({ src }: { src: string }) {
       <video
         ref={videoRef}
         src={src}
+        poster={poster}
         className="w-full h-full object-contain cursor-pointer"
         onTimeUpdate={handleTimeUpdate}
         onLoadedMetadata={handleLoadedMetadata}

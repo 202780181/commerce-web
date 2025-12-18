@@ -9,6 +9,9 @@ interface RecommendProduct {
   cover_url: string;
   id: number;
   title: string;
+  price?: number;
+  sale_price?: number;
+  price_unit?: string;
 }
 
 interface IntegrationsProps {
@@ -116,9 +119,21 @@ export default function Integrations({
 
                   {/* Product Info */}
                   <div className="p-4 border-t border-gray-100">
-                    <h3 className="text-base font-bold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12">
+                    <h3 className="text-base font-bold text-gray-900 group-hover:text-purple-600 transition-colors line-clamp-2 h-12 mb-2">
                       {product.title}
                     </h3>
+                    {product.price !== undefined && (
+                      <div className="flex items-baseline gap-2 mt-2">
+                        <span className="text-purple-600 font-bold text-lg">
+                          {product.price_unit} {product.price.toLocaleString()}
+                        </span>
+                        {product.sale_price !== undefined && (
+                          <span className="text-gray-400 text-sm line-through">
+                            {product.price_unit} {product.sale_price.toLocaleString()}
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </motion.div>
