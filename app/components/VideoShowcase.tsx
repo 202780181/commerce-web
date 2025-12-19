@@ -258,7 +258,7 @@ function AppleStylePlayer({ src, poster }: { src: string; poster?: string }) {
         // 这里默认请求整个文件，但带上 Range 头以满足用户需求并确保 COS 正确响应 206
         const response = await fetch(src, {
           headers: {
-            'Range': 'bytes=0-'
+            'Range': 'bytes=0-1048575'
           }
         });
 
