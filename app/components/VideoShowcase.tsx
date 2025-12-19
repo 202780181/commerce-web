@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Play, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { createPortal } from "react-dom";
@@ -236,17 +236,56 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
 }
 
 // Separate component to keep logic clean
-import { useRef } from "react";
 import { Pause, Volume2, VolumeX, Maximize } from "lucide-react";
 
 function AppleStylePlayer({ src, poster }: { src: string; poster?: string }) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoUrl, setVideoUrl] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [showControls, setShowControls] = useState(true);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    let objectUrl = '';
+    const loadVideo = async () => {
+      setIsLoading(true);
+      try {
+        // 使用 HTTP Range 分片下载/加载
+        // 这里默认请求整个文件，但带上 Range 头以满足用户需求并确保 COS 正确响应 206
+        const response = await fetch(src, {
+          headers: {
+            'Range': 'bytes=0-'
+          }
+        });
+
+        if (!response.ok && response.status !== 206) {
+          throw new Error('Video load failed');
+        }
+
+        const blob = await response.blob();
+        objectUrl = URL.createObjectURL(blob);
+        setVideoUrl(objectUrl);
+      } catch (err) {
+        console.error('Video fetch error:', err);
+        // 降级使用原始 URL
+        setVideoUrl(src);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    loadVideo();
+
+    return () => {
+      if (objectUrl) {
+        URL.revokeObjectURL(objectUrl);
+      }
+    };
+  }, [src]);
 
   const togglePlay = (e?: React.MouseEvent) => {
     e?.stopPropagation();
@@ -342,9 +381,17 @@ function AppleStylePlayer({ src, poster }: { src: string; poster?: string }) {
         onMouseLeave={() => isPlaying && setShowControls(false)}
         onClick={togglePlay}
     >
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 backdrop-blur-sm z-20">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
+            <span className="text-white/60 text-sm font-medium">Loading Video...</span>
+          </div>
+        </div>
+      )}
       <video
         ref={videoRef}
-        src={src}
+        src={videoUrl || ''}
         poster={poster}
         className="w-full h-full object-contain cursor-pointer"
         onTimeUpdate={handleTimeUpdate}
