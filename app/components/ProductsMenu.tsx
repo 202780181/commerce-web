@@ -49,7 +49,7 @@ const CategoryItem = memo(({
       <div 
         className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-purple-100 to-blue-100 bg-cover bg-center"
         style={{
-          backgroundImage: category.cover_url ? `url("${category.cover_url}?eo-img.resize=w/48/h/48&eo-img.format=webp")` : undefined,
+          backgroundImage: category.cover_url ? `url("${category.cover_url}?x-oss-process=image/quality,Q_50")` : undefined,
         }}
       >
         {!category.cover_url && (

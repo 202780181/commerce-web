@@ -8,6 +8,7 @@ import Link from 'next/link';
 import { useCategories } from '@/app/contexts/CategoriesContext';
 import FolderIcon from '@/app/components/FolderIcon';
 import ProductImageViewer from '@/app/components/ProductImageViewer';
+import { usePageCache } from '@/app/hooks/usePageCache';
 
 interface ProductImage {
 	id: number;
@@ -63,6 +64,7 @@ function formatFileSize(bytes: number): string {
 }
 
 export default function ProductDetailPage() {
+	usePageCache();
 	const params = useParams();
 	const router = useRouter();
 	const categoryId = parseInt(params.id as string);

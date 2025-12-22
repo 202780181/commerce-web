@@ -29,6 +29,8 @@ interface CategoriesContextType {
 	findCategoryById: (id: number) => Category | null;
 	getProductsByCategoryId: (categoryId: number) => Product[];
 	getBreadcrumb: (categoryId: number) => Category[];
+	categoryProductsCache: Record<number, any[]>;
+	setCategoryProductsCache: (categoryId: number, products: any[]) => void;
 }
 
 const CategoriesContext = createContext<CategoriesContextType | undefined>(undefined);
@@ -38,6 +40,14 @@ export function CategoriesProvider({ children }: { children: ReactNode }) {
 	const [products, setProducts] = useState<Product[]>([]);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
+	const [categoryProductsCache, setCategoryProductsCacheState] = useState<Record<number, any[]>>({});
+
+	const setCategoryProductsCache = (categoryId: number, products: any[]) => {
+		setCategoryProductsCacheState(prev => ({
+			...prev,
+			[categoryId]: products
+		}));
+	};
 
 	// 递归排序函数
 	const sortCategories = (cats: Category[]): Category[] => {
@@ -181,6 +191,8 @@ export function CategoriesProvider({ children }: { children: ReactNode }) {
 				findCategoryById,
 				getProductsByCategoryId,
 				getBreadcrumb,
+				categoryProductsCache,
+				setCategoryProductsCache,
 			}}
 		>
 			{children}

@@ -6,6 +6,7 @@ import Header from '@/app/components/Header';
 import Footer from '@/app/components/Footer';
 import Link from 'next/link';
 import { useCategories } from '@/app/contexts/CategoriesContext';
+import { usePageCache } from '@/app/hooks/usePageCache';
 import { AlertTriangle } from 'lucide-react';
 import FolderIcon from '@/app/components/FolderIcon';
 
@@ -23,37 +24,47 @@ interface Product {
 }
 
 export default function CategoryPage() {
+	usePageCache();
 	const params = useParams();
 	const categoryId = parseInt(params.id as string);
 
 	const {
 		findCategoryById,
 		getBreadcrumb,
-		loading: contextLoading
+		loading: contextLoading,
+		categoryProductsCache,
+		setCategoryProductsCache
 	} = useCategories();
 
-	const [products, setProducts] = useState<Product[]>([]);
+	const [products, setProducts] = useState<Product[]>(() => categoryProductsCache[categoryId] || []);
 	const [productsLoading, setProductsLoading] = useState(false);
-	const [fetched, setFetched] = useState(false);
+	const [fetched, setFetched] = useState(() => !!categoryProductsCache[categoryId]);
 
 	const category = useMemo(() => findCategoryById(categoryId), [categoryId, findCategoryById]);
 	const breadcrumb = useMemo(() => getBreadcrumb(categoryId), [categoryId, getBreadcrumb]);
 	const hasChildren = category?.children && category.children.length > 0;
 
-	// Reset state when category changes
+	// Update local state when category changes or cache updates
 	useEffect(() => {
-		setProducts([]);
-		setFetched(false);
+		const cached = categoryProductsCache[categoryId];
+		if (cached) {
+			setProducts(cached);
+			setFetched(true);
+		} else {
+			// Only reset if we don't have it in cache, to allow fetch to happen
+			setProducts([]);
+			setFetched(false);
+		}
 		setProductsLoading(false);
-	}, [categoryId]);
+	}, [categoryId]); // Depend on categoryId so we update when navigating between categories
 
 	useEffect(() => {
-		if (category && !hasChildren) {
+		if (category && !hasChildren && !fetched) {
 			const fetchProducts = async () => {
 				try {
 					setProductsLoading(true);
 					const startTime = Date.now();
-					const minLoadingTime = 500; // Minimum loading time in ms
+					const minLoadingTime = 100; // Minimum loading time in ms
 
 					// Run fetch and timer in parallel
 					const [response] = await Promise.all([
@@ -71,6 +82,7 @@ export default function CategoryPage() {
 						// Sort products by sort field
 						const sortedProducts = productList.sort((a: Product, b: Product) => (a.sort || 0) - (b.sort || 0));
 						setProducts(sortedProducts);
+						setCategoryProductsCache(categoryId, sortedProducts);
 					}
 				} catch (error) {
 					console.error('[CategoryPage] Error fetching products:', error);
@@ -85,7 +97,7 @@ export default function CategoryPage() {
 			// If it has children, we don't need to fetch products, but let's add a small delay for consistency
 			setTimeout(() => {
 				setFetched(true);
-			}, 300);
+			}, 100);
 		}
 	}, [category, hasChildren, categoryId]);
 
