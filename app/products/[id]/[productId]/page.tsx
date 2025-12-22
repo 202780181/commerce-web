@@ -294,7 +294,7 @@ export default function ProductDetailPage() {
 						<div className="bg-white rounded-lg shadow p-6 mb-2 min-h-[350px]">
 							{selectedImage?.content ? (
 								<>
-									<h3 className="text-lg font-semibold text-gray-900 mb-4">Product Parameter</h3>
+									<h3 className="text-lg font-semibold text-gray-900 mb-4">{productId === 117 ? 'Unit Price' : 'Product Parameter'}</h3>
 									<div className="space-y-3 text-sm">
 										{selectedImage.content.split('\n').map((line, index) => {
 											const trimmedLine = line.trim();
@@ -336,7 +336,7 @@ export default function ProductDetailPage() {
 						</div>
 
 						{/* Price Card */}
-						{product.price !== undefined && (
+						{product.price !== undefined && productId !== 117 && (
 							<div className="bg-white rounded-lg shadow p-4 mb-2">
 								<div className="text-lg font-bold text-gray-900 mb-1">Unit Price:</div>
 								<div className="flex items-baseline">
