@@ -26,34 +26,67 @@ export default function Integrations({
   recommendProducts = []
 }: IntegrationsProps) {
   const router = useRouter();
-  const [canScrollLeft, setCanScrollLeft] = useState(false);
-  const [canScrollRight, setCanScrollRight] = useState(true);
+
+  // 5 sets of products for a much larger buffer
+  const displayProducts = [
+    ...recommendProducts, 
+    ...recommendProducts, 
+    ...recommendProducts, 
+    ...recommendProducts, 
+    ...recommendProducts
+  ];
 
   useEffect(() => {
     const container = document.getElementById('integrations-scroll-container');
-    
-    const checkScroll = () => {
-      if (container) {
-        const { scrollLeft, scrollWidth, clientWidth } = container;
-        setCanScrollLeft(scrollLeft > 1);
-        setCanScrollRight(scrollLeft < scrollWidth - clientWidth - 1);
+    if (!container || recommendProducts.length === 0) return;
+
+    // Set initial position to the start of the 3rd set (index 2)
+    const singleWidth = container.scrollWidth / 5;
+    container.scrollLeft = singleWidth * 2;
+
+    let isInternalScroll = false;
+
+    const handleScroll = () => {
+      if (isInternalScroll) return;
+
+      const { scrollLeft, scrollWidth } = container;
+      const singleWidth = scrollWidth / 5;
+
+      // Teleport if we move out of the comfortable middle range (Set 2, 3, 4)
+      // If we enter Set 1 (left) or Set 5 (right), jump back to middle
+      if (scrollLeft < singleWidth) {
+        isInternalScroll = true;
+        container.scrollTo({ left: scrollLeft + singleWidth * 2, behavior: 'instant' });
+        setTimeout(() => { isInternalScroll = false; }, 100);
+      } else if (scrollLeft > singleWidth * 3) {
+        isInternalScroll = true;
+        container.scrollTo({ left: scrollLeft - singleWidth * 2, behavior: 'instant' });
+        setTimeout(() => { isInternalScroll = false; }, 100);
       }
     };
 
-    if (container) {
-      checkScroll();
-      container.addEventListener('scroll', checkScroll);
-      window.addEventListener('resize', checkScroll);
-    }
+    container.addEventListener('scroll', handleScroll, { passive: true });
+    
+    const handleResize = () => {
+      const newSingleWidth = container.scrollWidth / 3;
+      container.scrollLeft = newSingleWidth;
+    };
+    window.addEventListener('resize', handleResize);
 
     return () => {
-      if (container) {
-        container.removeEventListener('scroll', checkScroll);
-      }
-      window.removeEventListener('resize', checkScroll);
+      container.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', handleResize);
     };
-  }, [recommendProducts]);
-  
+  }, [recommendProducts.length]);
+
+  const handleManualScroll = (direction: 'left' | 'right') => {
+    const container = document.getElementById('integrations-scroll-container');
+    if (container) {
+      const scrollAmount = direction === 'left' ? -container.clientWidth : container.clientWidth;
+      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
+
   return (
     <section className="py-24 bg-white relative z-0">
       <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
@@ -75,10 +108,10 @@ export default function Integrations({
 
         {/* Products Carousel */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.2 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative"
         >
           {/* Products Container Wrapper */}
@@ -86,24 +119,20 @@ export default function Integrations({
             {/* Products Container */}
             <div
               id="integrations-scroll-container"
-              className="flex flex-nowrap gap-6 overflow-x-auto scroll-smooth [&::-webkit-scrollbar]:hidden pb-5"
+              className="flex flex-nowrap gap-6 overflow-x-auto [&::-webkit-scrollbar]:hidden pb-5"
               style={{
                 scrollbarWidth: 'none',
                 msOverflowStyle: 'none',
               }}
             >
-            {recommendProducts.map((product, index) => (
-              <motion.div
-                key={product.id}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.4, delay: index * 0.05 }}
+            {displayProducts.map((product, index) => (
+              <div
+                key={`${product.id}-${index}`}
                 className="flex-none w-[280px]"
               >
                 <div 
                   onClick={() => router.push(`/products/${product.category_id}/${product.id}`)}
-                  className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 transition-all duration-300 cursor-pointer h-full group hover:-translate-y-2"
+                  className="bg-white rounded-2xl overflow-hidden shadow-lg border border-slate-100 transition-all duration-300 cursor-pointer h-full group hover:-translate-y-2 hover:shadow-xl"
                 >
                   {/* Product Image */}
                   <div className="relative h-64 overflow-hidden flex items-center justify-center p-4">
@@ -111,9 +140,8 @@ export default function Integrations({
                       src={product.cover_url}
                       alt={product.title}
                       className="w-full h-full object-contain scale-[0.9] group-hover:scale-100 transition-transform duration-500 select-none pointer-events-none"
-                      loading="lazy"
+                      loading="eager"
                       decoding="async"
-                      style={{ contentVisibility: 'auto' }}
                     />
                   </div>
 
@@ -136,7 +164,7 @@ export default function Integrations({
                     )}
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
           </div>
@@ -144,36 +172,16 @@ export default function Integrations({
             {/* Bottom Navigation Controls */}
             <div className="mt-8 flex justify-end gap-4">
                 <button
-                    onClick={() => {
-                        const container = document.getElementById('integrations-scroll-container');
-                        if (container) {
-                            container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
-                        }
-                    }}
-                    disabled={!canScrollLeft}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                        canScrollLeft
-                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm'
-                            : 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                    }`}
+                    onClick={() => handleManualScroll('left')}
+                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
                     </svg>
                 </button>
                 <button
-                    onClick={() => {
-                        const container = document.getElementById('integrations-scroll-container');
-                        if (container) {
-                            container.scrollBy({ left: container.clientWidth, behavior: 'smooth' });
-                        }
-                    }}
-                    disabled={!canScrollRight}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                        canScrollRight
-                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm'
-                            : 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                    }`}
+                    onClick={() => handleManualScroll('right')}
+                    className="w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm"
                 >
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
