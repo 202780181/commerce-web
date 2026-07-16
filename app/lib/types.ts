@@ -4,7 +4,7 @@
 
 export interface FileSystemItem {
   name: string;
-  type: 'folder' | 'image' | 'text';
+  type: "folder" | "image" | "text";
   path: string;
   url?: string;
   fileName?: string;

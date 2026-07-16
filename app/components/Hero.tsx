@@ -21,25 +21,28 @@ export default function Hero({ banners = [] }: HeroProps) {
   const [isInitialLoad, setIsInitialLoad] = useState(true);
 
   // Transform banners to slides format
-  const slides = banners.length > 0 ? banners.map(banner => ({
-    id: banner.id,
-    title: banner.title,
-    subtitle: banner.content,
-    gradient: "from-blue-600 to-cyan-600",
-    bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
-    image: banner.image_url,
-    animationType: "fade",
-  })) : [
-    {
-      id: 1,
-      title: "ZPP CNC",
-      subtitle: "Zero Point Prince",
-      gradient: "from-blue-600 to-cyan-600",
-      bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
-      image: "https://cdn.gzxfjxyxgs.com/images/banners/homeBanner.webp",
-      animationType: "fade",
-    },
-  ];
+  const slides =
+    banners.length > 0
+      ? banners.map((banner) => ({
+          id: banner.id,
+          title: banner.title,
+          subtitle: banner.content,
+          gradient: "from-blue-600 to-cyan-600",
+          bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
+          image: banner.image_url,
+          animationType: "fade",
+        }))
+      : [
+          {
+            id: 1,
+            title: "ZPP CNC",
+            subtitle: "Zero Point Prince",
+            gradient: "from-blue-600 to-cyan-600",
+            bgGradient: "from-blue-900/90 via-cyan-900/80 to-blue-800/90",
+            image: "https://cdn.gzxfjxyxgs.com/images/banners/homeBanner.webp",
+            animationType: "fade",
+          },
+        ];
 
   // Three different animation variants
   const getAnimationVariants = (type: string) => {
@@ -49,40 +52,40 @@ export default function Hero({ banners = [] }: HeroProps) {
         return {
           initial: {
             opacity: 0,
-            scale: 0.95
+            scale: 0.95,
           },
           animate: {
             opacity: 1,
-            scale: 1
+            scale: 1,
           },
           exit: {
             opacity: 0,
-            scale: 1.05
+            scale: 1.05,
           },
           transition: {
             duration: 0.8,
-            ease: "easeInOut" as any
-          }
+            ease: "easeInOut" as any,
+          },
         };
       case "fade":
         // Style 3: Scale fade in/out + Ken Burns
         return {
           initial: {
             scale: 1.2,
-            opacity: 0
+            opacity: 0,
           },
           animate: {
             scale: 1,
-            opacity: 1
+            opacity: 1,
           },
           exit: {
             scale: 0.9,
-            opacity: 0
+            opacity: 0,
           },
           transition: {
             duration: 1,
-            ease: "easeInOut" as any
-          }
+            ease: "easeInOut" as any,
+          },
         };
 
       default:
@@ -90,7 +93,7 @@ export default function Hero({ banners = [] }: HeroProps) {
           initial: {},
           animate: {},
           exit: {},
-          transition: {}
+          transition: {},
         };
     }
   };
@@ -117,7 +120,9 @@ export default function Hero({ banners = [] }: HeroProps) {
     setCurrentSlide(index);
   };
 
-  const currentAnimation = getAnimationVariants(slides[currentSlide].animationType);
+  const currentAnimation = getAnimationVariants(
+    slides[currentSlide].animationType,
+  );
 
   // Get initial background image scale based on animation type
   const getBackgroundScale = () => {
@@ -142,7 +147,7 @@ export default function Hero({ banners = [] }: HeroProps) {
           className="absolute inset-0"
           style={{
             transformStyle: "preserve-3d",
-            perspective: "1000px"
+            perspective: "1000px",
           }}
         >
           {/* Background image */}
@@ -151,15 +156,15 @@ export default function Hero({ banners = [] }: HeroProps) {
             style={{ backgroundImage: `url(${slides[currentSlide].image})` }}
             initial={{
               scale: getBackgroundScale(),
-              filter: "blur(0px)"
+              filter: "blur(0px)",
             }}
             animate={{
               scale: 1,
-              filter: "blur(0px)"
+              filter: "blur(0px)",
             }}
             transition={{
               duration: 0.8,
-              ease: "easeOut"
+              ease: "easeOut",
             }}
           />
 
@@ -174,21 +179,27 @@ export default function Hero({ banners = [] }: HeroProps) {
                   animate={{ opacity: 0 }}
                   transition={{
                     duration: 0.15,
-                    delay: (index % gridSize) * 0.03 + Math.floor(index / gridSize) * 0.05,
-                    ease: "easeOut"
+                    delay:
+                      (index % gridSize) * 0.03 +
+                      Math.floor(index / gridSize) * 0.05,
+                    ease: "easeOut",
                   }}
                 />
               ))}
             </div>
           )}
 
-
           {/* Gradient overlay */}
-          <div className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgGradient}`} />
+          <div
+            className={`absolute inset-0 bg-gradient-to-br ${slides[currentSlide].bgGradient}`}
+          />
 
           {/* Content */}
           <div className="relative h-full flex items-center justify-center z-20">
-            <div className="mx-auto px-6 lg:px-8 text-center" style={{ maxWidth: '1450px' }}>
+            <div
+              className="mx-auto px-6 lg:px-8 text-center"
+              style={{ maxWidth: "1450px" }}
+            >
               <AnimatePresence mode="wait">
                 {!isInitialLoad && (
                   <>
@@ -212,7 +223,11 @@ export default function Hero({ banners = [] }: HeroProps) {
                       exit={{ opacity: 0, y: -30 }}
                       transition={{ duration: 0.8, delay: 0.4 }}
                       className={`text-4xl font-bold tracking-tight bg-gradient-to-r ${slides[currentSlide].gradient} bg-clip-text text-transparent sm:text-5xl lg:text-6xl mb-8`}
-                      style={{ WebkitTextFillColor: 'transparent', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}
+                      style={{
+                        WebkitTextFillColor: "transparent",
+                        WebkitBackgroundClip: "text",
+                        backgroundClip: "text",
+                      }}
                     >
                       {slides[currentSlide].subtitle}
                     </motion.h2>
@@ -227,16 +242,16 @@ export default function Hero({ banners = [] }: HeroProps) {
                       transition={{
                         duration: 0.6,
                         delay: 0.6,
-                        ease: [0.34, 1.56, 0.64, 1] // Spring-like easing
+                        ease: [0.34, 1.56, 0.64, 1], // Spring-like easing
                       }}
                       whileHover={{
                         scale: 1.05,
                         boxShadow: "0 20px 40px rgba(147, 51, 234, 0.3)",
-                        transition: { duration: 0.2, ease: "easeOut" }
+                        transition: { duration: 0.2, ease: "easeOut" },
                       }}
                       whileTap={{
                         scale: 0.98,
-                        transition: { duration: 0.1 }
+                        transition: { duration: 0.1 },
                       }}
                       className="inline-block rounded-full bg-white px-8 py-4 text-lg font-semibold text-purple-600 shadow-lg hover:shadow-2xl transition-shadow duration-300"
                     >
@@ -257,10 +272,11 @@ export default function Hero({ banners = [] }: HeroProps) {
             <button
               key={`slide-indicator-${slide.id}`}
               onClick={() => handleSlideChange(index)}
-              className={`transition-all duration-300 rounded-full ${currentSlide === index
-                ? "bg-white w-12 h-3"
-                : "bg-white/50 w-3 h-3 hover:bg-white/70"
-                }`}
+              className={`transition-all duration-300 rounded-full ${
+                currentSlide === index
+                  ? "bg-white w-12 h-3"
+                  : "bg-white/50 w-3 h-3 hover:bg-white/70"
+              }`}
             />
           ))}
         </div>
@@ -268,4 +284,3 @@ export default function Hero({ banners = [] }: HeroProps) {
     </section>
   );
 }
-

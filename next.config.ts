@@ -14,16 +14,15 @@ const nextConfig: NextConfig = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cdn.zppcnc.com',
-        port: '',
-        pathname: '/**',
+        protocol: "https",
+        hostname: "cdn.zppcnc.com",
+        port: "",
+        pathname: "/**",
       },
     ],
     // 临时禁用优化来测试URL问题
     unoptimized: true,
   },
-
 
   // 实验性特性
   experimental: {
@@ -62,13 +61,11 @@ const nextConfig: NextConfig = {
       //   loaders: ['@svgr/webpack'],
       //   as: '*.js',
       // },
-      
       // 自定义字体加载
       // '*.woff2': {
       //   loaders: ['file-loader'],
       //   as: '*.js',
       // },
-
       // YAML 文件支持
       // '*.yaml': {
       //   loaders: ['yaml-loader'],
@@ -78,13 +75,13 @@ const nextConfig: NextConfig = {
 
     // 解析扩展名
     resolveExtensions: [
-      '.tsx',
-      '.ts',
-      '.jsx',
-      '.js',
-      '.mjs',
-      '.json',
-      '.mdx', // 启用 MDX 支持
+      ".tsx",
+      ".ts",
+      ".jsx",
+      ".js",
+      ".mjs",
+      ".json",
+      ".mdx", // 启用 MDX 支持
     ],
 
     // Module ID 策略

@@ -1,5 +1,5 @@
 // 产品配置工具
-import directoryMap from './directoryMap.json';
+import directoryMap from "./directoryMap.json";
 
 // 产品接口定义
 export interface Product {
@@ -21,13 +21,12 @@ const directories = directoryMap as Record<string, DirectoryStructure>;
  * 获取所有产品列表
  */
 export function getAllProducts(): Product[] {
-  return Object.entries(directories)
-    .map(([id, p]) => ({
-      id,
-      name: p.name,
-      coverImage: p.coverImage || '',
-      detailCount: p.structure?.length || 0,
-    }));
+  return Object.entries(directories).map(([id, p]) => ({
+    id,
+    name: p.name,
+    coverImage: p.coverImage || "",
+    detailCount: p.structure?.length || 0,
+  }));
 }
 
 /**
@@ -36,11 +35,11 @@ export function getAllProducts(): Product[] {
 export function getProductById(id: string): Product | null {
   const product = directories[id];
   if (!product) return null;
-  
+
   return {
     id,
     name: product.name,
-    coverImage: product.coverImage || '',
+    coverImage: product.coverImage || "",
     detailCount: product.structure?.length || 0,
   };
 }

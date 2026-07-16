@@ -1,8 +1,8 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { Maximize2, ZoomIn } from 'lucide-react';
-import ImageViewer from './ImageViewer';
+import { useState } from "react";
+import { Maximize2, ZoomIn } from "lucide-react";
+import ImageViewer from "./ImageViewer";
 
 interface ProductImageViewerProps {
   src: string;
@@ -10,12 +10,16 @@ interface ProductImageViewerProps {
   maxHeight?: string; // 可选的最大高度，例如 "800px" 或 "100%"
 }
 
-export default function ProductImageViewer({ src, alt, maxHeight = "600px" }: ProductImageViewerProps) {
+export default function ProductImageViewer({
+  src,
+  alt,
+  maxHeight = "600px",
+}: ProductImageViewerProps) {
   const [isLightboxOpen, setIsLightboxOpen] = useState(false);
 
   return (
     <>
-      <div 
+      <div
         className="relative w-full bg-white rounded-lg border border-gray-200 overflow-hidden group cursor-zoom-in"
         style={{ height: maxHeight }}
         onClick={() => setIsLightboxOpen(true)}
@@ -23,9 +27,9 @@ export default function ProductImageViewer({ src, alt, maxHeight = "600px" }: Pr
       >
         {/* Main Image - Fixed Size Container */}
         <div className="w-full h-full flex items-center justify-center p-4">
-          <img 
-            src={src} 
-            alt={alt} 
+          <img
+            src={src}
+            alt={alt}
             className="max-w-full max-h-full object-contain transition-transform duration-300 group-hover:scale-105 select-none pointer-events-none"
           />
         </div>
@@ -52,11 +56,11 @@ export default function ProductImageViewer({ src, alt, maxHeight = "600px" }: Pr
       </div>
 
       {/* Lightbox Viewer */}
-      <ImageViewer 
-        src={src} 
-        alt={alt} 
-        isOpen={isLightboxOpen} 
-        onClose={() => setIsLightboxOpen(false)} 
+      <ImageViewer
+        src={src}
+        alt={alt}
+        isOpen={isLightboxOpen}
+        onClose={() => setIsLightboxOpen(false)}
       />
     </>
   );

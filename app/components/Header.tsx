@@ -11,20 +11,27 @@ interface HeaderProps {
 }
 
 // 将导航链接提取为独立组件，避免不必要的重新渲染
-const NavLink = memo(({ href, children, isScrolled, lightBackground }: { 
-  href: string; 
-  children: React.ReactNode; 
-  isScrolled: boolean; 
-  lightBackground: boolean;
-}) => (
-  <a 
-    href={href} 
-    className={`relative font-semibold text-sm ${isScrolled || lightBackground ? 'text-gray-900' : 'text-white'} hover:text-purple-600`}
-  >
-    {children}
-    <span className="absolute bottom-[-0.25rem] left-0 h-[2px] w-0 bg-gradient-to-r from-purple-600 to-blue-500 transition-all duration-300 group-hover:w-full" />
-  </a>
-));
+const NavLink = memo(
+  ({
+    href,
+    children,
+    isScrolled,
+    lightBackground,
+  }: {
+    href: string;
+    children: React.ReactNode;
+    isScrolled: boolean;
+    lightBackground: boolean;
+  }) => (
+    <a
+      href={href}
+      className={`relative font-semibold text-sm ${isScrolled || lightBackground ? "text-gray-900" : "text-white"} hover:text-purple-600`}
+    >
+      {children}
+      <span className="absolute bottom-[-0.25rem] left-0 h-[2px] w-0 bg-gradient-to-r from-purple-600 to-blue-500 transition-all duration-300 group-hover:w-full" />
+    </a>
+  ),
+);
 
 export default function Header({ lightBackground = false }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -43,7 +50,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
         window.requestAnimationFrame(() => {
           const scrolled = lastScrollY > 100;
           // 只在状态真正改变时才更新
-          setIsScrolled(prev => {
+          setIsScrolled((prev) => {
             if (prev !== scrolled) {
               return scrolled;
             }
@@ -62,21 +69,21 @@ export default function Header({ lightBackground = false }: HeaderProps) {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-
-
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 h-[72px] transition-all duration-200 ${
-        isScrolled || lightBackground 
-          ? 'bg-white border-b border-gray-200 shadow-sm' 
-          : 'bg-transparent border-b-0 shadow-none'
+        isScrolled || lightBackground
+          ? "bg-white border-b border-gray-200 shadow-sm"
+          : "bg-transparent border-b-0 shadow-none"
       }`}
     >
       <nav className="mx-auto flex items-center justify-between p-4 lg:px-8 h-full max-w-[1450px] lg:grid lg:grid-cols-[auto_1fr_auto] lg:items-center lg:gap-6">
         {/* Logo */}
         <div className="flex items-center">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className={`text-2xl font-bold whitespace-nowrap transition-colors duration-200 ${isScrolled || lightBackground ? 'text-gray-900' : 'text-white'}`}>
+            <span
+              className={`text-2xl font-bold whitespace-nowrap transition-colors duration-200 ${isScrolled || lightBackground ? "text-gray-900" : "text-white"}`}
+            >
               CO-Grow Machinery Co.,Ltd
             </span>
           </a>
@@ -86,7 +93,7 @@ export default function Header({ lightBackground = false }: HeaderProps) {
         <div className="flex lg:hidden">
           <button
             type="button"
-            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors duration-200 ${isScrolled || lightBackground ? 'text-gray-700' : 'text-white'}`}
+            className={`-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 transition-colors duration-200 ${isScrolled || lightBackground ? "text-gray-700" : "text-white"}`}
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           >
             <span className="sr-only">Open main menu</span>
@@ -111,32 +118,50 @@ export default function Header({ lightBackground = false }: HeaderProps) {
         </div>
         {/* Desktop navigation */}
         <div className="hidden lg:flex lg:gap-x-8 justify-center">
-          <NavLink href="/" isScrolled={isScrolled} lightBackground={lightBackground}>
+          <NavLink
+            href="/"
+            isScrolled={isScrolled}
+            lightBackground={lightBackground}
+          >
             HOME
           </NavLink>
-          <NavLink href="/about" isScrolled={isScrolled} lightBackground={lightBackground}>
+          <NavLink
+            href="/about"
+            isScrolled={isScrolled}
+            lightBackground={lightBackground}
+          >
             ABOUT US
           </NavLink>
-          
+
           {/* Products Dropdown */}
-          <ProductsMenu 
+          <ProductsMenu
             isScrolled={isScrolled}
             lightBackground={lightBackground}
             pathname={pathname}
             categories={categories}
           />
 
-          <NavLink href="/download" isScrolled={isScrolled} lightBackground={lightBackground}>
+          <NavLink
+            href="/download"
+            isScrolled={isScrolled}
+            lightBackground={lightBackground}
+          >
             DOWNLOADS
           </NavLink>
-          <NavLink href="/contact-us" isScrolled={isScrolled} lightBackground={lightBackground}>
+          <NavLink
+            href="/contact-us"
+            isScrolled={isScrolled}
+            lightBackground={lightBackground}
+          >
             CONTACT US
           </NavLink>
         </div>
       </nav>
 
       {/* Mobile menu */}
-      <div className={`lg:hidden overflow-hidden transition-all duration-300 ${mobileMenuOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
+      <div
+        className={`lg:hidden overflow-hidden transition-all duration-300 ${mobileMenuOpen ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}
+      >
         <div className="space-y-2 px-6 pb-6 pt-2">
           <a
             href="/"

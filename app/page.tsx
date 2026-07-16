@@ -39,30 +39,34 @@ export default function Home() {
     // 在 useEffect 中调用接口，只执行一次
     const fetchData = async () => {
       try {
-        const apiUrl = '/api/proxy/portal/home/index';
-        console.log('Fetching from:', apiUrl);
+        const apiUrl = "/api/proxy/portal/home/index";
+        console.log("Fetching from:", apiUrl);
 
         const response = await fetch(apiUrl, {
-          method: 'GET',
+          method: "GET",
           headers: {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           },
-          cache: 'no-store',
+          cache: "no-store",
         });
 
-        console.log('Response status:', response.status);
+        console.log("Response status:", response.status);
 
         if (response.ok) {
           const res = await response.json();
           setHomeData(res);
-          console.log('Home data:', res);
+          console.log("Home data:", res);
         } else {
-          console.error('Response not OK:', response.status, response.statusText);
+          console.error(
+            "Response not OK:",
+            response.status,
+            response.statusText,
+          );
         }
       } catch (error) {
-        console.error('Error fetching home data:', error);
+        console.error("Error fetching home data:", error);
         if (error instanceof Error) {
-          console.error('Error details:', error.message, error.stack);
+          console.error("Error details:", error.message, error.stack);
         }
       } finally {
         setLoading(false);
@@ -77,9 +81,9 @@ export default function Home() {
       <Header />
       <Hero banners={homeData?.data?.banners || []} />
       <VideoShowcase videos={homeData?.data?.videos || []} />
-      <Integrations 
-        productTitle={homeData?.data?.product_title || ''}
-        productContent={homeData?.data?.product_content || ''}
+      <Integrations
+        productTitle={homeData?.data?.product_title || ""}
+        productContent={homeData?.data?.product_content || ""}
         recommendProducts={homeData?.data?.recommend_products || []}
       />
       <Footer />

@@ -5,12 +5,15 @@
 /**
  * 构建产品路径 URL
  */
-export function buildProductUrl(productId: string, pathSegments: string[] = []): string {
+export function buildProductUrl(
+  productId: string,
+  pathSegments: string[] = [],
+): string {
   const encodedId = encodeURIComponent(productId);
   if (pathSegments.length === 0) {
     return `/products/${encodedId}`;
   }
-  const encodedPath = pathSegments.map(s => encodeURIComponent(s)).join('/');
+  const encodedPath = pathSegments.map((s) => encodeURIComponent(s)).join("/");
   return `/products/${encodedId}/${encodedPath}`;
 }
 
@@ -18,17 +21,19 @@ export function buildProductUrl(productId: string, pathSegments: string[] = []):
  * 解码路径段数组
  */
 export function decodePathSegments(segments: string[]): string[] {
-  return segments.map(s => decodeURIComponent(s));
+  return segments.map((s) => decodeURIComponent(s));
 }
 
 /**
  * 构建 API URL 参数
  */
-export function buildApiParams(params: Record<string, string | string[]>): string {
+export function buildApiParams(
+  params: Record<string, string | string[]>,
+): string {
   const searchParams = new URLSearchParams();
   Object.entries(params).forEach(([key, value]) => {
     if (Array.isArray(value)) {
-      searchParams.append(key, encodeURIComponent(value.join('/')));
+      searchParams.append(key, encodeURIComponent(value.join("/")));
     } else {
       searchParams.append(key, encodeURIComponent(value));
     }

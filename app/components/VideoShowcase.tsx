@@ -1,9 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { Play, X } from "lucide-react";
+import { Maximize, Pause, Play, Volume2, VolumeX, X } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { createPortal } from "react-dom";
+import videojs from "video.js";
+import "video.js/dist/video-js.css";
+import type Player from "video.js/dist/types/player";
 
 export interface Video {
   id: number;
@@ -33,12 +36,12 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
   // Lock body scroll when modal is open
   useEffect(() => {
     if (selectedVideo) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = "hidden";
     } else {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     }
     return () => {
-      document.body.style.overflow = 'unset';
+      document.body.style.overflow = "unset";
     };
   }, [selectedVideo]);
 
@@ -48,8 +51,8 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
 
   // Check scroll position
   useEffect(() => {
-    const container = document.getElementById('videos-scroll-container');
-    
+    const container = document.getElementById("videos-scroll-container");
+
     const checkScroll = () => {
       if (container) {
         const { scrollLeft, scrollWidth, clientWidth } = container;
@@ -60,15 +63,15 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
 
     if (container) {
       checkScroll();
-      container.addEventListener('scroll', checkScroll);
-      window.addEventListener('resize', checkScroll);
+      container.addEventListener("scroll", checkScroll);
+      window.addEventListener("resize", checkScroll);
     }
 
     return () => {
       if (container) {
-        container.removeEventListener('scroll', checkScroll);
+        container.removeEventListener("scroll", checkScroll);
       }
-      window.removeEventListener('resize', checkScroll);
+      window.removeEventListener("resize", checkScroll);
     };
   }, [videos]);
 
@@ -109,7 +112,10 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
           >
             {/* Video Player Container */}
             <div className="relative w-full h-full group">
-               <AppleStylePlayer src={selectedVideo.video_url} poster={selectedVideo.cover_url} />
+              <AppleStylePlayer
+                src={selectedVideo.video_url}
+                poster={selectedVideo.cover_url}
+              />
             </div>
           </motion.div>
         </motion.div>
@@ -118,30 +124,31 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
   );
 
   // Scroll handler
-  const scrollContainer = (direction: 'left' | 'right') => {
-    const container = document.getElementById('videos-scroll-container');
+  const scrollContainer = (direction: "left" | "right") => {
+    const container = document.getElementById("videos-scroll-container");
     if (container) {
-      const scrollAmount = direction === 'left' ? -container.clientWidth : container.clientWidth;
-      container.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+      const scrollAmount =
+        direction === "left" ? -container.clientWidth : container.clientWidth;
+      container.scrollBy({ left: scrollAmount, behavior: "smooth" });
     }
   };
 
   return (
     <section className="py-16 lg:py-24 bg-white overflow-hidden relative z-10">
-      <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: '1450px' }}>
+      <div className="mx-auto px-6 lg:px-8" style={{ maxWidth: "1450px" }}>
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mb-12"
         >
-             <h2 
-                className="block text-gray-900"
-                style={{ fontSize: '40px', fontWeight: 'normal' }}
-             >
-                VIDEOS
-            </h2>
+          <h2
+            className="block text-gray-900"
+            style={{ fontSize: "40px", fontWeight: "normal" }}
+          >
+            VIDEOS
+          </h2>
         </motion.div>
 
         <div className="relative">
@@ -149,83 +156,103 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
             id="videos-scroll-container"
             className="flex gap-8 overflow-x-auto scroll-smooth pb-8 [&::-webkit-scrollbar]:hidden"
             style={{
-                scrollbarWidth: 'none',
-                msOverflowStyle: 'none',
+              scrollbarWidth: "none",
+              msOverflowStyle: "none",
             }}
           >
-          {videos.map((video, index) => (
-            <motion.div
-              key={video.id}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group cursor-pointer min-w-[300px] md:min-w-[400px] flex-shrink-0"
-              onClick={() => setSelectedVideo(video)}
-            >
-              {/* Card Image Area with Overlay Content */}
-              <div className="relative aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
-                {/* Cover Image */}
-                {video.cover_url ? (
-                  <img 
-                    src={video.cover_url} 
-                    alt={video.title}
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                ) : (
-                  <div className="absolute inset-0 bg-slate-200 group-hover:bg-slate-300 transition-colors duration-300" />
-                )}
-                
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
+            {videos.map((video, index) => (
+              <motion.div
+                key={video.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="group cursor-pointer min-w-[300px] md:min-w-[400px] flex-shrink-0"
+                onClick={() => setSelectedVideo(video)}
+              >
+                {/* Card Image Area with Overlay Content */}
+                <div className="relative aspect-video bg-gray-100 rounded-2xl overflow-hidden shadow-sm border border-gray-100 group">
+                  {/* Cover Image */}
+                  {video.cover_url ? (
+                    <img
+                      src={video.cover_url}
+                      alt={video.title}
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  ) : (
+                    <div className="absolute inset-0 bg-slate-200 group-hover:bg-slate-300 transition-colors duration-300" />
+                  )}
 
-                {/* Title - Centered */}
-                <div className="absolute inset-0 flex items-center justify-center p-6 text-center z-10">
-                   <h3 className="text-2xl font-bold text-white drop-shadow-md line-clamp-2">
-                    {video.title}
-                  </h3>
-                </div>
+                  {/* Overlay for better text readability */}
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/30 transition-colors duration-300" />
 
-                {/* Play Button - Bottom Right */}
-                <div className="absolute bottom-4 right-4 z-20">
-                  <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
-                    <Play className="w-5 h-5 text-gray-900 fill-gray-900 ml-1" />
+                  {/* Title - Centered */}
+                  <div className="absolute inset-0 flex items-center justify-center p-6 text-center z-10">
+                    <h3 className="text-2xl font-bold text-white drop-shadow-md line-clamp-2">
+                      {video.title}
+                    </h3>
+                  </div>
+
+                  {/* Play Button - Bottom Right */}
+                  <div className="absolute bottom-4 right-4 z-20">
+                    <div className="w-12 h-12 bg-white rounded-full flex items-center justify-center shadow-lg transition-transform duration-300 group-hover:scale-110">
+                      <Play className="w-5 h-5 text-gray-900 fill-gray-900 ml-1" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
           </div>
 
-            {/* Bottom Navigation Controls */}
-            <div className="flex justify-end gap-4 mt-4">
-                <button
-                    onClick={() => scrollContainer('left')}
-                    disabled={!canScrollLeft}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                        canScrollLeft
-                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm'
-                            : 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                    }`}
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
-                    </svg>
-                </button>
-                <button
-                    onClick={() => scrollContainer('right')}
-                    disabled={!canScrollRight}
-                    className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
-                        canScrollRight
-                            ? 'bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm'
-                            : 'bg-gray-100 text-gray-300 cursor-not-allowed'
-                    }`}
-                >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
-                    </svg>
-                </button>
-            </div>
+          {/* Bottom Navigation Controls */}
+          <div className="flex justify-end gap-4 mt-4">
+            <button
+              onClick={() => scrollContainer("left")}
+              disabled={!canScrollLeft}
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                canScrollLeft
+                  ? "bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm"
+                  : "bg-gray-100 text-gray-300 cursor-not-allowed"
+              }`}
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M15 19l-7-7 7-7"
+                />
+              </svg>
+            </button>
+            <button
+              onClick={() => scrollContainer("right")}
+              disabled={!canScrollRight}
+              className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-200 ${
+                canScrollRight
+                  ? "bg-gray-200 hover:bg-gray-300 text-gray-800 cursor-pointer shadow-sm"
+                  : "bg-gray-100 text-gray-300 cursor-not-allowed"
+              }`}
+            >
+              <svg
+                className="w-5 h-5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2.5}
+                  d="M9 5l7 7-7 7"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
 
@@ -235,228 +262,228 @@ export default function VideoShowcase({ videos = [] }: VideoShowcaseProps) {
   );
 }
 
-// Separate component to keep logic clean
-import { Pause, Volume2, VolumeX, Maximize } from "lucide-react";
-
 function AppleStylePlayer({ src, poster }: { src: string; poster?: string }) {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [videoUrl, setVideoUrl] = useState<string | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const videoRef = useRef<HTMLDivElement>(null);
+  const playerRef = useRef<Player | null>(null);
   const [isPlaying, setIsPlaying] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
   const [isMuted, setIsMuted] = useState(false);
   const [showControls, setShowControls] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
   const controlsTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
-    let objectUrl = '';
-    const loadVideo = async () => {
-      setIsLoading(true);
-      try {
-        // 使用 HTTP Range 分片下载/加载
-        // 这里默认请求整个文件，但带上 Range 头以满足用户需求并确保 COS 正确响应 206
-        const response = await fetch(src, {
-          headers: {
-            'Range': 'bytes=0-'
-          }
-        });
+    // Initialize video.js player
+    if (!videoRef.current) return;
 
-        if (!response.ok && response.status !== 206) {
-          throw new Error('Video load failed');
-        }
+    const videoElement = document.createElement("video-js");
+    videoElement.classList.add("vjs-big-play-centered");
+    videoRef.current.appendChild(videoElement);
 
-        const blob = await response.blob();
-        objectUrl = URL.createObjectURL(blob);
-        setVideoUrl(objectUrl);
-      } catch (err) {
-        console.error('Video fetch error:', err);
-        // 降级使用原始 URL
-        setVideoUrl(src);
-      } finally {
+    const player = (playerRef.current = videojs(
+      videoElement,
+      {
+        autoplay: true,
+        controls: false, // We use our own UI
+        responsive: true,
+        fluid: true,
+        poster: poster,
+        sources: [
+          {
+            src: src,
+            type: src.endsWith(".m3u8") ? "application/x-mpegURL" : "video/mp4",
+          },
+        ],
+        preload: "auto",
+        userActions: {
+          hotkeys: true,
+        },
+      },
+      () => {
         setIsLoading(false);
-      }
-    };
+      },
+    ));
 
-    loadVideo();
+    // Event listeners
+    player.on("play", () => setIsPlaying(true));
+    player.on("pause", () => setIsPlaying(false));
+    player.on("timeupdate", () => {
+      setCurrentTime(player.currentTime() || 0);
+    });
+    player.on("loadedmetadata", () => {
+      setDuration(player.duration() || 0);
+    });
+    player.on("volumechange", () => {
+      setIsMuted(player.muted() || false);
+    });
+    player.on("waiting", () => setIsLoading(true));
+    player.on("playing", () => setIsLoading(false));
 
     return () => {
-      if (objectUrl) {
-        URL.revokeObjectURL(objectUrl);
+      if (player) {
+        player.dispose();
       }
     };
-  }, [src]);
+  }, [src, poster]);
 
   const togglePlay = (e?: React.MouseEvent) => {
     e?.stopPropagation();
-    if (videoRef.current) {
-        if (isPlaying) {
-            videoRef.current.pause();
-        } else {
-            videoRef.current.play();
-        }
-        setIsPlaying(!isPlaying);
-    }
-  };
-
-  const handleTimeUpdate = () => {
-    if (videoRef.current) {
-        setCurrentTime(videoRef.current.currentTime);
-    }
-  };
-
-  const handleLoadedMetadata = () => {
-    if (videoRef.current) {
-        setDuration(videoRef.current.duration);
-        // Auto play when loaded
-        videoRef.current.play().catch(() => {
-            // Handle autoplay policies
-            setIsPlaying(false);
-        });
-        setIsPlaying(true);
+    if (playerRef.current) {
+      if (isPlaying) {
+        playerRef.current.pause();
+      } else {
+        playerRef.current.play();
+      }
     }
   };
 
   const handleSeek = (e: React.ChangeEvent<HTMLInputElement>) => {
     const time = parseFloat(e.target.value);
-    if (videoRef.current) {
-        videoRef.current.currentTime = time;
-        setCurrentTime(time);
+    if (playerRef.current) {
+      playerRef.current.currentTime(time);
+      setCurrentTime(time);
     }
   };
 
   const toggleMute = (e: React.MouseEvent) => {
     e.stopPropagation();
-    if (videoRef.current) {
-        videoRef.current.muted = !isMuted;
-        setIsMuted(!isMuted);
+    if (playerRef.current) {
+      const newMuteState = !isMuted;
+      playerRef.current.muted(newMuteState);
+      setIsMuted(newMuteState);
     }
   };
-  
+
   const toggleFullscreen = (e: React.MouseEvent) => {
-      e.stopPropagation();
-      if (videoRef.current) {
-          if (document.fullscreenElement) {
-              document.exitFullscreen();
-          } else {
-             // Try to make the container fullscreen if possible, or video
-             videoRef.current.parentElement?.requestFullscreen();
-          }
+    e.stopPropagation();
+    if (playerRef.current) {
+      if (playerRef.current.isFullscreen()) {
+        playerRef.current.exitFullscreen();
+      } else {
+        playerRef.current.requestFullscreen();
       }
+    }
   };
 
   const formatTime = (time: number) => {
     const minutes = Math.floor(time / 60);
     const seconds = Math.floor(time % 60);
-    return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+    return `${minutes.toString().padStart(2, "0")}:${seconds.toString().padStart(2, "0")}`;
   };
-  
+
   const widthPercentage = (currentTime / duration) * 100;
 
   // Auto hide controls
   const handleMouseMove = () => {
-      setShowControls(true);
-      if (controlsTimeoutRef.current) {
-          clearTimeout(controlsTimeoutRef.current);
+    setShowControls(true);
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    controlsTimeoutRef.current = setTimeout(() => {
+      if (isPlaying) {
+        setShowControls(false);
       }
-      controlsTimeoutRef.current = setTimeout(() => {
-          if (isPlaying) {
-              setShowControls(false);
-          }
-      }, 3000);
+    }, 3000);
   };
 
-    useEffect(() => {
-        return () => {
-            if (controlsTimeoutRef.current) {
-                clearTimeout(controlsTimeoutRef.current);
-            }
-        };
-    }, []);
+  useEffect(() => {
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, []);
 
   return (
-    <div 
-        className="relative w-full h-full bg-black group overflow-hidden"
-        onMouseMove={handleMouseMove}
-        onMouseLeave={() => isPlaying && setShowControls(false)}
-        onClick={togglePlay}
+    <div
+      className="relative w-full h-full bg-black group overflow-hidden"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => isPlaying && setShowControls(false)}
+      onClick={togglePlay}
     >
+      <div
+        ref={videoRef}
+        className="w-full h-full [&_.video-js]:h-full [&_.vjs-tech]:object-contain cursor-pointer"
+      />
+
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center bg-gray-900/50 backdrop-blur-sm z-20">
           <div className="flex flex-col items-center gap-4">
             <div className="w-12 h-12 border-4 border-white/20 border-t-white rounded-full animate-spin" />
-            <span className="text-white/60 text-sm font-medium">Loading Video...</span>
+            <span className="text-white/60 text-sm font-medium">
+              Loading Video...
+            </span>
           </div>
         </div>
       )}
-      <video
-        ref={videoRef}
-        src={videoUrl || ''}
-        poster={poster}
-        className="w-full h-full object-contain cursor-pointer"
-        onTimeUpdate={handleTimeUpdate}
-        onLoadedMetadata={handleLoadedMetadata}
-        onPlay={() => setIsPlaying(true)}
-        onPause={() => setIsPlaying(false)}
-        onClick={togglePlay} 
-        // We handle click on parent to toggle play, prevent double toggle if needed or rely on parent
-        // Actually, clicking video usually toggles play too
-      />
-      
-      {/* Click Overlay to toggle play - reusing parent div click but ensure video click doesn't conflict */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-           {!isPlaying && (
-               <div className="bg-black/30 backdrop-blur-sm rounded-full p-6 text-white/90 animate-in fade-in zoom-in duration-300">
-                    <Play className="w-12 h-12 fill-white text-white" />
-               </div>
-           )}
-           {/* We can also show a temporary pause icon when pausing, Apple-style often keeps it clean though */}
-           {isPlaying && showControls && (
-                <div className="bg-black/30 backdrop-blur-sm rounded-full p-6 text-white/90 animate-in fade-in zoom-in duration-200">
-                    <Pause className="w-12 h-12 fill-white text-white" />
-                </div>
-           )}
+
+      {/* Click Overlay to toggle play */}
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+        {!isPlaying && (
+          <div className="bg-black/30 backdrop-blur-sm rounded-full p-6 text-white/90 animate-in fade-in zoom-in duration-300">
+            <Play className="w-12 h-12 fill-white text-white" />
+          </div>
+        )}
+        {isPlaying && showControls && (
+          <div className="bg-black/30 backdrop-blur-sm rounded-full p-6 text-white/90 animate-in fade-in zoom-in duration-200">
+            <Pause className="w-12 h-12 fill-white text-white" />
+          </div>
+        )}
       </div>
 
       {/* Controls Bar */}
-      <div 
-        className={`absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 ${showControls ? 'opacity-100' : 'opacity-0'}`}
-        onClick={(e) => e.stopPropagation()} // Prevent click on controls from toggling play
+      <div
+        className={`absolute bottom-0 left-0 right-0 p-6 pt-12 bg-gradient-to-t from-black/80 to-transparent transition-opacity duration-300 z-20 ${showControls ? "opacity-100" : "opacity-0"}`}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center gap-4 text-white/90 font-medium select-none">
-           {/* Volume */}
-          <button onClick={toggleMute} className="hover:text-white transition-colors p-1">
-            {isMuted ? <VolumeX className="w-5 h-5" /> : <Volume2 className="w-5 h-5" />}
+          {/* Volume */}
+          <button
+            onClick={toggleMute}
+            className="hover:text-white transition-colors p-1"
+          >
+            {isMuted ? (
+              <VolumeX className="w-5 h-5" />
+            ) : (
+              <Volume2 className="w-5 h-5" />
+            )}
           </button>
-          
+
           {/* Current Time */}
-          <span className="text-sm font-mono tracking-wider w-12">{formatTime(currentTime)}</span>
-          
+          <span className="text-sm font-mono tracking-wider w-12">
+            {formatTime(currentTime)}
+          </span>
+
           {/* Progress Slider */}
           <div className="flex-1 h-1 bg-white/30 rounded-full relative group/slider cursor-pointer mx-2">
-             <div 
-                className="absolute left-0 top-0 bottom-0 bg-white rounded-full transition-all duration-100"
-                style={{ width: `${widthPercentage || 0}%` }}
-             />
-             <input 
-                type="range"
-                min="0"
-                max={duration || 100}
-                value={currentTime}
-                onChange={handleSeek}
-                className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
-             />
+            <div
+              className="absolute left-0 top-0 bottom-0 bg-white rounded-full transition-all duration-100"
+              style={{ width: `${widthPercentage || 0}%` }}
+            />
+            <input
+              type="range"
+              min="0"
+              max={duration || 100}
+              step="0.1"
+              value={currentTime}
+              onChange={handleSeek}
+              className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+            />
           </div>
 
           {/* Remaining Time */}
           <span className="text-sm font-mono tracking-wider w-16 text-right text-white/70">
-            -{formatTime(duration - currentTime)}
+            -{formatTime(Math.max(0, duration - currentTime))}
           </span>
-          
-           {/* Fullscreen */}
-           <button onClick={toggleFullscreen} className="hover:text-white transition-colors p-1">
-             <Maximize className="w-5 h-5" />
-           </button>
+
+          {/* Fullscreen */}
+          <button
+            onClick={toggleFullscreen}
+            className="hover:text-white transition-colors p-1"
+          >
+            <Maximize className="w-5 h-5" />
+          </button>
         </div>
       </div>
     </div>

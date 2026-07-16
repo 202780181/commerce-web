@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect, MouseEvent } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { useState, useRef, useEffect, MouseEvent } from "react";
+import { motion, AnimatePresence } from "motion/react";
 
 interface ImageViewerProps {
   src: string;
@@ -10,7 +10,12 @@ interface ImageViewerProps {
   onClose: () => void;
 }
 
-export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerProps) {
+export default function ImageViewer({
+  src,
+  alt,
+  isOpen,
+  onClose,
+}: ImageViewerProps) {
   const [scale, setScale] = useState(1);
   const [rotation, setRotation] = useState(0);
   const [position, setPosition] = useState({ x: 0, y: 0 });
@@ -33,23 +38,23 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
     if (!isOpen) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') onClose();
-      if (e.key === '+' || e.key === '=') handleZoomIn();
-      if (e.key === '-' || e.key === '_') handleZoomOut();
+      if (e.key === "Escape") onClose();
+      if (e.key === "+" || e.key === "=") handleZoomIn();
+      if (e.key === "-" || e.key === "_") handleZoomOut();
     };
 
-    window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, scale]);
 
   // 放大
   const handleZoomIn = () => {
-    setScale(prev => Math.min(prev + 0.25, 5));
+    setScale((prev) => Math.min(prev + 0.25, 5));
   };
 
   // 缩小
   const handleZoomOut = () => {
-    setScale(prev => Math.max(prev - 0.25, 0.25));
+    setScale((prev) => Math.max(prev - 0.25, 0.25));
   };
 
   // 适应屏幕
@@ -61,7 +66,7 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
 
   // 旋转
   const handleRotate = () => {
-    setRotation(prev => (prev + 90) % 360);
+    setRotation((prev) => (prev + 90) % 360);
   };
 
   // 下载图片
@@ -70,15 +75,15 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
       const response = await fetch(src);
       const blob = await response.blob();
       const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
+      const link = document.createElement("a");
       link.href = url;
-      link.download = alt || 'image.png';
+      link.download = alt || "image.png";
       document.body.appendChild(link);
       link.click();
       document.body.removeChild(link);
       window.URL.revokeObjectURL(url);
     } catch (error) {
-      console.error('Download failed:', error);
+      console.error("Download failed:", error);
     }
   };
 
@@ -86,7 +91,7 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
   const handleWheel = (e: WheelEvent) => {
     e.preventDefault();
     const delta = e.deltaY > 0 ? -0.1 : 0.1;
-    setScale(prev => Math.max(0.25, Math.min(prev + delta, 5)));
+    setScale((prev) => Math.max(0.25, Math.min(prev + delta, 5)));
   };
 
   // 添加滚轮事件监听
@@ -97,14 +102,15 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
     const wheelHandler = (e: WheelEvent) => {
       e.preventDefault();
       const delta = e.deltaY > 0 ? -0.1 : 0.1;
-      setScale(prev => Math.max(0.25, Math.min(prev + delta, 5)));
+      setScale((prev) => Math.max(0.25, Math.min(prev + delta, 5)));
     };
 
-    container.addEventListener('wheel', wheelHandler, { passive: false });
-    return () => container.removeEventListener('wheel', wheelHandler);
+    container.addEventListener("wheel", wheelHandler, { passive: false });
+    return () => container.removeEventListener("wheel", wheelHandler);
   }, [isOpen]);
   const handleMouseDown = (e: MouseEvent<HTMLDivElement>) => {
-    if (scale !== 1) {  // 只要不是默认缩放就允许拖拽
+    if (scale !== 1) {
+      // 只要不是默认缩放就允许拖拽
       setIsDragging(true);
       setDragStart({
         x: e.clientX - position.x,
@@ -149,8 +155,18 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
               onClick={onClose}
               className="text-gray-700 hover:text-gray-900 transition-colors"
             >
-              <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+              <svg
+                className="w-8 h-8"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M6 18L18 6M6 6l12 12"
+                />
               </svg>
             </button>
           </div>
@@ -165,7 +181,13 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
             onMouseMove={handleMouseMove}
             onMouseUp={handleMouseUp}
             onMouseLeave={handleMouseUp}
-            style={{ cursor: isDragging ? 'grabbing' : scale !== 1 ? 'grab' : 'default' }}
+            style={{
+              cursor: isDragging
+                ? "grabbing"
+                : scale !== 1
+                  ? "grab"
+                  : "default",
+            }}
           >
             <motion.img
               ref={imageRef}
@@ -174,14 +196,14 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
               className="max-w-none select-none"
               style={{
                 transform: `translate(${position.x}px, ${position.y}px) scale(${scale}) rotate(${rotation}deg)`,
-                transition: isDragging ? 'none' : 'transform 0.2s ease-out',
+                transition: isDragging ? "none" : "transform 0.2s ease-out",
               }}
               draggable={false}
             />
           </div>
 
           {/* 底部工具栏 */}
-          <div 
+          <div
             className="absolute bottom-0 left-0 right-0 h-14 bg-white/90 backdrop-blur-md flex items-center justify-center gap-3 z-10 border-t border-gray-200"
             onClick={(e) => e.stopPropagation()}
           >
@@ -200,9 +222,19 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
               className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:cursor-not-allowed transition-all flex items-center justify-center group"
               title="Zoom In (+)"
             >
-              <svg className="w-5 h-5 text-gray-700 group-disabled:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 text-gray-700 group-disabled:text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <circle cx="11" cy="11" r="8" strokeWidth="2" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M11 8v6m-3-3h6" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-4.35-4.35M11 8v6m-3-3h6"
+                />
               </svg>
             </button>
 
@@ -213,9 +245,19 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
               className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-gray-200 disabled:bg-gray-50 disabled:cursor-not-allowed transition-all flex items-center justify-center group"
               title="Zoom Out (-)"
             >
-              <svg className="w-5 h-5 text-gray-700 group-disabled:text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg
+                className="w-5 h-5 text-gray-700 group-disabled:text-gray-400"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <circle cx="11" cy="11" r="8" strokeWidth="2" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-4.35-4.35M8 11h6" />
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M21 21l-4.35-4.35M8 11h6"
+                />
               </svg>
             </button>
 
@@ -228,8 +270,18 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
               className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all flex items-center justify-center"
               title="Fit Screen"
             >
-              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4" />
+              <svg
+                className="w-5 h-5 text-gray-700"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"
+                />
               </svg>
             </button>
 
@@ -239,8 +291,18 @@ export default function ImageViewer({ src, alt, isOpen, onClose }: ImageViewerPr
               className="w-9 h-9 rounded-lg bg-gray-100 hover:bg-gray-200 transition-all flex items-center justify-center"
               title="Rotate"
             >
-              <svg className="w-5 h-5 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              <svg
+                className="w-5 h-5 text-gray-700"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                />
               </svg>
             </button>
 
